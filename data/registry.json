@@ -215,43 +215,6 @@
       "published_at": "2026-08-08T18:53:24+00:00"
     },
     {
-      "slug": "murloc-primitive-painter-cycle",
-      "title": "Primitive Painter Murloc Cycle",
-      "url": "https://jarvisinthemorning.github.io/tasketas/comps/murloc-primitive-painter-cycle.html",
-      "season": 14,
-      "modes": [
-        "solo"
-      ],
-      "tribes": [
-        "murloc"
-      ],
-      "tags": [
-        "season 14",
-        "low-tier cycle",
-        "board scaling",
-        "apm"
-      ],
-      "core": [
-        122281,
-        131145
-      ],
-      "addons": [],
-      "cycle": [],
-      "verified_at": "2026-08-08",
-      "source_type": "youtube",
-      "source_url": "https://www.youtube.com/watch?v=7f4_AskT4Dk",
-      "source_author": "Christian 2",
-      "source_id": "7f4_AskT4Dk",
-      "cards": [
-        122281,
-        131145,
-        122277,
-        108922,
-        133283
-      ],
-      "published_at": "2026-08-08T19:25:34+00:00"
-    },
-    {
       "slug": "naga-fauna-spellcraft",
       "title": "Fauna Whisperer Spellcraft",
       "url": "https://jarvisinthemorning.github.io/tasketas/comps/naga-fauna-spellcraft.html",
@@ -419,6 +382,59 @@
         113158
       ],
       "published_at": "2026-08-08T16:51:34+00:00"
+    },
+    {
+      "slug": "murloc-primitive-painter-cycle",
+      "title": "Tidecaller–Tidehunter Handbuff APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/murloc-primitive-painter-cycle.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "murloc"
+      ],
+      "tags": [
+        "season 14",
+        "handbuff",
+        "spell targeting",
+        "apm"
+      ],
+      "core": [
+        133026,
+        132989,
+        96786
+      ],
+      "addons": [
+        132883,
+        98509,
+        98948,
+        126637
+      ],
+      "cycle": [
+        60028,
+        133075,
+        131145
+      ],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Ppj60f3j_AE",
+      "source_author": "Shadybunny",
+      "source_id": "Ppj60f3j_AE",
+      "cards": [
+        133026,
+        132989,
+        96786,
+        132883,
+        98509,
+        98948,
+        126637,
+        60028,
+        133075,
+        131145,
+        120677
+      ],
+      "published_at": "2026-08-08T23:01:48+00:00"
     }
   ]
 }

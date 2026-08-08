@@ -1,5 +1,5 @@
 ---
-title: Primitive Painter Murloc Cycle
+title: Tidecaller–Tidehunter Handbuff APM
 slug: murloc-primitive-painter-cycle
 season: 14
 modes:
@@ -8,61 +8,87 @@ tribes:
 - murloc
 tags:
 - season 14
-- low-tier cycle
-- board scaling
+- handbuff
+- spell targeting
 - apm
 core:
-- 122281
+- 133026
+- 132989
+- 96786
+addons:
+- 132883
+- 98509
+- 98948
+- 126637
+cycle:
+- 60028
+- 133075
 - 131145
-addons: []
-cycle: []
 board_examples:
 - stage: mid
-  timestamp: 874
-  note: Golden Primitive Painter is online and every cheap cycle card is turning into permanent Murloc stats.
+  timestamp: 1230
+  note: "The spell-target handbuff engine is established: Tidecaller grows the hand, Tidehunter concentrates extra stats, and two Chorals convert that hand growth into a durable board."
   units:
-  - {card_id: 122277, slot: 1, attack: 41, health: 48}
-  - {card_id: 108922, slot: 2, attack: 102, health: 109}
-  - {card_id: 122281, slot: 3, attack: 106, health: 115, golden: true, annotation: Taunt}
-  - {card_id: 108922, slot: 4, attack: 80, health: 81}
-  - {card_id: 133283, slot: 5, attack: 110, health: 117}
-  - {card_id: 133283, slot: 6, attack: 102, health: 101}
+  - {card_id: 133026, slot: 1, attack: 733, health: 480}
+  - {card_id: 126637, slot: 2, attack: 458, health: 388}
+  - {card_id: 98948, slot: 3, attack: 215, health: 230}
+  - {card_id: 132989, slot: 4, attack: 979, health: 572}
+  - {card_id: 98948, slot: 5, attack: 467, health: 395}
+  - {card_id: 120677, slot: 6, attack: 852, health: 498}
 - stage: late
-  timestamp: 1040
-  note: A useful late-game Tavern board showing the same Painter shell after several more low-tier cycles; the following combat is not a win.
+  timestamp: 1390
+  note: "A mature pre-combat Tavern board with Tidehunter over 1k and six permanent Murlocs; the following combat is won, but the source does not clearly show a first-place result screen."
   units:
-  - {card_id: 122277, slot: 1, attack: 266, health: 270}
-  - {card_id: 108922, slot: 2, attack: 179, health: 193}
-  - {card_id: 122281, slot: 3, attack: 180, health: 191, golden: true, annotation: Taunt}
-  - {card_id: 108922, slot: 4, attack: 156, health: 157}
-  - {card_id: 133283, slot: 5, attack: 197, health: 205}
-  - {card_id: 133283, slot: 6, attack: 174, health: 173}
+  - {card_id: 133026, slot: 1, attack: 791, health: 504}
+  - {card_id: 126637, slot: 2, attack: 516, health: 482}
+  - {card_id: 98948, slot: 3, attack: 273, health: 324}
+  - {card_id: 132989, slot: 4, attack: 1.1k, health: 674}
+  - {card_id: 98948, slot: 5, attack: 525, health: 489}
+  - {card_id: 120677, slot: 6, attack: 920, health: 599, annotation: Divine Shield}
 source:
   type: youtube
-  url: https://www.youtube.com/watch?v=7f4_AskT4Dk
-  author: Christian 2
+  url: https://www.youtube.com/watch?v=Ppj60f3j_AE
+  author: Shadybunny
 video:
-  id: 7f4_AskT4Dk
-  timestamp: 644
-source_published_at: '2026-08-05'
+  id: Ppj60f3j_AE
+  timestamp: 388
+source_published_at: '2026-08-02'
 verified_at: '2026-08-08'
 ---
 
 ## Game plan
 
-[[card:122281|Primitive Painter]] rewards every Tavern Tier 3-or-lower card played by scaling the Murloc board. That changes the shopping rule: cheap, playable cards are engine fuel rather than filler.
+[[card:133026|Shamanic Tidecaller]] turns every Tavern Spell targeted at a Murloc into hand-wide scaling. [[card:132989|Twilight Tidehunter]] concentrates additional stats into the left-most Murloc in hand, while [[card:98948|Choral Mrrrglr]] converts that stored hand strength into combat stats.
 
-The source starts moving toward Murlocs, discovers Painter, reads its low-tier trigger, and then explicitly searches for cheaper Murlocs. [[card:131145|Mama Mrrglton]] supplies a useful Murloc body while the cycle develops.
+The source finds an early Golden [[card:96786|Brann Bronzebeard]], then uses Murloc Battlecries and [[card:132883|Kelp Keeper]] to generate and repeat value while the spell-target engine comes online.
 
-## How to build it
+## When to commit
 
-- **Bridge:** keep low-tier Murlocs that can be played efficiently rather than clogging the hand.
-- **Commit:** Painter plus enough cheap card flow is the signal.
-- **Scale:** play Tier 3-or-lower cards before spending gold on expensive units that do not trigger Painter.
-- **Finish:** turn the final board into durable Murloc bodies while preserving one cycling slot for continued triggers.
+- You have Tidecaller or Tidehunter **and** a reliable stream of Tavern Spells that can target Murlocs.
+- Brann plus useful Murloc Battlecries makes the transition much safer; the source explicitly rolls for Golden Brann and the new spell-scaling pieces.
+- A hand payoff such as [[card:98509|Bream Counter]] or board conversion through Choral gives the scaling somewhere useful to land.
 
-## Practical cautions
+Do not force this from one isolated payoff card. The source begins with handbuff support, then commits only after Brann and repeatable spell targeting line up.
 
-Do not confuse “cheap” with “free.” A low-tier card that destroys your economy or forces out a real carry is still a bad buy.
+## How to play it
 
-This line is intentionally different from Kelp Keeper/Brann spell-target APM: Painter cares about the Tavern tier of cards played, not repeatedly targeting one Murloc with Tavern Spells.
+1. **Build the hand:** target Tidecaller/Tidehunter with useful Tavern Spells so the buffs spread through or concentrate in your hand.
+2. **Double the value:** use Brann with Murloc Battlecries; Kelp Keeper can repeat a friendly Battlecry when the right target is worth the gold.
+3. **Cycle actual Murlocs:** play and sell [[card:60028|Primalfin Lookout]], [[card:133075|Captain Cookie]], and spare [[card:131145|Mama Mrrglton]] copies when they improve discovery, hand quality, or Battlecry scaling. Keep one board slot open before starting the chain.
+4. **Convert the hand:** keep Bream Counter growing and use Choral Mrrrglr to bring the hand's accumulated stats into combat.
+5. **Finish the board:** [[card:126637|Expert Aviator]] and [[card:120677|Flighty Scout]] add hand-based combat utility after the raw scaling engine is established.
+
+## Execution and traps
+
+- Preserve a cycling slot. Full boards turn Primalfin and Battlecry chains into expensive hand clutter.
+- Targeted Tavern Spells are the fuel; random expensive shop purchases are not a substitute.
+- Plan the order before clicking. The source repeatedly runs short on recruit time once the gold and spell generation become effectively unbounded.
+- Brann and Kelp Keeper are engine pieces, not sacred final-board units. Sell transitional value when the mature Murloc board needs the slot.
+
+## Useful moments
+
+- **06:28:** Tidecaller spell-to-hand scaling appears.
+- **07:25:** Kelp Keeper, Golden Mama Mrrglton, and Golden Brann form the value shell.
+- **14:28:** the source summarizes the loop as unlimited gold plus targeted pump spells.
+- **20:30:** first clean mature Tavern board.
+- **23:10:** strongest clean late Tavern board before the final combat.
