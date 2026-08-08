@@ -154,6 +154,60 @@ def _render_inline_cards(body: str, catalog: CardCatalog) -> tuple[str, list[int
     return rendered, inline_ids
 
 
+def build_index(
+    *,
+    registry_path: Path,
+    cards_path: Path,
+    template_path: Path,
+    output_dir: Path,
+) -> Path:
+    registry = _load_json(registry_path)
+    catalog = CardCatalog(_load_json(cards_path))
+    comps: list[dict] = []
+    for page in registry.get("pages", []):
+        for field in ("title", "slug", "url"):
+            if not page.get(field):
+                raise CompError(f"Registry page is missing index field: {field}")
+        comp = dict(page)
+        comp["tribes"] = page.get("tribes", []) or []
+        comp["tags"] = page.get("tags", []) or []
+        comp["core_cards"] = [catalog.require_current(card_id) for card_id in page.get("core", [])]
+        all_card_ids = page.get("cards")
+        if all_card_ids is None:
+            all_card_ids = []
+            for value in page.values():
+                if isinstance(value, list):
+                    for item in value:
+                        if isinstance(item, int) and item not in all_card_ids:
+                            all_card_ids.append(item)
+        comp["all_cards"] = [catalog.require_current(card_id) for card_id in all_card_ids]
+        comps.append(comp)
+    comps.sort(key=lambda comp: comp.get("published_at", ""), reverse=True)
+    tribe_options = sorted({tribe for comp in comps for tribe in comp["tribes"]}, key=str.casefold)
+    tag_options = sorted({tag for comp in comps for tag in comp["tags"]}, key=str.casefold)
+    card_options = sorted(
+        {card["id"]: card for comp in comps for card in comp["all_cards"]}.values(),
+        key=lambda card: card["name"].casefold(),
+    )
+
+    env = Environment(
+        loader=FileSystemLoader(str(template_path.parent)),
+        autoescape=select_autoescape(["html", "xml"]),
+        undefined=StrictUndefined,
+    )
+    rendered = env.get_template(template_path.name).render(
+        comps=comps,
+        tribe_options=tribe_options,
+        tag_options=tag_options,
+        card_options=card_options,
+    )
+    rendered = "\n".join(line.rstrip() for line in rendered.splitlines()) + "\n"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    destination = output_dir / "index.html"
+    destination.write_text(rendered, encoding="utf-8")
+    return destination
+
+
 def publish_comp(
     *,
     content_path: Path,
@@ -193,6 +247,18 @@ def publish_comp(
             if card_id not in all_ids:
                 all_ids.append(card_id)
 
+    # Keep the aggregate future-proof: any top-level list of numeric card IDs
+    # participates in validation and local index filtering, even if the guide
+    # template does not yet give that section a dedicated visual block.
+    for value in metadata.values():
+        if not isinstance(value, list):
+            continue
+        for item in value:
+            if isinstance(item, int) and not isinstance(item, bool):
+                catalog.require_current(item)
+                if item not in all_ids:
+                    all_ids.append(item)
+
     comp = dict(metadata)
     comp["sections"] = sections
     comp["source"]["type"] = source_type
@@ -218,9 +284,19 @@ def publish_comp(
     url = f"{public_base_url.rstrip('/')}/comps/{metadata['slug']}.html"
     entry = {
         "slug": metadata["slug"],
+        "title": metadata["title"],
         "url": url,
+        "season": metadata["season"],
+        "modes": metadata.get("modes", []) or [],
+        "tribes": metadata.get("tribes", []) or [],
+        "tags": metadata.get("tags", []) or [],
+        "core": [int(card["id"]) for card in sections["core"]],
+        "addons": [int(card["id"]) for card in sections["addons"]],
+        "cycle": [int(card["id"]) for card in sections["cycle"]],
+        "verified_at": str(metadata["verified_at"]),
         "source_type": source_type,
         "source_url": source_url,
+        "source_author": metadata["source"].get("author", "Original source"),
         "source_id": source_id,
         "cards": all_ids,
         "published_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),

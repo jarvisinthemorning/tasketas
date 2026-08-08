@@ -4,6 +4,7 @@ slug: end-of-turn-tasty-lobster
 season: 14
 modes: [solo]
 tribes: [beast]
+tags: [deathrattle, end-of-turn, scaling]
 core: [132796, 132800, 97408, 132808]
 addons: [133039, 101314, 133400, 112895]
 cycle: [132802]

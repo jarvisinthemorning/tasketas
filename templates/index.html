@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100b18">
+  <meta name="description" content="Source-backed Hearthstone Battlegrounds composition guides.">
+  <title>Tasketas · Battlegrounds compositions</title>
+  <link rel="stylesheet" href="static/index.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-inner">
+      <p class="eyebrow">Hearthstone Battlegrounds</p>
+      <h1>Tasketas</h1>
+      <p class="lede">Short, source-backed composition guides for checking between turns.</p>
+    </div>
+  </header>
+
+  <main class="shell main-shell">
+    <section class="directory" aria-labelledby="directory-title">
+      <div class="directory-heading">
+        <div>
+          <p class="section-kicker">Composition library</p>
+          <h2 id="directory-title">Published guides</h2>
+        </div>
+        <p id="result-count" class="result-count" aria-live="polite">{{ comps|length }} guide{% if comps|length != 1 %}s{% endif %}</p>
+      </div>
+
+      <details class="filters">
+        <summary>
+          <span>Filter and sort</span>
+          <span class="summary-hint">Tribe · tags · any contained card</span>
+        </summary>
+        <div class="filter-grid">
+          <label>
+            <span>Tribe</span>
+            <select id="tribe-filter">
+              <option value="">All tribes</option>
+              {% for tribe in tribe_options %}<option value="{{ tribe|lower }}">{{ tribe|title }}</option>{% endfor %}
+            </select>
+          </label>
+          <label>
+            <span>Tag</span>
+            <select id="tag-filter">
+              <option value="">All tags</option>
+              {% for tag in tag_options %}<option value="{{ tag|lower }}">{{ tag|replace('-', ' ')|title }}</option>{% endfor %}
+            </select>
+          </label>
+          <label>
+            <span>Contained card</span>
+            <select id="card-filter">
+              <option value="">Any card</option>
+              {% for card in card_options %}<option value="{{ card.id }}">{{ card.name }}</option>{% endfor %}
+            </select>
+          </label>
+          <label>
+            <span>Sort</span>
+            <select id="sort-select">
+              <option value="title:asc">Composition A–Z</option>
+              <option value="title:desc">Composition Z–A</option>
+              <option value="tribe:asc">Tribe A–Z</option>
+              <option value="tags:asc">Tags A–Z</option>
+              <option value="core:desc">Most core cards</option>
+            </select>
+          </label>
+          <button id="reset-filters" class="reset-button" type="button">Reset</button>
+        </div>
+      </details>
+
+      <div class="table-shell">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th scope="col" aria-sort="ascending"><button type="button" data-sort="title">Composition <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="tribe">Tribe <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="tags">Tags <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="core">Core cards <span aria-hidden="true">↕</span></button></th>
+            </tr>
+          </thead>
+          <tbody id="comp-rows">
+            {% for comp in comps %}
+            <tr
+              data-title="{{ comp.title|lower }}"
+              data-tribes="{{ comp.tribes|map('lower')|join(' ') }}"
+              data-tags="{{ comp.tags|map('lower')|join(' ') }}"
+              data-card-ids="{{ comp.all_cards|map(attribute='id')|join(' ') }}"
+              data-core-count="{{ comp.core_cards|length }}"
+            >
+              <td data-label="Composition">
+                <a class="comp-link" href="{{ comp.url }}">{{ comp.title }}</a>
+                {% if comp.season is defined %}<span class="comp-meta">Season {{ comp.season }}</span>{% endif %}
+              </td>
+              <td data-label="Tribe">
+                <div class="chip-list">
+                  {% for tribe in comp.tribes %}<span class="chip tribe-chip">{{ tribe }}</span>{% else %}<span class="muted">Any</span>{% endfor %}
+                </div>
+              </td>
+              <td data-label="Tags">
+                <div class="chip-list">
+                  {% for tag in comp.tags %}<span class="chip tag-chip">{{ tag|replace('-', ' ') }}</span>{% else %}<span class="muted">—</span>{% endfor %}
+                </div>
+              </td>
+              <td data-label="Core cards">
+                <div class="core-cards">
+                  {% for card in comp.core_cards %}
+                  <span class="index-card-ref">
+                    <button class="card-thumb" type="button" aria-label="Preview {{ card.name }}" aria-describedby="index-card-{{ comp.slug }}-{{ card.id }}">
+                      <img src="{{ card.image }}" alt="" loading="lazy" width="512" height="686">
+                    </button>
+                    <span class="index-card-popover" id="index-card-{{ comp.slug }}-{{ card.id }}" role="tooltip">
+                      <a href="{{ card.detail or card.hsreplay }}" target="_blank" rel="noopener noreferrer" aria-label="Open {{ card.name }} card details">
+                        <img src="{{ card.image }}" alt="{{ card.name }}" loading="lazy" width="512" height="686">
+                        <span><strong>{{ card.name }}</strong>{% if card.tier %}<small>Tier {{ card.tier }}</small>{% endif %}</span>
+                      </a>
+                    </span>
+                  </span>
+                  {% else %}<span class="muted">No core cards listed</span>{% endfor %}
+                </div>
+              </td>
+            </tr>
+            {% else %}
+            <tr class="empty-row"><td colspan="4">No guides have been published yet.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <p id="empty-filter" class="empty-filter" hidden>No compositions match those filters.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <p>Unofficial, non-commercial fan guides. Hearthstone and its assets belong to Blizzard Entertainment.</p>
+  </footer>
+
+  <script>
+    (() => {
+      const rows = [...document.querySelectorAll('#comp-rows tr[data-title]')];
+      const body = document.querySelector('#comp-rows');
+      const tribe = document.querySelector('#tribe-filter');
+      const tag = document.querySelector('#tag-filter');
+      const card = document.querySelector('#card-filter');
+      const sortSelect = document.querySelector('#sort-select');
+      const count = document.querySelector('#result-count');
+      const empty = document.querySelector('#empty-filter');
+      const headers = [...document.querySelectorAll('[data-sort]')];
+      let sortKey = 'title';
+      let sortDirection = 'asc';
+
+      const valueFor = (row, key) => {
+        if (key === 'core') return Number(row.dataset.coreCount || 0);
+        if (key === 'tribe') return row.dataset.tribes || '';
+        return row.dataset[key] || '';
+      };
+
+      const sortRows = () => {
+        rows.sort((a, b) => {
+          const left = valueFor(a, sortKey);
+          const right = valueFor(b, sortKey);
+          const result = typeof left === 'number'
+            ? left - right
+            : left.localeCompare(right, undefined, { numeric: true, sensitivity: 'base' });
+          return sortDirection === 'asc' ? result : -result;
+        });
+        rows.forEach(row => body.appendChild(row));
+        headers.forEach(button => {
+          const th = button.closest('th');
+          th.removeAttribute('aria-sort');
+          if (button.dataset.sort === sortKey) th.setAttribute('aria-sort', sortDirection === 'asc' ? 'ascending' : 'descending');
+        });
+      };
+
+      const applyFilters = () => {
+        let visible = 0;
+        rows.forEach(row => {
+          const tribes = (row.dataset.tribes || '').split(' ');
+          const tags = (row.dataset.tags || '').split(' ');
+          const cards = (row.dataset.cardIds || '').split(' ');
+          const matches = (!tribe.value || tribes.includes(tribe.value))
+            && (!tag.value || tags.includes(tag.value))
+            && (!card.value || cards.includes(card.value));
+          row.hidden = !matches;
+          if (matches) visible += 1;
+        });
+        count.textContent = `${visible} guide${visible === 1 ? '' : 's'}`;
+        empty.hidden = visible !== 0;
+      };
+
+      const setSort = (key, direction) => {
+        sortKey = key;
+        sortDirection = direction;
+        sortSelect.value = `${key}:${direction}`;
+        sortRows();
+      };
+
+      [tribe, tag, card].forEach(control => control.addEventListener('change', applyFilters));
+      sortSelect.addEventListener('change', () => {
+        const [key, direction] = sortSelect.value.split(':');
+        setSort(key, direction);
+      });
+      headers.forEach(button => button.addEventListener('click', () => {
+        const key = button.dataset.sort;
+        setSort(key, sortKey === key && sortDirection === 'asc' ? 'desc' : 'asc');
+      }));
+      document.querySelector('#reset-filters').addEventListener('click', () => {
+        tribe.value = '';
+        tag.value = '';
+        card.value = '';
+        setSort('title', 'asc');
+        applyFilters();
+      });
+      sortRows();
+      applyFilters();
+    })();
+  </script>
+</body>
+</html>

@@ -3,9 +3,39 @@
   "pages": [
     {
       "slug": "end-of-turn-tasty-lobster",
+      "title": "End-of-Turn Tasty Lobster",
       "url": "https://jarvisinthemorning.github.io/tasketas/comps/end-of-turn-tasty-lobster.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "beast"
+      ],
+      "tags": [
+        "deathrattle",
+        "end-of-turn",
+        "scaling"
+      ],
+      "core": [
+        132796,
+        132800,
+        97408,
+        132808
+      ],
+      "addons": [
+        133039,
+        101314,
+        133400,
+        112895
+      ],
+      "cycle": [
+        132802
+      ],
+      "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=jCupcgaSjvo",
+      "source_author": "Shadybunny",
       "source_id": "jCupcgaSjvo",
       "cards": [
         132796,
@@ -18,7 +48,7 @@
         112895,
         132802
       ],
-      "published_at": "2026-08-08T13:10:39+00:00"
+      "published_at": "2026-08-08T13:30:47+00:00"
     }
   ]
 }

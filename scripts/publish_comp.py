@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from comp_pipeline import CompError, publish_comp
+from comp_pipeline import CompError, build_index, publish_comp
 
 
 def run_git_publish(root: Path, slug: str) -> None:
@@ -41,6 +41,12 @@ def main() -> int:
             public_base_url=args.base_url,
             register=not args.preview,
             update=args.update,
+        )
+        build_index(
+            registry_path=root / "data/registry.json",
+            cards_path=root / "data/cards.json",
+            template_path=root / "templates/index.html",
+            output_dir=root / "dist",
         )
     except CompError as exc:
         print(f"Error: {exc}", file=sys.stderr)

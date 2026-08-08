@@ -36,7 +36,11 @@ uv run python scripts/publish_comp.py content/<guide>.md \
   --push
 ```
 
-GitHub Pages deploys the committed `dist/` directory. The site intentionally has no index page yet; guides are shared using their direct URLs.
+GitHub Pages deploys the committed `dist/` directory. Each publication also rebuilds `dist/index.html` from `data/registry.json` and `data/cards.json`. The static index supports local sorting plus collapsed filters for tribes, tags, and every card contained in a composition.
+
+## Homepage
+
+https://jarvisinthemorning.github.io/tasketas/
 
 ## First guide
 

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100b18">
+  <meta name="description" content="Source-backed Hearthstone Battlegrounds composition guides.">
+  <title>Tasketas · Battlegrounds compositions</title>
+  <link rel="stylesheet" href="static/index.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="shell hero-inner">
+      <p class="eyebrow">Hearthstone Battlegrounds</p>
+      <h1>Tasketas</h1>
+      <p class="lede">Short, source-backed composition guides for checking between turns.</p>
+    </div>
+  </header>
+
+  <main class="shell main-shell">
+    <section class="directory" aria-labelledby="directory-title">
+      <div class="directory-heading">
+        <div>
+          <p class="section-kicker">Composition library</p>
+          <h2 id="directory-title">Published guides</h2>
+        </div>
+        <p id="result-count" class="result-count" aria-live="polite">1 guide</p>
+      </div>
+
+      <details class="filters">
+        <summary>
+          <span>Filter and sort</span>
+          <span class="summary-hint">Tribe · tags · any contained card</span>
+        </summary>
+        <div class="filter-grid">
+          <label>
+            <span>Tribe</span>
+            <select id="tribe-filter">
+              <option value="">All tribes</option>
+              <option value="beast">Beast</option>
+            </select>
+          </label>
+          <label>
+            <span>Tag</span>
+            <select id="tag-filter">
+              <option value="">All tags</option>
+              <option value="deathrattle">Deathrattle</option><option value="end-of-turn">End Of Turn</option><option value="scaling">Scaling</option>
+            </select>
+          </label>
+          <label>
+            <span>Contained card</span>
+            <select id="card-filter">
+              <option value="">Any card</option>
+              <option value="132808">Deathstrider</option><option value="101314">Drakkari Enchanter</option><option value="132802">Fishbait</option><option value="132800">Headhunter Gryphon</option><option value="133039">Hoarding Hyena</option><option value="112895">Souvenir Stand</option><option value="132796">Tasty Lobster</option><option value="97408">Titus Rivendare</option><option value="133400">Wolfhead Flail</option>
+            </select>
+          </label>
+          <label>
+            <span>Sort</span>
+            <select id="sort-select">
+              <option value="title:asc">Composition A–Z</option>
+              <option value="title:desc">Composition Z–A</option>
+              <option value="tribe:asc">Tribe A–Z</option>
+              <option value="tags:asc">Tags A–Z</option>
+              <option value="core:desc">Most core cards</option>
+            </select>
+          </label>
+          <button id="reset-filters" class="reset-button" type="button">Reset</button>
+        </div>
+      </details>
+
+      <div class="table-shell">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th scope="col" aria-sort="ascending"><button type="button" data-sort="title">Composition <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="tribe">Tribe <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="tags">Tags <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="core">Core cards <span aria-hidden="true">↕</span></button></th>
+            </tr>
+          </thead>
+          <tbody id="comp-rows">
+
+            <tr
+              data-title="end-of-turn tasty lobster"
+              data-tribes="beast"
+              data-tags="deathrattle end-of-turn scaling"
+              data-card-ids="132796 132800 97408 132808 133039 101314 133400 112895 132802"
+              data-core-count="4"
+            >
+              <td data-label="Composition">
+                <a class="comp-link" href="https://jarvisinthemorning.github.io/tasketas/comps/end-of-turn-tasty-lobster.html">End-of-Turn Tasty Lobster</a>
+                <span class="comp-meta">Season 14</span>
+              </td>
+              <td data-label="Tribe">
+                <div class="chip-list">
+                  <span class="chip tribe-chip">beast</span>
+                </div>
+              </td>
+              <td data-label="Tags">
+                <div class="chip-list">
+                  <span class="chip tag-chip">deathrattle</span><span class="chip tag-chip">end of turn</span><span class="chip tag-chip">scaling</span>
+                </div>
+              </td>
+              <td data-label="Core cards">
+                <div class="core-cards">
+
+                  <span class="index-card-ref">
+                    <button class="card-thumb" type="button" aria-label="Preview Tasty Lobster" aria-describedby="index-card-end-of-turn-tasty-lobster-132796">
+                      <img src="https://hsbg.cards/cards/production/pngs/full/minions/beast/132796-tasty-lobster.png" alt="" loading="lazy" width="512" height="686">
+                    </button>
+                    <span class="index-card-popover" id="index-card-end-of-turn-tasty-lobster-132796" role="tooltip">
+                      <a href="https://hsreplay.net/battlegrounds/minions/132796/tasty-lobster" target="_blank" rel="noopener noreferrer" aria-label="Open Tasty Lobster card details">
+                        <img src="https://hsbg.cards/cards/production/pngs/full/minions/beast/132796-tasty-lobster.png" alt="Tasty Lobster" loading="lazy" width="512" height="686">
+                        <span><strong>Tasty Lobster</strong><small>Tier 3</small></span>
+                      </a>
+                    </span>
+                  </span>
+
+                  <span class="index-card-ref">
+                    <button class="card-thumb" type="button" aria-label="Preview Headhunter Gryphon" aria-describedby="index-card-end-of-turn-tasty-lobster-132800">
+                      <img src="https://hsbg.cards/cards/production/pngs/full/minions/beast/132800-headhunter-gryphon.png" alt="" loading="lazy" width="512" height="686">
+                    </button>
+                    <span class="index-card-popover" id="index-card-end-of-turn-tasty-lobster-132800" role="tooltip">
+                      <a href="https://hsreplay.net/battlegrounds/minions/132800/headhunter-gryphon" target="_blank" rel="noopener noreferrer" aria-label="Open Headhunter Gryphon card details">
+                        <img src="https://hsbg.cards/cards/production/pngs/full/minions/beast/132800-headhunter-gryphon.png" alt="Headhunter Gryphon" loading="lazy" width="512" height="686">
+                        <span><strong>Headhunter Gryphon</strong><small>Tier 4</small></span>
+                      </a>
+                    </span>
+                  </span>
+
+                  <span class="index-card-ref">
+                    <button class="card-thumb" type="button" aria-label="Preview Titus Rivendare" aria-describedby="index-card-end-of-turn-tasty-lobster-97408">
+                      <img src="https://hsbg.cards/cards/production/pngs/full/minions/neutral/97408-titus-rivendare.png" alt="" loading="lazy" width="512" height="686">
+                    </button>
+                    <span class="index-card-popover" id="index-card-end-of-turn-tasty-lobster-97408" role="tooltip">
+                      <a href="https://hsreplay.net/battlegrounds/minions/97408/titus-rivendare" target="_blank" rel="noopener noreferrer" aria-label="Open Titus Rivendare card details">
+                        <img src="https://hsbg.cards/cards/production/pngs/full/minions/neutral/97408-titus-rivendare.png" alt="Titus Rivendare" loading="lazy" width="512" height="686">
+                        <span><strong>Titus Rivendare</strong><small>Tier 5</small></span>
+                      </a>
+                    </span>
+                  </span>
+
+                  <span class="index-card-ref">
+                    <button class="card-thumb" type="button" aria-label="Preview Deathstrider" aria-describedby="index-card-end-of-turn-tasty-lobster-132808">
+                      <img src="https://hsbg.cards/cards/production/pngs/full/minions/beast/132808-deathstrider.png" alt="" loading="lazy" width="512" height="686">
+                    </button>
+                    <span class="index-card-popover" id="index-card-end-of-turn-tasty-lobster-132808" role="tooltip">
+                      <a href="https://hsreplay.net/battlegrounds/minions/132808/deathstrider" target="_blank" rel="noopener noreferrer" aria-label="Open Deathstrider card details">
+                        <img src="https://hsbg.cards/cards/production/pngs/full/minions/beast/132808-deathstrider.png" alt="Deathstrider" loading="lazy" width="512" height="686">
+                        <span><strong>Deathstrider</strong><small>Tier 6</small></span>
+                      </a>
+                    </span>
+                  </span>
+
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <p id="empty-filter" class="empty-filter" hidden>No compositions match those filters.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <p>Unofficial, non-commercial fan guides. Hearthstone and its assets belong to Blizzard Entertainment.</p>
+  </footer>
+
+  <script>
+    (() => {
+      const rows = [...document.querySelectorAll('#comp-rows tr[data-title]')];
+      const body = document.querySelector('#comp-rows');
+      const tribe = document.querySelector('#tribe-filter');
+      const tag = document.querySelector('#tag-filter');
+      const card = document.querySelector('#card-filter');
+      const sortSelect = document.querySelector('#sort-select');
+      const count = document.querySelector('#result-count');
+      const empty = document.querySelector('#empty-filter');
+      const headers = [...document.querySelectorAll('[data-sort]')];
+      let sortKey = 'title';
+      let sortDirection = 'asc';
+
+      const valueFor = (row, key) => {
+        if (key === 'core') return Number(row.dataset.coreCount || 0);
+        if (key === 'tribe') return row.dataset.tribes || '';
+        return row.dataset[key] || '';
+      };
+
+      const sortRows = () => {
+        rows.sort((a, b) => {
+          const left = valueFor(a, sortKey);
+          const right = valueFor(b, sortKey);
+          const result = typeof left === 'number'
+            ? left - right
+            : left.localeCompare(right, undefined, { numeric: true, sensitivity: 'base' });
+          return sortDirection === 'asc' ? result : -result;
+        });
+        rows.forEach(row => body.appendChild(row));
+        headers.forEach(button => {
+          const th = button.closest('th');
+          th.removeAttribute('aria-sort');
+          if (button.dataset.sort === sortKey) th.setAttribute('aria-sort', sortDirection === 'asc' ? 'ascending' : 'descending');
+        });
+      };
+
+      const applyFilters = () => {
+        let visible = 0;
+        rows.forEach(row => {
+          const tribes = (row.dataset.tribes || '').split(' ');
+          const tags = (row.dataset.tags || '').split(' ');
+          const cards = (row.dataset.cardIds || '').split(' ');
+          const matches = (!tribe.value || tribes.includes(tribe.value))
+            && (!tag.value || tags.includes(tag.value))
+            && (!card.value || cards.includes(card.value));
+          row.hidden = !matches;
+          if (matches) visible += 1;
+        });
+        count.textContent = `${visible} guide${visible === 1 ? '' : 's'}`;
+        empty.hidden = visible !== 0;
+      };
+
+      const setSort = (key, direction) => {
+        sortKey = key;
+        sortDirection = direction;
+        sortSelect.value = `${key}:${direction}`;
+        sortRows();
+      };
+
+      [tribe, tag, card].forEach(control => control.addEventListener('change', applyFilters));
+      sortSelect.addEventListener('change', () => {
+        const [key, direction] = sortSelect.value.split(':');
+        setSort(key, direction);
+      });
+      headers.forEach(button => button.addEventListener('click', () => {
+        const key = button.dataset.sort;
+        setSort(key, sortKey === key && sortDirection === 'asc' ? 'desc' : 'asc');
+      }));
+      document.querySelector('#reset-filters').addEventListener('click', () => {
+        tribe.value = '';
+        tag.value = '';
+        card.value = '';
+        setSort('title', 'asc');
+        applyFilters();
+      });
+      sortRows();
+      applyFilters();
+    })();
+  </script>
+</body>
+</html>

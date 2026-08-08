@@ -6,6 +6,7 @@ from pathlib import Path
 from comp_pipeline import (
     CardCatalog,
     CompError,
+    build_index,
     canonical_source,
     normalize_api_cards,
     publish_comp,
@@ -39,6 +40,18 @@ CARDS = {
             "image": "https://images.example/BG21_014.png",
             "hsreplay": "https://hsreplay.net/battlegrounds/minions/62230/monstrous-macaw",
         },
+        "97408": {
+            "id": 97408,
+            "slug": "titus-rivendare",
+            "name": "Titus Rivendare",
+            "type": "minion",
+            "tier": 5,
+            "tribes": [],
+            "pool": True,
+            "image": "https://images.example/BG25_354.png",
+            "detail": "https://hsreplay.net/battlegrounds/minions/97408/titus-rivendare",
+            "hsreplay": "https://hsreplay.net/battlegrounds/minions/97408/titus-rivendare",
+        },
     },
 }
 
@@ -49,9 +62,11 @@ slug: tasty-lobstah
 season: 14
 modes: [solo, duos]
 tribes: [beast]
+tags: [deathrattle, scaling]
 core: [132796]
 addons: []
 cycle: []
+flex: [97408]
 source:
   type: youtube
   url: https://youtu.be/jCupcgaSjvo?is=tracking
@@ -73,6 +88,103 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
+    def test_index_template_has_collapsed_filters_and_sort_controls(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "pages": [
+                            {
+                                "slug": "tasty-lobstah",
+                                "title": "Tasty Lobstah",
+                                "url": "https://example.pages.dev/comps/tasty-lobstah.html",
+                                "tribes": ["beast"],
+                                "tags": ["deathrattle", "scaling"],
+                                "core": [132796],
+                                "cards": [132796, 97408],
+                                "verified_at": "2026-08-08",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+
+            output = build_index(
+                registry_path=registry,
+                cards_path=cards,
+                template_path=Path(__file__).parents[1] / "templates" / "index.html",
+                output_dir=root / "dist",
+            )
+            html = output.read_text(encoding="utf-8")
+
+            self.assertIn('<details class="filters">', html)
+            self.assertNotIn('<details class="filters" open', html)
+            self.assertIn('id="tribe-filter"', html)
+            self.assertIn('id="tag-filter"', html)
+            self.assertIn('id="card-filter"', html)
+            self.assertIn('data-sort="title"', html)
+            self.assertIn('data-card-ids="132796 97408"', html)
+            self.assertNotIn("Power", html)
+            self.assertNotIn("Rating", html)
+            self.assertNotIn("Difficulty", html)
+
+    def test_build_index_reads_registry_and_resolves_core_cards(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "pages": [
+                            {
+                                "slug": "tasty-lobstah",
+                                "title": "Tasty Lobstah",
+                                "url": "https://example.pages.dev/comps/tasty-lobstah.html",
+                                "tribes": ["beast"],
+                                "tags": ["deathrattle", "scaling"],
+                                "core": [132796],
+                                "cards": [132796, 97408],
+                                "verified_at": "2026-08-08",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            template = root / "index.html"
+            template.write_text(
+                "{% for comp in comps %}<a href='{{ comp.url }}'>{{ comp.title }}</a>"
+                "{% for tribe in comp.tribes %}<span>{{ tribe }}</span>{% endfor %}"
+                "{% for tag in comp.tags %}<b>{{ tag }}</b>{% endfor %}"
+                "{% for card in comp.core_cards %}<img src='{{ card.image }}' alt='{{ card.name }}'>{% endfor %}"
+                "{% for card in comp.all_cards %}<i>{{ card.name }}</i>{% endfor %}"
+                "{% endfor %}",
+                encoding="utf-8",
+            )
+
+            output = build_index(
+                registry_path=registry,
+                cards_path=cards,
+                template_path=template,
+                output_dir=root / "dist",
+            )
+
+            html = output.read_text(encoding="utf-8")
+            self.assertIn("Tasty Lobstah", html)
+            self.assertIn("deathrattle", html)
+            self.assertIn("https://images.example/BG36_202.png", html)
+            self.assertIn("Titus Rivendare", html)
+            self.assertIn("https://example.pages.dev/comps/tasty-lobstah.html", html)
+
     def test_canonical_source_normalizes_youtube_and_reddit(self):
         self.assertEqual(
             canonical_source("https://youtu.be/jCupcgaSjvo?is=tracking"),
@@ -176,7 +288,14 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
             saved = json.loads(registry.read_text(encoding="utf-8"))
             self.assertEqual(saved["pages"][0]["source_id"], "jCupcgaSjvo")
-            self.assertEqual(saved["pages"][0]["cards"], [132796])
+            self.assertEqual(saved["pages"][0]["cards"], [132796, 97408])
+            self.assertEqual(saved["pages"][0]["title"], "Tasty Lobstah")
+            self.assertEqual(saved["pages"][0]["season"], 14)
+            self.assertEqual(saved["pages"][0]["modes"], ["solo", "duos"])
+            self.assertEqual(saved["pages"][0]["tribes"], ["beast"])
+            self.assertEqual(saved["pages"][0]["tags"], ["deathrattle", "scaling"])
+            self.assertEqual(saved["pages"][0]["core"], [132796])
+            self.assertEqual(saved["pages"][0]["source_author"], "Shadybunny")
 
     def test_preview_build_does_not_update_registry(self):
         with tempfile.TemporaryDirectory() as tmp:
