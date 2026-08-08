@@ -68,7 +68,7 @@ board_examples:
     turn: 12
     timestamp: 940
     note: >-
-      Last Tavern turn before the winning combat: Golden Gryphon, three normal Lobsters summoned directly onto the board, Deathstrider, and Golden Titus.
+      Last Tavern turn before the winning combat: Golden Gryphon, Golden Lobster, two normal Lobsters, Deathstrider, and Golden Titus.
     units:
       - card_id: 132800
         slot: 1
@@ -79,6 +79,7 @@ board_examples:
         slot: 2
         attack: 1.8k
         health: 1.8k
+        golden: true
         annotation: Reborn
       - card_id: 132796
         slot: 3
