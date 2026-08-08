@@ -10,28 +10,22 @@ addons: [133039, 101314, 133400, 112895]
 cycle: [132802]
 board_examples:
   - stage: early
-    turn: 7
-    timestamp: 320
+    turn: 4
+    timestamp: 100
     note: >-
-      Two Reborn Lobsters are already online behind a Gryphon. Random Dark Gift and temporary generated units are omitted; slot numbers preserve the recorded placement.
+      The first Lobster and Gryphon shell is already producing tempo while leaving room to cycle into the full engine.
     units:
       - card_id: 132800
         slot: 1
-        attack: 5
-        health: 7
-      - card_id: 132796
-        slot: 3
-        attack: 2
-        health: 2
-        annotation: Reborn
+        attack: 3
+        health: 5
       - card_id: 132796
         slot: 4
-        attack: 2
-        health: 2
-        annotation: Reborn
+        attack: 1
+        health: 1
   - stage: mid
     turn: 10
-    timestamp: 600
+    timestamp: 570
     note: >-
       The engine is fully online: both Lobsters and the Gryphon have crossed 100 stats, while Drakkari and Titus remain protected on the right.
     units:
@@ -61,7 +55,7 @@ board_examples:
     turn: 13
     timestamp: 970
     note: >-
-      Final recorded recruit phase before the winning combat. The temporary builders are gone; three Lobsters lead, the Rally and Deathstrider pieces follow, and the end-of-turn support stays protected on the right.
+      Final recorded recruit phase before the winning combat. Gryphon has been sold; four Lobsters lead, followed by Deathstrider and the protected end-of-turn support.
     units:
       - card_id: 132796
         slot: 1
@@ -78,10 +72,11 @@ board_examples:
         attack: 2.5k
         health: 2.5k
         annotation: Reborn
-      - card_id: 132800
+      - card_id: 132796
         slot: 4
         attack: 2.2k
         health: 2.2k
+        annotation: Reborn
       - card_id: 101314
         slot: 5
         attack: 1

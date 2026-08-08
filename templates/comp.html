@@ -83,7 +83,7 @@
           {% if board.note %}<p class="board-note">{{ board.note }}</p>{% endif %}
           <div class="board-lineup" role="list" aria-label="{{ board.label }} board from left to right">
             {% for unit in board.units %}
-            <a class="board-unit" href="{{ unit.card.detail or unit.card.hsreplay }}" target="_blank" rel="noopener noreferrer" role="listitem" style="grid-column: {{ unit.slot }}"{% if unit.golden %} data-golden="true"{% endif %}>
+            <a class="board-unit" href="{{ unit.card.detail or unit.card.hsreplay }}" target="_blank" rel="noopener noreferrer" role="listitem"{% if unit.golden %} data-golden="true"{% endif %}>
               <span class="board-position">{{ unit.slot }}</span>
               <img src="{{ unit.card.image }}" alt="{{ unit.card.name }}" loading="lazy">
               <strong>{{ unit.card.name }}</strong>
