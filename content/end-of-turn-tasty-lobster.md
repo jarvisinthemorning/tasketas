@@ -65,41 +65,37 @@ board_examples:
         attack: 1
         health: 5
   - stage: end
-    turn: 13
-    timestamp: 956
+    turn: 12
+    timestamp: 940
     note: >-
-      Final Tavern board before end-of-turn triggers and the winning combat: Golden Gryphon, three normal Lobsters summoned directly onto the board, Drakkari, Deathstrider, and Golden Titus.
+      Last Tavern turn before the winning combat: Golden Gryphon, three normal Lobsters summoned directly onto the board, Deathstrider, and Golden Titus.
     units:
       - card_id: 132800
         slot: 1
-        attack: 3.8k
-        health: 3.8k
+        attack: 2.8k
+        health: 2.8k
         golden: true
       - card_id: 132796
         slot: 2
-        attack: 2.8k
-        health: 2.8k
+        attack: 1.8k
+        health: 1.8k
         annotation: Reborn
       - card_id: 132796
         slot: 3
-        attack: 2.5k
-        health: 2.5k
+        attack: 2.3k
+        health: 2.3k
         annotation: Reborn
       - card_id: 132796
         slot: 4
-        attack: 2.2k
-        health: 2.2k
+        attack: 1.8k
+        health: 1.8k
         annotation: Reborn
-      - card_id: 101314
-        slot: 5
-        attack: 1
-        health: 5
       - card_id: 132808
-        slot: 6
-        attack: 1.4k
-        health: 1.4k
+        slot: 5
+        attack: 1.2k
+        health: 1.2k
       - card_id: 97408
-        slot: 7
+        slot: 6
         attack: 2
         health: 14
         golden: true

@@ -237,7 +237,11 @@ def publish_comp(
     if not isinstance(raw_boards, list):
         raise CompError("board_examples must be a list")
     board_examples: list[dict] = []
-    stage_labels = {"early": "Early game", "mid": "Mid game", "end": "End game"}
+    stage_labels = {
+        "early": "Early game",
+        "mid": "Mid game",
+        "end": "Last Tavern turn before winning",
+    }
     for board_index, raw_board in enumerate(raw_boards, start=1):
         if not isinstance(raw_board, dict):
             raise CompError(f"board_examples[{board_index}] must be a mapping")

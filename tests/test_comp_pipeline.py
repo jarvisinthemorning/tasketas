@@ -391,6 +391,21 @@ class PipelineTests(unittest.TestCase):
         slot: 7
         attack: 1.2k
         health: 1.3k
+  - stage: mid
+    turn: 9
+    timestamp: 300
+    units:
+      - card_id: 132796
+        attack: 100
+        health: 101
+  - stage: end
+    turn: 12
+    timestamp: 600
+    units:
+      - card_id: 97408
+        attack: 2
+        health: 14
+        golden: true
 """
             content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
             cards = root / "cards.json"
@@ -421,6 +436,7 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('class="board-position">2', html)
             self.assertIn('class="board-position">5', html)
             self.assertIn("watch?v=jCupcgaSjvo&t=180s", html)
+            self.assertIn("Last Tavern turn before winning · Turn 12", html)
             self.assertLess(html.index("Tasty Lobster"), html.index("Titus Rivendare"))
             self.assertLess(html.index('<section class="board-examples"'), html.index('<section class="source-card"'))
 
