@@ -36,7 +36,9 @@ uv run python scripts/publish_comp.py content/<guide>.md \
   --push
 ```
 
-GitHub Pages deploys the committed `dist/` directory. Each publication rebuilds the static `dist/index.html` shell and copies `registry.json` plus `cards.json` into `dist/data/`. The browser fetches the registry on page load, sorts newest-first, and fetches the card catalogue only when the collapsed filter section is expanded. Tribe, tag, and contained-card filtering then runs locally in JavaScript; there is no API or server runtime.
+GitHub Pages deploys the committed `dist/` directory. Each publication rebuilds the static `dist/index.html` shell and copies `registry.json` plus `cards.json` into `dist/data/`. The browser fetches both static JSON files together on page load, renders card names/thumbnails immediately, and sorts newest-first while the filter section remains collapsed. Tribe, tag, and contained-card filtering then runs locally in JavaScript; there is no API or server runtime.
+
+Full-game video guides can also define source-verified `board_examples` for early, mid, and final boards. The renderer preserves board slots, displays the recorded attack/health beneath each card, links each example to its video timestamp, and places the section immediately before the original source.
 
 ## Homepage
 

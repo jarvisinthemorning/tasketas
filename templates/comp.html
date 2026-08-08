@@ -61,6 +61,44 @@
       {{ body_html | safe }}
     </article>
 
+    {% if comp.board_examples %}
+    <section class="board-examples" aria-labelledby="board-examples-heading">
+      <div class="section-heading board-examples-heading">
+        <div>
+          <div class="section-kicker">Recorded boards</div>
+          <h2 id="board-examples-heading">Board examples</h2>
+        </div>
+        <p>Source-verified snapshots. Units are shown left to right with their recorded attack and health.</p>
+      </div>
+      <div class="board-example-list">
+        {% for board in comp.board_examples %}
+        <article class="board-example">
+          <header class="board-example-header">
+            <div>
+              <div class="section-kicker">{{ board.label }}</div>
+              <h3>{{ board.label }} · Turn {{ board.turn }}</h3>
+            </div>
+            <a href="https://www.youtube.com/watch?v={{ comp.video.id }}&t={{ board.timestamp }}s" target="_blank" rel="noopener noreferrer">Watch {{ '%d:%02d' | format(board.timestamp // 60, board.timestamp % 60) }} ↗</a>
+          </header>
+          {% if board.note %}<p class="board-note">{{ board.note }}</p>{% endif %}
+          <div class="board-lineup" role="list" aria-label="{{ board.label }} board from left to right">
+            {% for unit in board.units %}
+            <a class="board-unit" href="{{ unit.card.detail or unit.card.hsreplay }}" target="_blank" rel="noopener noreferrer" role="listitem" style="grid-column: {{ unit.slot }}"{% if unit.golden %} data-golden="true"{% endif %}>
+              <span class="board-position">{{ unit.slot }}</span>
+              <img src="{{ unit.card.image }}" alt="{{ unit.card.name }}" loading="lazy">
+              <strong>{{ unit.card.name }}</strong>
+              <span class="board-stats">{{ unit.attack }} / {{ unit.health }}</span>
+              {% if unit.golden %}<span class="board-badge">Golden</span>{% endif %}
+              {% if unit.annotation %}<small>{{ unit.annotation }}</small>{% endif %}
+            </a>
+            {% endfor %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
     <section class="source-card" aria-labelledby="source-heading">
       <div>
         <div class="section-kicker">Original source</div>

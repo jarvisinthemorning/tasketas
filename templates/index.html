@@ -48,7 +48,7 @@
           <label>
             <span>Contained card</span>
             <select id="card-filter" disabled>
-              <option value="">Expand filters to load cards</option>
+              <option value="">Loading cards…</option>
             </select>
           </label>
           <label>
@@ -95,7 +95,7 @@
       const registryUrl = 'data/registry.json';
       const cardsUrl = 'data/cards.json';
       const body = document.querySelector('#comp-rows');
-      const details = document.querySelector('details.filters');
+
       const tribe = document.querySelector('#tribe-filter');
       const tag = document.querySelector('#tag-filter');
       const card = document.querySelector('#card-filter');
@@ -106,7 +106,7 @@
       let comps = [];
       let rows = [];
       let cardsById = null;
-      let cardsPromise = null;
+
       let sortKey = 'date';
       let sortDirection = 'desc';
 
@@ -266,7 +266,7 @@
           const deferred = document.createElement('span');
           deferred.className = 'cards-deferred';
           const coreCount = (comp.core || []).length;
-          deferred.textContent = coreCount ? `${coreCount} card${coreCount === 1 ? '' : 's'} · open filters to load` : 'No core cards listed';
+          deferred.textContent = coreCount ? `Loading ${coreCount} core card${coreCount === 1 ? '' : 's'}…` : 'No core cards listed';
           coreList.appendChild(deferred);
           coreCell.appendChild(coreList);
 
@@ -345,29 +345,6 @@
         card.disabled = false;
       };
 
-      const loadCardsOnExpand = async () => {
-        if (!details.open || cardsPromise) return;
-        card.disabled = true;
-        card.options[0].textContent = 'Loading cards…';
-        cardsPromise = fetch(cardsUrl, { cache: 'no-cache' })
-          .then(response => {
-            if (!response.ok) throw new Error(`Cards request failed: ${response.status}`);
-            return response.json();
-          })
-          .then(payload => {
-            cardsById = payload.cards || {};
-            populateCardFilter();
-            hydrateCoreCards();
-          })
-          .catch(error => {
-            console.error(error);
-            cardsPromise = null;
-            card.options[0].textContent = 'Could not load cards — close and retry';
-          });
-        await cardsPromise;
-      };
-
-      details.addEventListener('toggle', loadCardsOnExpand);
       [tribe, tag, card].forEach(control => control.addEventListener('change', applyFilters));
       sortSelect.addEventListener('change', () => {
         const [key, direction] = sortSelect.value.split(':');
@@ -385,14 +362,20 @@
         applyFilters();
       });
 
-      fetch(registryUrl, { cache: 'no-cache' })
-        .then(response => {
-          if (!response.ok) throw new Error(`Registry request failed: ${response.status}`);
-          return response.json();
-        })
-        .then(registry => {
+      const fetchJson = (url, label) => fetch(url, { cache: 'no-cache' }).then(response => {
+        if (!response.ok) throw new Error(`${label} request failed: ${response.status}`);
+        return response.json();
+      });
+
+      Promise.all([
+        fetchJson(registryUrl, 'Registry'),
+        fetchJson(cardsUrl, 'Cards'),
+      ])
+        .then(([registry, cardCatalog]) => {
           comps = Array.isArray(registry.pages) ? registry.pages : [];
+          cardsById = cardCatalog.cards || {};
           populateRegistryFilters();
+          populateCardFilter();
           renderRows();
         })
         .catch(error => {

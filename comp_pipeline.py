@@ -233,8 +233,86 @@ def publish_comp(
                 if item not in all_ids:
                     all_ids.append(item)
 
+    raw_boards = metadata.get("board_examples", []) or []
+    if not isinstance(raw_boards, list):
+        raise CompError("board_examples must be a list")
+    board_examples: list[dict] = []
+    stage_labels = {"early": "Early game", "mid": "Mid game", "end": "End game"}
+    for board_index, raw_board in enumerate(raw_boards, start=1):
+        if not isinstance(raw_board, dict):
+            raise CompError(f"board_examples[{board_index}] must be a mapping")
+        stage = raw_board.get("stage")
+        if stage not in stage_labels:
+            raise CompError(f"board_examples[{board_index}].stage must be early, mid, or end")
+        turn = raw_board.get("turn")
+        timestamp = raw_board.get("timestamp")
+        if not isinstance(turn, int) or isinstance(turn, bool) or turn < 1:
+            raise CompError(f"board_examples[{board_index}].turn must be a positive integer")
+        if not isinstance(timestamp, int) or isinstance(timestamp, bool) or timestamp < 0:
+            raise CompError(f"board_examples[{board_index}].timestamp must be a non-negative integer")
+        raw_units = raw_board.get("units")
+        if not isinstance(raw_units, list) or not 1 <= len(raw_units) <= 7:
+            raise CompError(f"board_examples[{board_index}].units must contain 1 to 7 units")
+        units: list[dict] = []
+        used_slots: set[int] = set()
+        for unit_index, raw_unit in enumerate(raw_units, start=1):
+            if not isinstance(raw_unit, dict):
+                raise CompError(f"board_examples[{board_index}].units[{unit_index}] must be a mapping")
+            card_id = raw_unit.get("card_id")
+            if not isinstance(card_id, int) or isinstance(card_id, bool):
+                raise CompError(
+                    f"board_examples[{board_index}].units[{unit_index}].card_id must be an integer"
+                )
+            card_data = catalog.require_current(card_id)
+            slot = raw_unit.get("slot", unit_index)
+            if not isinstance(slot, int) or isinstance(slot, bool) or not 1 <= slot <= 7:
+                raise CompError(f"board_examples[{board_index}].units[{unit_index}].slot must be from 1 to 7")
+            if slot in used_slots:
+                raise CompError(f"board_examples[{board_index}] contains duplicate board slot {slot}")
+            used_slots.add(slot)
+            attack = raw_unit.get("attack")
+            health = raw_unit.get("health")
+            for stat_name, stat in (("attack", attack), ("health", health)):
+                is_exact = isinstance(stat, int) and not isinstance(stat, bool) and stat >= 0
+                is_game_display = isinstance(stat, str) and re.fullmatch(r"\d+(?:\.\d+)?k", stat)
+                if not is_exact and not is_game_display:
+                    raise CompError(
+                        f"board_examples[{board_index}].units[{unit_index}].{stat_name} "
+                        "must be a non-negative integer or a recorded value such as 1.2k"
+                    )
+            golden = raw_unit.get("golden", False)
+            annotation = raw_unit.get("annotation", "")
+            if not isinstance(golden, bool):
+                raise CompError(f"board_examples[{board_index}].units[{unit_index}].golden must be true or false")
+            if not isinstance(annotation, str):
+                raise CompError(f"board_examples[{board_index}].units[{unit_index}].annotation must be text")
+            units.append(
+                {
+                    "card": card_data,
+                    "slot": slot,
+                    "attack": attack,
+                    "health": health,
+                    "golden": golden,
+                    "annotation": annotation.strip(),
+                }
+            )
+            numeric_card_id = int(card_data["id"])
+            if numeric_card_id not in all_ids:
+                all_ids.append(numeric_card_id)
+        board_examples.append(
+            {
+                "stage": stage,
+                "label": stage_labels[stage],
+                "turn": turn,
+                "timestamp": timestamp,
+                "note": str(raw_board.get("note", "")).strip(),
+                "units": units,
+            }
+        )
+
     comp = dict(metadata)
     comp["sections"] = sections
+    comp["board_examples"] = board_examples
     comp["source"]["type"] = source_type
     comp["source"]["url"] = source_url
     body, inline_ids = _render_inline_cards(body, catalog)

@@ -103,7 +103,7 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(CompError, "tags must be a non-empty list"):
                 _parse_markdown(content)
 
-    def test_index_template_fetches_registry_and_lazy_cards_without_embedded_rows(self):
+    def test_index_template_fetches_both_json_files_on_page_load_without_embedded_rows(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             registry = root / "registry.json"
@@ -146,7 +146,8 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('data-sort="title"', html)
             self.assertIn("data/registry.json", html)
             self.assertIn("data/cards.json", html)
-            self.assertIn("details.addEventListener", html)
+            self.assertIn("Promise.all", html)
+            self.assertNotIn("details.addEventListener", html)
             self.assertIn('<option value="date:desc" selected>Newest first</option>', html)
             self.assertNotIn("Tasty Lobstah", html)
             self.assertNotIn("Power", html)
@@ -364,6 +365,61 @@ class PipelineTests(unittest.TestCase):
                 html.index('<article class="guide-copy">'),
                 html.index('<section class="source-card"'),
             )
+
+    def test_video_board_examples_render_ordered_cards_and_stats_before_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            board_yaml = """board_examples:
+  - stage: early
+    turn: 6
+    timestamp: 180
+    note: Lobster starts scaling beside protected support.
+    units:
+      - card_id: 132796
+        slot: 2
+        attack: 8
+        health: 12
+        golden: false
+        annotation: Reborn
+      - card_id: 97408
+        slot: 5
+        attack: 3
+        health: 6
+        golden: true
+      - card_id: 132796
+        slot: 7
+        attack: 1.2k
+        health: 1.3k
+"""
+            content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=False,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn('<section class="board-examples"', html)
+            self.assertIn('class="board-unit"', html)
+            self.assertIn('class="board-stats">8 / 12', html)
+            self.assertIn('<small>Reborn</small>', html)
+            self.assertIn('class="board-stats">1.2k / 1.3k', html)
+            self.assertIn('class="board-badge">Golden', html)
+            self.assertIn('style="grid-column: 2"', html)
+            self.assertIn('class="board-position">5', html)
+            self.assertIn("watch?v=jCupcgaSjvo&t=180s", html)
+            self.assertLess(html.index("Tasty Lobster"), html.index("Titus Rivendare"))
+            self.assertLess(html.index('<section class="board-examples"'), html.index('<section class="source-card"'))
 
     def test_publish_refuses_duplicate_source(self):
         with tempfile.TemporaryDirectory() as tmp:

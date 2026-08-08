@@ -8,6 +8,93 @@ tags: [deathrattle, end-of-turn, scaling]
 core: [132796, 132800, 97408, 132808]
 addons: [133039, 101314, 133400, 112895]
 cycle: [132802]
+board_examples:
+  - stage: early
+    turn: 7
+    timestamp: 320
+    note: >-
+      Two Reborn Lobsters are already online behind a Gryphon. Random Dark Gift and temporary generated units are omitted; slot numbers preserve the recorded placement.
+    units:
+      - card_id: 132800
+        slot: 1
+        attack: 5
+        health: 7
+      - card_id: 132796
+        slot: 3
+        attack: 2
+        health: 2
+        annotation: Reborn
+      - card_id: 132796
+        slot: 4
+        attack: 2
+        health: 2
+        annotation: Reborn
+  - stage: mid
+    turn: 10
+    timestamp: 600
+    note: >-
+      The engine is fully online: both Lobsters and the Gryphon have crossed 100 stats, while Drakkari and Titus remain protected on the right.
+    units:
+      - card_id: 132796
+        slot: 2
+        attack: 226
+        health: 226
+        annotation: Reborn
+      - card_id: 132796
+        slot: 3
+        attack: 223
+        health: 225
+        annotation: Reborn
+      - card_id: 132800
+        slot: 4
+        attack: 140
+        health: 142
+      - card_id: 101314
+        slot: 5
+        attack: 1
+        health: 5
+      - card_id: 97408
+        slot: 6
+        attack: 1
+        health: 7
+  - stage: end
+    turn: 13
+    timestamp: 970
+    note: >-
+      Final recorded recruit phase before the winning combat. The temporary builders are gone; three Lobsters lead, the Rally and Deathstrider pieces follow, and the end-of-turn support stays protected on the right.
+    units:
+      - card_id: 132796
+        slot: 1
+        attack: 3.8k
+        health: 3.8k
+        annotation: Reborn
+      - card_id: 132796
+        slot: 2
+        attack: 2.5k
+        health: 2.5k
+        annotation: Reborn
+      - card_id: 132796
+        slot: 3
+        attack: 2.5k
+        health: 2.5k
+        annotation: Reborn
+      - card_id: 132800
+        slot: 4
+        attack: 2.2k
+        health: 2.2k
+      - card_id: 101314
+        slot: 5
+        attack: 1
+        health: 5
+      - card_id: 132808
+        slot: 6
+        attack: 1.4k
+        health: 1.4k
+      - card_id: 97408
+        slot: 7
+        attack: 2
+        health: 14
+        golden: true
 source:
   type: youtube
   url: https://youtu.be/jCupcgaSjvo?is=McQFRTDBCZ7oQtGz
