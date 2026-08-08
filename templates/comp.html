@@ -85,7 +85,7 @@
             {% for unit in board.units %}
             <a class="board-unit" href="{{ unit.card.detail or unit.card.hsreplay }}" target="_blank" rel="noopener noreferrer" role="listitem"{% if unit.golden %} data-golden="true"{% endif %}>
               <span class="board-position">{{ unit.slot }}</span>
-              <img src="{{ unit.card.image }}" alt="{{ unit.card.name }}" loading="lazy">
+              <img src="{{ unit.card.image }}" alt="{{ unit.card.name }}">
               <strong>{{ unit.card.name }}</strong>
               <span class="board-stats">{{ unit.attack }} / {{ unit.health }}</span>
               {% if unit.golden %}<span class="board-badge">Golden</span>{% endif %}

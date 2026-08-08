@@ -409,7 +409,9 @@ class PipelineTests(unittest.TestCase):
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            board_html = html[html.index('<section class="board-examples"'):html.index('<section class="source-card"')]
             self.assertIn('<section class="board-examples"', html)
+            self.assertNotIn('loading="lazy"', board_html)
             self.assertIn('class="board-unit"', html)
             self.assertIn('class="board-stats">8 / 12', html)
             self.assertIn('<small>Reborn</small>', html)

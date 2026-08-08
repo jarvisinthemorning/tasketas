@@ -11,61 +11,74 @@ cycle: [132802]
 board_examples:
   - stage: early
     turn: 4
-    timestamp: 100
+    timestamp: 94
     note: >-
-      The first Lobster and Gryphon shell is already producing tempo while leaving room to cycle into the full engine.
+      The first Tavern board with the Lobster and Gryphon shell. Suspicious Prisonguard and Forest Rover fill out the early tempo board.
     units:
       - card_id: 132800
         slot: 1
         attack: 3
         health: 5
+      - card_id: 132915
+        slot: 2
+        attack: 3
+        health: 3
+        annotation: Dark Gift
+      - card_id: 115577
+        slot: 3
+        attack: 1
+        health: 1
       - card_id: 132796
         slot: 4
         attack: 1
         health: 1
   - stage: mid
     turn: 10
-    timestamp: 570
+    timestamp: 550
     note: >-
-      The engine is fully online: both Lobsters and the Gryphon have crossed 100 stats, while Drakkari and Titus remain protected on the right.
+      The Tavern board where the engine first shows a 100+ unit. Hyena and two Gryphons build the board while Titus and Drakkari multiply the scaling.
     units:
+      - card_id: 133039
+        slot: 1
+        attack: 91
+        health: 14
       - card_id: 132796
         slot: 2
-        attack: 226
-        health: 226
-        annotation: Reborn
-      - card_id: 132796
-        slot: 3
-        attack: 223
-        health: 225
+        attack: 44
+        health: 44
         annotation: Reborn
       - card_id: 132800
+        slot: 3
+        attack: 15
+        health: 17
+        golden: true
+      - card_id: 132800
         slot: 4
-        attack: 140
-        health: 142
-      - card_id: 101314
+        attack: 100
+        health: 112
+      - card_id: 97408
         slot: 5
         attack: 1
-        health: 5
-      - card_id: 97408
+        health: 7
+      - card_id: 101314
         slot: 6
         attack: 1
-        health: 7
+        health: 5
   - stage: end
     turn: 13
-    timestamp: 970
+    timestamp: 956
     note: >-
-      Final recorded recruit phase before the winning combat. Gryphon has been sold; four Lobsters lead, followed by Deathstrider and the protected end-of-turn support.
+      Final Tavern board before end-of-turn triggers and the winning combat: Golden Gryphon, three normal Lobsters summoned directly onto the board, Drakkari, Deathstrider, and Golden Titus.
     units:
-      - card_id: 132796
+      - card_id: 132800
         slot: 1
         attack: 3.8k
         health: 3.8k
-        annotation: Reborn
+        golden: true
       - card_id: 132796
         slot: 2
-        attack: 2.5k
-        health: 2.5k
+        attack: 2.8k
+        health: 2.8k
         annotation: Reborn
       - card_id: 132796
         slot: 3
