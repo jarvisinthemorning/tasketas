@@ -7,6 +7,7 @@ from comp_pipeline import (
     CardCatalog,
     CompError,
     build_index,
+    _parse_markdown,
     canonical_source,
     normalize_api_cards,
     publish_comp,
@@ -88,7 +89,21 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
-    def test_index_template_has_collapsed_filters_and_sort_controls(self):
+    def test_guide_requires_nonempty_tribes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            content = Path(tmp) / "guide.md"
+            content.write_text(VALID_MARKDOWN.replace("tribes: [beast]", "tribes: []"), encoding="utf-8")
+            with self.assertRaisesRegex(CompError, "tribes must be a non-empty list"):
+                _parse_markdown(content)
+
+    def test_guide_requires_nonempty_tags(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            content = Path(tmp) / "guide.md"
+            content.write_text(VALID_MARKDOWN.replace("tags: [deathrattle, scaling]", "tags: []"), encoding="utf-8")
+            with self.assertRaisesRegex(CompError, "tags must be a non-empty list"):
+                _parse_markdown(content)
+
+    def test_index_template_fetches_registry_and_lazy_cards_without_embedded_rows(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             registry = root / "registry.json"
@@ -129,12 +144,16 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('id="tag-filter"', html)
             self.assertIn('id="card-filter"', html)
             self.assertIn('data-sort="title"', html)
-            self.assertIn('data-card-ids="132796 97408"', html)
+            self.assertIn("data/registry.json", html)
+            self.assertIn("data/cards.json", html)
+            self.assertIn("details.addEventListener", html)
+            self.assertIn('<option value="date:desc" selected>Newest first</option>', html)
+            self.assertNotIn("Tasty Lobstah", html)
             self.assertNotIn("Power", html)
             self.assertNotIn("Rating", html)
             self.assertNotIn("Difficulty", html)
 
-    def test_build_index_reads_registry_and_resolves_core_cards(self):
+    def test_build_index_publishes_json_files_without_embedding_data(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             registry = root / "registry.json"
@@ -161,15 +180,7 @@ class PipelineTests(unittest.TestCase):
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             template = root / "index.html"
-            template.write_text(
-                "{% for comp in comps %}<a href='{{ comp.url }}'>{{ comp.title }}</a>"
-                "{% for tribe in comp.tribes %}<span>{{ tribe }}</span>{% endfor %}"
-                "{% for tag in comp.tags %}<b>{{ tag }}</b>{% endfor %}"
-                "{% for card in comp.core_cards %}<img src='{{ card.image }}' alt='{{ card.name }}'>{% endfor %}"
-                "{% for card in comp.all_cards %}<i>{{ card.name }}</i>{% endfor %}"
-                "{% endfor %}",
-                encoding="utf-8",
-            )
+            template.write_text("<p>Static shell</p>", encoding="utf-8")
 
             output = build_index(
                 registry_path=registry,
@@ -179,11 +190,16 @@ class PipelineTests(unittest.TestCase):
             )
 
             html = output.read_text(encoding="utf-8")
-            self.assertIn("Tasty Lobstah", html)
-            self.assertIn("deathrattle", html)
-            self.assertIn("https://images.example/BG36_202.png", html)
-            self.assertIn("Titus Rivendare", html)
-            self.assertIn("https://example.pages.dev/comps/tasty-lobstah.html", html)
+            self.assertEqual(html, "<p>Static shell</p>\n")
+            self.assertNotIn("Tasty Lobstah", html)
+            self.assertEqual(
+                json.loads((root / "dist/data/registry.json").read_text(encoding="utf-8")),
+                json.loads(registry.read_text(encoding="utf-8")),
+            )
+            self.assertEqual(
+                json.loads((root / "dist/data/cards.json").read_text(encoding="utf-8")),
+                CARDS,
+            )
 
     def test_canonical_source_normalizes_youtube_and_reddit(self):
         self.assertEqual(

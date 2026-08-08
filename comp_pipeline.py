@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import json
 import re
+import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -106,9 +107,12 @@ def _parse_markdown(path: Path) -> tuple[dict, str]:
     metadata = yaml.safe_load(match.group(1)) or {}
     if not isinstance(metadata, dict):
         raise CompError("Guide frontmatter must be a mapping")
-    for field in ("title", "slug", "season", "source", "verified_at"):
+    for field in ("title", "slug", "season", "tribes", "tags", "source", "verified_at"):
         if field not in metadata:
             raise CompError(f"Missing required frontmatter field: {field}")
+    for field in ("tribes", "tags"):
+        if not isinstance(metadata[field], list) or not metadata[field]:
+            raise CompError(f"{field} must be a non-empty list")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", str(metadata["slug"])):
         raise CompError("slug must contain lowercase letters, numbers, and hyphens only")
     if not isinstance(metadata["source"], dict) or not metadata["source"].get("url"):
@@ -161,50 +165,20 @@ def build_index(
     template_path: Path,
     output_dir: Path,
 ) -> Path:
-    registry = _load_json(registry_path)
-    catalog = CardCatalog(_load_json(cards_path))
-    comps: list[dict] = []
-    for page in registry.get("pages", []):
-        for field in ("title", "slug", "url"):
-            if not page.get(field):
-                raise CompError(f"Registry page is missing index field: {field}")
-        comp = dict(page)
-        comp["tribes"] = page.get("tribes", []) or []
-        comp["tags"] = page.get("tags", []) or []
-        comp["core_cards"] = [catalog.require_current(card_id) for card_id in page.get("core", [])]
-        all_card_ids = page.get("cards")
-        if all_card_ids is None:
-            all_card_ids = []
-            for value in page.values():
-                if isinstance(value, list):
-                    for item in value:
-                        if isinstance(item, int) and item not in all_card_ids:
-                            all_card_ids.append(item)
-        comp["all_cards"] = [catalog.require_current(card_id) for card_id in all_card_ids]
-        comps.append(comp)
-    comps.sort(key=lambda comp: comp.get("published_at", ""), reverse=True)
-    tribe_options = sorted({tribe for comp in comps for tribe in comp["tribes"]}, key=str.casefold)
-    tag_options = sorted({tag for comp in comps for tag in comp["tags"]}, key=str.casefold)
-    card_options = sorted(
-        {card["id"]: card for comp in comps for card in comp["all_cards"]}.values(),
-        key=lambda card: card["name"].casefold(),
-    )
-
     env = Environment(
         loader=FileSystemLoader(str(template_path.parent)),
         autoescape=select_autoescape(["html", "xml"]),
         undefined=StrictUndefined,
     )
-    rendered = env.get_template(template_path.name).render(
-        comps=comps,
-        tribe_options=tribe_options,
-        tag_options=tag_options,
-        card_options=card_options,
-    )
+    rendered = env.get_template(template_path.name).render()
     rendered = "\n".join(line.rstrip() for line in rendered.splitlines()) + "\n"
     output_dir.mkdir(parents=True, exist_ok=True)
     destination = output_dir / "index.html"
     destination.write_text(rendered, encoding="utf-8")
+    data_dir = output_dir / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(registry_path, data_dir / "registry.json")
+    shutil.copy2(cards_path, data_dir / "cards.json")
     return destination
 
 

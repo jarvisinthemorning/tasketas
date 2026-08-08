@@ -36,7 +36,7 @@ uv run python scripts/publish_comp.py content/<guide>.md \
   --push
 ```
 
-GitHub Pages deploys the committed `dist/` directory. Each publication also rebuilds `dist/index.html` from `data/registry.json` and `data/cards.json`. The static index supports local sorting plus collapsed filters for tribes, tags, and every card contained in a composition.
+GitHub Pages deploys the committed `dist/` directory. Each publication rebuilds the static `dist/index.html` shell and copies `registry.json` plus `cards.json` into `dist/data/`. The browser fetches the registry on page load, sorts newest-first, and fetches the card catalogue only when the collapsed filter section is expanded. Tribe, tag, and contained-card filtering then runs locally in JavaScript; there is no API or server runtime.
 
 ## Homepage
 
