@@ -19,6 +19,30 @@ addons:
 - 133329
 - 101314
 cycle: []
+board_examples:
+- stage: mid
+  turn: 12
+  timestamp: 940
+  note: The Battlecry engine is fully online, with paired Kalecgos and Bronze Timewalkers scaling a complete Dragon board.
+  units:
+  - {card_id: 132955, slot: 1, attack: 1.1k, health: 1.1k}
+  - {card_id: 132955, slot: 2, attack: 1k, health: 979}
+  - {card_id: 60630, slot: 3, attack: 941, health: 940}
+  - {card_id: 60630, slot: 4, attack: 932, health: 922}
+  - {card_id: 132957, slot: 5, attack: 4, health: 7, annotation: Divine Shield}
+  - {card_id: 133329, slot: 6, attack: 1.2k, health: 1.2k, annotation: Divine Shield}
+  - {card_id: 96786, slot: 7, attack: 130, health: 112}
+- stage: end
+  turn: 14
+  timestamp: 1235
+  note: The last Tavern turn before winning, after repeated Battlecries have pushed every permanent Dragon into four-digit stats.
+  units:
+  - {card_id: 132955, slot: 1, attack: 2.1k, health: 2k}
+  - {card_id: 132955, slot: 2, attack: 2.4k, health: 2.3k, annotation: Divine Shield}
+  - {card_id: 60630, slot: 3, attack: 2.3k, health: 2.2k}
+  - {card_id: 60630, slot: 4, attack: 2.2k, health: 2.1k}
+  - {card_id: 133329, slot: 5, attack: 3.6k, health: 3.3k, annotation: Divine Shield}
+  - {card_id: 96786, slot: 6, attack: 333, health: 290}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=dCwe93sXIiM

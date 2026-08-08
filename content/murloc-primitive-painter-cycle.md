@@ -16,6 +16,27 @@ core:
 - 131145
 addons: []
 cycle: []
+board_examples:
+- stage: mid
+  timestamp: 874
+  note: Golden Primitive Painter is online and every cheap cycle card is turning into permanent Murloc stats.
+  units:
+  - {card_id: 122277, slot: 1, attack: 41, health: 48}
+  - {card_id: 108922, slot: 2, attack: 102, health: 109}
+  - {card_id: 122281, slot: 3, attack: 106, health: 115, golden: true, annotation: Taunt}
+  - {card_id: 108922, slot: 4, attack: 80, health: 81}
+  - {card_id: 133283, slot: 5, attack: 110, health: 117}
+  - {card_id: 133283, slot: 6, attack: 102, health: 101}
+- stage: late
+  timestamp: 1040
+  note: A useful late-game Tavern board showing the same Painter shell after several more low-tier cycles; the following combat is not a win.
+  units:
+  - {card_id: 122277, slot: 1, attack: 266, health: 270}
+  - {card_id: 108922, slot: 2, attack: 179, health: 193}
+  - {card_id: 122281, slot: 3, attack: 180, health: 191, golden: true, annotation: Taunt}
+  - {card_id: 108922, slot: 4, attack: 156, health: 157}
+  - {card_id: 133283, slot: 5, attack: 197, health: 205}
+  - {card_id: 133283, slot: 6, attack: 174, health: 173}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=7f4_AskT4Dk

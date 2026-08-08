@@ -249,6 +249,7 @@ def publish_comp(
     stage_labels = {
         "early": "Early game",
         "mid": "Mid game",
+        "late": "Late game",
         "end": "Last Tavern turn before winning",
     }
     for board_index, raw_board in enumerate(raw_boards, start=1):
@@ -256,11 +257,11 @@ def publish_comp(
             raise CompError(f"board_examples[{board_index}] must be a mapping")
         stage = raw_board.get("stage")
         if stage not in stage_labels:
-            raise CompError(f"board_examples[{board_index}].stage must be early, mid, or end")
+            raise CompError(f"board_examples[{board_index}].stage must be early, mid, late, or end")
         turn = raw_board.get("turn")
         timestamp = raw_board.get("timestamp")
-        if not isinstance(turn, int) or isinstance(turn, bool) or turn < 1:
-            raise CompError(f"board_examples[{board_index}].turn must be a positive integer")
+        if turn is not None and (not isinstance(turn, int) or isinstance(turn, bool) or turn < 1):
+            raise CompError(f"board_examples[{board_index}].turn must be a positive integer when provided")
         if not isinstance(timestamp, int) or isinstance(timestamp, bool) or timestamp < 0:
             raise CompError(f"board_examples[{board_index}].timestamp must be a non-negative integer")
         raw_units = raw_board.get("units")

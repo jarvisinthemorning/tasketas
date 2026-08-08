@@ -76,7 +76,7 @@
           <header class="board-example-header">
             <div>
               <div class="section-kicker">{{ board.label }}</div>
-              <h3>{{ board.label }} · Turn {{ board.turn }}</h3>
+              <h3>{{ board.label }}{% if board.turn %} · Turn {{ board.turn }}{% endif %}</h3>
             </div>
             <a href="https://www.youtube.com/watch?v={{ comp.video.id }}&t={{ board.timestamp }}s" target="_blank" rel="noopener noreferrer">Watch {{ '%d:%02d' | format(board.timestamp // 60, board.timestamp % 60) }} ↗</a>
           </header>

@@ -21,6 +21,28 @@ addons:
 - 119949
 - 119951
 cycle: []
+board_examples:
+- stage: mid
+  timestamp: 1030
+  note: Moat Custodians and Mana Surges are already multiplying each cycle into four-digit board growth.
+  units:
+  - {card_id: 132981, slot: 1, attack: 684, health: 1.2k}
+  - {card_id: 132981, slot: 2, attack: 960, health: 1.7k}
+  - {card_id: 132981, slot: 3, attack: 81, health: 148}
+  - {card_id: 120674, slot: 4, attack: 731, health: 1.2k}
+  - {card_id: 120674, slot: 5, attack: 771, health: 1.3k}
+  - {card_id: 127107, slot: 6, attack: 29, health: 20}
+  - {card_id: 122516, slot: 7, attack: 18, health: 20}
+- stage: end
+  timestamp: 1345
+  note: The last Tavern board before the winning combat, with the Custodian and Mana Surge engine producing five-digit health totals.
+  units:
+  - {card_id: 132981, slot: 1, attack: 5.9k, health: 11k}
+  - {card_id: 132981, slot: 2, attack: 5.4k, health: 10k}
+  - {card_id: 120674, slot: 3, attack: 5.5k, health: 10k}
+  - {card_id: 120674, slot: 4, attack: 5.5k, health: 10k}
+  - {card_id: 96786, slot: 5, attack: 246, health: 419}
+  - {card_id: 122516, slot: 6, attack: 269, health: 445}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=eeyh2yyJVPE

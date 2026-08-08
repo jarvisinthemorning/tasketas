@@ -20,6 +20,29 @@ addons:
 - 99054
 - 114816
 cycle: []
+board_examples:
+- stage: mid
+  timestamp: 620
+  note: Fauna Whisperer has joined a mature Spellcraft shell and starts converting spell power into end-of-turn scaling.
+  units:
+  - {card_id: 104538, slot: 1, attack: 21, health: 22, annotation: Divine Shield}
+  - {card_id: 99054, slot: 2, attack: 136, health: 138}
+  - {card_id: 120905, slot: 3, attack: 52, health: 57}
+  - {card_id: 119942, slot: 4, attack: 62, health: 72, golden: true}
+  - {card_id: 132762, slot: 5, attack: 32, health: 32}
+  - {card_id: 114816, slot: 6, attack: 8, health: 8, golden: true}
+  - {card_id: 101314, slot: 7, attack: 1, health: 5}
+- stage: end
+  timestamp: 1460
+  note: The final Tavern board before the winning combat, with multiple Fauna Whisperers and Spellcraft targets at five- to six-thousand stats.
+  units:
+  - {card_id: 80742, slot: 1, attack: 2.2k, health: 2.2k}
+  - {card_id: 114816, slot: 2, attack: 6.1k, health: 6.1k, annotation: Divine Shield}
+  - {card_id: 120905, slot: 3, attack: 5.9k, health: 5.9k}
+  - {card_id: 120905, slot: 4, attack: 5k, health: 5k}
+  - {card_id: 120905, slot: 5, attack: 6k, health: 6k, golden: true}
+  - {card_id: 119942, slot: 6, attack: 6k, health: 6k, golden: true}
+  - {card_id: 114816, slot: 7, attack: 156, health: 156, golden: true}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=qZNlfhwDl7E

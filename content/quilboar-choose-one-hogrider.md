@@ -19,6 +19,19 @@ addons:
 - 132636
 - 110664
 cycle: []
+board_examples:
+- stage: mid
+  turn: 10
+  timestamp: 715
+  note: The Choose One shell is fully online, with Turbo Hogrider and repeated Gem Rat choices feeding a broad Blood Gem board.
+  units:
+  - {card_id: 132632, slot: 1, attack: 51, health: 83}
+  - {card_id: 132632, slot: 2, attack: 56, health: 91}
+  - {card_id: 132636, slot: 3, attack: 95, health: 158}
+  - {card_id: 116195, slot: 4, attack: 17, health: 29}
+  - {card_id: 113154, slot: 5, attack: 26, health: 45}
+  - {card_id: 116434, slot: 6, attack: 149, health: 89}
+  - {card_id: 116434, slot: 7, attack: 61, health: 93}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=d50H4G3vd58
