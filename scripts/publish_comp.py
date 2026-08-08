@@ -27,6 +27,7 @@ def main() -> int:
     parser.add_argument("content", type=Path)
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--preview", action="store_true", help="Build locally without writing to the published registry")
+    parser.add_argument("--update", action="store_true", help="Replace the existing registry entry for this source")
     parser.add_argument("--push", action="store_true", help="Commit generated files and push the configured Git remote")
     args = parser.parse_args()
 
@@ -39,6 +40,7 @@ def main() -> int:
             output_dir=root / "dist",
             public_base_url=args.base_url,
             register=not args.preview,
+            update=args.update,
         )
     except CompError as exc:
         print(f"Error: {exc}", file=sys.stderr)

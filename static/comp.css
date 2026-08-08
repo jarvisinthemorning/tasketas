@@ -200,6 +200,74 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
 .guide-copy li { margin: 7px 0; }
 .guide-copy strong { color: #f2c97f; }
 
+.card-ref {
+  position: relative;
+  display: inline;
+}
+.card-ref-trigger {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: #f2c97f;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: underline dotted rgba(242, 201, 127, .65);
+  text-underline-offset: .18em;
+  cursor: pointer;
+}
+.card-ref-trigger:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--purple);
+  outline-offset: 3px;
+}
+.card-popover {
+  position: absolute;
+  z-index: 30;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  width: 220px;
+  border: 1px solid var(--gold-soft);
+  border-radius: 14px;
+  background: #18131f;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .58);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 8px) scale(.98);
+  transition: opacity .14s ease, transform .14s ease, visibility .14s;
+}
+.card-ref:hover .card-popover,
+.card-ref:focus-within .card-popover {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, 0) scale(1);
+}
+.card-popover-link {
+  display: block;
+  border-radius: inherit;
+  color: var(--text);
+  text-decoration: none;
+  overflow: hidden;
+}
+.card-popover-link img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 512 / 673;
+  object-fit: contain;
+  background: radial-gradient(circle at 50% 42%, #3c2e4d, #110f17 72%);
+}
+.card-popover-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 12px 12px;
+}
+.card-popover-meta strong { color: var(--text); }
+.card-popover-meta small { color: var(--muted); white-space: nowrap; }
+
 footer {
   border-top: 1px solid rgba(212, 168, 95, .22);
   padding: 26px 0 calc(30px + env(safe-area-inset-bottom));
@@ -219,6 +287,31 @@ footer a { color: #bba8cf; }
   .section-heading p { max-width: 330px; text-align: right; }
   .card-row { grid-auto-columns: 190px; gap: 12px; padding-inline: 24px; }
   .guide-copy { padding: 30px; }
+}
+
+@media (max-width: 679px) {
+  .card-popover {
+    position: fixed;
+    inset: auto 16px calc(16px + env(safe-area-inset-bottom));
+    width: auto;
+    max-height: 70vh;
+    transform: translateY(10px) scale(.98);
+  }
+  .card-ref:hover .card-popover,
+  .card-ref:focus-within .card-popover {
+    transform: translateY(0) scale(1);
+  }
+  .card-popover-link {
+    display: grid;
+    grid-template-columns: 118px minmax(0, 1fr);
+    align-items: center;
+  }
+  .card-popover-meta {
+    display: grid;
+    align-content: center;
+    justify-content: start;
+    padding: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

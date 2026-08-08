@@ -25,6 +25,7 @@ CARDS = {
             "tribes": ["Beast"],
             "pool": True,
             "image": "https://images.example/BG36_202.png",
+            "detail": "https://hsreplay.net/battlegrounds/minions/132796/tasty-lobster",
             "hsreplay": "https://hsreplay.net/battlegrounds/minions/132796/tasty-lobster",
         },
         "62230": {
@@ -63,7 +64,7 @@ verified_at: 2026-08-08
 
 ## Description
 
-Trigger the lobster repeatedly.
+Trigger the [[card:132796|Tasty Lobster]] repeatedly.
 
 ## When to commit
 
@@ -167,7 +168,10 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("width=device-width", html)
             self.assertIn("Tasty Lobster", html)
             self.assertIn("hsreplay.net/battlegrounds/minions/132796", html)
-            self.assertIn("Trigger the lobster repeatedly.", html)
+            self.assertIn('class="card-ref"', html)
+            self.assertIn('class="card-ref-trigger"', html)
+            self.assertIn('class="card-popover"', html)
+            self.assertIn("https://images.example/BG36_202.png", html)
             self.assertFalse(any(line.endswith((" ", "\t")) for line in html.splitlines()))
             self.assertEqual(result["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
             saved = json.loads(registry.read_text(encoding="utf-8"))
@@ -200,6 +204,32 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(saved["pages"], [])
             self.assertTrue((root / "dist/comps/tasty-lobstah.html").exists())
 
+    def test_source_section_is_rendered_after_the_guide(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=False,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertLess(
+                html.index('<article class="guide-copy">'),
+                html.index('<section class="source-card"'),
+            )
+
     def test_publish_refuses_duplicate_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -224,6 +254,35 @@ class PipelineTests(unittest.TestCase):
                     output_dir=root / "dist",
                     public_base_url="https://example.pages.dev",
                 )
+
+    def test_update_replaces_an_existing_source_registry_entry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps({"schema_version": 1, "pages": [{"source_id": "jCupcgaSjvo", "url": "https://old.example"}]}),
+                encoding="utf-8",
+            )
+            template = root / "comp.html"
+            template.write_text("{{ body_html|safe }}", encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=template,
+                output_dir=root / "dist",
+                public_base_url="https://example.pages.dev",
+                update=True,
+            )
+
+            saved = json.loads(registry.read_text(encoding="utf-8"))
+            self.assertEqual(len(saved["pages"]), 1)
+            self.assertEqual(saved["pages"][0]["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
 
 
 if __name__ == "__main__":

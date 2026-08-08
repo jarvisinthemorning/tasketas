@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html
 import json
 import re
 from dataclasses import dataclass
@@ -122,6 +123,37 @@ def _load_json(path: Path) -> dict:
         raise CompError(f"Unable to read {path}: {exc}") from exc
 
 
+def _render_inline_cards(body: str, catalog: CardCatalog) -> tuple[str, list[int]]:
+    inline_ids: list[int] = []
+    occurrence = 0
+
+    def replace(match: re.Match[str]) -> str:
+        nonlocal occurrence
+        card = catalog.require_current(match.group(1))
+        card_id = int(card["id"])
+        if card_id not in inline_ids:
+            inline_ids.append(card_id)
+        occurrence += 1
+        popover_id = f"card-popover-{card_id}-{occurrence}"
+        label = html.escape((match.group(2) or card["name"]).strip())
+        name = html.escape(card["name"])
+        image = html.escape(card["image"], quote=True)
+        detail = html.escape(card.get("detail") or card["hsreplay"], quote=True)
+        tier = f"Tier {card['tier']}" if card.get("tier") else card.get("type", "Card").title()
+        return (
+            '<span class="card-ref">'
+            f'<button type="button" class="card-ref-trigger" aria-describedby="{popover_id}">{label}</button>'
+            f'<span class="card-popover" id="{popover_id}" role="tooltip">'
+            f'<a class="card-popover-link" href="{detail}" target="_blank" rel="noopener noreferrer">'
+            f'<img src="{image}" alt="{name}" loading="lazy">'
+            f'<span class="card-popover-meta"><strong>{name}</strong><small>{html.escape(tier)}</small></span>'
+            '</a></span></span>'
+        )
+
+    rendered = re.sub(r"\[\[card:(\d+)(?:\|([^\]]+))?\]\]", replace, body)
+    return rendered, inline_ids
+
+
 def publish_comp(
     *,
     content_path: Path,
@@ -131,6 +163,7 @@ def publish_comp(
     output_dir: Path,
     public_base_url: str,
     register: bool = True,
+    update: bool = False,
 ) -> dict:
     metadata, body = _parse_markdown(content_path)
     source_type, source_id, source_url = canonical_source(metadata["source"]["url"])
@@ -139,7 +172,11 @@ def publish_comp(
         raise CompError(f"source.type must be {source_type}")
 
     registry = _load_json(registry_path)
-    if register and any(page.get("source_id") == source_id for page in registry.get("pages", [])):
+    existing_index = next(
+        (index for index, page in enumerate(registry.get("pages", [])) if page.get("source_id") == source_id),
+        None,
+    )
+    if register and existing_index is not None and not update:
         raise CompError(f"Source {source_id} was already published")
 
     catalog = CardCatalog(_load_json(cards_path))
@@ -160,6 +197,10 @@ def publish_comp(
     comp["sections"] = sections
     comp["source"]["type"] = source_type
     comp["source"]["url"] = source_url
+    body, inline_ids = _render_inline_cards(body, catalog)
+    for card_id in inline_ids:
+        if card_id not in all_ids:
+            all_ids.append(card_id)
     body_html = markdown.markdown(body, extensions=["extra", "sane_lists"])
 
     env = Environment(
@@ -186,6 +227,10 @@ def publish_comp(
     }
     if register:
         registry.setdefault("schema_version", 1)
-        registry.setdefault("pages", []).append(entry)
+        pages = registry.setdefault("pages", [])
+        if existing_index is None:
+            pages.append(entry)
+        else:
+            pages[existing_index] = entry
         registry_path.write_text(json.dumps(registry, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return entry
