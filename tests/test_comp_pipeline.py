@@ -53,6 +53,18 @@ CARDS = {
             "detail": "https://hsreplay.net/battlegrounds/minions/97408/titus-rivendare",
             "hsreplay": "https://hsreplay.net/battlegrounds/minions/97408/titus-rivendare",
         },
+        "133039": {
+            "id": 133039,
+            "slug": "hoarding-hyena",
+            "name": "Hoarding Hyena",
+            "type": "minion",
+            "tier": 4,
+            "tribes": ["Beast"],
+            "pool": True,
+            "image": "https://images.example/hoarding-hyena.png",
+            "detail": "https://hsreplay.net/battlegrounds/minions/133039/hoarding-hyena",
+            "hsreplay": "https://hsreplay.net/battlegrounds/minions/133039/hoarding-hyena",
+        },
     },
 }
 
@@ -217,6 +229,11 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(catalog.require_current(132796)["name"], "Tasty Lobster")
         with self.assertRaisesRegex(CompError, "not in the current pool"):
             catalog.require_current(62230)
+
+    def test_catalog_rejects_explicitly_banned_cards(self):
+        catalog = CardCatalog(CARDS)
+        with self.assertRaisesRegex(CompError, "Hoarding Hyena.*banned"):
+            catalog.require_current(133039)
 
     def test_normalize_api_cards_builds_public_image_and_detail_links(self):
         payload = normalize_api_cards(

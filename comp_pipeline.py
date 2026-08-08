@@ -18,6 +18,11 @@ class CompError(ValueError):
     """Raised when a comp source or guide cannot be published safely."""
 
 
+EXPLICITLY_BANNED_CARDS = {
+    133039: "Hoarding Hyena",
+}
+
+
 def canonical_source(url: str) -> tuple[str, str, str]:
     parsed = urlparse(url.strip())
     host = parsed.netloc.lower().removeprefix("www.")
@@ -47,6 +52,10 @@ class CardCatalog:
     payload: dict
 
     def require_current(self, card_id: int | str) -> dict:
+        numeric_card_id = int(card_id)
+        if numeric_card_id in EXPLICITLY_BANNED_CARDS:
+            name = EXPLICITLY_BANNED_CARDS[numeric_card_id]
+            raise CompError(f"{name} ({numeric_card_id}) is banned and cannot be published")
         card = self.payload.get("cards", {}).get(str(card_id))
         if not card:
             raise CompError(f"Unknown card ID: {card_id}")

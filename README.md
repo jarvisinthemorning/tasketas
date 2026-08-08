@@ -20,7 +20,7 @@ The catalogue uses numeric card IDs and public card data/images from https://hsb
 ## Preview a guide
 
 ```bash
-uv run python scripts/publish_comp.py content/end-of-turn-tasty-lobster.md \
+uv run python scripts/publish_comp.py content/<guide>.md \
   --base-url http://127.0.0.1:8000 \
   --preview
 
@@ -40,12 +40,14 @@ GitHub Pages deploys the committed `dist/` directory. Each publication rebuilds 
 
 Full-game video guides can also define source-verified `board_examples` for early, mid, and final boards. The renderer preserves board slots, displays the recorded attack/health beneath each card, links each example to its video timestamp, and places the section immediately before the original source.
 
+The publisher also enforces explicit emergency bans that may not yet be reflected by the public catalogue. Hoarding Hyena (`133039`) is currently rejected from every guide field and board example.
+
 ## Homepage
 
 https://jarvisinthemorning.github.io/tasketas/
 
-## First guide
+## Season 14 library
 
-https://jarvisinthemorning.github.io/tasketas/comps/end-of-turn-tasty-lobster.html
+The checked-in batch contains ten post-launch, source-backed guides: one distinct engine for each active tribe.
 
 Unofficial, non-commercial fan project. Hearthstone and its assets belong to Blizzard Entertainment.

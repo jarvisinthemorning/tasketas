@@ -2,9 +2,9 @@
   "schema_version": 1,
   "pages": [
     {
-      "slug": "end-of-turn-tasty-lobster",
-      "title": "End-of-Turn Tasty Lobster",
-      "url": "https://jarvisinthemorning.github.io/tasketas/comps/end-of-turn-tasty-lobster.html",
+      "slug": "beast-lobster-deathstrider-rally",
+      "title": "Lobster Deathstrider Rally",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/beast-lobster-deathstrider-rally.html",
       "season": 14,
       "modes": [
         "solo"
@@ -13,44 +13,392 @@
         "beast"
       ],
       "tags": [
+        "season 14",
         "deathrattle",
-        "end-of-turn",
+        "rally",
         "scaling"
       ],
       "core": [
         132796,
-        132800,
-        97408,
         132808
       ],
       "addons": [
-        133039,
-        101314,
-        133400,
-        112895
+        132802,
+        132804
       ],
-      "cycle": [
-        132802
-      ],
+      "cycle": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
-      "source_url": "https://www.youtube.com/watch?v=jCupcgaSjvo",
-      "source_author": "Shadybunny",
-      "source_id": "jCupcgaSjvo",
+      "source_url": "https://www.youtube.com/watch?v=rJ66OM7pENQ",
+      "source_author": "HIQ MU",
+      "source_id": "rJ66OM7pENQ",
       "cards": [
         132796,
-        132800,
-        97408,
         132808,
-        133039,
-        101314,
-        133400,
-        112895,
         132802,
-        132915,
-        115577
+        132804
       ],
-      "published_at": "2026-08-08T15:46:56+00:00"
+      "published_at": "2026-08-08T16:53:17+00:00"
+    },
+    {
+      "slug": "demon-felboar-spell-consume",
+      "title": "Felboar Spell-Consume Economy",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/demon-felboar-spell-consume.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "demon"
+      ],
+      "tags": [
+        "season 14",
+        "consume",
+        "spells",
+        "battlecry"
+      ],
+      "core": [
+        110664,
+        130298
+      ],
+      "addons": [
+        96786
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=WYybK8pRz8Y",
+      "source_author": "XQN",
+      "source_id": "WYybK8pRz8Y",
+      "cards": [
+        110664,
+        130298,
+        96786
+      ],
+      "published_at": "2026-08-08T16:51:33+00:00"
+    },
+    {
+      "slug": "dragon-kalecgos-battlecry",
+      "title": "Kalecgos Battlecry Dragons",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/dragon-kalecgos-battlecry.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "dragon"
+      ],
+      "tags": [
+        "season 14",
+        "battlecry",
+        "kalecgos",
+        "cycling"
+      ],
+      "core": [
+        60630,
+        96786
+      ],
+      "addons": [
+        132955,
+        133329,
+        101314
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=dCwe93sXIiM",
+      "source_author": "Sevel",
+      "source_id": "dCwe93sXIiM",
+      "cards": [
+        60630,
+        96786,
+        132955,
+        133329,
+        101314
+      ],
+      "published_at": "2026-08-08T16:51:33+00:00"
+    },
+    {
+      "slug": "elemental-moat-mana-surge",
+      "title": "Moat Custodian Mana Surge",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/elemental-moat-mana-surge.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "elemental"
+      ],
+      "tags": [
+        "season 14",
+        "buff amplification",
+        "cycling",
+        "rally"
+      ],
+      "core": [
+        132981,
+        120674
+      ],
+      "addons": [
+        64077,
+        133455,
+        116736,
+        119949,
+        119951
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=eeyh2yyJVPE",
+      "source_author": "Shadybunny",
+      "source_id": "eeyh2yyJVPE",
+      "cards": [
+        132981,
+        120674,
+        64077,
+        133455,
+        116736,
+        119949,
+        119951
+      ],
+      "published_at": "2026-08-08T16:51:33+00:00"
+    },
+    {
+      "slug": "mech-utility-drone-magnetics",
+      "title": "Utility Drone Magnetics",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/mech-utility-drone-magnetics.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "mech"
+      ],
+      "tags": [
+        "season 14",
+        "magnetic",
+        "end of turn",
+        "generation"
+      ],
+      "core": [
+        98588,
+        132895
+      ],
+      "addons": [
+        132676,
+        132312
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=EhDY7nt7obg",
+      "source_author": "dogdog",
+      "source_id": "EhDY7nt7obg",
+      "cards": [
+        98588,
+        132895,
+        132676,
+        132312
+      ],
+      "published_at": "2026-08-08T16:51:33+00:00"
+    },
+    {
+      "slug": "murloc-primitive-painter-cycle",
+      "title": "Primitive Painter Murloc Cycle",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/murloc-primitive-painter-cycle.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "murloc"
+      ],
+      "tags": [
+        "season 14",
+        "low-tier cycle",
+        "board scaling",
+        "apm"
+      ],
+      "core": [
+        122281,
+        131145
+      ],
+      "addons": [],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=7f4_AskT4Dk",
+      "source_author": "Christian 2",
+      "source_id": "7f4_AskT4Dk",
+      "cards": [
+        122281,
+        131145
+      ],
+      "published_at": "2026-08-08T16:51:34+00:00"
+    },
+    {
+      "slug": "naga-fauna-spellcraft",
+      "title": "Fauna Whisperer Spellcraft",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/naga-fauna-spellcraft.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "naga"
+      ],
+      "tags": [
+        "season 14",
+        "spellcraft",
+        "end of turn",
+        "spell power"
+      ],
+      "core": [
+        120905,
+        119942,
+        101314
+      ],
+      "addons": [
+        103069,
+        99054,
+        114816
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=qZNlfhwDl7E",
+      "source_author": "Shadybunny",
+      "source_id": "qZNlfhwDl7E",
+      "cards": [
+        120905,
+        119942,
+        101314,
+        103069,
+        99054,
+        114816
+      ],
+      "published_at": "2026-08-08T16:51:34+00:00"
+    },
+    {
+      "slug": "pirate-escapee-hooktusk-apm",
+      "title": "Escapee Hooktusk Lockbox APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/pirate-escapee-hooktusk-apm.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "pirate"
+      ],
+      "tags": [
+        "season 14",
+        "lockbox",
+        "apm",
+        "golden minions"
+      ],
+      "core": [
+        132762,
+        132925
+      ],
+      "addons": [
+        122516,
+        122520,
+        132921
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
+      "source_author": "Rdu Hearthstone",
+      "source_id": "ti8h4WQoG2Q",
+      "cards": [
+        132762,
+        132925,
+        122516,
+        122520,
+        132921
+      ],
+      "published_at": "2026-08-08T16:51:34+00:00"
+    },
+    {
+      "slug": "quilboar-choose-one-hogrider",
+      "title": "Choose One Turbo Hogrider",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/quilboar-choose-one-hogrider.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "quilboar"
+      ],
+      "tags": [
+        "season 14",
+        "choose one",
+        "blood gems",
+        "rally"
+      ],
+      "core": [
+        116195,
+        116434
+      ],
+      "addons": [
+        116190,
+        132636,
+        110664
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=d50H4G3vd58",
+      "source_author": "dogdog",
+      "source_id": "d50H4G3vd58",
+      "cards": [
+        116195,
+        116434,
+        116190,
+        132636,
+        110664
+      ],
+      "published_at": "2026-08-08T16:51:34+00:00"
+    },
+    {
+      "slug": "undead-snazzy-reborn",
+      "title": "Snazzy Phantom Reborn Conversion",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/undead-snazzy-reborn.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "undead"
+      ],
+      "tags": [
+        "season 14",
+        "reborn",
+        "deathrattle",
+        "stat transfer"
+      ],
+      "core": [
+        133083,
+        133081,
+        120104
+      ],
+      "addons": [
+        113158
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=IV8rBG-3CA8",
+      "source_author": "Rdu Hearthstone",
+      "source_id": "IV8rBG-3CA8",
+      "cards": [
+        133083,
+        133081,
+        120104,
+        113158
+      ],
+      "published_at": "2026-08-08T16:51:34+00:00"
     }
   ]
 }
