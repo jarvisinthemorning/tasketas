@@ -1,0 +1,16 @@
+[project]
+name = "battlegrounds-comp-guides"
+version = "0.1.0"
+description = "Static mobile-first Battlegrounds comp guide publisher"
+requires-python = ">=3.13"
+dependencies = [
+  "jinja2>=3.1,<4",
+  "markdown>=3.7,<4",
+  "pyyaml>=6,<7",
+]
+
+[dependency-groups]
+dev = []
+
+[tool.uv]
+default-groups = ["dev"]

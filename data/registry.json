@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "pages": [
+    {
+      "slug": "end-of-turn-tasty-lobster",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/end-of-turn-tasty-lobster.html",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=jCupcgaSjvo",
+      "source_id": "jCupcgaSjvo",
+      "cards": [
+        132796,
+        132800,
+        97408,
+        132808,
+        133039,
+        101314,
+        133400,
+        112895,
+        132802
+      ],
+      "published_at": "2026-08-08T12:27:06+00:00"
+    }
+  ]
+}

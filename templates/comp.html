@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171323">
+  <meta name="description" content="A concise Hearthstone Battlegrounds comp guide sourced from {{ comp.source.author }}.">
+  <meta property="og:title" content="{{ comp.title }} — Battlegrounds Comp Guide">
+  <meta property="og:type" content="article">
+  {% if comp.video %}<meta property="og:image" content="https://i.ytimg.com/vi/{{ comp.video.id }}/hqdefault.jpg">{% endif %}
+  <title>{{ comp.title }} — Battlegrounds Comp Guide</title>
+  <link rel="preconnect" href="https://hsbg.cards">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="stylesheet" href="../static/comp.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="shell">
+      <div class="eyebrow">Battlegrounds comp · Season {{ comp.season }}</div>
+      <h1>{{ comp.title }}</h1>
+      <div class="chips" aria-label="Guide metadata">
+        {% for mode in comp.modes or [] %}<span class="chip">{{ mode }}</span>{% endfor %}
+        {% for tribe in comp.tribes or [] %}<span class="chip chip--tribe">{{ tribe }}</span>{% endfor %}
+        <span class="chip chip--verified">Verified {{ comp.verified_at }}</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell main-flow">
+    <section class="source-card" aria-labelledby="source-heading">
+      <div>
+        <div class="section-kicker">Original source</div>
+        <h2 id="source-heading">{{ comp.source.author }}</h2>
+        <p>This guide condenses the linked public {{ comp.source.type }} source. Watch or read the original for the complete game and commentary.</p>
+        <a class="source-link" href="{{ comp.source.url }}" target="_blank" rel="noopener noreferrer">Open original source <span aria-hidden="true">↗</span></a>
+      </div>
+      {% if comp.video %}
+      <a class="video-card" href="https://www.youtube.com/watch?v={{ comp.video.id }}{% if comp.video.timestamp %}&t={{ comp.video.timestamp }}s{% endif %}" target="_blank" rel="noopener noreferrer" aria-label="Play the source video on YouTube">
+        <img src="https://i.ytimg.com/vi/{{ comp.video.id }}/hqdefault.jpg" alt="Preview of the source video" loading="eager">
+        <span class="play" aria-hidden="true">▶</span>
+        {% if comp.video.timestamp %}<span class="timestamp">From {{ '%d:%02d' | format(comp.video.timestamp // 60, comp.video.timestamp % 60) }}</span>{% endif %}
+      </a>
+      {% endif %}
+    </section>
+
+    {% set labels = {'core': 'Core', 'addons': 'Addons', 'cycle': 'Cycle'} %}
+    {% set descriptions = {
+      'core': 'The engine pieces that make the comp work.',
+      'addons': 'Permanent support and scaling pieces.',
+      'cycle': 'Temporary cards or repeatable resources used to assemble and accelerate the board.'
+    } %}
+    {% for key in ['core', 'addons', 'cycle'] %}
+      {% set cards = comp.sections[key] %}
+      {% if cards %}
+      <section class="card-section" aria-labelledby="{{ key }}-heading">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">{{ labels[key] }} cards</div>
+            <h2 id="{{ key }}-heading">{{ labels[key] }}</h2>
+          </div>
+          <p>{{ descriptions[key] }}</p>
+        </div>
+        <div class="card-row">
+          {% for card in cards %}
+          <a class="card" href="{{ card.detail or card.hsreplay }}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ card.image }}" alt="{{ card.name }}" loading="lazy">
+            <span class="card-name">{{ card.name }}</span>
+            <span class="card-meta">{% if card.tier %}Tier {{ card.tier }}{% endif %}{% if card.tribes %} · {{ card.tribes | join(' / ') }}{% endif %}</span>
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+    {% endfor %}
+
+    <article class="guide-copy">
+      {{ body_html | safe }}
+    </article>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>Unofficial, non-commercial fan guide. Hearthstone and its assets belong to Blizzard Entertainment.</p>
+      <p>Card data and images: <a href="https://hsbg.cards" target="_blank" rel="noopener noreferrer">hsbg.cards</a>. Strategy source: <a href="{{ comp.source.url }}" target="_blank" rel="noopener noreferrer">{{ comp.source.author }}</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
