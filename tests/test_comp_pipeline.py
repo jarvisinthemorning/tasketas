@@ -205,8 +205,9 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('<option value="date:desc" selected>Newest first</option>', html)
             self.assertNotIn("Tasty Lobstah", html)
             self.assertIn("Probability", html)
-            self.assertIn("P80 power", html)
+            self.assertIn("P80 power score", html)
             self.assertIn("Turns online", html)
+            self.assertIn("not combat simulation or win probability", html)
             self.assertNotIn("Rating", html)
             self.assertNotIn("Difficulty", html)
 
@@ -644,6 +645,7 @@ composition_spells: []
                         "pages": [
                             {
                                 "source_id": "jCupcgaSjvo",
+                                "tribes": ["beast"],
                                 "minions": [
                                     {"card_id": 132796, "count": 1, "golden_count": 0}
                                 ],
@@ -764,6 +766,11 @@ composition_spells: []
                                 "source_id": "jCupcgaSjvo",
                                 "url": "https://old.example",
                                 "published_at": "2026-08-01T00:00:00+00:00",
+                                "tribes": ["demon"],
+                                "minions": [
+                                    {"card_id": 132796, "count": 1, "golden_count": 0}
+                                ],
+                                "spells": [],
                                 "probability": 0.22,
                                 "turns_to_online": 11,
                                 "p20_power": 8200,

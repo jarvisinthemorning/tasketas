@@ -625,6 +625,7 @@ def publish_comp(
         existing_entry
         and existing_entry.get("minions") == minions
         and existing_entry.get("spells") == spells
+        and existing_entry.get("tribes") == metadata["tribes"]
     )
     metrics = (
         {field: existing_entry[field] for field in RESULT_FIELDS}

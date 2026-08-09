@@ -59,7 +59,7 @@
               <option value="title:asc">Composition A–Z</option>
               <option value="title:desc">Composition Z–A</option>
               <option value="probability:desc">Highest probability</option>
-              <option value="power:desc">Highest P80 power</option>
+              <option value="power:desc">Highest P80 power score</option>
               <option value="online:asc">Fastest online</option>
             </select>
           </label>
@@ -73,7 +73,7 @@
             <tr>
               <th scope="col"><button type="button" data-sort="title">Composition <span aria-hidden="true">↕</span></button></th>
               <th scope="col"><button type="button" data-sort="probability">Probability <span aria-hidden="true">↕</span></button></th>
-              <th scope="col"><button type="button" data-sort="power">P80 power <span aria-hidden="true">↕</span></button></th>
+              <th scope="col"><button type="button" data-sort="power">P80 power score <span aria-hidden="true">↕</span></button></th>
               <th scope="col"><button type="button" data-sort="online">Turns online <span aria-hidden="true">↕</span></button></th>
             </tr>
           </thead>
@@ -83,6 +83,7 @@
         </table>
         <p id="empty-filter" class="empty-filter" hidden>No compositions match those filters.</p>
       </div>
+      <p class="metric-disclaimer">Power is a mechanics-aware board-strength score, not combat simulation or win probability.</p>
     </section>
   </main>
 
@@ -260,7 +261,7 @@
             ? `${probabilityLabel(comp.probability)} · ${Math.round(comp.probability * 100)}%`
             : 'Not modeled';
 
-          const powerCell = labelledCell('P80 power');
+          const powerCell = labelledCell('P80 power score');
           powerCell.className = 'metric-cell metric-cell--power';
           powerCell.textContent = formatPower(comp.p80_power);
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -77,6 +78,10 @@ def main() -> int:
             template_path=ROOT / "templates/index.html",
             output_dir=ROOT / "dist",
         )
+        static_output = ROOT / "dist/static"
+        static_output.mkdir(parents=True, exist_ok=True)
+        for asset in ("comp.css", "index.css"):
+            shutil.copyfile(ROOT / "static" / asset, static_output / asset)
 
     evaluated = sum("p80_power" in page for page in updated.get("pages", []))
     print(
