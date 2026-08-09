@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from comp_pipeline import (
+    RESULT_FIELDS,
     CardCatalog,
     CompError,
     _parse_markdown,
@@ -146,14 +147,14 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(CompError, "tags must be a non-empty list"):
                 _parse_markdown(content)
 
-    def test_index_template_fetches_both_json_files_on_page_load_without_embedded_rows(self):
+    def test_index_fetches_registry_first_and_lazy_loads_card_filter(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             registry = root / "registry.json"
             registry.write_text(
                 json.dumps(
                     {
-                        "schema_version": 1,
+                        "schema_version": 2,
                         "pages": [
                             {
                                 "slug": "tasty-lobstah",
@@ -161,8 +162,15 @@ class PipelineTests(unittest.TestCase):
                                 "url": "https://example.pages.dev/comps/tasty-lobstah.html",
                                 "tribes": ["beast"],
                                 "tags": ["deathrattle", "scaling"],
-                                "core": [132796],
-                                "cards": [132796, 97408],
+                                "minions": [
+                                    {"card_id": 132796, "count": 1, "golden_count": 0}
+                                ],
+                                "spells": [],
+                                "probability": 0.22,
+                                "turns_to_online": 11,
+                                "p20_power": 8200,
+                                "p50_power": 16400,
+                                "p80_power": 25700,
                                 "verified_at": "2026-08-08",
                             }
                         ],
@@ -181,19 +189,24 @@ class PipelineTests(unittest.TestCase):
             )
             html = output.read_text(encoding="utf-8")
 
-            self.assertIn('<details class="filters">', html)
-            self.assertNotIn('<details class="filters" open', html)
+            self.assertIn('<details id="filters-panel" class="filters">', html)
+            self.assertNotIn('<details id="filters-panel" class="filters" open', html)
             self.assertIn('id="tribe-filter"', html)
             self.assertIn('id="tag-filter"', html)
             self.assertIn('id="card-filter"', html)
             self.assertIn('data-sort="title"', html)
+            self.assertIn('data-sort="probability"', html)
+            self.assertIn('data-sort="power"', html)
+            self.assertIn('data-sort="online"', html)
             self.assertIn("data/registry.json", html)
             self.assertIn("data/cards.json", html)
-            self.assertIn("Promise.all", html)
-            self.assertNotIn("details.addEventListener", html)
+            self.assertNotIn("Promise.all", html)
+            self.assertIn("addEventListener('toggle'", html)
             self.assertIn('<option value="date:desc" selected>Newest first</option>', html)
             self.assertNotIn("Tasty Lobstah", html)
-            self.assertNotIn("Power", html)
+            self.assertIn("Probability", html)
+            self.assertIn("P80 power", html)
+            self.assertIn("Turns online", html)
             self.assertNotIn("Rating", html)
             self.assertNotIn("Difficulty", html)
 
@@ -204,7 +217,7 @@ class PipelineTests(unittest.TestCase):
             registry.write_text(
                 json.dumps(
                     {
-                        "schema_version": 1,
+                        "schema_version": 2,
                         "pages": [
                             {
                                 "slug": "tasty-lobstah",
@@ -212,8 +225,15 @@ class PipelineTests(unittest.TestCase):
                                 "url": "https://example.pages.dev/comps/tasty-lobstah.html",
                                 "tribes": ["beast"],
                                 "tags": ["deathrattle", "scaling"],
-                                "core": [132796],
-                                "cards": [132796, 97408],
+                                "minions": [
+                                    {"card_id": 132796, "count": 1, "golden_count": 0}
+                                ],
+                                "spells": [],
+                                "probability": 0.22,
+                                "turns_to_online": 11,
+                                "p20_power": 8200,
+                                "p50_power": 16400,
+                                "p80_power": 25700,
                                 "verified_at": "2026-08-08",
                             }
                         ],
@@ -276,6 +296,13 @@ class PipelineTests(unittest.TestCase):
                     "name": "Tasty Lobster",
                     "cardType": "minion",
                     "tier": 3,
+                    "attack": 4,
+                    "health": 5,
+                    "attackGold": 8,
+                    "healthGold": 10,
+                    "text": "<b>Battlecry:</b> Test.",
+                    "textGold": "<b>Battlecry:</b> Test twice.",
+                    "keywords": ["Reborn"],
                     "minionTypes": ["Beast"],
                     "pool": True,
                     "categories": ["tavern"],
@@ -291,6 +318,13 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(card["detail"], "https://hsreplay.net/battlegrounds/minions/132796/tasty-lobster")
         self.assertEqual(card["modes"], ["solo", "duos"])
         self.assertEqual(card["categories"], ["tavern"])
+        self.assertEqual(card["attack"], 4)
+        self.assertEqual(card["health"], 5)
+        self.assertEqual(card["attack_gold"], 8)
+        self.assertEqual(card["health_gold"], 10)
+        self.assertEqual(card["text"], "<b>Battlecry:</b> Test.")
+        self.assertEqual(card["text_gold"], "<b>Battlecry:</b> Test twice.")
+        self.assertEqual(card["keywords"], ["reborn"])
 
     def test_normalize_api_cards_does_not_assign_tribes_to_trinkets(self):
         payload = normalize_api_cards(
@@ -355,13 +389,20 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(result["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
             saved = json.loads(registry.read_text(encoding="utf-8"))
             self.assertEqual(saved["pages"][0]["source_id"], "jCupcgaSjvo")
-            self.assertEqual(saved["pages"][0]["cards"], [132796, 97408])
+            self.assertEqual(
+                saved["pages"][0]["minions"],
+                [
+                    {"card_id": 132796, "count": 1, "golden_count": 0},
+                    {"card_id": 97408, "count": 1, "golden_count": 0},
+                ],
+            )
+            self.assertEqual(saved["pages"][0]["spells"], [])
             self.assertEqual(saved["pages"][0]["title"], "Tasty Lobstah")
             self.assertEqual(saved["pages"][0]["season"], 14)
             self.assertEqual(saved["pages"][0]["modes"], ["solo", "duos"])
             self.assertEqual(saved["pages"][0]["tribes"], ["beast"])
             self.assertEqual(saved["pages"][0]["tags"], ["deathrattle", "scaling"])
-            self.assertEqual(saved["pages"][0]["core"], [132796])
+            self.assertNotIn("core", saved["pages"][0])
             self.assertEqual(saved["pages"][0]["source_author"], "Shadybunny")
 
     def test_preview_build_does_not_update_registry(self):
@@ -579,63 +620,45 @@ class PipelineTests(unittest.TestCase):
             self.assertNotIn("Late game · Turn", html)
             self.assertIn("watch?v=jCupcgaSjvo&t=600s", html)
 
-    def test_quantitative_evaluation_renders_observed_luck_and_external_metrics(self):
+    def test_compact_registry_metrics_render_without_guide_evaluation_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             content = root / "guide.md"
-            evaluation_yaml = """board_examples:
-  - stage: mid
-    turn: 10
-    timestamp: 300
-    units:
-      - card_id: 132796
-        attack: 100
-        health: 120
-  - stage: end
-    turn: 12
-    timestamp: 500
-    units:
-      - card_id: 132796
-        attack: 200
-        health: 220
-evaluation:
-  version: 1
-  assessed_at: 2026-08-09
-  classification:
-    build_window: Midgame build
-    setup_debt: Medium
-    execution: Low
-  baseline:
-    model: hogrider-core-v1
-    parameters:
-      other_quilboars: 5
-      choose_one_cards_per_turn: 1
-      starting_gem_attack: 1
-      starting_gem_health: 1
-    assumptions: [Single Hogrider]
-  luck:
-    tavern_tier: 3
-    turns: 2
-    simulations: 100
-    required_tribes: [beast]
-    scenarios:
-      - label: From scratch
-        required: [132796]
-        owned: []
-  external:
-    firestone:
-      power: 12.3
-      average_position: 3.8
-      tier: B
-      difficulty: Medium
-      games: 1000
-      captured_at: 2026-08-09
+            composition_yaml = """composition_minions:
+  - card_id: 132796
+    count: 1
+    golden_count: 0
+composition_spells: []
 """
-            content.write_text(VALID_MARKDOWN.replace("source:\n", evaluation_yaml + "source:\n"), encoding="utf-8")
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", composition_yaml + "source:\n"),
+                encoding="utf-8",
+            )
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             registry = root / "registry.json"
-            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 2,
+                        "pages": [
+                            {
+                                "source_id": "jCupcgaSjvo",
+                                "minions": [
+                                    {"card_id": 132796, "count": 1, "golden_count": 0}
+                                ],
+                                "spells": [],
+                                "probability": 0.22,
+                                "turns_to_online": 11,
+                                "p20_power": 8200,
+                                "p50_power": 16400,
+                                "p80_power": 25700,
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
 
             publish_comp(
                 content_path=content,
@@ -648,21 +671,48 @@ evaluation:
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
-            self.assertIn('class="quant-evaluation"', html)
-            self.assertIn("Observed board trajectory", html)
-            self.assertIn("220 total stats", html)
-            self.assertIn("Baseline calibration", html)
-            self.assertIn("modeled stats", html)
-            self.assertIn("From scratch", html)
-            self.assertIn("per eligible hard-roll attempt", html)
-            self.assertIn("random-lobby adjusted", html)
-            self.assertNotIn("eligible games", html)
-            self.assertNotIn("across all lobbies", html)
-            self.assertNotIn("projected end", html)
-            self.assertNotIn("the core-only gain", html)
-            self.assertIn("Firestone", html)
-            self.assertIn("12.3", html)
+            self.assertIn('class="power-badges"', html)
+            self.assertIn("Common · 22%", html)
+            self.assertIn("25.7k", html)
+            self.assertIn("Turn 11", html)
+            self.assertIn("P20", html)
+            self.assertIn("8.2k", html)
+            self.assertIn("P50", html)
+            self.assertIn("16.4k", html)
+            self.assertIn("among successful assemblies", html)
+            self.assertIn("random tribe availability", html)
+            self.assertIn("chance that one pool copy is held by a rival", html)
+            self.assertNotIn("quant-evaluation", html)
+            self.assertNotIn("Observed board trajectory", html)
 
+    def test_composition_recipe_rejects_more_than_seven_board_bodies(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            recipe = """composition_minions:
+  - card_id: 132796
+    count: 8
+    golden_count: 0
+composition_spells: []
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", recipe + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 2, "pages": []}', encoding="utf-8")
+            with self.assertRaisesRegex(CompError, "seven-slot"):
+                publish_comp(
+                    content_path=content,
+                    cards_path=cards,
+                    registry_path=registry,
+                    template_path=Path("templates/comp.html"),
+                    output_dir=root / "dist",
+                    public_base_url="https://example.test",
+                    register=False,
+                )
     def test_publish_refuses_duplicate_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -692,12 +742,37 @@ evaluation:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             content = root / "guide.md"
-            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            composition_yaml = """composition_minions:
+  - card_id: 132796
+    count: 1
+    golden_count: 0
+composition_spells: []
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", composition_yaml + "source:\n"),
+                encoding="utf-8",
+            )
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             registry = root / "registry.json"
             registry.write_text(
-                json.dumps({"schema_version": 1, "pages": [{"source_id": "jCupcgaSjvo", "url": "https://old.example"}]}),
+                json.dumps(
+                    {
+                        "schema_version": 2,
+                        "pages": [
+                            {
+                                "source_id": "jCupcgaSjvo",
+                                "url": "https://old.example",
+                                "published_at": "2026-08-01T00:00:00+00:00",
+                                "probability": 0.22,
+                                "turns_to_online": 11,
+                                "p20_power": 8200,
+                                "p50_power": 16400,
+                                "p80_power": 25700,
+                            }
+                        ],
+                    }
+                ),
                 encoding="utf-8",
             )
             template = root / "comp.html"
@@ -715,7 +790,18 @@ evaluation:
 
             saved = json.loads(registry.read_text(encoding="utf-8"))
             self.assertEqual(len(saved["pages"]), 1)
-            self.assertEqual(saved["pages"][0]["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
+            entry = saved["pages"][0]
+            self.assertEqual(entry["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
+            self.assertEqual(
+                entry["minions"],
+                [{"card_id": 132796, "count": 1, "golden_count": 0}],
+            )
+            self.assertEqual(entry["spells"], [])
+            self.assertEqual(entry["published_at"], "2026-08-01T00:00:00+00:00")
+            for result_field in RESULT_FIELDS:
+                self.assertNotIn(result_field, entry)
+            for obsolete in ("evaluation", "core", "addons", "cycle", "cards"):
+                self.assertNotIn(obsolete, entry)
 
 
 if __name__ == "__main__":

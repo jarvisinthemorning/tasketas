@@ -8,6 +8,8 @@ tags: [deathrattle, scaling]
 core: []
 addons: []
 cycle: []
+composition_minions: []
+composition_spells: []
 board_examples: []
 discovery_sources:
   - type: hsreplay

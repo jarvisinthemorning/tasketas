@@ -19,6 +19,14 @@ addons:
 - 132636
 - 110664
 cycle: []
+composition_minions:
+- {card_id: 132632, count: 1, golden_count: 0}
+- {card_id: 116195, count: 1, golden_count: 0}
+- {card_id: 132636, count: 1, golden_count: 0}
+- {card_id: 133329, count: 1, golden_count: 0}
+- {card_id: 116434, count: 1, golden_count: 0}
+composition_spells:
+- {card_id: 116596, count: 1}
 board_examples:
 - stage: mid
   turn: 10
@@ -43,60 +51,6 @@ board_examples:
   - {card_id: 116195, slot: 4, attack: 513, health: 746}
   - {card_id: 133329, slot: 5, attack: 2.4k, health: 3.6k, annotation: Divine Shield}
   - {card_id: 116434, slot: 6, attack: 496, health: 344, golden: true}
-evaluation:
-  version: 1
-  assessed_at: '2026-08-09'
-  classification:
-    build_window: Midgame engine; late only with fuel
-    setup_debt: Medium — Choose One generation must already exist
-    execution: Medium — repeated casts, not full APM
-  baseline:
-    name: Minimal-fuel engine illustration
-    model: hogrider-core-v1
-    modeled_recruit_phases: 4
-    parameters:
-      hogriders: 1
-      other_quilboars: 5
-      choose_one_cards_per_turn: 1
-      starting_gem_attack: 1
-      starting_gem_health: 1
-    assumptions:
-    - One ordinary Turbo Hogrider and one Gem Rat
-    - One Gem Day played each turn, alternating Attack and Health upgrades
-    - Five other Quilboar receive each Hogrider Blood Gem
-    - No Golden core, trinket, Discover chain, or additional Choose One generation
-    interpretation: This separate four-phase illustration is not projected from the mature Turn 10 board. The demonstrated source trajectory also uses extra Choose One volume, additional Hogriders, upgraded Gems, and secondary engines.
-  luck:
-    tavern_tier: 6
-    turns: 2
-    simulations: 50000
-    required_tribes: [quilboar]
-    scenarios:
-    - label: From scratch at Tavern 6
-      required: [116434, 116195]
-      owned: []
-    - label: Gem Rat already owned
-      required: [116434, 116195]
-      owned: [116434]
-    - label: Gem Rat owned; one rival holds Hogrider
-      required: [116434, 116195]
-      owned: [116434]
-      held_by_rivals: 1
-  external:
-    firestone:
-      url: https://www.firestoneapp.com/battlegrounds/comps
-      comp_id: quilboar_choose_one
-      power: 13.1
-      average_position: 3.76
-      tier: B
-      difficulty: Medium
-      games: 27621
-      captured_at: '2026-08-09'
-    hsreplay:
-      url: https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one
-      tier: A
-      difficulty: Easy
-      captured_at: '2026-08-09'
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one

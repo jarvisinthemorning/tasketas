@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "pages": [
     {
       "slug": "beast-lobster-deathstrider-rally",
@@ -18,26 +18,35 @@
         "rally",
         "scaling"
       ],
-      "core": [
-        132796,
-        132808
+      "minions": [
+        {
+          "card_id": 132796,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132808,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132802,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132804,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        132802,
-        132804
-      ],
-      "cycle": [],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=rJ66OM7pENQ",
       "source_author": "HIQ MU",
       "source_id": "rJ66OM7pENQ",
-      "cards": [
-        132796,
-        132808,
-        132802,
-        132804
-      ],
+      "discovery_sources": [],
       "published_at": "2026-08-08T16:53:17+00:00"
     },
     {
@@ -57,16 +66,29 @@
         "spells",
         "battlecry"
       ],
-      "core": [
-        110664,
-        132901,
-        130298
+      "minions": [
+        {
+          "card_id": 132901,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 110664,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        96786,
-        130662
+      "spells": [
+        {
+          "card_id": 132903,
+          "count": 1
+        }
       ],
-      "cycle": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=WYybK8pRz8Y",
@@ -86,16 +108,12 @@
           "label": "Firestone composition directory"
         }
       ],
-      "cards": [
-        110664,
-        132901,
-        130298,
-        96786,
-        130662,
-        132917,
-        80740
-      ],
-      "published_at": "2026-08-09T16:30:35+00:00"
+      "published_at": "2026-08-09T16:30:35+00:00",
+      "probability": 0.1092,
+      "turns_to_online": 13,
+      "p20_power": 483,
+      "p50_power": 757,
+      "p80_power": 1420
     },
     {
       "slug": "dragon-kalecgos-battlecry",
@@ -114,32 +132,35 @@
         "kalecgos",
         "cycling"
       ],
-      "core": [
-        60630,
-        96786
+      "minions": [
+        {
+          "card_id": 132955,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 60630,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        132955,
-        133329,
-        101314
-      ],
-      "cycle": [
-        120213
-      ],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=dCwe93sXIiM",
       "source_author": "Sevel",
       "source_id": "dCwe93sXIiM",
-      "cards": [
-        60630,
-        96786,
-        132955,
-        133329,
-        101314,
-        120213,
-        132957
-      ],
+      "discovery_sources": [],
       "published_at": "2026-08-09T00:13:46+00:00"
     },
     {
@@ -159,19 +180,29 @@
         "cycling",
         "rally"
       ],
-      "core": [
-        132981,
-        120674
+      "minions": [
+        {
+          "card_id": 132981,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120674,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 122516,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        133455,
-        116736
-      ],
-      "cycle": [
-        64077,
-        119949,
-        119951
-      ],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=eeyh2yyJVPE",
@@ -184,18 +215,6 @@
           "comp_id": "elemental_boost",
           "label": "Firestone composition directory"
         }
-      ],
-      "cards": [
-        132981,
-        120674,
-        133455,
-        116736,
-        64077,
-        119949,
-        119951,
-        127107,
-        122516,
-        96786
       ],
       "published_at": "2026-08-09T10:02:40+00:00"
     },
@@ -216,15 +235,34 @@
         "end of turn",
         "generation"
       ],
-      "core": [
-        98588,
-        132895
+      "minions": [
+        {
+          "card_id": 101314,
+          "count": 1,
+          "golden_count": 1
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 1
+        },
+        {
+          "card_id": 132893,
+          "count": 2,
+          "golden_count": 2
+        },
+        {
+          "card_id": 120905,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98588,
+          "count": 2,
+          "golden_count": 1
+        }
       ],
-      "addons": [
-        132676,
-        132312
-      ],
-      "cycle": [],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=EhDY7nt7obg",
@@ -237,20 +275,6 @@
           "comp_id": "2",
           "label": "HSReplay composition guide"
         }
-      ],
-      "cards": [
-        98588,
-        132895,
-        132676,
-        132312,
-        126916,
-        110321,
-        122342,
-        113635,
-        130298,
-        132893,
-        101314,
-        120905
       ],
       "published_at": "2026-08-09T10:03:28+00:00"
     },
@@ -271,33 +295,35 @@
         "end of turn",
         "spell power"
       ],
-      "core": [
-        120905,
-        119942,
-        101314
+      "minions": [
+        {
+          "card_id": 80742,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 114816,
+          "count": 2,
+          "golden_count": 1
+        },
+        {
+          "card_id": 120905,
+          "count": 3,
+          "golden_count": 1
+        },
+        {
+          "card_id": 119942,
+          "count": 1,
+          "golden_count": 1
+        }
       ],
-      "addons": [
-        103069,
-        99054,
-        114816
-      ],
-      "cycle": [],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=qZNlfhwDl7E",
       "source_author": "Shadybunny",
       "source_id": "qZNlfhwDl7E",
-      "cards": [
-        120905,
-        119942,
-        101314,
-        103069,
-        99054,
-        114816,
-        104538,
-        132762,
-        80742
-      ],
+      "discovery_sources": [],
       "published_at": "2026-08-08T19:25:34+00:00"
     },
     {
@@ -317,17 +343,24 @@
         "apm",
         "golden minions"
       ],
-      "core": [
-        132762,
-        132925
+      "minions": [
+        {
+          "card_id": 122516,
+          "count": 1,
+          "golden_count": 1
+        },
+        {
+          "card_id": 132762,
+          "count": 3,
+          "golden_count": 3
+        },
+        {
+          "card_id": 132925,
+          "count": 2,
+          "golden_count": 2
+        }
       ],
-      "addons": [
-        122516
-      ],
-      "cycle": [
-        122520,
-        132921
-      ],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
@@ -346,13 +379,6 @@
           "comp_id": "pirates_escapee_chef",
           "label": "Firestone composition directory"
         }
-      ],
-      "cards": [
-        132762,
-        132925,
-        122516,
-        122520,
-        132921
       ],
       "published_at": "2026-08-09T09:59:04+00:00"
     },
@@ -373,16 +399,39 @@
         "blood gems",
         "rally"
       ],
-      "core": [
-        116195,
-        116434
+      "minions": [
+        {
+          "card_id": 132632,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 116195,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132636,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 116434,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        116190,
-        132636,
-        110664
+      "spells": [
+        {
+          "card_id": 116596,
+          "count": 1
+        }
       ],
-      "cycle": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=d50H4G3vd58",
@@ -402,17 +451,12 @@
           "label": "Firestone composition directory"
         }
       ],
-      "cards": [
-        116195,
-        116434,
-        116190,
-        132636,
-        110664,
-        132632,
-        113154,
-        133329
-      ],
-      "published_at": "2026-08-09T16:30:27+00:00"
+      "published_at": "2026-08-09T16:30:27+00:00",
+      "probability": 0.0184,
+      "turns_to_online": 13,
+      "p20_power": 160,
+      "p50_power": 160,
+      "p80_power": 165
     },
     {
       "slug": "undead-snazzy-reborn",
@@ -431,15 +475,29 @@
         "deathrattle",
         "stat transfer"
       ],
-      "core": [
-        133083,
-        133081,
-        120104
+      "minions": [
+        {
+          "card_id": 133083,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133081,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120104,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 113158,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        113158
-      ],
-      "cycle": [],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=IV8rBG-3CA8",
@@ -458,12 +516,6 @@
           "comp_id": "undead_butcher",
           "label": "Firestone composition directory"
         }
-      ],
-      "cards": [
-        133083,
-        133081,
-        120104,
-        113158
       ],
       "published_at": "2026-08-09T10:04:15+00:00"
     },
@@ -484,22 +536,34 @@
         "spell targeting",
         "apm"
       ],
-      "core": [
-        133026,
-        132989,
-        96786
+      "minions": [
+        {
+          "card_id": 133026,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126637,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98948,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132989,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120677,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        132883,
-        98509,
-        98948,
-        126637
-      ],
-      "cycle": [
-        60028,
-        133075,
-        131145
-      ],
+      "spells": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=Ppj60f3j_AE",
@@ -512,19 +576,6 @@
           "comp_id": "67",
           "label": "HSReplay composition guide"
         }
-      ],
-      "cards": [
-        133026,
-        132989,
-        96786,
-        132883,
-        98509,
-        98948,
-        126637,
-        60028,
-        133075,
-        131145,
-        120677
       ],
       "published_at": "2026-08-09T10:01:26+00:00"
     },
@@ -545,34 +596,48 @@
         "spells",
         "scaling"
       ],
-      "core": [
-        133713,
-        133329,
-        130298,
-        132790
+      "minions": [
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126966,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 90425,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        132835,
-        132207,
-        126966,
-        90425
+      "spells": [
+        {
+          "card_id": 132790,
+          "count": 1
+        },
+        {
+          "card_id": 132835,
+          "count": 1
+        },
+        {
+          "card_id": 132207,
+          "count": 1
+        }
       ],
-      "cycle": [],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=Ic08mTl1-HA",
       "source_author": "JeefHS",
       "source_id": "Ic08mTl1-HA",
-      "cards": [
-        133713,
-        133329,
-        130298,
-        132790,
-        132835,
-        132207,
-        126966,
-        90425
-      ],
+      "discovery_sources": [],
       "published_at": "2026-08-09T05:20:45+00:00"
     },
     {
@@ -594,29 +659,40 @@
         "venomous",
         "utility"
       ],
-      "core": [
-        127446,
-        90425
+      "minions": [
+        {
+          "card_id": 127446,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 90425,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 65031,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 122219,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126966,
+          "count": 1,
+          "golden_count": 0
+        }
       ],
-      "addons": [
-        65031,
-        122219
-      ],
-      "cycle": [
-        126966
-      ],
+      "spells": [],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=weHaBCZDvQw",
       "source_author": "XQN",
       "source_id": "weHaBCZDvQw",
-      "cards": [
-        127446,
-        90425,
-        65031,
-        122219,
-        126966
-      ],
+      "discovery_sources": [],
       "published_at": "2026-08-09T07:26:13+00:00"
     },
     {
@@ -637,15 +713,34 @@
         "rally",
         "stat transfer"
       ],
-      "core": [
-        132320,
-        132636
+      "minions": [
+        {
+          "card_id": 126671,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132636,
+          "count": 1,
+          "golden_count": 1
+        },
+        {
+          "card_id": 116434,
+          "count": 1,
+          "golden_count": 1
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 1
+        }
       ],
-      "addons": [
-        116434,
-        130298
-      ],
-      "cycle": [],
+      "spells": [],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=08tFc8FYcsI",
@@ -658,14 +753,6 @@
           "comp_id": "90",
           "label": "HSReplay composition guide"
         }
-      ],
-      "cards": [
-        132320,
-        132636,
-        116434,
-        130298,
-        126671,
-        96786
       ],
       "published_at": "2026-08-09T10:11:05+00:00"
     }

@@ -114,132 +114,29 @@
     </article>
 
 
-    <section class="quant-evaluation" aria-labelledby="quant-evaluation-heading">
+    <section class="power-summary" aria-labelledby="power-summary-heading">
+      <div class="power-badges" aria-label="Composition simulation summary">
+        <span class="power-badge"><small>Probability</small><strong>Rare · 2%</strong></span>
+        <span class="power-badge"><small>P80 power</small><strong>165</strong></span>
+        <span class="power-badge"><small>Online</small><strong>Turn 13</strong></span>
+      </div>
       <div class="section-heading">
         <div>
-          <div class="section-kicker">Experimental model v1</div>
-          <h2 id="quant-evaluation-heading">Quantitative evaluation</h2>
+          <div class="section-kicker">Deterministic simulation</div>
+          <h2 id="power-summary-heading">Power distribution</h2>
         </div>
-        <p>Observed source boards, a reproducible shop model, and external archetype benchmarks. These are separate signals—not one suspiciously magical tier letter.</p>
+        <p>P20 is the low-roll outcome, P50 the median, and P80 a strong outcome at Turn 14, among successful assemblies.</p>
       </div>
-
-      <ul class="evaluation-classifications" aria-label="Composition classification">
-        <li><small>Build window</small><strong>Midgame engine; late only with fuel</strong></li>
-        <li><small>Setup debt</small><strong>Medium — Choose One generation must already exist</strong></li>
-        <li><small>Execution</small><strong>Medium — repeated casts, not full APM</strong></li>
+      <div class="power-percentiles">
+        <span><small>P20</small><strong>160</strong></span>
+        <span><small>P50</small><strong>160</strong></span>
+        <span><small>P80</small><strong>165</strong></span>
+      </div>
+      <ul class="power-notes">
+        <li>Probability includes random tribe availability and finding every listed minion over 4 Tavern 6 recruit phases from Turn 10. Each required card has a 35% chance that one pool copy is held by a rival. Online is the median turn among successful assemblies.</li>
+        <li>Power is a versioned mechanics-aware board-strength score, not combat simulation or win probability. Percentiles include only successful assemblies.</li>
+        <li>Each Turbo Hogrider turns every Choose One card into Blood Gems for the rest of the Quilboar board.</li>
       </ul>
-
-      <div class="evaluation-block">
-        <h3>Observed board trajectory</h3>
-        <p class="evaluation-caveat">These selected successful snapshots demonstrate reachable endpoints. Their aggregate board totals include purchases, replacements, triples, and secondary engines; they are not isolated engine growth or median outcomes.</p>
-        <div class="observed-grid">
-
-          <article class="metric-card">
-            <small>Mid · Turn 10</small>
-            <strong>1,043 total stats</strong>
-            <span>455 attack · 588 health</span>
-            <span>2 bodies 100+ · 0 bodies 500+ · 0 bodies 1k+</span>
-
-          </article>
-
-          <article class="metric-card">
-            <small>End · Turn 14</small>
-            <strong>18,120 total stats ≈</strong>
-            <span>7,470 attack · 10,650 health</span>
-            <span>6 bodies 100+ · 5 bodies 500+ · 3 bodies 1k+</span>
-
-            <span>2.04× endpoint-implied compound board-total multiplier over 4 turns</span>
-
-          </article>
-
-        </div>
-      </div>
-
-      <div class="evaluation-block">
-        <h3>Baseline calibration</h3>
-        <p class="evaluation-caveat">This is a separate minimal-fuel engine illustration—not a continuation of the recorded starting board, a guaranteed floor, or an expected outcome. Ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle are assumed unless listed.</p>
-        <div class="baseline-grid">
-          <article class="metric-card">
-            <small>Minimal-fuel engine illustration</small>
-            <strong>+90 modeled stats</strong>
-            <span>4 modeled recruit phases, shown separately from the Turn 10 → 14 snapshots</span>
-            <span>Gem Day upgrades one Blood Gem stat, then each Hogrider plays that Gem on every other Quilboar.</span>
-          </article>
-          <article class="metric-card">
-            <small>Selected source-board delta</small>
-            <strong>+17,077 aggregate stats</strong>
-            <span>Observed end 18,120 across a 4-turn snapshot span</span>
-            <span>Shown for scale only: this delta is not attributable to the minimal engine scenario.</span>
-          </article>
-        </div>
-        <ul class="baseline-assumptions">
-          <li>One ordinary Turbo Hogrider and one Gem Rat</li><li>One Gem Day played each turn, alternating Attack and Health upgrades</li><li>Five other Quilboar receive each Hogrider Blood Gem</li><li>No Golden core, trinket, Discover chain, or additional Choose One generation</li>
-        </ul>
-        <p class="model-footnote">This separate four-phase illustration is not projected from the mature Turn 10 board. The demonstrated source trajectory also uses extra Choose One volume, additional Hogriders, upgraded Gems, and secondary engines.</p>
-      </div>
-
-      <div class="evaluation-block">
-        <h3>How much luck?</h3>
-        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern 6. It averages all eligible five-tribe lobbies and excludes path-to-position, Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
-        <div class="luck-grid">
-
-          <article class="metric-card">
-            <small>From scratch at Tavern 6</small>
-            <strong>20.3% per eligible hard-roll attempt</strong>
-            <span>95% Monte Carlo interval: 20.0–20.7% · about 1 in 4.9 modeled attempts</span>
-            <span>10.2% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 9.8 such starts</span>
-            <span>Need: Gem Rat, Turbo Hogrider</span>
-          </article>
-
-          <article class="metric-card">
-            <small>Gem Rat already owned</small>
-            <strong>41.2% per eligible hard-roll attempt</strong>
-            <span>95% Monte Carlo interval: 40.8–41.7% · about 1 in 2.4 modeled attempts</span>
-            <span>20.6% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 4.9 such starts</span>
-            <span>Need: Gem Rat, Turbo Hogrider · already own: Gem Rat</span>
-          </article>
-
-          <article class="metric-card">
-            <small>Gem Rat owned; one rival holds Hogrider</small>
-            <strong>36.8% per eligible hard-roll attempt</strong>
-            <span>95% Monte Carlo interval: 36.4–37.3% · about 1 in 2.7 modeled attempts</span>
-            <span>18.4% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 5.4 such starts</span>
-            <span>Need: Gem Rat, Turbo Hogrider · already own: Gem Rat</span>
-          </article>
-
-        </div>
-        <p class="model-footnote">50,000 deterministic-seed simulations per scenario across 2 recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. Apart from explicit owned and rival-held target copies, the shared pool is pristine. This measures the shop hit from one fixed starting position—not empirical game frequency, survival, line selection, or completion of the high-roll ending.</p>
-      </div>
-
-
-      <div class="evaluation-block">
-        <h3>External benchmark</h3>
-        <div class="external-grid">
-
-          <article class="metric-card">
-            <small>Firestone · 2026-08-09</small>
-            <strong>Tier B</strong>
-            <span>Power 13.1</span>
-            <span>Average position 3.76</span>
-            <span>27,621 recognized games</span>
-            <span>Difficulty Medium</span>
-            <a href="https://www.firestoneapp.com/battlegrounds/comps" target="_blank" rel="noopener noreferrer">Open benchmark ↗</a>
-          </article>
-
-          <article class="metric-card">
-            <small>HSReplay · 2026-08-09</small>
-            <strong>Tier A</strong>
-
-
-
-            <span>Difficulty Easy</span>
-            <a href="https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one" target="_blank" rel="noopener noreferrer">Open benchmark ↗</a>
-          </article>
-
-        </div>
-        <p class="model-footnote">Firestone Power is an expert powerLevel label, while placement and game count are observed recognized-composition data. Completed-comp samples can omit failed pivots.</p>
-      </div>
-
     </section>
 
 

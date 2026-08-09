@@ -14,11 +14,40 @@ import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
-from comp_evaluation import calculate_baseline_gain, estimate_pivot_probability
+from comp_power import (
+    BALINDA,
+    CHECKPOINT_TURN,
+    CONTENTION_HOLD_CHANCE,
+    HOGRIDER,
+    ROLL_START_TURN,
+    ROLL_TURNS,
+)
 
 
 class CompError(ValueError):
     """Raised when a comp source or guide cannot be published safely."""
+
+
+RESULT_FIELDS = ("probability", "turns_to_online", "p20_power", "p50_power", "p80_power")
+
+
+def probability_label(probability: float) -> str:
+    if probability >= 0.20:
+        return "Common"
+    if probability >= 0.05:
+        return "Regular"
+    if probability >= 0.01:
+        return "Rare"
+    if probability >= 0.001:
+        return "High-roll"
+    return "Lottery"
+
+
+def format_power(value: int) -> str:
+    if value < 1_000:
+        return str(value)
+    compact = f"{value / 1_000:.1f}".rstrip("0").rstrip(".")
+    return f"{compact}k"
 
 
 def _recorded_stat_number(value: int | str) -> int:
@@ -77,169 +106,6 @@ def analyze_board_examples(board_examples: list[dict]) -> list[dict]:
         analyzed.append(result)
         previous = result
     return analyzed
-
-
-def _normalize_evaluation(raw: object, board_examples: list[dict], catalog: CardCatalog) -> dict | None:
-    if raw is None:
-        return None
-    if not isinstance(raw, dict):
-        raise CompError("evaluation must be a mapping")
-    if raw.get("version") != 1:
-        raise CompError("evaluation.version must be 1")
-
-    classification = raw.get("classification", {})
-    if not isinstance(classification, dict):
-        raise CompError("evaluation.classification must be a mapping")
-    required_classifications = ("build_window", "setup_debt", "execution")
-    for field in required_classifications:
-        if not isinstance(classification.get(field), str) or not classification[field].strip():
-            raise CompError(f"evaluation.classification.{field} must be text")
-
-    normalized = dict(raw)
-    normalized["classification"] = {
-        field: classification[field].strip() for field in required_classifications
-    }
-    normalized["observed"] = analyze_board_examples(board_examples)
-
-    baseline = raw.get("baseline")
-    if not isinstance(baseline, dict):
-        raise CompError("evaluation.baseline must be a mapping")
-    model = baseline.get("model")
-    parameters = baseline.get("parameters", {})
-    assumptions = baseline.get("assumptions", [])
-    if not isinstance(model, str) or not model:
-        raise CompError("evaluation.baseline.model must be text")
-    if not isinstance(parameters, dict):
-        raise CompError("evaluation.baseline.parameters must be a mapping")
-    if not isinstance(assumptions, list) or not all(isinstance(item, str) for item in assumptions):
-        raise CompError("evaluation.baseline.assumptions must be a list of text")
-    observed = normalized["observed"]
-    first_turn = observed[0].get("turn") if observed else None
-    last_turn = observed[-1].get("turn") if observed else None
-    if not isinstance(first_turn, int) or not isinstance(last_turn, int) or last_turn <= first_turn:
-        raise CompError("evaluation.baseline requires at least two board examples with increasing turns")
-    snapshot_turn_span = last_turn - first_turn
-    modeled_recruit_phases = baseline.get("modeled_recruit_phases", snapshot_turn_span)
-    if (
-        isinstance(modeled_recruit_phases, bool)
-        or not isinstance(modeled_recruit_phases, int)
-        or modeled_recruit_phases < 1
-    ):
-        raise CompError("evaluation.baseline.modeled_recruit_phases must be a positive integer")
-    try:
-        baseline_result = calculate_baseline_gain(
-            model,
-            turns=modeled_recruit_phases,
-            parameters=parameters,
-        )
-    except ValueError as exc:
-        raise CompError(f"Invalid evaluation baseline: {exc}") from exc
-    observed_gain = observed[-1]["total_stats"] - observed[0]["total_stats"]
-    baseline_result.update(
-        {
-            "name": str(baseline.get("name", "Core-only baseline")),
-            "modeled_recruit_phases": modeled_recruit_phases,
-            "snapshot_turn_span": snapshot_turn_span,
-            "start_turn": first_turn,
-            "end_turn": last_turn,
-            "observed_board_delta": observed_gain,
-            "observed_end_stats": observed[-1]["total_stats"],
-            "assumptions": [item.strip() for item in assumptions],
-            "interpretation": str(baseline.get("interpretation", "")).strip(),
-        }
-    )
-    normalized["baseline"] = baseline_result
-
-    luck = raw.get("luck")
-    if not isinstance(luck, dict):
-        raise CompError("evaluation.luck must be a mapping")
-    scenarios = luck.get("scenarios")
-    if not isinstance(scenarios, list) or not scenarios:
-        raise CompError("evaluation.luck.scenarios must be a non-empty list")
-    required_tribes = luck.get("required_tribes")
-    if not isinstance(required_tribes, list) or not required_tribes:
-        raise CompError("evaluation.luck.required_tribes must be a non-empty list")
-
-    common = {
-        "tavern_tier": luck.get("tavern_tier", 6),
-        "turns": luck.get("turns", 2),
-        "simulations": luck.get("simulations", 50_000),
-        "required_tribes": required_tribes,
-    }
-    modeled_scenarios: list[dict] = []
-    for index, scenario in enumerate(scenarios, start=1):
-        if not isinstance(scenario, dict):
-            raise CompError(f"evaluation.luck.scenarios[{index}] must be a mapping")
-        label = scenario.get("label")
-        required = scenario.get("required")
-        owned = scenario.get("owned", [])
-        if not isinstance(label, str) or not label.strip():
-            raise CompError(f"evaluation.luck.scenarios[{index}].label must be text")
-        if not isinstance(required, list) or not required:
-            raise CompError(f"evaluation.luck.scenarios[{index}].required must be a non-empty list")
-        if not isinstance(owned, list):
-            raise CompError(f"evaluation.luck.scenarios[{index}].owned must be a list")
-        required_cards = [catalog.require_current(card_id) for card_id in required]
-        owned_cards = [catalog.require_current(card_id) for card_id in owned]
-        held_by_rivals = scenario.get("held_by_rivals", 0)
-        try:
-            result = estimate_pivot_probability(
-                catalog.payload,
-                required_card_ids=[int(card["id"]) for card in required_cards],
-                required_tribes=[str(tribe) for tribe in required_tribes],
-                tavern_tier=common["tavern_tier"],
-                turns=common["turns"],
-                simulations=common["simulations"],
-                held_by_rivals=held_by_rivals,
-                owned_card_ids=[int(card["id"]) for card in owned_cards],
-                seed=int(scenario.get("seed", 14 + index)),
-            )
-        except (TypeError, ValueError) as exc:
-            raise CompError(f"evaluation.luck.scenarios[{index}] is invalid: {exc}") from exc
-        result.update(
-            {
-                "label": label.strip(),
-                "required_names": [card["name"] for card in required_cards],
-                "owned_names": [card["name"] for card in owned_cards],
-            }
-        )
-        modeled_scenarios.append(result)
-    normalized["luck"] = {**common, "scenarios": modeled_scenarios}
-
-    external = raw.get("external", {})
-    if not isinstance(external, dict):
-        raise CompError("evaluation.external must be a mapping")
-    if not all(isinstance(provider, str) and isinstance(benchmark, dict) for provider, benchmark in external.items()):
-        raise CompError("evaluation.external entries must map provider names to benchmark mappings")
-    allowed_external_hosts = {
-        "firestone": "firestoneapp.com",
-        "hsreplay": "hsreplay.net",
-    }
-    for provider, benchmark in external.items():
-        if provider not in allowed_external_hosts:
-            raise CompError(f"Unsupported evaluation.external provider: {provider}")
-        url = benchmark.get("url")
-        if url is not None:
-            if not isinstance(url, str):
-                raise CompError(f"evaluation.external.{provider}.url must be text")
-            parsed = urlparse(url)
-            expected_host = allowed_external_hosts[provider]
-            host = parsed.hostname or ""
-            if parsed.scheme != "https" or not (host == expected_host or host.endswith(f".{expected_host}")):
-                raise CompError(
-                    f"evaluation.external.{provider}.url must be an HTTPS {expected_host} URL"
-                )
-        for field in ("power", "average_position"):
-            value = benchmark.get(field)
-            if value is not None and (
-                isinstance(value, bool) or not isinstance(value, (int, float)) or value < 0
-            ):
-                raise CompError(f"evaluation.external.{provider}.{field} must be a non-negative number")
-        games = benchmark.get("games")
-        if games is not None and (isinstance(games, bool) or not isinstance(games, int) or games < 0):
-            raise CompError(f"evaluation.external.{provider}.games must be a non-negative integer")
-    normalized["external"] = external
-    return normalized
 
 
 EXPLICITLY_BANNED_CARDS = {
@@ -317,6 +183,13 @@ def normalize_api_cards(cards: list[dict], *, generated_at: str) -> dict:
             "name": name,
             "type": card_type,
             "tier": raw.get("tier"),
+            "attack": raw.get("attack"),
+            "health": raw.get("health"),
+            "attack_gold": raw.get("attackGold"),
+            "health_gold": raw.get("healthGold"),
+            "text": raw.get("text"),
+            "text_gold": raw.get("textGold"),
+            "keywords": sorted({str(keyword).strip().lower() for keyword in raw.get("keywords", []) if str(keyword).strip()}),
             "tribes": (raw.get("minionTypes") or []) if card_type == "minion" else [],
             "categories": sorted({str(category).lower() for category in raw.get("categories", [])}),
             "pool": bool(raw.get("pool")),
@@ -440,6 +313,98 @@ def _render_inline_cards(body: str, catalog: CardCatalog) -> tuple[str, list[int
     return rendered, inline_ids
 
 
+def _normalize_composition_cards(
+    raw: object,
+    *,
+    field: str,
+    expected_type: str,
+    catalog: CardCatalog,
+) -> list[dict]:
+    if not isinstance(raw, list):
+        raise CompError(f"{field} must be a list")
+    normalized: list[dict] = []
+    for index, item in enumerate(raw, start=1):
+        if isinstance(item, int) and not isinstance(item, bool):
+            item = {"card_id": item}
+        if not isinstance(item, dict):
+            raise CompError(f"{field}[{index}] must be a card ID or mapping")
+        card_id = item.get("card_id")
+        count = item.get("count", 1)
+        golden_count = item.get("golden_count", 0)
+        if not isinstance(card_id, int) or isinstance(card_id, bool):
+            raise CompError(f"{field}[{index}].card_id must be an integer")
+        if not isinstance(count, int) or isinstance(count, bool) or count < 1:
+            raise CompError(f"{field}[{index}].count must be a positive integer")
+        if (
+            not isinstance(golden_count, int)
+            or isinstance(golden_count, bool)
+            or golden_count < 0
+            or golden_count > count
+        ):
+            raise CompError(f"{field}[{index}].golden_count must be from 0 to count")
+        card = catalog.require_current(card_id)
+        if card.get("type") != expected_type:
+            raise CompError(f"{field}[{index}] must reference a {expected_type}")
+        value = {"card_id": int(card["id"]), "count": count}
+        if expected_type == "minion":
+            value["golden_count"] = golden_count
+        normalized.append(value)
+    return normalized
+
+
+def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dict | None:
+    if not metrics or not all(field in metrics for field in RESULT_FIELDS):
+        return None
+    probability = metrics["probability"]
+    turns = metrics["turns_to_online"]
+    powers = [metrics[field] for field in ("p20_power", "p50_power", "p80_power")]
+    if (
+        isinstance(probability, bool)
+        or not isinstance(probability, (int, float))
+        or not 0 <= probability <= 1
+        or isinstance(turns, bool)
+        or not isinstance(turns, int)
+        or turns < 1
+        or any(isinstance(value, bool) or not isinstance(value, int) or value < 0 for value in powers)
+        or powers != sorted(powers)
+    ):
+        raise CompError("registry power result values are invalid")
+    minion_ids = {item["card_id"] for item in minions}
+    notes: list[str] = []
+    if BALINDA in minion_ids:
+        notes.append(
+            "Balinda makes targeted spells cast twice, multiplying both spell effects and the triggers they cause."
+        )
+    if HOGRIDER in minion_ids:
+        notes.append(
+            "Each Turbo Hogrider turns every Choose One card into Blood Gems for the rest of the Quilboar board."
+        )
+    return {
+        "probability": probability,
+        "probability_percent": round(probability * 100),
+        "probability_label": probability_label(probability),
+        "turns_to_online": turns,
+        "checkpoint_turn": CHECKPOINT_TURN,
+        "probability_note": (
+            f"Probability includes random tribe availability and finding every listed minion over "
+            f"{ROLL_TURNS} Tavern 6 recruit phases from Turn {ROLL_START_TURN}. "
+            f"Each required card has a {round(CONTENTION_HOLD_CHANCE * 100)}% chance that one "
+            "pool copy is held by a rival. Online is the median turn among successful assemblies."
+        ),
+        "score_note": (
+            "Power is a versioned mechanics-aware board-strength score, not combat simulation "
+            "or win probability. Percentiles include only successful assemblies."
+        ),
+        "p20": powers[0],
+        "p50": powers[1],
+        "p80": powers[2],
+        "p20_label": format_power(powers[0]),
+        "p50_label": format_power(powers[1]),
+        "p80_label": format_power(powers[2]),
+        "notes": notes,
+    }
+
+
 def build_index(
     *,
     registry_path: Path,
@@ -485,6 +450,9 @@ def publish_comp(
     existing_index = next(
         (index for index, page in enumerate(registry.get("pages", [])) if page.get("source_id") == source_id),
         None,
+    )
+    existing_entry = (
+        registry.get("pages", [])[existing_index] if existing_index is not None else None
     )
     if register and existing_index is not None and not update:
         raise CompError(f"Source {source_id} was already published")
@@ -597,19 +565,85 @@ def publish_comp(
             }
         )
 
-    comp = dict(metadata)
     discovery_sources = _normalize_discovery_sources(metadata.get("discovery_sources"))
-    comp["discovery_sources"] = discovery_sources
-    comp["sections"] = sections
-    comp["board_examples"] = board_examples
-    comp["evaluation"] = _normalize_evaluation(metadata.get("evaluation"), board_examples, catalog)
-    comp["source"]["type"] = source_type
-    comp["source"]["url"] = source_url
     body, inline_ids = _render_inline_cards(body, catalog)
     for card_id in inline_ids:
         if card_id not in all_ids:
             all_ids.append(card_id)
     body_html = markdown.markdown(body, extensions=["extra", "sane_lists"])
+
+    raw_minions = metadata.get("composition_minions")
+    raw_spells = metadata.get("composition_spells")
+    if raw_minions is None:
+        if board_examples:
+            stage_order = {"early": 0, "mid": 1, "late": 2, "end": 3}
+            reference_board = max(
+                board_examples,
+                key=lambda board: (stage_order[board["stage"]], board.get("turn") or -1),
+            )
+            grouped: dict[int, dict] = {}
+            for unit in reference_board["units"]:
+                card_id = int(unit["card"]["id"])
+                item = grouped.setdefault(
+                    card_id,
+                    {"card_id": card_id, "count": 0, "golden_count": 0},
+                )
+                item["count"] += 1
+                item["golden_count"] += int(unit["golden"])
+            raw_minions = list(grouped.values())
+        else:
+            raw_minions = [
+                card_id
+                for card_id in all_ids
+                if catalog.require_current(card_id).get("type") == "minion"
+            ]
+            if len(raw_minions) > 7:
+                raise CompError(
+                    "composition_minions is required when guide mentions exceed seven minions"
+                )
+    if raw_spells is None:
+        raw_spells = [card_id for card_id in all_ids if catalog.require_current(card_id).get("type") == "spell"]
+    minions = _normalize_composition_cards(
+        raw_minions,
+        field="composition_minions",
+        expected_type="minion",
+        catalog=catalog,
+    )
+    spells = _normalize_composition_cards(
+        raw_spells,
+        field="composition_spells",
+        expected_type="spell",
+        catalog=catalog,
+    )
+    if sum(item["count"] for item in minions) > 7:
+        raise CompError("composition_minions must fit the seven-slot Battlegrounds board")
+    for field, items in (("composition_minions", minions), ("composition_spells", spells)):
+        card_ids = [item["card_id"] for item in items]
+        if len(card_ids) != len(set(card_ids)):
+            raise CompError(f"{field} must combine duplicate card IDs into one count")
+    composition_unchanged = bool(
+        existing_entry
+        and existing_entry.get("minions") == minions
+        and existing_entry.get("spells") == spells
+    )
+    metrics = (
+        {field: existing_entry[field] for field in RESULT_FIELDS}
+        if composition_unchanged
+        and existing_entry is not None
+        and all(field in existing_entry for field in RESULT_FIELDS)
+        else None
+    )
+
+    comp = dict(metadata)
+    comp["discovery_sources"] = discovery_sources
+    comp["sections"] = sections
+    comp["board_examples"] = board_examples
+    comp["minions"] = minions
+    comp["spells"] = spells
+    comp["power_summary"] = _materialize_power_summary(metrics, minions)
+    comp.pop("evaluation", None)
+    comp["source"]["type"] = source_type
+    comp["source"]["url"] = source_url
 
     env = Environment(
         loader=FileSystemLoader(str(template_path.parent)),
@@ -632,20 +666,24 @@ def publish_comp(
         "modes": metadata.get("modes", []) or [],
         "tribes": metadata.get("tribes", []) or [],
         "tags": metadata.get("tags", []) or [],
-        "core": [int(card["id"]) for card in sections["core"]],
-        "addons": [int(card["id"]) for card in sections["addons"]],
-        "cycle": [int(card["id"]) for card in sections["cycle"]],
+        "minions": minions,
+        "spells": spells,
         "verified_at": str(metadata["verified_at"]),
         "source_type": source_type,
         "source_url": source_url,
         "source_author": metadata["source"].get("author", "Original source"),
         "source_id": source_id,
         "discovery_sources": discovery_sources,
-        "cards": all_ids,
-        "published_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "published_at": (
+            existing_entry.get("published_at")
+            if existing_entry and existing_entry.get("published_at")
+            else datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+        ),
     }
+    if metrics:
+        entry.update(metrics)
     if register:
-        registry.setdefault("schema_version", 1)
+        registry["schema_version"] = 2
         pages = registry.setdefault("pages", [])
         if existing_index is None:
             pages.append(entry)
