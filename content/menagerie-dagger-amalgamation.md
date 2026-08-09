@@ -22,6 +22,13 @@ addons:
 - 126966
 - 90425
 cycle: []
+composition_minions:
+- {card_id: 133329, count: 1, golden_count: 0}
+- {card_id: 130298, count: 1, golden_count: 0}
+composition_spells:
+- {card_id: 132790, count: 1}
+composition_prerequisites:
+- {card_id: 133713, count: 1}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=Ic08mTl1-HA

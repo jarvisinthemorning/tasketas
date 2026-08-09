@@ -49,6 +49,14 @@ discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/67/murlocs-apm
   comp_id: '67'
+composition_minions:
+- {card_id: 133026, count: 1, golden_count: 0}
+- {card_id: 132989, count: 1, golden_count: 0}
+- {card_id: 98948, count: 1, golden_count: 0}
+- {card_id: 126637, count: 1, golden_count: 0}
+composition_hand_minions:
+- {card_id: 98509, count: 1, golden_count: 0}
+composition_spells: []
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=Ppj60f3j_AE

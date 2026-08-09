@@ -49,6 +49,12 @@ discovery_sources:
 - type: firestone
   url: https://www.firestoneapp.com/battlegrounds/comps
   comp_id: pirates_escapee_chef
+composition_minions:
+- {card_id: 132762, count: 1, golden_count: 0}
+- {card_id: 132925, count: 1, golden_count: 0}
+- {card_id: 132921, count: 1, golden_count: 0}
+composition_spells:
+- {card_id: 132766, count: 1}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=ti8h4WQoG2Q

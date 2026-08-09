@@ -103,6 +103,36 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
+    def test_power_summary_discloses_every_legacy_profile_assumption(self):
+        metrics = {
+            "probability": 0.1,
+            "turns_to_online": 13,
+            "p20_power": 100,
+            "p50_power": 200,
+            "p80_power": 300,
+        }
+        cases = [
+            ([132796, 132808, 132800], "source-verified Headhunter Gryphon"),
+            ([60630, 96786, 132955, 132957], "one immediate Chromadrake"),
+            ([132981, 120674], "two Elementals"),
+            ([132893, 120905, 98588, 130298, 101314], "Drakkari repeats"),
+            ([119942, 120905, 130298], "Meditative's spell bonus"),
+            ([132762, 132925, 132921], "Only Castaway counts as a Discover"),
+            ([133083, 133081, 95265], "Handless Forsaken Reborn"),
+            ([133026, 132989, 98948, 126637], "Bream Counter in hand"),
+            ([133329, 130298], "Maldraxxus Dagger"),
+            ([127446, 90425], "five bounded removal uses"),
+            ([127446, 90425], "Timewarped setup odds"),
+            ([126671, 132320, 132636], "transfers them to Juggernaut"),
+        ]
+
+        for card_ids, phrase in cases:
+            with self.subTest(phrase=phrase):
+                summary = _materialize_power_summary(
+                    metrics, [{"card_id": card_id} for card_id in card_ids]
+                )
+                self.assertTrue(any(phrase in note for note in summary["notes"]))
+
     def test_power_summary_explains_plaguerunner_and_warpwing_profiles(self):
         metrics = {
             "probability": 0.1,

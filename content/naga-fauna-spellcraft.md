@@ -43,6 +43,12 @@ board_examples:
   - {card_id: 120905, slot: 5, attack: 6k, health: 6k, golden: true}
   - {card_id: 119942, slot: 6, attack: 6k, health: 6k, golden: true}
   - {card_id: 114816, slot: 7, attack: 156, health: 156, golden: true}
+composition_minions:
+- {card_id: 119942, count: 1, golden_count: 0}
+- {card_id: 120905, count: 1, golden_count: 0}
+- {card_id: 130298, count: 1, golden_count: 0}
+composition_spells:
+- {card_id: 104472, count: 1}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=qZNlfhwDl7E

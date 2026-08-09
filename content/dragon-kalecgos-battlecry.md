@@ -44,6 +44,12 @@ board_examples:
   - {card_id: 60630, slot: 4, attack: 2.2k, health: 2.1k}
   - {card_id: 133329, slot: 5, attack: 3.6k, health: 3.3k, annotation: Divine Shield}
   - {card_id: 96786, slot: 6, attack: 333, health: 290}
+composition_minions:
+- {card_id: 60630, count: 1, golden_count: 0}
+- {card_id: 96786, count: 1, golden_count: 0}
+- {card_id: 132955, count: 2, golden_count: 0}
+- {card_id: 132957, count: 1, golden_count: 0}
+composition_spells: []
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=dCwe93sXIiM

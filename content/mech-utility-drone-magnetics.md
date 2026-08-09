@@ -128,6 +128,14 @@ discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics
   comp_id: '2'
+composition_minions:
+- {card_id: 132893, count: 1, golden_count: 0}
+- {card_id: 120905, count: 1, golden_count: 0}
+- {card_id: 98588, count: 1, golden_count: 0}
+- {card_id: 130298, count: 1, golden_count: 0}
+- {card_id: 101314, count: 1, golden_count: 0}
+composition_spells:
+- {card_id: 104472, count: 1}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=EhDY7nt7obg

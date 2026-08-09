@@ -16,17 +16,46 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoes
 
 from comp_power import (
     BALINDA,
+    BARRIER_BANSHEE,
+    BRANN,
+    BRONZE_TIMEWALKER,
     CHECKPOINT_TURN,
+    CHORAL_MRGLR,
+    CLEVER_CASTAWAY,
     CONTENTION_HOLD_CHANCE,
     CRIMSON_VINDICATOR,
+    DEATHSTRIDER,
+    DRAKKARI_ENCHANTER,
     DRUSTFALLEN_BUTCHER,
+    ENTERPRISING_ESCAPEE,
+    EXPERT_AVIATOR,
+    FAUNA_WHISPERER,
     FIRE_FORGED_EVOKER,
     FRIENDLY_GEIST,
+    GATEKEEPER_AMALGAM,
+    GLAMBOT,
+    HANDLESS_FORSAKEN,
     HOGRIDER,
+    HOOKTUSK,
+    JAILBIRD_JUGGERNAUT,
+    KALECGOS,
+    LEEROY,
+    MANA_SURGE,
+    MOAT_CUSTODIAN,
     PERSISTENT_POET,
     PLAGUERUNNER,
     ROLL_START_TURN,
     ROLL_TURNS,
+    SHAMANIC_TIDECALLER,
+    SKY_HATCH_RUNAWAY,
+    SNAZZY_PHANTOM,
+    TASTY_LOBSTER,
+    TIMEWARPED_EMBALMER,
+    TRANQUIL_MEDITATIVE,
+    TRENCH_FIGHTER,
+    TWILIGHT_TIDEHUNTER,
+    UTILITY_DRONE,
+    VIGILANT_BRISTLEMANE,
     WARPWING,
 )
 
@@ -324,7 +353,7 @@ def _normalize_composition_cards(
     raw: object,
     *,
     field: str,
-    expected_type: str,
+    expected_type: str | None,
     catalog: CardCatalog,
 ) -> list[dict]:
     if not isinstance(raw, list):
@@ -350,7 +379,7 @@ def _normalize_composition_cards(
         ):
             raise CompError(f"{field}[{index}].golden_count must be from 0 to count")
         card = catalog.require_current(card_id)
-        if card.get("type") != expected_type:
+        if expected_type is not None and card.get("type") != expected_type:
             raise CompError(f"{field}[{index}] must reference a {expected_type}")
         value = {"card_id": int(card["id"]), "count": count}
         if expected_type == "minion":
@@ -381,6 +410,63 @@ def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dic
     if BALINDA in minion_ids:
         notes.append(
             "Balinda makes targeted spells cast twice, multiplying both spell effects and the triggers they cause."
+        )
+    if {TASTY_LOBSTER, DEATHSTRIDER} <= minion_ids:
+        notes.append(
+            "A source-verified Headhunter Gryphon Rally triggers one Lobster Deathrattle per combat; "
+            "combat buffs do not persist and Lobster's hidden future-improvement scalar is unmodeled."
+        )
+    if {KALECGOS, BRANN, BRONZE_TIMEWALKER, SKY_HATCH_RUNAWAY} <= minion_ids:
+        notes.append(
+            "Sky-hatch Runaway supplies one immediate Chromadrake on assembly; two natural Timewalker "
+            "Rallies resolve in combat and their Chromadrakes become playable next recruit turn."
+        )
+    if {MOAT_CUSTODIAN, MANA_SURGE} <= minion_ids:
+        notes.append(
+            "The trace plays two Elementals per recruit phase through Mana Surge, then credits one "
+            "Moat Custodian Rally improvement; extra cycle and Rally-enabler odds are excluded."
+        )
+    if {GLAMBOT, FAUNA_WHISPERER, UTILITY_DRONE, BALINDA, DRAKKARI_ENCHANTER} <= minion_ids:
+        notes.append(
+            "Fauna targets adjacent Mechs; Balinda repeats each Natural Blessing and Drakkari repeats "
+            "the end-of-turn sequence before Utility Drone counts each resulting Magnetization."
+        )
+    if {TRANQUIL_MEDITATIVE, FAUNA_WHISPERER, BALINDA} <= minion_ids:
+        notes.append(
+            "Each turn resolves Meditative's spell bonus before Fauna's generated Natural Blessings; "
+            "Balinda repeats targeted casts and generated-spell offer odds are excluded."
+        )
+    if {ENTERPRISING_ESCAPEE, HOOKTUSK, CLEVER_CASTAWAY} <= minion_ids:
+        notes.append(
+            "The trace spends 10 Gold per turn and tracks Lockbox openings separately from Clever "
+            "Castaway Activates. Only Castaway counts as a Discover for Hooktusk; the random Lockbox "
+            "body and Hooktusk's hidden Golden-minion improvement scalar are unmodeled."
+        )
+    if {SNAZZY_PHANTOM, BARRIER_BANSHEE, HANDLESS_FORSAKEN} <= minion_ids:
+        notes.append(
+            "One Handless Forsaken Reborn event gives Barrier Banshee itself +7/+7 and Divine Shield, "
+            "while Snazzy gives +2/+2 to the right-most Undead; all combat gains remain temporary."
+        )
+    if {SHAMANIC_TIDECALLER, TWILIGHT_TIDEHUNTER, CHORAL_MRGLR, EXPERT_AVIATOR} <= minion_ids:
+        notes.append(
+            "The trace requires a separately declared Bream Counter in hand, one targetable Tavern "
+            "spell, and one Murloc cycle per turn; Choral and Expert Aviator gains are combat-only."
+        )
+    if {GATEKEEPER_AMALGAM, BALINDA} <= minion_ids:
+        notes.append(
+            "This line is conditional on already owning Maldraxxus Dagger. Amalgamation is cast "
+            "twice through Balinda on assembly; Dagger copies begin on the next recruit turn."
+        )
+    if {TIMEWARPED_EMBALMER, LEEROY} <= minion_ids:
+        notes.append(
+            "Two Embalmers, two Leeroys, and Reborn Rites provide five bounded removal uses. The "
+            "score measures available removal capacity—not guaranteed kills or a combat-win rate—and "
+            "Timewarped setup odds are excluded."
+        )
+    if {TRENCH_FIGHTER, VIGILANT_BRISTLEMANE, JAILBIRD_JUGGERNAUT} <= minion_ids:
+        notes.append(
+            "Trench Fighter's generated Gem Confiscation becomes usable one turn later. The trace "
+            "banks Gems through Bristlemane, then transfers them to Juggernaut at the checkpoint."
         )
     if HOGRIDER in minion_ids:
         notes.append(
@@ -597,6 +683,8 @@ def publish_comp(
 
     raw_minions = metadata.get("composition_minions")
     raw_spells = metadata.get("composition_spells")
+    raw_hand_minions = metadata.get("composition_hand_minions", [])
+    raw_prerequisites = metadata.get("composition_prerequisites", [])
     if raw_minions is None:
         if board_examples:
             stage_order = {"early": 0, "mid": 1, "late": 2, "end": 3}
@@ -638,9 +726,26 @@ def publish_comp(
         expected_type="spell",
         catalog=catalog,
     )
+    hand_minions = _normalize_composition_cards(
+        raw_hand_minions,
+        field="composition_hand_minions",
+        expected_type="minion",
+        catalog=catalog,
+    )
+    prerequisites = _normalize_composition_cards(
+        raw_prerequisites,
+        field="composition_prerequisites",
+        expected_type=None,
+        catalog=catalog,
+    )
     if sum(item["count"] for item in minions) > 7:
         raise CompError("composition_minions must fit the seven-slot Battlegrounds board")
-    for field, items in (("composition_minions", minions), ("composition_spells", spells)):
+    for field, items in (
+        ("composition_minions", minions),
+        ("composition_spells", spells),
+        ("composition_hand_minions", hand_minions),
+        ("composition_prerequisites", prerequisites),
+    ):
         card_ids = [item["card_id"] for item in items]
         if len(card_ids) != len(set(card_ids)):
             raise CompError(f"{field} must combine duplicate card IDs into one count")
@@ -648,6 +753,8 @@ def publish_comp(
         existing_entry
         and existing_entry.get("minions") == minions
         and existing_entry.get("spells") == spells
+        and existing_entry.get("hand_minions", []) == hand_minions
+        and existing_entry.get("prerequisites", []) == prerequisites
         and existing_entry.get("tribes") == metadata["tribes"]
     )
     metrics = (
@@ -664,6 +771,8 @@ def publish_comp(
     comp["board_examples"] = board_examples
     comp["minions"] = minions
     comp["spells"] = spells
+    comp["hand_minions"] = hand_minions
+    comp["prerequisites"] = prerequisites
     comp["power_summary"] = _materialize_power_summary(metrics, minions)
     comp.pop("evaluation", None)
     comp["source"]["type"] = source_type
@@ -692,6 +801,8 @@ def publish_comp(
         "tags": metadata.get("tags", []) or [],
         "minions": minions,
         "spells": spells,
+        "hand_minions": hand_minions,
+        "prerequisites": prerequisites,
         "verified_at": str(metadata["verified_at"]),
         "source_type": source_type,
         "source_url": source_url,

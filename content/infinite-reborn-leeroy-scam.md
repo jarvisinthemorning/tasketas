@@ -22,6 +22,11 @@ addons:
 cycle:
 - 126966
 board_examples: []
+composition_minions:
+- {card_id: 127446, count: 2, golden_count: 0}
+- {card_id: 90425, count: 2, golden_count: 0}
+composition_spells:
+- {card_id: 126271, count: 1}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=weHaBCZDvQw

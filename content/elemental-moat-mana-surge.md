@@ -47,6 +47,10 @@ discovery_sources:
 - type: firestone
   url: https://www.firestoneapp.com/battlegrounds/comps
   comp_id: elemental_boost
+composition_minions:
+- {card_id: 132981, count: 1, golden_count: 0}
+- {card_id: 120674, count: 1, golden_count: 0}
+composition_spells: []
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=eeyh2yyJVPE

@@ -30,24 +30,26 @@
           "golden_count": 0
         },
         {
-          "card_id": 132802,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 132804,
+          "card_id": 132800,
           "count": 1,
           "golden_count": 0
         }
       ],
       "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=rJ66OM7pENQ",
       "source_author": "HIQ MU",
       "source_id": "rJ66OM7pENQ",
       "discovery_sources": [],
-      "published_at": "2026-08-08T16:53:17+00:00"
+      "published_at": "2026-08-08T16:53:17+00:00",
+      "probability": 0.0874,
+      "turns_to_online": 13,
+      "p20_power": 35,
+      "p50_power": 35,
+      "p80_power": 35
     },
     {
       "slug": "demon-felboar-spell-consume",
@@ -109,11 +111,11 @@
         }
       ],
       "published_at": "2026-08-09T16:30:35+00:00",
-      "probability": 0.1092,
-      "turns_to_online": 13,
-      "p20_power": 483,
-      "p50_power": 757,
-      "p80_power": 1420
+      "probability": 0.0624,
+      "turns_to_online": 12,
+      "p20_power": 490,
+      "p50_power": 848,
+      "p80_power": 1381
     },
     {
       "slug": "dragon-kalecgos-battlecry",
@@ -134,17 +136,7 @@
       ],
       "minions": [
         {
-          "card_id": 132955,
-          "count": 2,
-          "golden_count": 0
-        },
-        {
           "card_id": 60630,
-          "count": 2,
-          "golden_count": 0
-        },
-        {
-          "card_id": 133329,
           "count": 1,
           "golden_count": 0
         },
@@ -152,16 +144,33 @@
           "card_id": 96786,
           "count": 1,
           "golden_count": 0
+        },
+        {
+          "card_id": 132955,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132957,
+          "count": 1,
+          "golden_count": 0
         }
       ],
       "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=dCwe93sXIiM",
       "source_author": "Sevel",
       "source_id": "dCwe93sXIiM",
       "discovery_sources": [],
-      "published_at": "2026-08-09T00:13:46+00:00"
+      "published_at": "2026-08-09T00:13:46+00:00",
+      "probability": 0.0128,
+      "turns_to_online": 13,
+      "p20_power": 183,
+      "p50_power": 183,
+      "p80_power": 183
     },
     {
       "slug": "elemental-moat-mana-surge",
@@ -183,26 +192,18 @@
       "minions": [
         {
           "card_id": 132981,
-          "count": 2,
-          "golden_count": 0
-        },
-        {
-          "card_id": 120674,
-          "count": 2,
-          "golden_count": 0
-        },
-        {
-          "card_id": 96786,
           "count": 1,
           "golden_count": 0
         },
         {
-          "card_id": 122516,
+          "card_id": 120674,
           "count": 1,
           "golden_count": 0
         }
       ],
       "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=eeyh2yyJVPE",
@@ -216,7 +217,12 @@
           "label": "Firestone composition directory"
         }
       ],
-      "published_at": "2026-08-09T10:02:40+00:00"
+      "published_at": "2026-08-09T10:02:40+00:00",
+      "probability": 0.0666,
+      "turns_to_online": 12,
+      "p20_power": 101,
+      "p50_power": 157,
+      "p80_power": 225
     },
     {
       "slug": "mech-utility-drone-magnetics",
@@ -237,19 +243,9 @@
       ],
       "minions": [
         {
-          "card_id": 101314,
-          "count": 1,
-          "golden_count": 1
-        },
-        {
-          "card_id": 130298,
-          "count": 1,
-          "golden_count": 1
-        },
-        {
           "card_id": 132893,
-          "count": 2,
-          "golden_count": 2
+          "count": 1,
+          "golden_count": 0
         },
         {
           "card_id": 120905,
@@ -258,11 +254,28 @@
         },
         {
           "card_id": 98588,
-          "count": 2,
-          "golden_count": 1
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 101314,
+          "count": 1,
+          "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 104472,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=EhDY7nt7obg",
@@ -276,7 +289,12 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "published_at": "2026-08-09T10:03:28+00:00"
+      "published_at": "2026-08-09T10:03:28+00:00",
+      "probability": 0.0008,
+      "turns_to_online": 13,
+      "p20_power": 821,
+      "p50_power": 821,
+      "p80_power": 821
     },
     {
       "slug": "naga-fauna-spellcraft",
@@ -297,34 +315,41 @@
       ],
       "minions": [
         {
-          "card_id": 80742,
+          "card_id": 119942,
           "count": 1,
           "golden_count": 0
         },
         {
-          "card_id": 114816,
-          "count": 2,
-          "golden_count": 1
-        },
-        {
           "card_id": 120905,
-          "count": 3,
-          "golden_count": 1
+          "count": 1,
+          "golden_count": 0
         },
         {
-          "card_id": 119942,
+          "card_id": 130298,
           "count": 1,
-          "golden_count": 1
+          "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 104472,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=qZNlfhwDl7E",
       "source_author": "Shadybunny",
       "source_id": "qZNlfhwDl7E",
       "discovery_sources": [],
-      "published_at": "2026-08-08T19:25:34+00:00"
+      "published_at": "2026-08-08T19:25:34+00:00",
+      "probability": 0.0332,
+      "turns_to_online": 13,
+      "p20_power": 108,
+      "p50_power": 108,
+      "p80_power": 156
     },
     {
       "slug": "pirate-escapee-hooktusk-apm",
@@ -345,22 +370,29 @@
       ],
       "minions": [
         {
-          "card_id": 122516,
-          "count": 1,
-          "golden_count": 1
-        },
-        {
           "card_id": 132762,
-          "count": 3,
-          "golden_count": 3
+          "count": 1,
+          "golden_count": 0
         },
         {
           "card_id": 132925,
-          "count": 2,
-          "golden_count": 2
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132921,
+          "count": 1,
+          "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 132766,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
@@ -380,7 +412,12 @@
           "label": "Firestone composition directory"
         }
       ],
-      "published_at": "2026-08-09T09:59:04+00:00"
+      "published_at": "2026-08-09T09:59:04+00:00",
+      "probability": 0.104,
+      "turns_to_online": 12,
+      "p20_power": 29,
+      "p50_power": 33,
+      "p80_power": 33
     },
     {
       "slug": "quilboar-choose-one-hogrider",
@@ -452,7 +489,7 @@
         }
       ],
       "published_at": "2026-08-09T16:30:27+00:00",
-      "probability": 0.0184,
+      "probability": 0.0102,
       "turns_to_online": 13,
       "p20_power": 160,
       "p50_power": 160,
@@ -487,17 +524,14 @@
           "golden_count": 0
         },
         {
-          "card_id": 120104,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 113158,
+          "card_id": 95265,
           "count": 1,
           "golden_count": 0
         }
       ],
       "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=IV8rBG-3CA8",
@@ -517,7 +551,12 @@
           "label": "Firestone composition directory"
         }
       ],
-      "published_at": "2026-08-09T10:04:15+00:00"
+      "published_at": "2026-08-09T10:04:15+00:00",
+      "probability": 0.0682,
+      "turns_to_online": 13,
+      "p20_power": 63,
+      "p50_power": 63,
+      "p80_power": 63
     },
     {
       "slug": "murloc-primitive-painter-cycle",
@@ -543,27 +582,30 @@
           "golden_count": 0
         },
         {
-          "card_id": 126637,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 98948,
-          "count": 2,
-          "golden_count": 0
-        },
-        {
           "card_id": 132989,
           "count": 1,
           "golden_count": 0
         },
         {
-          "card_id": 120677,
+          "card_id": 98948,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126637,
           "count": 1,
           "golden_count": 0
         }
       ],
       "spells": [],
+      "hand_minions": [
+        {
+          "card_id": 98509,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "prerequisites": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=Ppj60f3j_AE",
@@ -577,7 +619,12 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "published_at": "2026-08-09T10:01:26+00:00"
+      "published_at": "2026-08-09T10:01:26+00:00",
+      "probability": 0.0178,
+      "turns_to_online": 13,
+      "p20_power": 232,
+      "p50_power": 232,
+      "p80_power": 232
     },
     {
       "slug": "menagerie-dagger-amalgamation",
@@ -606,29 +653,18 @@
           "card_id": 130298,
           "count": 1,
           "golden_count": 0
-        },
-        {
-          "card_id": 126966,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 90425,
-          "count": 1,
-          "golden_count": 0
         }
       ],
       "spells": [
         {
           "card_id": 132790,
           "count": 1
-        },
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [
         {
-          "card_id": 132835,
-          "count": 1
-        },
-        {
-          "card_id": 132207,
+          "card_id": 133713,
           "count": 1
         }
       ],
@@ -638,7 +674,12 @@
       "source_author": "JeefHS",
       "source_id": "Ic08mTl1-HA",
       "discovery_sources": [],
-      "published_at": "2026-08-09T05:20:45+00:00"
+      "published_at": "2026-08-09T05:20:45+00:00",
+      "probability": 0.143,
+      "turns_to_online": 12,
+      "p20_power": 196,
+      "p50_power": 288,
+      "p80_power": 380
     },
     {
       "slug": "infinite-reborn-leeroy-scam",
@@ -662,38 +703,35 @@
       "minions": [
         {
           "card_id": 127446,
-          "count": 1,
+          "count": 2,
           "golden_count": 0
         },
         {
           "card_id": 90425,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 65031,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 122219,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 126966,
-          "count": 1,
+          "count": 2,
           "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 126271,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=weHaBCZDvQw",
       "source_author": "XQN",
       "source_id": "weHaBCZDvQw",
       "discovery_sources": [],
-      "published_at": "2026-08-09T07:26:13+00:00"
+      "published_at": "2026-08-09T07:26:13+00:00",
+      "probability": 0.0972,
+      "turns_to_online": 12,
+      "p20_power": 2563,
+      "p50_power": 2563,
+      "p80_power": 2563
     },
     {
       "slug": "quilboar-bristlemane-juggernaut",
@@ -720,27 +758,24 @@
           "golden_count": 0
         },
         {
-          "card_id": 132636,
-          "count": 1,
-          "golden_count": 1
-        },
-        {
-          "card_id": 116434,
-          "count": 1,
-          "golden_count": 1
-        },
-        {
-          "card_id": 96786,
+          "card_id": 132320,
           "count": 1,
           "golden_count": 0
         },
         {
-          "card_id": 130298,
+          "card_id": 132636,
           "count": 1,
-          "golden_count": 1
+          "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 110642,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=08tFc8FYcsI",
@@ -754,7 +789,12 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "published_at": "2026-08-09T10:11:05+00:00"
+      "published_at": "2026-08-09T10:11:05+00:00",
+      "probability": 0.0904,
+      "turns_to_online": 12,
+      "p20_power": 37,
+      "p50_power": 37,
+      "p80_power": 51
     },
     {
       "slug": "undead-plaguerunner-butcher-loop",
@@ -814,7 +854,7 @@
       "source_id": "8d42ovfpwBw",
       "discovery_sources": [],
       "published_at": "2026-08-09T19:33:49+00:00",
-      "probability": 0.0288,
+      "probability": 0.0138,
       "turns_to_online": 13,
       "p20_power": 170,
       "p50_power": 170,
@@ -873,7 +913,7 @@
       "source_id": "VDLCBxk_-48",
       "discovery_sources": [],
       "published_at": "2026-08-09T19:33:49+00:00",
-      "probability": 0.0354,
+      "probability": 0.0118,
       "turns_to_online": 13,
       "p20_power": 110,
       "p50_power": 110,

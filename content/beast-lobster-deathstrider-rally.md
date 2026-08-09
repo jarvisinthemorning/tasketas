@@ -18,6 +18,11 @@ addons:
 - 132802
 - 132804
 cycle: []
+composition_minions:
+- {card_id: 132796, count: 1, golden_count: 0}
+- {card_id: 132808, count: 1, golden_count: 0}
+- {card_id: 132800, count: 1, golden_count: 0}
+composition_spells: []
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=rJ66OM7pENQ
@@ -31,19 +36,19 @@ verified_at: '2026-08-08'
 
 ## Game plan
 
-Use [[card:132796|Tasty Lobster]] as the permanent scaling payload and [[card:132808|Deathstrider]] as the repeatable trigger. The source's mature board repeatedly fires Lobster Deathrattles during combat, so every later trigger produces a larger buff than the one before it.
+Use [[card:132796|Tasty Lobster]] as the combat-scaling payload, [[card:132808|Deathstrider]] as the repeatable trigger, and [[card:132800|Headhunter Gryphon]] as the source-verified Rally attacker. Gryphon's Rally lets Deathstrider fire the left-most Lobster Deathrattle; later Lobsters improve through their hidden counter, but the published metric deliberately does not invent that hidden scalar.
 
-[[card:132802|Fishbait]] and [[card:132804|Snarky Shark]] support the Deathrattle shell, but the comp should still be built around the Lobster–Deathstrider pair rather than a pile of unrelated Beasts.
+[[card:132802|Fishbait]] and [[card:132804|Snarky Shark]] support the Deathrattle shell, but the comp should still be built around the Lobster–Deathstrider–Gryphon engine rather than a pile of unrelated Beasts.
 
 ## How to build it
 
 - **Bridge:** play efficient Beasts and Deathrattles without forcing the final board too early.
-- **Commit:** keep Lobster once you can repeat its Deathrattle reliably; Deathstrider is the key signal.
+- **Commit:** keep Lobster once Deathstrider and a reliable Rally attacker are available.
 - **Scale:** preserve trigger density and enough board space for the engine to resolve cleanly.
 - **Finish:** protect the scaling core and use the remaining slots for utility or combat protection.
 
 ## Positioning and traps
 
-Place Deathstrider where its Rally attacks can happen without exposing the whole engine to one bad opening hit. Do not fill every slot with low-impact support: Lobster scaling compounds only when the important Deathrattles actually fire.
+Put Tasty Lobster to the left of other Deathrattles so Deathstrider selects it, and make sure Headhunter Gryphon can complete its Rally attack. Do not fill every slot with low-impact support: the engine does nothing if no friendly Rally actually triggers.
 
-The demonstrated source reaches its payoff with Lobster, Deathstrider, Fishbait, and Snarky Shark; no banned Beast generator is part of the composition.
+The source board visibly includes Headhunter Gryphon as its Rally driver.

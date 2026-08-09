@@ -23,6 +23,12 @@ discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane
     comp_id: '90'
+composition_minions:
+- {card_id: 126671, count: 1, golden_count: 0}
+- {card_id: 132320, count: 1, golden_count: 0}
+- {card_id: 132636, count: 1, golden_count: 0}
+composition_spells:
+- {card_id: 110642, count: 1}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=08tFc8FYcsI

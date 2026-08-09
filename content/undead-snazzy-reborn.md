@@ -25,6 +25,11 @@ discovery_sources:
 - type: firestone
   url: https://www.firestoneapp.com/battlegrounds/comps
   comp_id: undead_butcher
+composition_minions:
+- {card_id: 133083, count: 1, golden_count: 0}
+- {card_id: 133081, count: 1, golden_count: 0}
+- {card_id: 95265, count: 1, golden_count: 0}
+composition_spells: []
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=IV8rBG-3CA8

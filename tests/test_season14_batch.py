@@ -1,3 +1,4 @@
+import json
 import tempfile
 import unittest
 from datetime import date
@@ -35,6 +36,13 @@ def load_guide(path: Path):
 
 
 class Season14BatchTests(unittest.TestCase):
+    def test_published_registries_never_use_loopback_urls(self):
+        for path in (ROOT / "data/registry.json", ROOT / "dist/data/registry.json"):
+            registry = json.loads(path.read_text(encoding="utf-8"))
+            for page in registry["pages"]:
+                self.assertNotIn("127.0.0.1", page["url"])
+                self.assertNotIn("localhost", page["url"])
+
     def setUp(self):
         self.guides = [load_guide(path) for path in sorted(CONTENT.glob("*.md"))]
 
