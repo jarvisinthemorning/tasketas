@@ -446,6 +446,53 @@
         120677
       ],
       "published_at": "2026-08-08T23:01:48+00:00"
+    },
+    {
+      "slug": "menagerie-dagger-amalgamation",
+      "title": "Dagger Amalgamation Menagerie",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/menagerie-dagger-amalgamation.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "menagerie"
+      ],
+      "tags": [
+        "season 14",
+        "dark gifts",
+        "spells",
+        "scaling"
+      ],
+      "core": [
+        133713,
+        133329,
+        130298,
+        132790
+      ],
+      "addons": [
+        132835,
+        132207,
+        126966,
+        90425
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Ic08mTl1-HA",
+      "source_author": "JeefHS",
+      "source_id": "Ic08mTl1-HA",
+      "cards": [
+        133713,
+        133329,
+        130298,
+        132790,
+        132835,
+        132207,
+        126966,
+        90425
+      ],
+      "published_at": "2026-08-09T05:20:45+00:00"
     }
   ]
 }
