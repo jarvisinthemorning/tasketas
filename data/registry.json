@@ -755,6 +755,62 @@
         }
       ],
       "published_at": "2026-08-09T10:11:05+00:00"
+    },
+    {
+      "slug": "undead-plaguerunner-butcher-loop",
+      "title": "Plaguerunner Portrait Butchering Loop",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/undead-plaguerunner-butcher-loop.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "undead"
+      ],
+      "tags": [
+        "season 14",
+        "trinket",
+        "deathrattle",
+        "attack scaling",
+        "cycle"
+      ],
+      "minions": [],
+      "spells": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=8d42ovfpwBw",
+      "source_author": "BeterBabbit",
+      "source_id": "8d42ovfpwBw",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T19:33:49+00:00"
+    },
+    {
+      "slug": "dragon-vindicator-poet-warpwing",
+      "title": "Vindicator–Poet Warpwing Dragons",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/dragon-vindicator-poet-warpwing.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "dragon"
+      ],
+      "tags": [
+        "season 14",
+        "rally",
+        "combat scaling",
+        "divine shield",
+        "windfury"
+      ],
+      "minions": [],
+      "spells": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=VDLCBxk_-48",
+      "source_author": "Shadybunny",
+      "source_id": "VDLCBxk_-48",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T19:33:49+00:00"
     }
   ]
 }
