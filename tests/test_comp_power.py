@@ -144,6 +144,34 @@ class CompPowerTests(unittest.TestCase):
         self.assertEqual((board[0]["attack"], board[0]["health"]), (12, 4))
         self.assertEqual((board[4]["attack"], board[4]["health"]), (16, 7))
 
+    def test_poet_retains_combat_gains_on_every_adjacent_dragon(self):
+        def unit(card_id, attack, health, keywords=()):
+            return {
+                "card_id": card_id,
+                "name": str(card_id),
+                "attack": attack,
+                "health": health,
+                "golden": False,
+                "keywords": list(keywords),
+                "tribes": ["dragon"],
+                "blood_gem_attack": 0,
+                "blood_gem_health": 0,
+            }
+
+        board = [
+            unit(120301, 8, 5),
+            unit(132953, 8, 9, ["divine shield"]),
+            unit(108463, 2, 3),
+            unit(92413, 12, 4),
+        ]
+
+        _simulate_warpwing({}, CARDS, board, 13, 13, random.Random(1))
+
+        self.assertEqual((board[0]["attack"], board[0]["health"]), (8, 5))
+        self.assertEqual((board[1]["attack"], board[1]["health"]), (13, 13))
+        self.assertEqual((board[2]["attack"], board[2]["health"]), (2, 3))
+        self.assertEqual((board[3]["attack"], board[3]["health"]), (16, 7))
+
     def test_warpwing_poet_retains_evoker_and_vindicator_combat_buffs(self):
         def unit(card_id, attack, health, tribes, keywords=()):
             return {
@@ -171,7 +199,7 @@ class CompPowerTests(unittest.TestCase):
         self.assertEqual(len(trace), 2)
         self.assertEqual((board[2]["attack"], board[2]["health"]), (22, 11))
         self.assertEqual((board[4]["attack"], board[4]["health"]), (22, 11))
-        self.assertIn("2 Poet-protected Warpwings", trace[-1]["events"][0])
+        self.assertIn("2 Poet-adjacent Dragons", trace[-1]["events"][0])
 
     def test_plaguerunner_converts_butchering_refills_into_permanent_attack(self):
         def unit(card_id, attack, health, tribes):
@@ -271,7 +299,7 @@ class CompPowerTests(unittest.TestCase):
 
         self.assertGreater(summary["probability"], 0)
         success = next(run for run in artifact["simulations"] if run["online_turn"] is not None)
-        self.assertIn("Poet-protected Warpwings", success["turns"][-1]["events"][0])
+        self.assertIn("Poet-adjacent Dragons", success["turns"][-1]["events"][0])
 
     def test_warpwing_profile_requires_the_full_retention_engine(self):
         entry = {

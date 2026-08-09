@@ -17,7 +17,7 @@ from pathlib import Path
 
 from comp_evaluation import SHOP_SLOTS, STANDARD_TRIBES, _pool_for_lobby
 
-MODEL_VERSION = "power-v4"
+MODEL_VERSION = "power-v5"
 DEFAULT_SIMULATIONS = 5_000
 DEFAULT_SEED = 14_014
 ROLL_START_TURN = 10
@@ -514,9 +514,9 @@ def _simulate_warpwing(
     traces: list[dict] = []
     evokers = [unit for unit in board if unit["card_id"] == FIRE_FORGED_EVOKER]
     vindicators = [unit for unit in board if unit["card_id"] == CRIMSON_VINDICATOR]
-    protected_warpwings: list[tuple[dict, int]] = []
+    protected_dragons: list[tuple[dict, int]] = []
     for index, unit in enumerate(board):
-        if unit["card_id"] != WARPWING:
+        if "dragon" not in unit["tribes"] and "all" not in unit["tribes"]:
             continue
         adjacent_poets = [
             board[neighbor]
@@ -525,17 +525,18 @@ def _simulate_warpwing(
         ]
         if adjacent_poets:
             multiplier = max(2 if poet["golden"] else 1 for poet in adjacent_poets)
-            protected_warpwings.append((unit, multiplier))
+            protected_dragons.append((unit, multiplier))
     evoker_attack = sum(4 if unit["golden"] else 2 for unit in evokers)
     evoker_health = sum(2 if unit["golden"] else 1 for unit in evokers)
 
     for turn in range(online_turn, checkpoint_turn + 1):
         dragonbreaths = sum(2 if unit["golden"] else 1 for unit in vindicators)
-        dragonbreath_attack = dragonbreaths * 2
-        dragonbreath_health = dragonbreaths * 2
-        retained_attack = evoker_attack + dragonbreath_attack
-        retained_health = evoker_health + dragonbreath_health
-        for unit, poet_multiplier in protected_warpwings:
+        for unit, poet_multiplier in protected_dragons:
+            # Mighty Dragonbreath buffs all minions, repeats for Dragons, and
+            # repeats once more for Divine Shield minions.
+            repeats = 2 + (1 if "divine shield" in unit["keywords"] else 0)
+            retained_attack = evoker_attack + dragonbreaths * repeats
+            retained_health = evoker_health + dragonbreaths * repeats
             unit["attack"] += retained_attack * poet_multiplier
             unit["health"] += retained_health * poet_multiplier
         # Each combat-cast Dragonbreath doubles the Evoker's current buff for
@@ -545,8 +546,8 @@ def _simulate_warpwing(
         evoker_health *= 2**dragonbreaths
         events = [
             (
-                f"Retained +{retained_attack}/+{retained_health} on "
-                f"{len(protected_warpwings)} Poet-protected Warpwings after "
+                f"Retained Evoker and Dragonbreath combat gains on "
+                f"{len(protected_dragons)} Poet-adjacent Dragons after "
                 f"{dragonbreaths} Mighty Dragonbreath casts"
             )
         ]

@@ -397,10 +397,10 @@ def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dic
         )
     if {FIRE_FORGED_EVOKER, CRIMSON_VINDICATOR, PERSISTENT_POET, WARPWING} <= minion_ids:
         notes.append(
-            "Persistent Poet makes Warpwing retain Fire-forged Evoker and Crimson "
-            "Vindicator combat gains between fights; each combat-cast Mighty "
-            "Dragonbreath doubles the Evoker buff for the next fight. The score "
-            "does not assign extra utility to Warpwing being Immune while attacking."
+            "Persistent Poet makes adjacent Dragons—including Vindicator and Warpwing—retain "
+            "Fire-forged Evoker and Crimson Vindicator combat gains between fights; each "
+            "combat-cast Mighty Dragonbreath doubles the Evoker buff for the next fight. "
+            "The score does not assign extra utility to Warpwing being Immune while attacking."
         )
     return {
         "probability": probability,

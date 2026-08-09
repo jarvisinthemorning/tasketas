@@ -132,7 +132,7 @@ class PipelineTests(unittest.TestCase):
         self.assertTrue(any("Butchering" in note for note in undead["notes"]))
         self.assertTrue(any("conditional" in note for note in undead["notes"]))
         self.assertTrue(any("trinket odds" in note for note in undead["notes"]))
-        self.assertTrue(any("Poet" in note for note in dragons["notes"]))
+        self.assertTrue(any("adjacent Dragons" in note for note in dragons["notes"]))
         self.assertTrue(any("doubles" in note for note in dragons["notes"]))
         self.assertTrue(any("does not assign" in note for note in dragons["notes"]))
 
