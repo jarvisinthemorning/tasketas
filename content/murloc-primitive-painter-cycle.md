@@ -45,6 +45,10 @@ board_examples:
   - {card_id: 132989, slot: 4, attack: 1.1k, health: 674}
   - {card_id: 98948, slot: 5, attack: 525, health: 489}
   - {card_id: 120677, slot: 6, attack: 920, health: 599, annotation: Divine Shield}
+discovery_sources:
+- type: hsreplay
+  url: https://hsreplay.net/battlegrounds/comps/67/murlocs-apm
+  comp_id: '67'
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=Ppj60f3j_AE

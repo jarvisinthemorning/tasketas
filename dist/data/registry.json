@@ -460,6 +460,14 @@
       "source_url": "https://www.youtube.com/watch?v=Ppj60f3j_AE",
       "source_author": "Shadybunny",
       "source_id": "Ppj60f3j_AE",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/67/murlocs-apm",
+          "comp_id": "67",
+          "label": "HSReplay composition guide"
+        }
+      ],
       "cards": [
         133026,
         132989,
@@ -473,7 +481,7 @@
         131145,
         120677
       ],
-      "published_at": "2026-08-08T23:01:48+00:00"
+      "published_at": "2026-08-09T10:01:26+00:00"
     },
     {
       "slug": "menagerie-dagger-amalgamation",
