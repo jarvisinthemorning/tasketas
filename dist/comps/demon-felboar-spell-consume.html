@@ -130,7 +130,7 @@
 
       <div class="evaluation-block">
         <h3>Observed board trajectory</h3>
-        <p class="evaluation-caveat">Recorded source games validate the growth calculation and achievable board. They are successful examples, not median outcomes.</p>
+        <p class="evaluation-caveat">These selected successful snapshots demonstrate reachable endpoints. Their aggregate board totals include purchases, replacements, triples, and secondary engines; they are not isolated engine growth or median outcomes.</p>
         <div class="observed-grid">
 
           <article class="metric-card">
@@ -147,7 +147,7 @@
             <span>8,465 attack · 8,566 health</span>
             <span>5 bodies 100+ · 4 bodies 500+ · 3 bodies 1k+</span>
 
-            <span>3.02× raw stats per turn over the previous 2 turns</span>
+            <span>3.02× endpoint-implied compound board-total multiplier over 2 turns</span>
 
           </article>
 
@@ -156,58 +156,58 @@
 
       <div class="evaluation-block">
         <h3>Baseline calibration</h3>
-        <p class="evaluation-caveat">The baseline is deliberately boring: ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle unless listed. It is compared with the source trajectory rather than bent until the high-roll magically becomes “average.”</p>
+        <p class="evaluation-caveat">This is a separate minimal-fuel engine illustration—not a continuation of the recorded starting board, a guaranteed floor, or an expected outcome. Ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle are assumed unless listed.</p>
         <div class="baseline-grid">
           <article class="metric-card">
-            <small>Single-engine core floor</small>
-            <strong>+60 projected stats</strong>
-            <span>Turn 10 → 12 · projected end 1,923</span>
+            <small>Minimal-fuel engine illustration</small>
+            <strong>+108 modeled stats</strong>
+            <span>3 modeled recruit phases, shown separately from the Turn 10 → 12 snapshots</span>
             <span>Each targeted spell gives the Tavern +2/+2; every third cast makes each Felboar consume one average shop body.</span>
           </article>
           <article class="metric-card">
-            <small>Real source comparison</small>
-            <strong>+15,168 observed stats</strong>
-            <span>Observed end 17,031 · 252.8× the core-only gain</span>
-            <span>Core floor accounts for 0.4% of the demonstrated growth.</span>
+            <small>Selected source-board delta</small>
+            <strong>+15,168 aggregate stats</strong>
+            <span>Observed end 17,031 across a 2-turn snapshot span</span>
+            <span>Shown for scale only: this delta is not attributable to the minimal engine scenario.</span>
           </article>
         </div>
         <ul class="baseline-assumptions">
-          <li>One ordinary Devilish Distractor and one ordinary Felboar</li><li>Three targeted spell casts per turn</li><li>Average consumed shop body starts at 6/6</li><li>No Balinda doubling, Golden Felboar, Methodical Madness chain, hero, or trinket acceleration</li>
+          <li>One ordinary Devilish Distractor and one ordinary Felboar</li><li>Three targeted spell casts per turn</li><li>Illustrative consumed shop body starts at 6/6; this is not a guaranteed minimum</li><li>No Balinda doubling, Golden Felboar, Methodical Madness chain, hero, or trinket acceleration</li>
         </ul>
-        <p class="model-footnote">The source board is ceiling evidence, not a baseline. Balinda, two Felboars, accumulated Tavern buffs, and premium spell-consume actions explain why the real game outruns the core-only floor.</p>
+        <p class="model-footnote">This separate three-phase illustration is not projected from the mature Turn 10 board and does not know its Felboar spell counters. Balinda, two Felboars, accumulated Tavern buffs, and premium spell-consume actions explain the source ceiling.</p>
       </div>
 
       <div class="evaluation-block">
         <h3>How much luck?</h3>
-        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern 6. It averages all eligible five-tribe lobbies and excludes Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
+        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern 6. It averages all eligible five-tribe lobbies and excludes path-to-position, Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
         <div class="luck-grid">
 
           <article class="metric-card">
             <small>Functional core from scratch</small>
-            <strong>22.0% in eligible lobbies</strong>
-            <span>Common · about 1 in 4.5 eligible games</span>
-            <span>11.0% across all lobbies · about 1 in 9.1 games</span>
+            <strong>22.0% per eligible hard-roll attempt</strong>
+            <span>95% Monte Carlo interval: 21.6–22.3% · about 1 in 4.5 modeled attempts</span>
+            <span>11.0% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 9.1 such starts</span>
             <span>Need: Devilish Distractor, Felboar</span>
           </article>
 
           <article class="metric-card">
             <small>Distractor already owned</small>
-            <strong>49.8% in eligible lobbies</strong>
-            <span>Common · about 1 in 2.0 eligible games</span>
-            <span>24.9% across all lobbies · about 1 in 4.0 games</span>
+            <strong>49.8% per eligible hard-roll attempt</strong>
+            <span>95% Monte Carlo interval: 49.4–50.3% · about 1 in 2.0 modeled attempts</span>
+            <span>24.9% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 4.0 such starts</span>
             <span>Need: Devilish Distractor, Felboar · already own: Devilish Distractor</span>
           </article>
 
           <article class="metric-card">
             <small>Full accelerator package from scratch</small>
-            <strong>4.4% in eligible lobbies</strong>
-            <span>Rare · about 1 in 22.8 eligible games</span>
-            <span>2.2% across all lobbies · about 1 in 45.5 games</span>
+            <strong>4.4% per eligible hard-roll attempt</strong>
+            <span>95% Monte Carlo interval: 4.2–4.6% · about 1 in 22.8 modeled attempts</span>
+            <span>2.2% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 45.5 such starts</span>
             <span>Need: Devilish Distractor, Felboar, Balinda Stonehearth</span>
           </article>
 
         </div>
-        <p class="model-footnote">50,000 deterministic-seed simulations per scenario across 2 recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. This measures the shop hit from the stated position—not how often a player chooses, survives, or completes the high-roll ending.</p>
+        <p class="model-footnote">50,000 deterministic-seed simulations per scenario across 2 recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. Apart from explicit owned and rival-held target copies, the shared pool is pristine. This measures the shop hit from one fixed starting position—not empirical game frequency, survival, line selection, or completion of the high-roll ending.</p>
       </div>
 
 

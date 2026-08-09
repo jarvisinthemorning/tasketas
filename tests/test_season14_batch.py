@@ -1,9 +1,11 @@
+import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
 
 import yaml
 
+from comp_pipeline import publish_comp
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
@@ -74,6 +76,26 @@ class Season14BatchTests(unittest.TestCase):
             self.assertNotIn(BANNED_CARD_ID, all_cards)
             self.assertNotIn("Hoarding Hyena", body)
             self.assertNotIn("[[card:133039", body)
+
+    def test_quantitative_pilot_artifacts_match_clean_renders(self):
+        for slug in (
+            "quilboar-choose-one-hogrider",
+            "demon-felboar-spell-consume",
+        ):
+            with self.subTest(slug=slug), tempfile.TemporaryDirectory() as tmp:
+                output_dir = Path(tmp) / "dist"
+                publish_comp(
+                    content_path=CONTENT / f"{slug}.md",
+                    cards_path=ROOT / "data/cards.json",
+                    registry_path=ROOT / "data/registry.json",
+                    template_path=ROOT / "templates/comp.html",
+                    output_dir=output_dir,
+                    public_base_url="https://jarvisinthemorning.github.io/tasketas",
+                    register=False,
+                )
+                rendered = (output_dir / f"comps/{slug}.html").read_text(encoding="utf-8")
+                committed = (ROOT / f"dist/comps/{slug}.html").read_text(encoding="utf-8")
+                self.assertEqual(rendered, committed)
 
 
 if __name__ == "__main__":

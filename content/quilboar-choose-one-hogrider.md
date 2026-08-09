@@ -51,8 +51,9 @@ evaluation:
     setup_debt: Medium — Choose One generation must already exist
     execution: Medium — repeated casts, not full APM
   baseline:
-    name: Single-engine core floor
+    name: Minimal-fuel engine illustration
     model: hogrider-core-v1
+    modeled_recruit_phases: 4
     parameters:
       hogriders: 1
       other_quilboars: 5
@@ -64,7 +65,7 @@ evaluation:
     - One Gem Day played each turn, alternating Attack and Health upgrades
     - Five other Quilboar receive each Hogrider Blood Gem
     - No Golden core, trinket, Discover chain, or additional Choose One generation
-    interpretation: The demonstrated board is a high-roll ceiling trajectory. The named core alone does not reproduce it; extra Choose One volume, additional Hogriders, upgraded Gems, and secondary engines are material requirements.
+    interpretation: This separate four-phase illustration is not projected from the mature Turn 10 board. The demonstrated source trajectory also uses extra Choose One volume, additional Hogriders, upgraded Gems, and secondary engines.
   luck:
     tavern_tier: 6
     turns: 2

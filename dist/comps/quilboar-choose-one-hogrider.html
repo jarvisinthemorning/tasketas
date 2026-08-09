@@ -131,7 +131,7 @@
 
       <div class="evaluation-block">
         <h3>Observed board trajectory</h3>
-        <p class="evaluation-caveat">Recorded source games validate the growth calculation and achievable board. They are successful examples, not median outcomes.</p>
+        <p class="evaluation-caveat">These selected successful snapshots demonstrate reachable endpoints. Their aggregate board totals include purchases, replacements, triples, and secondary engines; they are not isolated engine growth or median outcomes.</p>
         <div class="observed-grid">
 
           <article class="metric-card">
@@ -148,7 +148,7 @@
             <span>7,470 attack · 10,650 health</span>
             <span>6 bodies 100+ · 5 bodies 500+ · 3 bodies 1k+</span>
 
-            <span>2.04× raw stats per turn over the previous 4 turns</span>
+            <span>2.04× endpoint-implied compound board-total multiplier over 4 turns</span>
 
           </article>
 
@@ -157,58 +157,58 @@
 
       <div class="evaluation-block">
         <h3>Baseline calibration</h3>
-        <p class="evaluation-caveat">The baseline is deliberately boring: ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle unless listed. It is compared with the source trajectory rather than bent until the high-roll magically becomes “average.”</p>
+        <p class="evaluation-caveat">This is a separate minimal-fuel engine illustration—not a continuation of the recorded starting board, a guaranteed floor, or an expected outcome. Ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle are assumed unless listed.</p>
         <div class="baseline-grid">
           <article class="metric-card">
-            <small>Single-engine core floor</small>
-            <strong>+90 projected stats</strong>
-            <span>Turn 10 → 14 · projected end 1,133</span>
+            <small>Minimal-fuel engine illustration</small>
+            <strong>+90 modeled stats</strong>
+            <span>4 modeled recruit phases, shown separately from the Turn 10 → 14 snapshots</span>
             <span>Gem Day upgrades one Blood Gem stat, then each Hogrider plays that Gem on every other Quilboar.</span>
           </article>
           <article class="metric-card">
-            <small>Real source comparison</small>
-            <strong>+17,077 observed stats</strong>
-            <span>Observed end 18,120 · 189.74× the core-only gain</span>
-            <span>Core floor accounts for 0.5% of the demonstrated growth.</span>
+            <small>Selected source-board delta</small>
+            <strong>+17,077 aggregate stats</strong>
+            <span>Observed end 18,120 across a 4-turn snapshot span</span>
+            <span>Shown for scale only: this delta is not attributable to the minimal engine scenario.</span>
           </article>
         </div>
         <ul class="baseline-assumptions">
           <li>One ordinary Turbo Hogrider and one Gem Rat</li><li>One Gem Day played each turn, alternating Attack and Health upgrades</li><li>Five other Quilboar receive each Hogrider Blood Gem</li><li>No Golden core, trinket, Discover chain, or additional Choose One generation</li>
         </ul>
-        <p class="model-footnote">The demonstrated board is a high-roll ceiling trajectory. The named core alone does not reproduce it; extra Choose One volume, additional Hogriders, upgraded Gems, and secondary engines are material requirements.</p>
+        <p class="model-footnote">This separate four-phase illustration is not projected from the mature Turn 10 board. The demonstrated source trajectory also uses extra Choose One volume, additional Hogriders, upgraded Gems, and secondary engines.</p>
       </div>
 
       <div class="evaluation-block">
         <h3>How much luck?</h3>
-        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern 6. It averages all eligible five-tribe lobbies and excludes Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
+        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern 6. It averages all eligible five-tribe lobbies and excludes path-to-position, Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
         <div class="luck-grid">
 
           <article class="metric-card">
             <small>From scratch at Tavern 6</small>
-            <strong>20.3% in eligible lobbies</strong>
-            <span>Common · about 1 in 4.9 eligible games</span>
-            <span>10.2% across all lobbies · about 1 in 9.8 games</span>
+            <strong>20.3% per eligible hard-roll attempt</strong>
+            <span>95% Monte Carlo interval: 20.0–20.7% · about 1 in 4.9 modeled attempts</span>
+            <span>10.2% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 9.8 such starts</span>
             <span>Need: Gem Rat, Turbo Hogrider</span>
           </article>
 
           <article class="metric-card">
             <small>Gem Rat already owned</small>
-            <strong>41.2% in eligible lobbies</strong>
-            <span>Common · about 1 in 2.4 eligible games</span>
-            <span>20.6% across all lobbies · about 1 in 4.9 games</span>
+            <strong>41.2% per eligible hard-roll attempt</strong>
+            <span>95% Monte Carlo interval: 40.8–41.7% · about 1 in 2.4 modeled attempts</span>
+            <span>20.6% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 4.9 such starts</span>
             <span>Need: Gem Rat, Turbo Hogrider · already own: Gem Rat</span>
           </article>
 
           <article class="metric-card">
             <small>Gem Rat owned; one rival holds Hogrider</small>
-            <strong>36.8% in eligible lobbies</strong>
-            <span>Common · about 1 in 2.7 eligible games</span>
-            <span>18.4% across all lobbies · about 1 in 5.4 games</span>
+            <strong>36.8% per eligible hard-roll attempt</strong>
+            <span>95% Monte Carlo interval: 36.4–37.3% · about 1 in 2.7 modeled attempts</span>
+            <span>18.4% random-lobby adjusted modeled rate, assuming the same Tavern 6 starting position · about 1 in 5.4 such starts</span>
             <span>Need: Gem Rat, Turbo Hogrider · already own: Gem Rat</span>
           </article>
 
         </div>
-        <p class="model-footnote">50,000 deterministic-seed simulations per scenario across 2 recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. This measures the shop hit from the stated position—not how often a player chooses, survives, or completes the high-roll ending.</p>
+        <p class="model-footnote">50,000 deterministic-seed simulations per scenario across 2 recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. Apart from explicit owned and rival-held target copies, the shared pool is pristine. This measures the shop hit from one fixed starting position—not empirical game frequency, survival, line selection, or completion of the high-roll ending.</p>
       </div>
 
 

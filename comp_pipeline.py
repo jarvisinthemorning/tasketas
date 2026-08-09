@@ -118,24 +118,32 @@ def _normalize_evaluation(raw: object, board_examples: list[dict], catalog: Card
     last_turn = observed[-1].get("turn") if observed else None
     if not isinstance(first_turn, int) or not isinstance(last_turn, int) or last_turn <= first_turn:
         raise CompError("evaluation.baseline requires at least two board examples with increasing turns")
-    turns = last_turn - first_turn
+    snapshot_turn_span = last_turn - first_turn
+    modeled_recruit_phases = baseline.get("modeled_recruit_phases", snapshot_turn_span)
+    if (
+        isinstance(modeled_recruit_phases, bool)
+        or not isinstance(modeled_recruit_phases, int)
+        or modeled_recruit_phases < 1
+    ):
+        raise CompError("evaluation.baseline.modeled_recruit_phases must be a positive integer")
     try:
-        baseline_result = calculate_baseline_gain(model, turns=turns, parameters=parameters)
+        baseline_result = calculate_baseline_gain(
+            model,
+            turns=modeled_recruit_phases,
+            parameters=parameters,
+        )
     except ValueError as exc:
         raise CompError(f"Invalid evaluation baseline: {exc}") from exc
     observed_gain = observed[-1]["total_stats"] - observed[0]["total_stats"]
-    projected_gain = baseline_result["projected_stat_gain"]
     baseline_result.update(
         {
             "name": str(baseline.get("name", "Core-only baseline")),
-            "turns": turns,
+            "modeled_recruit_phases": modeled_recruit_phases,
+            "snapshot_turn_span": snapshot_turn_span,
             "start_turn": first_turn,
             "end_turn": last_turn,
-            "projected_end_stats": observed[0]["total_stats"] + projected_gain,
-            "observed_stat_gain": observed_gain,
+            "observed_board_delta": observed_gain,
             "observed_end_stats": observed[-1]["total_stats"],
-            "observed_to_baseline_ratio": round(observed_gain / projected_gain, 2) if projected_gain > 0 else None,
-            "baseline_share_of_observed": round(projected_gain / observed_gain, 4) if observed_gain > 0 else None,
             "assumptions": [item.strip() for item in assumptions],
             "interpretation": str(baseline.get("interpretation", "")).strip(),
         }
@@ -203,6 +211,33 @@ def _normalize_evaluation(raw: object, board_examples: list[dict], catalog: Card
         raise CompError("evaluation.external must be a mapping")
     if not all(isinstance(provider, str) and isinstance(benchmark, dict) for provider, benchmark in external.items()):
         raise CompError("evaluation.external entries must map provider names to benchmark mappings")
+    allowed_external_hosts = {
+        "firestone": "firestoneapp.com",
+        "hsreplay": "hsreplay.net",
+    }
+    for provider, benchmark in external.items():
+        if provider not in allowed_external_hosts:
+            raise CompError(f"Unsupported evaluation.external provider: {provider}")
+        url = benchmark.get("url")
+        if url is not None:
+            if not isinstance(url, str):
+                raise CompError(f"evaluation.external.{provider}.url must be text")
+            parsed = urlparse(url)
+            expected_host = allowed_external_hosts[provider]
+            host = parsed.hostname or ""
+            if parsed.scheme != "https" or not (host == expected_host or host.endswith(f".{expected_host}")):
+                raise CompError(
+                    f"evaluation.external.{provider}.url must be an HTTPS {expected_host} URL"
+                )
+        for field in ("power", "average_position"):
+            value = benchmark.get(field)
+            if value is not None and (
+                isinstance(value, bool) or not isinstance(value, (int, float)) or value < 0
+            ):
+                raise CompError(f"evaluation.external.{provider}.{field} must be a non-negative number")
+        games = benchmark.get("games")
+        if games is not None and (isinstance(games, bool) or not isinstance(games, int) or games < 0):
+            raise CompError(f"evaluation.external.{provider}.games must be a non-negative integer")
     normalized["external"] = external
     return normalized
 

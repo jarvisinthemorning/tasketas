@@ -51,8 +51,9 @@ evaluation:
     setup_debt: Medium — targeted spell economy is required
     execution: Medium — spell and consume ordering matters
   baseline:
-    name: Single-engine core floor
+    name: Minimal-fuel engine illustration
     model: demon-shop-consume-v1
+    modeled_recruit_phases: 3
     parameters:
       felboars: 1
       spell_casts_per_turn: 3
@@ -61,9 +62,9 @@ evaluation:
     assumptions:
     - One ordinary Devilish Distractor and one ordinary Felboar
     - Three targeted spell casts per turn
-    - Average consumed shop body starts at 6/6
+    - Illustrative consumed shop body starts at 6/6; this is not a guaranteed minimum
     - No Balinda doubling, Golden Felboar, Methodical Madness chain, hero, or trinket acceleration
-    interpretation: The source board is ceiling evidence, not a baseline. Balinda, two Felboars, accumulated Tavern buffs, and premium spell-consume actions explain why the real game outruns the core-only floor.
+    interpretation: This separate three-phase illustration is not projected from the mature Turn 10 board and does not know its Felboar spell counters. Balinda, two Felboars, accumulated Tavern buffs, and premium spell-consume actions explain the source ceiling.
   luck:
     tavern_tier: 6
     turns: 2

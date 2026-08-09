@@ -227,9 +227,18 @@ def estimate_pivot_probability(
     Results are averaged across all five-tribe lobby combinations containing
     the required tribes. Every simulated turn refills to 10 Gold. Required
     cards are bought immediately, rational freezes are carried to the next
-    turn, and remaining Gold is spent on refreshes. This deliberately excludes
-    generated cards and Discover odds.
+    turn, and remaining Gold is spent on refreshes. Apart from explicit owned
+    and rival-held target copies, the shared pool is pristine. This deliberately
+    excludes generated cards, Discover odds, survival, and path-to-position.
     """
+    integer_inputs = (tavern_tier, turns, simulations, held_by_rivals, seed)
+    if any(
+        isinstance(value, bool) or not isinstance(value, int)
+        for value in integer_inputs
+    ):
+        raise ValueError(
+            "tavern_tier, turns, simulations, held_by_rivals, and seed must be integers"
+        )
     if tavern_tier not in SHOP_SLOTS:
         raise ValueError(f"Unsupported Tavern Tier: {tavern_tier}")
     if turns < 1 or simulations < 1 or held_by_rivals < 0:
@@ -237,14 +246,25 @@ def estimate_pivot_probability(
             "turns and simulations must be positive; held_by_rivals cannot be negative"
         )
 
-    required = {int(card_id) for card_id in required_card_ids}
-    owned = {int(card_id) for card_id in (owned_card_ids or [])}
+    required_list = [int(card_id) for card_id in required_card_ids]
+    owned_list = [int(card_id) for card_id in (owned_card_ids or [])]
+    required = set(required_list)
+    owned = set(owned_list)
     if not required:
         raise ValueError("required_card_ids cannot be empty")
+    if len(required_list) != len(required):
+        raise ValueError("duplicate required card IDs are not supported")
+    if len(owned_list) != len(owned):
+        raise ValueError("duplicate owned card IDs are not supported")
     if not owned <= required:
         raise ValueError("owned_card_ids must be part of required_card_ids")
 
-    normalized_tribes = {tribe.lower() for tribe in required_tribes}
+    required_tribes = list(required_tribes)
+    if not required_tribes or not all(
+        isinstance(tribe, str) and tribe.strip() for tribe in required_tribes
+    ):
+        raise ValueError("required_tribes must contain non-empty tribe names")
+    normalized_tribes = {tribe.strip().lower() for tribe in required_tribes}
     tribe_sets = _eligible_tribe_sets(normalized_tribes)
     if not tribe_sets:
         raise ValueError("No valid five-tribe lobbies satisfy required_tribes")
@@ -272,21 +292,24 @@ def estimate_pivot_probability(
 
     conditional = successes / simulations
     eligible = eligible_lobby_probability(len(normalized_tribes))
-    all_games = conditional * eligible
+    random_lobby_adjusted = conditional * eligible
     standard_error = math.sqrt(conditional * (1 - conditional) / simulations)
+    ci_low = max(0.0, conditional - 1.96 * standard_error)
+    ci_high = min(1.0, conditional + 1.96 * standard_error)
 
     def once_every(probability: float) -> float | None:
         return round(1 / probability, 1) if probability > 0 else None
 
     return {
         "conditional_probability": round(conditional, 6),
-        "all_games_probability": round(all_games, 6),
+        "random_lobby_adjusted_probability": round(random_lobby_adjusted, 6),
         "eligible_lobby_probability": round(eligible, 6),
         "conditional_once_every": once_every(conditional),
-        "all_games_once_every": once_every(all_games),
+        "random_lobby_adjusted_once_every": once_every(random_lobby_adjusted),
         "conditional_label": classify_frequency(conditional),
-        "all_games_label": classify_frequency(all_games),
+        "random_lobby_adjusted_label": classify_frequency(random_lobby_adjusted),
         "standard_error": round(standard_error, 6),
+        "conditional_ci95": [round(ci_low, 6), round(ci_high, 6)],
         "simulations": simulations,
         "seed": seed,
         "tavern_tier": tavern_tier,

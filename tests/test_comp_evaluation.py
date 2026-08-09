@@ -71,8 +71,42 @@ class CompEvaluationTests(unittest.TestCase):
         )
         self.assertEqual(first, second)
         self.assertEqual(first["conditional_probability"], 1.0)
-        self.assertEqual(first["all_games_probability"], 0.5)
+        self.assertEqual(first["random_lobby_adjusted_probability"], 0.5)
+        self.assertEqual(first["conditional_ci95"], [1.0, 1.0])
 
+    def test_pivot_simulation_rejects_unsupported_duplicate_targets_and_boolean_counts(self):
+        cards = {
+            "cards": {
+                "1": {
+                    "id": 1,
+                    "name": "Target",
+                    "type": "minion",
+                    "tier": 1,
+                    "tribes": ["Demon"],
+                    "modes": ["solo"],
+                    "pool": True,
+                    "categories": ["tavern"],
+                }
+            }
+        }
+        with self.assertRaisesRegex(ValueError, "duplicate required"):
+            estimate_pivot_probability(
+                cards,
+                required_card_ids=[1, 1],
+                required_tribes=["demon"],
+                tavern_tier=1,
+                turns=1,
+                simulations=10,
+            )
+        with self.assertRaisesRegex(ValueError, "must be integers"):
+            estimate_pivot_probability(
+                cards,
+                required_card_ids=[1],
+                required_tribes=["demon"],
+                tavern_tier=1,
+                turns=1,
+                simulations=True,
+            )
     def test_pivot_simulation_excludes_duos_only_cards(self):
         cards = {
             "cards": {
