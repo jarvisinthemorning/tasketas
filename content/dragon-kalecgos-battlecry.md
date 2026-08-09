@@ -18,7 +18,8 @@ addons:
 - 132955
 - 133329
 - 101314
-cycle: []
+cycle:
+- 120213
 board_examples:
 - stage: mid
   turn: 12
@@ -70,5 +71,7 @@ The source uses [[card:132955|Bronze Timewalker]] to accelerate the line, [[card
 ## Positioning and traps
 
 Keep Brann away from obvious opening cleave exposure. Gatekeeper can carry stats and defensive keywords, but it does not replace the Battlecry engine.
+
+The source visibly buys [[card:120213|Firescale Hoarder]] for its Battlecry value, then sells it rather than crowding out a permanent Dragon. Other cycle targets vary with the lobby and shop, but the rule does not: play the Battlecry, collect Brann/Kalecgos value, then recover the board slot.
 
 The common failure is buying every Dragon and ending the turn with unused gold. This build grows by actions, not by admiring its own board.

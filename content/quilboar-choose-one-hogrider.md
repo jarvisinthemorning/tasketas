@@ -32,6 +32,17 @@ board_examples:
   - {card_id: 113154, slot: 5, attack: 26, health: 45}
   - {card_id: 116434, slot: 6, attack: 149, health: 89}
   - {card_id: 116434, slot: 7, attack: 61, health: 93}
+- stage: end
+  turn: 14
+  timestamp: 1290
+  note: The last stable Tavern board before the final combat, with the Choose One engine spread across two Turbo Hogriders while Gatekeeper Amalgam carries 2.4k/3.6k.
+  units:
+  - {card_id: 132632, slot: 1, attack: 1.5k, health: 2.2k}
+  - {card_id: 116195, slot: 2, attack: 661, health: 960}
+  - {card_id: 132636, slot: 3, attack: 1.9k, health: 2.8k}
+  - {card_id: 116195, slot: 4, attack: 513, health: 746}
+  - {card_id: 133329, slot: 5, attack: 2.4k, health: 3.6k, annotation: Divine Shield}
+  - {card_id: 116434, slot: 6, attack: 496, health: 344, golden: true}
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=d50H4G3vd58
@@ -61,3 +72,5 @@ Generate repeated Choose One cards with [[card:116434|Gem Rat]] and related effe
 Do not spread permanent Gems across units you expect to sell. Delay transfers until the final carries are clear, but do not die holding a hand full of theoretical value.
 
 The source's blunt warning is useful: miss Turbo Hogrider and this can become a very efficient route to eighth place. Treat the card as the commitment signal, not a hoped-for future miracle.
+
+The late Tavern proof is much stronger than the earlier transition board: the source finishes with carries at 1.5k/2.2k, 1.9k/2.8k, and 2.4k/3.6k before winning. That is the payoff standard—not merely assembling the named pieces.

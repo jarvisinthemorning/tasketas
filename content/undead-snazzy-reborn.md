@@ -47,3 +47,7 @@ Build a large stat reservoir with [[card:133081|Barrier Banshee]], move those st
 Rightmost placement is functional, not cosmetic. A last-second utility swap can redirect an entire turn of scaling to the wrong body.
 
 Do not treat Snazzy as a standalone carry. Without Reborn attack to convert, it is only occupying a premium slot and looking pleased with itself.
+
+## Demonstrated payoff
+
+The source wins the lobby and the final recruit phase at 21:47 visibly shows permanent bodies at 924/773, 604/469, and 335/245 before combat. Undead does not need to imitate a pure shop-scaling tribe: the guide is valid because the Reborn transfer chain is online, the recipient order is deliberate, and the board converts those stats into a first-place combat—not because every slot crosses an arbitrary four-digit threshold.

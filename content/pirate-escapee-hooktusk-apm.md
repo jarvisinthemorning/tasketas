@@ -16,9 +16,9 @@ core:
 - 132925
 addons:
 - 122516
+cycle:
 - 122520
 - 132921
-cycle: []
 board_examples:
 - stage: mid
   turn: 9
@@ -55,7 +55,7 @@ verified_at: '2026-08-08'
 
 ## Game plan
 
-[[card:132762|Enterprising Escapee]] advances Lockboxes as gold is spent. Their Golden minions and discovers feed [[card:132925|Hooktusk, Master Marauder]], while [[card:122516|Sky Admiral Rogers]] and [[card:122520|Proud Privateer]] keep the economy moving. [[card:132921|Clever Castaway]] helps bridge into the cycle.
+[[card:132762|Enterprising Escapee]] advances Lockboxes as gold is spent. Their Golden minions and discovers feed [[card:132925|Hooktusk, Master Marauder]], while [[card:122516|Sky Admiral Rogers]] supports the permanent shell. [[card:122520|Proud Privateer]] and [[card:132921|Clever Castaway]] are the concrete source-backed cycle pieces that keep gold and Lockboxes moving.
 
 The source gives the recipe directly, then shows the engine becoming effectively self-sustaining once Hooktusk and Privateer are online.
 

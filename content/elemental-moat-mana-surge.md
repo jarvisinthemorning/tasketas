@@ -15,12 +15,12 @@ core:
 - 132981
 - 120674
 addons:
-- 64077
 - 133455
 - 116736
+cycle:
+- 64077
 - 119949
 - 119951
-cycle: []
 board_examples:
 - stage: mid
   timestamp: 1030
@@ -58,7 +58,7 @@ verified_at: '2026-08-08'
 
 Trigger [[card:132981|Moat Custodian]] early and often so every later Elemental buff becomes larger. Once [[card:120674|Unleashed Mana Surge]] arrives, cycle Elementals to convert that accumulated amplification into repeated board-wide growth.
 
-The reviewed game uses recruit-phase Rally on a Golden Custodian before leaning into multiple Mana Surges. [[card:64077|Tavern Tempest]], [[card:133455|Air Baller]], [[card:116736|Fire Baller]], [[card:119949|Sand Swirler]], and [[card:119951|Glowing Cinder]] provide fuel or bodies, but Custodian is what raises the ceiling.
+The reviewed game uses recruit-phase Rally on a Golden Custodian before leaning into multiple Mana Surges. [[card:133455|Air Baller]] and [[card:116736|Fire Baller]] are useful bodies. [[card:64077|Tavern Tempest]], [[card:119949|Sand Swirler]], and [[card:119951|Glowing Cinder]] are concrete source-backed cycle fuel, but Custodian is what raises the ceiling.
 
 ## How to build it
 

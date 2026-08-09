@@ -42,7 +42,7 @@
     },
     {
       "slug": "demon-felboar-spell-consume",
-      "title": "Felboar Spell-Consume Economy",
+      "title": "Distractor–Felboar Spell-Consume",
       "url": "https://jarvisinthemorning.github.io/tasketas/comps/demon-felboar-spell-consume.html",
       "season": 14,
       "modes": [
@@ -59,10 +59,12 @@
       ],
       "core": [
         110664,
+        132901,
         130298
       ],
       "addons": [
-        96786
+        96786,
+        130662
       ],
       "cycle": [],
       "verified_at": "2026-08-08",
@@ -72,10 +74,13 @@
       "source_id": "WYybK8pRz8Y",
       "cards": [
         110664,
+        132901,
         130298,
-        96786
+        96786,
+        130662,
+        80740
       ],
-      "published_at": "2026-08-08T16:51:33+00:00"
+      "published_at": "2026-08-09T00:05:00+00:00"
     },
     {
       "slug": "dragon-kalecgos-battlecry",
@@ -103,7 +108,9 @@
         133329,
         101314
       ],
-      "cycle": [],
+      "cycle": [
+        120213
+      ],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=dCwe93sXIiM",
@@ -115,9 +122,10 @@
         132955,
         133329,
         101314,
+        120213,
         132957
       ],
-      "published_at": "2026-08-08T19:25:34+00:00"
+      "published_at": "2026-08-09T00:13:46+00:00"
     },
     {
       "slug": "elemental-moat-mana-surge",
@@ -141,13 +149,14 @@
         120674
       ],
       "addons": [
-        64077,
         133455,
-        116736,
+        116736
+      ],
+      "cycle": [
+        64077,
         119949,
         119951
       ],
-      "cycle": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=eeyh2yyJVPE",
@@ -156,16 +165,16 @@
       "cards": [
         132981,
         120674,
-        64077,
         133455,
         116736,
+        64077,
         119949,
         119951,
         127107,
         122516,
         96786
       ],
-      "published_at": "2026-08-08T19:25:34+00:00"
+      "published_at": "2026-08-08T23:33:27+00:00"
     },
     {
       "slug": "mech-utility-drone-magnetics",
@@ -282,11 +291,12 @@
         132925
       ],
       "addons": [
-        122516,
+        122516
+      ],
+      "cycle": [
         122520,
         132921
       ],
-      "cycle": [],
       "verified_at": "2026-08-08",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
@@ -299,7 +309,7 @@
         122520,
         132921
       ],
-      "published_at": "2026-08-08T19:25:35+00:00"
+      "published_at": "2026-08-08T23:33:35+00:00"
     },
     {
       "slug": "quilboar-choose-one-hogrider",
@@ -340,9 +350,10 @@
         132636,
         110664,
         132632,
-        113154
+        113154,
+        133329
       ],
-      "published_at": "2026-08-08T19:25:35+00:00"
+      "published_at": "2026-08-09T00:05:06+00:00"
     },
     {
       "slug": "undead-snazzy-reborn",
@@ -381,7 +392,7 @@
         120104,
         113158
       ],
-      "published_at": "2026-08-08T16:51:34+00:00"
+      "published_at": "2026-08-08T23:33:55+00:00"
     },
     {
       "slug": "murloc-primitive-painter-cycle",
