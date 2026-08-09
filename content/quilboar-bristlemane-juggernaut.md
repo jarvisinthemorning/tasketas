@@ -89,4 +89,4 @@ At **21:40**, the stable Tavern board shows Golden Jailbird Juggernaut at **8.2k
 - **23:00** — The final remaining opponent takes lethal after the Juggernaut Golem chain.
 
 The linked commentary is based on JeefHS's original gameplay upload:
-https://www.youtube.com/watch?v=FZWbxeaiq-w
+<https://www.youtube.com/watch?v=FZWbxeaiq-w>
