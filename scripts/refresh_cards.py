@@ -19,7 +19,7 @@ def fetch_all_cards() -> list[dict]:
     cards: list[dict] = []
     offset = 0
     while True:
-        query = urllib.parse.urlencode({"limit": 100, "offset": offset})
+        query = urllib.parse.urlencode({"pool": "current", "limit": 100, "offset": offset})
         request = urllib.request.Request(
             f"{API}?{query}",
             headers={"User-Agent": "battlegrounds-comp-guides/0.1"},

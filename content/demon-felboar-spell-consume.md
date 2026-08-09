@@ -20,6 +20,17 @@ addons:
 - 130662
 cycle: []
 board_examples:
+- stage: mid
+  turn: 10
+  timestamp: 760
+  note: Start of Turn 10 before purchases, with Distractor and two Felboars already converting the spell economy into three independent scaled bodies.
+  units:
+  - {card_id: 130662, slot: 1, attack: 206, health: 206}
+  - {card_id: 132901, slot: 2, attack: 167, health: 174}
+  - {card_id: 110664, slot: 3, attack: 313, health: 324}
+  - {card_id: 110664, slot: 4, attack: 210, health: 226}
+  - {card_id: 132917, slot: 5, attack: 11, health: 14}
+  - {card_id: 130298, slot: 6, attack: 6, health: 6}
 - stage: end
   turn: 12
   timestamp: 1034
@@ -32,6 +43,57 @@ board_examples:
   - {card_id: 80740, slot: 5, attack: 172, health: 171}
   - {card_id: 96786, slot: 6, attack: 53, health: 55}
   - {card_id: 130298, slot: 7, attack: 9, health: 9}
+evaluation:
+  version: 1
+  assessed_at: '2026-08-09'
+  classification:
+    build_window: Midgame engine; unsafe as a fresh late pivot
+    setup_debt: Medium — targeted spell economy is required
+    execution: Medium — spell and consume ordering matters
+  baseline:
+    name: Single-engine core floor
+    model: demon-shop-consume-v1
+    parameters:
+      felboars: 1
+      spell_casts_per_turn: 3
+      average_base_shop_attack: 6
+      average_base_shop_health: 6
+    assumptions:
+    - One ordinary Devilish Distractor and one ordinary Felboar
+    - Three targeted spell casts per turn
+    - Average consumed shop body starts at 6/6
+    - No Balinda doubling, Golden Felboar, Methodical Madness chain, hero, or trinket acceleration
+    interpretation: The source board is ceiling evidence, not a baseline. Balinda, two Felboars, accumulated Tavern buffs, and premium spell-consume actions explain why the real game outruns the core-only floor.
+  luck:
+    tavern_tier: 6
+    turns: 2
+    simulations: 50000
+    required_tribes: [demon]
+    scenarios:
+    - label: Functional core from scratch
+      required: [132901, 110664]
+      owned: []
+    - label: Distractor already owned
+      required: [132901, 110664]
+      owned: [132901]
+    - label: Full accelerator package from scratch
+      required: [132901, 110664, 130298]
+      owned: []
+  external:
+    firestone:
+      url: https://www.firestoneapp.com/battlegrounds/comps
+      comp_id: demons_fermenter
+      power: 13.0
+      average_position: 3.51
+      tier: A
+      difficulty: Medium
+      games: 36000
+      captured_at: '2026-08-09'
+    hsreplay:
+      url: https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff
+      tier: S
+      difficulty: Medium
+      captured_at: '2026-08-09'
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff

@@ -113,6 +113,136 @@
     </article>
 
 
+    <section class="quant-evaluation" aria-labelledby="quant-evaluation-heading">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Experimental model v1</div>
+          <h2 id="quant-evaluation-heading">Quantitative evaluation</h2>
+        </div>
+        <p>Observed source boards, a reproducible shop model, and external archetype benchmarks. These are separate signals—not one suspiciously magical tier letter.</p>
+      </div>
+
+      <ul class="evaluation-classifications" aria-label="Composition classification">
+        <li><small>Build window</small><strong>Midgame engine; unsafe as a fresh late pivot</strong></li>
+        <li><small>Setup debt</small><strong>Medium — targeted spell economy is required</strong></li>
+        <li><small>Execution</small><strong>Medium — spell and consume ordering matters</strong></li>
+      </ul>
+
+      <div class="evaluation-block">
+        <h3>Observed board trajectory</h3>
+        <p class="evaluation-caveat">Recorded source games validate the growth calculation and achievable board. They are successful examples, not median outcomes.</p>
+        <div class="observed-grid">
+
+          <article class="metric-card">
+            <small>Mid · Turn 10</small>
+            <strong>1,863 total stats</strong>
+            <span>913 attack · 950 health</span>
+            <span>4 bodies 100+ · 0 bodies 500+ · 0 bodies 1k+</span>
+
+          </article>
+
+          <article class="metric-card">
+            <small>End · Turn 12</small>
+            <strong>17,031 total stats ≈</strong>
+            <span>8,465 attack · 8,566 health</span>
+            <span>5 bodies 100+ · 4 bodies 500+ · 3 bodies 1k+</span>
+
+            <span>3.02× raw stats per turn over the previous 2 turns</span>
+
+          </article>
+
+        </div>
+      </div>
+
+      <div class="evaluation-block">
+        <h3>Baseline calibration</h3>
+        <p class="evaluation-caveat">The baseline is deliberately boring: ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle unless listed. It is compared with the source trajectory rather than bent until the high-roll magically becomes “average.”</p>
+        <div class="baseline-grid">
+          <article class="metric-card">
+            <small>Single-engine core floor</small>
+            <strong>+60 projected stats</strong>
+            <span>Turn 10 → 12 · projected end 1,923</span>
+            <span>Each targeted spell gives the Tavern +2/+2; every third cast makes each Felboar consume one average shop body.</span>
+          </article>
+          <article class="metric-card">
+            <small>Real source comparison</small>
+            <strong>+15,168 observed stats</strong>
+            <span>Observed end 17,031 · 252.8× the core-only gain</span>
+            <span>Core floor accounts for 0.4% of the demonstrated growth.</span>
+          </article>
+        </div>
+        <ul class="baseline-assumptions">
+          <li>One ordinary Devilish Distractor and one ordinary Felboar</li><li>Three targeted spell casts per turn</li><li>Average consumed shop body starts at 6/6</li><li>No Balinda doubling, Golden Felboar, Methodical Madness chain, hero, or trinket acceleration</li>
+        </ul>
+        <p class="model-footnote">The source board is ceiling evidence, not a baseline. Balinda, two Felboars, accumulated Tavern buffs, and premium spell-consume actions explain why the real game outruns the core-only floor.</p>
+      </div>
+
+      <div class="evaluation-block">
+        <h3>How much luck?</h3>
+        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern 6. It averages all eligible five-tribe lobbies and excludes Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
+        <div class="luck-grid">
+
+          <article class="metric-card">
+            <small>Functional core from scratch</small>
+            <strong>22.0% in eligible lobbies</strong>
+            <span>Common · about 1 in 4.5 eligible games</span>
+            <span>11.0% across all lobbies · about 1 in 9.1 games</span>
+            <span>Need: Devilish Distractor, Felboar</span>
+          </article>
+
+          <article class="metric-card">
+            <small>Distractor already owned</small>
+            <strong>49.8% in eligible lobbies</strong>
+            <span>Common · about 1 in 2.0 eligible games</span>
+            <span>24.9% across all lobbies · about 1 in 4.0 games</span>
+            <span>Need: Devilish Distractor, Felboar · already own: Devilish Distractor</span>
+          </article>
+
+          <article class="metric-card">
+            <small>Full accelerator package from scratch</small>
+            <strong>4.4% in eligible lobbies</strong>
+            <span>Rare · about 1 in 22.8 eligible games</span>
+            <span>2.2% across all lobbies · about 1 in 45.5 games</span>
+            <span>Need: Devilish Distractor, Felboar, Balinda Stonehearth</span>
+          </article>
+
+        </div>
+        <p class="model-footnote">50,000 deterministic-seed simulations per scenario across 2 recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. This measures the shop hit from the stated position—not how often a player chooses, survives, or completes the high-roll ending.</p>
+      </div>
+
+
+      <div class="evaluation-block">
+        <h3>External benchmark</h3>
+        <div class="external-grid">
+
+          <article class="metric-card">
+            <small>Firestone · 2026-08-09</small>
+            <strong>Tier A</strong>
+            <span>Power 13.0</span>
+            <span>Average position 3.51</span>
+            <span>36,000 recognized games</span>
+            <span>Difficulty Medium</span>
+            <a href="https://www.firestoneapp.com/battlegrounds/comps" target="_blank" rel="noopener noreferrer">Open benchmark ↗</a>
+          </article>
+
+          <article class="metric-card">
+            <small>HSReplay · 2026-08-09</small>
+            <strong>Tier S</strong>
+
+
+
+            <span>Difficulty Medium</span>
+            <a href="https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff" target="_blank" rel="noopener noreferrer">Open benchmark ↗</a>
+          </article>
+
+        </div>
+        <p class="model-footnote">Firestone Power is an expert powerLevel label, while placement and game count are observed recognized-composition data. Completed-comp samples can omit failed pivots.</p>
+      </div>
+
+    </section>
+
+
+
     <section class="board-examples" aria-labelledby="board-examples-heading">
       <div class="section-heading board-examples-heading">
         <div>
@@ -122,6 +252,74 @@
         <p>Source-verified snapshots. Units are shown left to right with their recorded attack and health.</p>
       </div>
       <div class="board-example-list">
+
+        <article class="board-example">
+          <header class="board-example-header">
+            <div>
+              <div class="section-kicker">Mid game</div>
+              <h3>Mid game · Turn 10</h3>
+            </div>
+            <a href="https://www.youtube.com/watch?v=WYybK8pRz8Y&t=760s" target="_blank" rel="noopener noreferrer">Watch 12:40 ↗</a>
+          </header>
+          <p class="board-note">Start of Turn 10 before purchases, with Distractor and two Felboars already converting the spell economy into three independent scaled bodies.</p>
+          <div class="board-lineup" role="list" aria-label="Mid game board from left to right">
+
+            <a class="board-unit" href="https://hsreplay.net/battlegrounds/minions/130662/twisted-wrathguard" target="_blank" rel="noopener noreferrer" role="listitem">
+              <span class="board-position">1</span>
+              <img src="https://hsbg.cards/cards/production/pngs/full/minions/demon/130662-twisted-wrathguard.png" alt="Twisted Wrathguard">
+              <strong>Twisted Wrathguard</strong>
+              <span class="board-stats">206 / 206</span>
+
+
+            </a>
+
+            <a class="board-unit" href="https://hsreplay.net/battlegrounds/minions/132901/devilish-distractor" target="_blank" rel="noopener noreferrer" role="listitem">
+              <span class="board-position">2</span>
+              <img src="https://hsbg.cards/cards/production/pngs/full/minions/demon/132901-devilish-distractor.png" alt="Devilish Distractor">
+              <strong>Devilish Distractor</strong>
+              <span class="board-stats">167 / 174</span>
+
+
+            </a>
+
+            <a class="board-unit" href="https://hsreplay.net/battlegrounds/minions/110664/felboar" target="_blank" rel="noopener noreferrer" role="listitem">
+              <span class="board-position">3</span>
+              <img src="https://hsbg.cards/cards/production/pngs/full/minions/demon/110664-felboar.png" alt="Felboar">
+              <strong>Felboar</strong>
+              <span class="board-stats">313 / 324</span>
+
+
+            </a>
+
+            <a class="board-unit" href="https://hsreplay.net/battlegrounds/minions/110664/felboar" target="_blank" rel="noopener noreferrer" role="listitem">
+              <span class="board-position">4</span>
+              <img src="https://hsbg.cards/cards/production/pngs/full/minions/demon/110664-felboar.png" alt="Felboar">
+              <strong>Felboar</strong>
+              <span class="board-stats">210 / 226</span>
+
+
+            </a>
+
+            <a class="board-unit" href="https://hsreplay.net/battlegrounds/minions/132917/fruit-vendor" target="_blank" rel="noopener noreferrer" role="listitem">
+              <span class="board-position">5</span>
+              <img src="https://hsbg.cards/cards/production/pngs/full/minions/neutral/132917-fruit-vendor.png" alt="Fruit Vendor">
+              <strong>Fruit Vendor</strong>
+              <span class="board-stats">11 / 14</span>
+
+
+            </a>
+
+            <a class="board-unit" href="https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth" target="_blank" rel="noopener noreferrer" role="listitem">
+              <span class="board-position">6</span>
+              <img src="https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png" alt="Balinda Stonehearth">
+              <strong>Balinda Stonehearth</strong>
+              <span class="board-stats">6 / 6</span>
+
+
+            </a>
+
+          </div>
+        </article>
 
         <article class="board-example">
           <header class="board-example-header">

@@ -90,6 +90,7 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
 .source-card,
 .card-section,
 .board-examples,
+.quant-evaluation,
 .guide-copy {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -211,6 +212,51 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
 .guide-copy ul { margin: 8px 0 18px; padding-left: 1.25rem; }
 .guide-copy li { margin: 7px 0; }
 .guide-copy strong { color: #f2c97f; }
+
+.quant-evaluation { padding: 20px; }
+.evaluation-classifications,
+.observed-grid,
+.baseline-grid,
+.luck-grid,
+.external-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.evaluation-classifications { list-style: none; margin: 0; padding: 0; }
+.baseline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.evaluation-classifications > li,
+.metric-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid rgba(143, 101, 216, .24);
+  border-radius: 14px;
+  padding: 14px;
+  background: rgba(10, 8, 16, .38);
+}
+.evaluation-classifications small,
+.metric-card small {
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.evaluation-classifications strong,
+.metric-card strong { color: #f7e3b2; font-size: 1.02rem; line-height: 1.25; }
+.metric-card span,
+.metric-card a,
+.evaluation-caveat,
+.model-footnote { color: var(--muted); font-size: .82rem; line-height: 1.45; }
+.metric-card a { color: #f0c87e; font-weight: 800; text-decoration: none; }
+.evaluation-block { margin-top: 24px; }
+.evaluation-block h3 { margin: 0 0 5px; }
+.evaluation-caveat { margin: 0 0 12px; }
+.model-footnote { margin: 12px 0 0; }
+.baseline-assumptions { margin: 12px 0 0; padding-left: 1.2rem; color: var(--muted); font-size: .82rem; }
+.baseline-assumptions li { margin: 5px 0; }
 
 .board-examples { overflow: hidden; padding: 22px 0 8px; }
 .board-examples-heading { padding-bottom: 20px; }
@@ -396,6 +442,11 @@ footer a { color: #bba8cf; }
 }
 
 @media (max-width: 679px) {
+  .evaluation-classifications,
+  .observed-grid,
+  .baseline-grid,
+  .luck-grid,
+  .external-grid { grid-template-columns: 1fr; }
   .board-example-header { align-items: flex-start; flex-wrap: wrap; }
   .board-note { overflow-wrap: anywhere; }
   .card-popover {

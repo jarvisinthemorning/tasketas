@@ -61,6 +61,102 @@
       {{ body_html | safe }}
     </article>
 
+    {% if comp.evaluation %}
+    <section class="quant-evaluation" aria-labelledby="quant-evaluation-heading">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Experimental model v{{ comp.evaluation.version }}</div>
+          <h2 id="quant-evaluation-heading">Quantitative evaluation</h2>
+        </div>
+        <p>Observed source boards, a reproducible shop model, and external archetype benchmarks. These are separate signals—not one suspiciously magical tier letter.</p>
+      </div>
+
+      <ul class="evaluation-classifications" aria-label="Composition classification">
+        <li><small>Build window</small><strong>{{ comp.evaluation.classification.build_window }}</strong></li>
+        <li><small>Setup debt</small><strong>{{ comp.evaluation.classification.setup_debt }}</strong></li>
+        <li><small>Execution</small><strong>{{ comp.evaluation.classification.execution }}</strong></li>
+      </ul>
+
+      <div class="evaluation-block">
+        <h3>Observed board trajectory</h3>
+        <p class="evaluation-caveat">Recorded source games validate the growth calculation and achievable board. They are successful examples, not median outcomes.</p>
+        <div class="observed-grid">
+          {% for board in comp.evaluation.observed %}
+          <article class="metric-card">
+            <small>{{ board.stage | title }}{% if board.turn %} · Turn {{ board.turn }}{% endif %}</small>
+            <strong>{{ "{:,}".format(board.total_stats) }} total stats{% if board.estimated_from_abbreviated_stats %} ≈{% endif %}</strong>
+            <span>{{ "{:,}".format(board.total_attack) }} attack · {{ "{:,}".format(board.total_health) }} health</span>
+            <span>{{ board.bodies_100_plus }} bodies 100+ · {{ board.bodies_500_plus }} bodies 500+ · {{ board.bodies_1000_plus }} bodies 1k+</span>
+            {% if board.stats_multiplier_per_turn %}
+            <span>{{ "%.2f" | format(board.stats_multiplier_per_turn) }}× raw stats per turn over the previous {{ board.turns_since_previous }} turns</span>
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="evaluation-block">
+        <h3>Baseline calibration</h3>
+        <p class="evaluation-caveat">The baseline is deliberately boring: ordinary core cards, legal board space, and no hero, trinket, Golden, or Discover miracle unless listed. It is compared with the source trajectory rather than bent until the high-roll magically becomes “average.”</p>
+        <div class="baseline-grid">
+          <article class="metric-card">
+            <small>{{ comp.evaluation.baseline.name }}</small>
+            <strong>+{{ "{:,}".format(comp.evaluation.baseline.projected_stat_gain) }} projected stats</strong>
+            <span>Turn {{ comp.evaluation.baseline.start_turn }} → {{ comp.evaluation.baseline.end_turn }} · projected end {{ "{:,}".format(comp.evaluation.baseline.projected_end_stats) }}</span>
+            <span>{{ comp.evaluation.baseline.equation }}</span>
+          </article>
+          <article class="metric-card">
+            <small>Real source comparison</small>
+            <strong>+{{ "{:,}".format(comp.evaluation.baseline.observed_stat_gain) }} observed stats</strong>
+            <span>Observed end {{ "{:,}".format(comp.evaluation.baseline.observed_end_stats) }} · {{ comp.evaluation.baseline.observed_to_baseline_ratio }}× the core-only gain</span>
+            <span>Core floor accounts for {{ "%.1f" | format(comp.evaluation.baseline.baseline_share_of_observed * 100) }}% of the demonstrated growth.</span>
+          </article>
+        </div>
+        <ul class="baseline-assumptions">
+          {% for assumption in comp.evaluation.baseline.assumptions %}<li>{{ assumption }}</li>{% endfor %}
+        </ul>
+        {% if comp.evaluation.baseline.interpretation %}<p class="model-footnote">{{ comp.evaluation.baseline.interpretation }}</p>{% endif %}
+      </div>
+
+      <div class="evaluation-block">
+        <h3>How much luck?</h3>
+        <p class="evaluation-caveat">Hard-roll v1 starts each modeled turn with 10 Gold, buys missing core cards immediately, and spends the rest refreshing at Tavern {{ comp.evaluation.luck.tavern_tier }}. It averages all eligible five-tribe lobbies and excludes Discovers, triples, heroes, trinkets, selling economy, and survival.</p>
+        <div class="luck-grid">
+          {% for scenario in comp.evaluation.luck.scenarios %}
+          <article class="metric-card">
+            <small>{{ scenario.label }}</small>
+            <strong>{{ "%.1f" | format(scenario.conditional_probability * 100) }}% in eligible lobbies</strong>
+            <span>{{ scenario.conditional_label }} · about 1 in {{ scenario.conditional_once_every }} eligible games</span>
+            <span>{{ "%.1f" | format(scenario.all_games_probability * 100) }}% across all lobbies · about 1 in {{ scenario.all_games_once_every }} games</span>
+            <span>Need: {{ scenario.required_names | join(', ') }}{% if scenario.owned_names %} · already own: {{ scenario.owned_names | join(', ') }}{% endif %}</span>
+          </article>
+          {% endfor %}
+        </div>
+        <p class="model-footnote">{{ "{:,}".format(comp.evaluation.luck.simulations) }} deterministic-seed simulations per scenario across {{ comp.evaluation.luck.turns }} recruit turns. Pool-copy assumptions follow the <a href="https://hearthstone.wiki.gg/wiki/Battlegrounds" target="_blank" rel="noopener noreferrer">Hearthstone Wiki Battlegrounds table</a> captured 2026-08-09. This measures the shop hit from the stated position—not how often a player chooses, survives, or completes the high-roll ending.</p>
+      </div>
+
+      {% if comp.evaluation.external %}
+      <div class="evaluation-block">
+        <h3>External benchmark</h3>
+        <div class="external-grid">
+          {% for provider, benchmark in comp.evaluation.external.items() %}
+          <article class="metric-card">
+            <small>{% if provider == 'hsreplay' %}HSReplay{% else %}{{ provider | title }}{% endif %}{% if benchmark.get('captured_at') %} · {{ benchmark.get('captured_at') }}{% endif %}</small>
+            <strong>{% if benchmark.get('tier') %}Tier {{ benchmark.get('tier') }}{% else %}Comparable archetype{% endif %}</strong>
+            {% if benchmark.get('power') is not none %}<span>Power {{ benchmark.get('power') }}</span>{% endif %}
+            {% if benchmark.get('average_position') is not none %}<span>Average position {{ benchmark.get('average_position') }}</span>{% endif %}
+            {% if benchmark.get('games') is not none %}<span>{{ "{:,}".format(benchmark.get('games')) }} recognized games</span>{% endif %}
+            {% if benchmark.get('difficulty') %}<span>Difficulty {{ benchmark.get('difficulty') }}</span>{% endif %}
+            {% if benchmark.get('url') %}<a href="{{ benchmark.get('url') }}" target="_blank" rel="noopener noreferrer">Open benchmark ↗</a>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+        <p class="model-footnote">Firestone Power is an expert powerLevel label, while placement and game count are observed recognized-composition data. Completed-comp samples can omit failed pivots.</p>
+      </div>
+      {% endif %}
+    </section>
+    {% endif %}
+
     {% if comp.board_examples %}
     <section class="board-examples" aria-labelledby="board-examples-heading">
       <div class="section-heading board-examples-heading">

@@ -6,13 +6,13 @@ from pathlib import Path
 from comp_pipeline import (
     CardCatalog,
     CompError,
-    build_index,
     _parse_markdown,
+    analyze_board_examples,
+    build_index,
     canonical_source,
     normalize_api_cards,
     publish_comp,
 )
-
 
 CARDS = {
     "schema_version": 1,
@@ -101,6 +101,37 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
+    def test_board_analysis_calculates_observed_stats_and_growth(self):
+        boards = [
+            {
+                "stage": "mid",
+                "turn": 10,
+                "units": [
+                    {"attack": 100, "health": 120, "golden": False, "annotation": "Divine Shield"},
+                    {"attack": "1.5k", "health": "2k", "golden": True, "annotation": ""},
+                ],
+            },
+            {
+                "stage": "end",
+                "turn": 12,
+                "units": [
+                    {"attack": "4k", "health": "4k", "golden": True, "annotation": "Divine Shield"},
+                    {"attack": 500, "health": 600, "golden": False, "annotation": "Reborn"},
+                ],
+            },
+        ]
+
+        result = analyze_board_examples(boards)
+
+        self.assertEqual(result[0]["total_attack"], 1600)
+        self.assertEqual(result[0]["total_health"], 2120)
+        self.assertEqual(result[0]["total_stats"], 3720)
+        self.assertEqual(result[0]["bodies_1000_plus"], 1)
+        self.assertEqual(result[0]["divine_shields"], 1)
+        self.assertEqual(result[1]["reborns"], 1)
+        self.assertEqual(result[1]["turns_since_previous"], 2)
+        self.assertAlmostEqual(result[1]["stats_multiplier_per_turn"], (9100 / 3720) ** 0.5, places=4)
+
     def test_guide_requires_nonempty_tribes(self):
         with tempfile.TemporaryDirectory() as tmp:
             content = Path(tmp) / "guide.md"
@@ -247,6 +278,7 @@ class PipelineTests(unittest.TestCase):
                     "tier": 3,
                     "minionTypes": ["Beast"],
                     "pool": True,
+                    "categories": ["tavern"],
                     "image": "/cards/production/pngs/full/minions/beast/132796-tasty-lobster.png",
                     "isDuosOnly": False,
                     "isSolosOnly": False,
@@ -258,6 +290,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(card["image"], "https://hsbg.cards/cards/production/pngs/full/minions/beast/132796-tasty-lobster.png")
         self.assertEqual(card["detail"], "https://hsreplay.net/battlegrounds/minions/132796/tasty-lobster")
         self.assertEqual(card["modes"], ["solo", "duos"])
+        self.assertEqual(card["categories"], ["tavern"])
 
     def test_normalize_api_cards_does_not_assign_tribes_to_trinkets(self):
         payload = normalize_api_cards(
@@ -545,6 +578,85 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("Late game", html)
             self.assertNotIn("Late game · Turn", html)
             self.assertIn("watch?v=jCupcgaSjvo&t=600s", html)
+
+    def test_quantitative_evaluation_renders_observed_luck_and_external_metrics(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            evaluation_yaml = """board_examples:
+  - stage: mid
+    turn: 10
+    timestamp: 300
+    units:
+      - card_id: 132796
+        attack: 100
+        health: 120
+  - stage: end
+    turn: 12
+    timestamp: 500
+    units:
+      - card_id: 132796
+        attack: 200
+        health: 220
+evaluation:
+  version: 1
+  assessed_at: 2026-08-09
+  classification:
+    build_window: Midgame build
+    setup_debt: Medium
+    execution: Low
+  baseline:
+    model: hogrider-core-v1
+    parameters:
+      other_quilboars: 5
+      choose_one_cards_per_turn: 1
+      starting_gem_attack: 1
+      starting_gem_health: 1
+    assumptions: [Single Hogrider]
+  luck:
+    tavern_tier: 3
+    turns: 2
+    simulations: 100
+    required_tribes: [beast]
+    scenarios:
+      - label: From scratch
+        required: [132796]
+        owned: []
+  external:
+    firestone:
+      power: 12.3
+      average_position: 3.8
+      tier: B
+      difficulty: Medium
+      games: 1000
+      captured_at: 2026-08-09
+"""
+            content.write_text(VALID_MARKDOWN.replace("source:\n", evaluation_yaml + "source:\n"), encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=False,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn('class="quant-evaluation"', html)
+            self.assertIn("Observed board trajectory", html)
+            self.assertIn("220 total stats", html)
+            self.assertIn("Baseline calibration", html)
+            self.assertIn("projected stats", html)
+            self.assertIn("From scratch", html)
+            self.assertIn("eligible lobbies", html)
+            self.assertIn("Firestone", html)
+            self.assertIn("12.3", html)
 
     def test_publish_refuses_duplicate_source(self):
         with tempfile.TemporaryDirectory() as tmp:
