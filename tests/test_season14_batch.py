@@ -47,12 +47,26 @@ class Season14BatchTests(unittest.TestCase):
         self.assertEqual(len(sources), len(set(sources)))
         self.assertEqual(len(signatures), len(set(signatures)))
 
-    def test_every_source_is_public_and_from_season_14_access(self):
+    def test_every_source_is_public_and_currently_verified(self):
         for meta, _ in self.guides:
             self.assertIn(meta["source"]["type"], {"youtube", "reddit"})
             self.assertTrue(meta["source"]["url"].startswith("https://"))
             source_date = date.fromisoformat(str(meta["source_published_at"])[:10])
-            self.assertGreaterEqual(source_date, SEASON_14_EARLY_ACCESS)
+            if source_date >= SEASON_14_EARLY_ACCESS:
+                continue
+
+            # A deliberately selected older demonstration is allowed for a
+            # singular guide only when its current card pool has been checked
+            # after Season 14 early access and the exception is documented.
+            self.assertIs(meta.get("legacy_source"), True)
+            self.assertTrue(meta.get("legacy_source_note"))
+            current_card_verified_at = date.fromisoformat(
+                str(meta["current_card_verified_at"])[:10]
+            )
+            self.assertGreaterEqual(
+                current_card_verified_at,
+                SEASON_14_EARLY_ACCESS,
+            )
 
     def test_hyena_is_absent_from_all_guides_and_registry_fields(self):
         for meta, body in self.guides:
