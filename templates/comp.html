@@ -105,6 +105,16 @@
         <h2 id="source-heading">{{ comp.source.author }}</h2>
         <p>This guide condenses the linked public {{ comp.source.type }} source. Watch or read the original for the complete game and commentary.</p>
         <a class="source-link" href="{{ comp.source.url }}" target="_blank" rel="noopener noreferrer">Open original source <span aria-hidden="true">↗</span></a>
+        {% if comp.discovery_sources %}
+        <div class="discovery-sources">
+          <div class="section-kicker">Composition directories</div>
+          <ul>
+            {% for directory in comp.discovery_sources %}
+            <li><a class="source-link" href="{{ directory.url }}" target="_blank" rel="noopener noreferrer">{{ directory.label }} <span aria-hidden="true">↗</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
       </div>
       {% if comp.video %}
       <a class="video-card" href="https://www.youtube.com/watch?v={{ comp.video.id }}{% if comp.video.timestamp %}&t={{ comp.video.timestamp }}s{% endif %}" target="_blank" rel="noopener noreferrer" aria-label="Play the source video on YouTube">

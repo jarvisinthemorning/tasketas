@@ -383,6 +383,61 @@ class PipelineTests(unittest.TestCase):
                 html.index('<section class="source-card"'),
             )
 
+    def test_discovery_sources_render_and_register_alongside_original_video(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            discovery_yaml = """discovery_sources:
+  - type: hsreplay
+    url: https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane
+    comp_id: '90'
+  - type: firestone
+    url: https://www.firestoneapp.com/battlegrounds/comps
+    comp_id: quilboar_choose_one
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", discovery_yaml + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="https://example.pages.dev",
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn("https://www.youtube.com/watch?v=jCupcgaSjvo", html)
+            self.assertIn("https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane", html)
+            self.assertIn("https://www.firestoneapp.com/battlegrounds/comps", html)
+            self.assertIn("HSReplay composition guide", html)
+            self.assertIn("Firestone composition directory", html)
+            saved = json.loads(registry.read_text(encoding="utf-8"))["pages"][0]
+            self.assertEqual(
+                saved["discovery_sources"],
+                [
+                    {
+                        "type": "hsreplay",
+                        "url": "https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane",
+                        "comp_id": "90",
+                        "label": "HSReplay composition guide",
+                    },
+                    {
+                        "type": "firestone",
+                        "url": "https://www.firestoneapp.com/battlegrounds/comps",
+                        "comp_id": "quilboar_choose_one",
+                        "label": "Firestone composition directory",
+                    },
+                ],
+            )
+
     def test_video_board_examples_render_ordered_cards_and_stats_before_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

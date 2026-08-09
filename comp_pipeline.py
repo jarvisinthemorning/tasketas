@@ -136,6 +136,54 @@ def _load_json(path: Path) -> dict:
         raise CompError(f"Unable to read {path}: {exc}") from exc
 
 
+def _normalize_discovery_sources(raw_sources: object) -> list[dict]:
+    if raw_sources is None:
+        return []
+    if not isinstance(raw_sources, list):
+        raise CompError("discovery_sources must be a list")
+
+    normalized: list[dict] = []
+    for index, raw in enumerate(raw_sources, start=1):
+        if not isinstance(raw, dict):
+            raise CompError(f"discovery_sources[{index}] must be a mapping")
+        source_type = str(raw.get("type", "")).strip().lower()
+        parsed = urlparse(str(raw.get("url", "")).strip())
+        host = parsed.netloc.lower().removeprefix("www.")
+        comp_id = str(raw.get("comp_id", "")).strip()
+
+        if parsed.scheme != "https":
+            raise CompError(f"discovery_sources[{index}].url must use https")
+        if source_type == "hsreplay":
+            match = re.fullmatch(r"/battlegrounds/comps/(\d+)/[a-z0-9-]+/?", parsed.path)
+            if host != "hsreplay.net" or not match:
+                raise CompError(f"discovery_sources[{index}] must be a public HSReplay comp URL")
+            inferred_id = match.group(1)
+            if comp_id and comp_id != inferred_id:
+                raise CompError(f"discovery_sources[{index}].comp_id does not match its HSReplay URL")
+            comp_id = inferred_id
+            url = f"https://hsreplay.net{parsed.path.rstrip('/')}"
+            label = "HSReplay composition guide"
+        elif source_type == "firestone":
+            if host != "firestoneapp.com" or parsed.path.rstrip("/") != "/battlegrounds/comps":
+                raise CompError(f"discovery_sources[{index}] must use Firestone's public comp directory")
+            if not comp_id:
+                raise CompError(f"discovery_sources[{index}].comp_id is required for Firestone")
+            url = "https://www.firestoneapp.com/battlegrounds/comps"
+            label = "Firestone composition directory"
+        else:
+            raise CompError(f"discovery_sources[{index}].type must be hsreplay or firestone")
+
+        normalized.append(
+            {
+                "type": source_type,
+                "url": url,
+                "comp_id": comp_id,
+                "label": label,
+            }
+        )
+    return normalized
+
+
 def _render_inline_cards(body: str, catalog: CardCatalog) -> tuple[str, list[int]]:
     inline_ids: list[int] = []
     occurrence = 0
@@ -325,6 +373,8 @@ def publish_comp(
         )
 
     comp = dict(metadata)
+    discovery_sources = _normalize_discovery_sources(metadata.get("discovery_sources"))
+    comp["discovery_sources"] = discovery_sources
     comp["sections"] = sections
     comp["board_examples"] = board_examples
     comp["source"]["type"] = source_type
@@ -364,6 +414,7 @@ def publish_comp(
         "source_url": source_url,
         "source_author": metadata["source"].get("author", "Original source"),
         "source_id": source_id,
+        "discovery_sources": discovery_sources,
         "cards": all_ids,
         "published_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
     }

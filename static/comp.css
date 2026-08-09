@@ -117,6 +117,17 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
   text-decoration: none;
 }
 
+.discovery-sources { margin-top: 18px; }
+.discovery-sources ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.discovery-sources .source-link { margin-top: 0; }
+
 .video-card {
   position: relative;
   overflow: hidden;
