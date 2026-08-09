@@ -537,6 +537,56 @@
         126966
       ],
       "published_at": "2026-08-09T07:26:13+00:00"
+    },
+    {
+      "slug": "quilboar-bristlemane-juggernaut",
+      "title": "Bristlemane–Juggernaut Gem Transfer",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/quilboar-bristlemane-juggernaut.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "quilboar"
+      ],
+      "tags": [
+        "season 14",
+        "blood gems",
+        "spell targeting",
+        "rally",
+        "stat transfer"
+      ],
+      "core": [
+        132320,
+        132636
+      ],
+      "addons": [
+        116434,
+        130298
+      ],
+      "cycle": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=08tFc8FYcsI",
+      "source_author": "Shadybunny commentary on JeefHS",
+      "source_id": "08tFc8FYcsI",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane",
+          "comp_id": "90",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "cards": [
+        132320,
+        132636,
+        116434,
+        130298,
+        126671,
+        96786
+      ],
+      "published_at": "2026-08-09T09:54:21+00:00"
     }
   ]
 }
