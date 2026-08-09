@@ -10,9 +10,9 @@ addons: [116434, 130298]
 cycle: []
 flex: [126671, 96786]
 board_examples:
-  - stage: end
+  - stage: late
     timestamp: 1300
-    note: The last stable Tavern board before the lethal final combat. Golden Jailbird Juggernaut carries the concentrated Blood Gems at 8.2k/8.8k, with Golden Gem Rat and Golden Balinda retaining a smaller support package.
+    note: A stable late Tavern board before combat. Golden Jailbird Juggernaut carries the concentrated Blood Gems at 8.2k/8.8k, with Golden Gem Rat and Golden Balinda retaining a smaller support package.
     units:
       - {card_id: 126671, slot: 1, attack: 149, health: 161}
       - {card_id: 132636, slot: 2, attack: 8.2k, health: 8.8k, golden: true}
@@ -26,7 +26,7 @@ discovery_sources:
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=08tFc8FYcsI
-  author: Shadybunny commentary on JeefHS
+  author: Shadybunny
 video:
   id: 08tFc8FYcsI
   timestamp: 309
@@ -74,7 +74,7 @@ Juggernaut is particularly awkward for a taunted Leeroy plan: the summoned Golem
 
 ## Demonstrated ceiling
 
-At **21:40**, the stable Tavern board shows Golden Jailbird Juggernaut at **8.2k/8.8k**, backed by Golden Gem Rat and Golden Balinda. The following combat is against the only remaining opponent; the Golem chain survives and deals lethal damage. This proves the comp's endgame conversion rather than merely showing the pieces in hand.
+At **21:40**, the stable Tavern board shows Golden Jailbird Juggernaut at **8.2k/8.8k**, backed by Golden Gem Rat and Golden Balinda. The following combat visibly demonstrates the enormous Blood Golems produced by the Rally chain. The available source does not show an explicit victory/result screen, so this is evidence of the comp's endgame conversion—not a claimed first-place result.
 
 ## Useful timestamps
 
@@ -86,7 +86,7 @@ At **21:40**, the stable Tavern board shows Golden Jailbird Juggernaut at **8.2k
 - **16:49** — The large Gem package is transferred onto the intended carry.
 - **20:11** — Golden Juggernaut is visibly above 3k while the final package is still being assembled.
 - **21:40** — Stable final Tavern board: 8.2k/8.8k Golden Juggernaut.
-- **23:00** — The final remaining opponent takes lethal after the Juggernaut Golem chain.
+- **23:00** — The enormous Blood Golems produced by the Juggernaut Rally chain are visible in combat.
 
 The linked commentary is based on JeefHS's original gameplay upload:
 <https://www.youtube.com/watch?v=FZWbxeaiq-w>
