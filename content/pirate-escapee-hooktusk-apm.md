@@ -42,6 +42,13 @@ board_examples:
   - {card_id: 132762, slot: 4, attack: 3.2k, health: 3.2k, golden: true}
   - {card_id: 132925, slot: 5, attack: 1.7k, health: 1.7k, golden: true}
   - {card_id: 132925, slot: 6, attack: 1k, health: 1k, golden: true}
+discovery_sources:
+- type: hsreplay
+  url: https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden
+  comp_id: '89'
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: pirates_escapee_chef
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=ti8h4WQoG2Q

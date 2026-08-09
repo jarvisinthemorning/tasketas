@@ -302,6 +302,20 @@
       "source_url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
       "source_author": "Rdu Hearthstone",
       "source_id": "ti8h4WQoG2Q",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden",
+          "comp_id": "89",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "pirates_escapee_chef",
+          "label": "Firestone composition directory"
+        }
+      ],
       "cards": [
         132762,
         132925,
@@ -309,7 +323,7 @@
         122520,
         132921
       ],
-      "published_at": "2026-08-08T23:33:35+00:00"
+      "published_at": "2026-08-09T09:59:04+00:00"
     },
     {
       "slug": "quilboar-choose-one-hogrider",
