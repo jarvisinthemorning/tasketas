@@ -229,6 +229,14 @@
       "source_url": "https://www.youtube.com/watch?v=EhDY7nt7obg",
       "source_author": "dogdog",
       "source_id": "EhDY7nt7obg",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics",
+          "comp_id": "2",
+          "label": "HSReplay composition guide"
+        }
+      ],
       "cards": [
         98588,
         132895,
@@ -243,7 +251,7 @@
         101314,
         120905
       ],
-      "published_at": "2026-08-08T18:53:24+00:00"
+      "published_at": "2026-08-09T10:03:28+00:00"
     },
     {
       "slug": "naga-fauna-spellcraft",

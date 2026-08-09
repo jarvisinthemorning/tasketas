@@ -124,6 +124,10 @@ board_examples:
     health: 12k
     golden: true
     annotation: Divine Shield
+discovery_sources:
+- type: hsreplay
+  url: https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics
+  comp_id: '2'
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=EhDY7nt7obg
