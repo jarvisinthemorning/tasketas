@@ -72,6 +72,20 @@
       "source_url": "https://www.youtube.com/watch?v=WYybK8pRz8Y",
       "source_author": "XQN",
       "source_id": "WYybK8pRz8Y",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff",
+          "comp_id": "41",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "demons_fermenter",
+          "label": "Firestone composition directory"
+        }
+      ],
       "cards": [
         110664,
         132901,
@@ -80,7 +94,7 @@
         130662,
         80740
       ],
-      "published_at": "2026-08-09T00:05:00+00:00"
+      "published_at": "2026-08-09T10:00:35+00:00"
     },
     {
       "slug": "dragon-kalecgos-battlecry",

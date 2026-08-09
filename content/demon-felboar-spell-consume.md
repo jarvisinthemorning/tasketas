@@ -32,6 +32,13 @@ board_examples:
   - {card_id: 80740, slot: 5, attack: 172, health: 171}
   - {card_id: 96786, slot: 6, attack: 53, health: 55}
   - {card_id: 130298, slot: 7, attack: 9, health: 9}
+discovery_sources:
+- type: hsreplay
+  url: https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff
+  comp_id: '41'
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: demons_fermenter
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=WYybK8pRz8Y
