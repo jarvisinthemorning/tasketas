@@ -371,6 +371,20 @@
       "source_url": "https://www.youtube.com/watch?v=d50H4G3vd58",
       "source_author": "dogdog",
       "source_id": "d50H4G3vd58",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one",
+          "comp_id": "88",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "quilboar_choose_one",
+          "label": "Firestone composition directory"
+        }
+      ],
       "cards": [
         116195,
         116434,
@@ -381,7 +395,7 @@
         113154,
         133329
       ],
-      "published_at": "2026-08-09T00:05:06+00:00"
+      "published_at": "2026-08-09T10:01:53+00:00"
     },
     {
       "slug": "undead-snazzy-reborn",

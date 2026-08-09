@@ -43,6 +43,13 @@ board_examples:
   - {card_id: 116195, slot: 4, attack: 513, health: 746}
   - {card_id: 133329, slot: 5, attack: 2.4k, health: 3.6k, annotation: Divine Shield}
   - {card_id: 116434, slot: 6, attack: 496, health: 344, golden: true}
+discovery_sources:
+- type: hsreplay
+  url: https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one
+  comp_id: '88'
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: quilboar_choose_one
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=d50H4G3vd58
