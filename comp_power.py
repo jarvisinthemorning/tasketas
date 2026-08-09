@@ -17,7 +17,7 @@ from pathlib import Path
 
 from comp_evaluation import SHOP_SLOTS, STANDARD_TRIBES, _pool_for_lobby
 
-MODEL_VERSION = "power-v3"
+MODEL_VERSION = "power-v4"
 DEFAULT_SIMULATIONS = 5_000
 DEFAULT_SEED = 14_014
 ROLL_START_TURN = 10
@@ -39,10 +39,25 @@ METHODICAL_GOLD_COST = 3
 BRANN = 96786
 SHELL_COLLECTOR = 80740
 BARRIER_BANSHEE = 133081
+PLAGUERUNNER = 126451
+DRUSTFALLEN_BUTCHER = 120104
+BUTCHERING = 110412
+CATACLYSMIC_HARBINGER = 130884
+FRIENDLY_GEIST = 120219
+FIRE_FORGED_EVOKER = 120301
+CRIMSON_VINDICATOR = 132953
+PERSISTENT_POET = 108463
+WARPWING = 92413
+MIGHTY_DRAGONBREATH = 132995
 
 ENGINE_PROFILES = (
     ("hogrider", frozenset({HOGRIDER, GEM_RAT})),
     ("demon-shop-consume", frozenset({DISTRACTOR, FELBOAR})),
+    ("plaguerunner-butchering", frozenset({PLAGUERUNNER, DRUSTFALLEN_BUTCHER})),
+    (
+        "vindicator-poet-warpwing",
+        frozenset({FIRE_FORGED_EVOKER, CRIMSON_VINDICATOR, PERSISTENT_POET, WARPWING}),
+    ),
 )
 
 
@@ -80,6 +95,10 @@ def _profile_for(entry: dict) -> str:
                 raise ValueError("Hogrider simulations require Gem Day in spells")
             if name == "demon-shop-consume" and METHODICAL_MADNESS not in spell_ids:
                 raise ValueError("Demon shop-consume simulations require Methodical Madness in spells")
+            if name == "plaguerunner-butchering" and BUTCHERING not in spell_ids:
+                raise ValueError("Plaguerunner simulations require Butchering in spells")
+            if name == "vindicator-poet-warpwing" and MIGHTY_DRAGONBREATH not in spell_ids:
+                raise ValueError("Warpwing simulations require Mighty Dragonbreath in spells")
             return name
     raise ValueError("No deterministic power profile supports this composition yet")
 
@@ -433,6 +452,108 @@ def _simulate_demons(
     return traces
 
 
+def _simulate_plaguerunner(
+    entry: dict,
+    cards_payload: dict,
+    board: list[dict],
+    online_turn: int,
+    checkpoint_turn: int,
+    rng: random.Random,
+) -> list[dict]:
+    """Model the source-shown Portrait, Butchering, and spell-copy loop."""
+    del entry, cards_payload, rng
+    traces: list[dict] = []
+    pending_butcherings = 1
+    tavern_spell_attack_bonus = 0
+    plague = next(unit for unit in board if unit["card_id"] == PLAGUERUNNER)
+    plague_is_golden = bool(plague["golden"])
+
+    for turn in range(online_turn, checkpoint_turn + 1):
+        actions = pending_butcherings
+        total_attack_gain = 0
+        for _ in range(actions):
+            deathrattle_gain = 8 if plague_is_golden else 4
+            gain = 5 + tavern_spell_attack_bonus + deathrattle_gain
+            for unit in board:
+                if "undead" in unit["tribes"] or "all" in unit["tribes"]:
+                    unit["attack"] += gain
+            total_attack_gain += gain
+            # Plaguerunner Portrait explicitly returns a plain copy.
+            plague_is_golden = False
+
+        geists = [unit for unit in board if unit["card_id"] == FRIENDLY_GEIST]
+        tavern_spell_attack_bonus += sum(2 if unit["golden"] else 1 for unit in geists)
+        butchers = [unit for unit in board if unit["card_id"] == DRUSTFALLEN_BUTCHER]
+        butcher_refills = sum(2 if unit["golden"] else 1 for unit in butchers)
+        harbingers = [unit for unit in board if unit["card_id"] == CATACLYSMIC_HARBINGER]
+        harbinger_refills = sum(2 if unit["golden"] else 1 for unit in harbingers)
+        # Plaguerunner Portrait returns the destroyed Plaguerunner. Optional
+        # spell-copy trinkets are not modeled or assigned invented odds.
+        pending_butcherings = butcher_refills + harbinger_refills
+        events = [
+            (
+                f"Spent {actions} Butchering actions for +{total_attack_gain} Attack per Undead; "
+                f"Friendly Geist raised future Tavern-spell Attack by +{tavern_spell_attack_bonus}; "
+                f"banked {pending_butcherings} Butcherings"
+            )
+        ]
+        traces.append(_snapshot(turn, board, events))
+    return traces
+
+
+def _simulate_warpwing(
+    entry: dict,
+    cards_payload: dict,
+    board: list[dict],
+    online_turn: int,
+    checkpoint_turn: int,
+    rng: random.Random,
+) -> list[dict]:
+    """Model Evoker/Vindicator combat buffs retained by Poet on Warpwings."""
+    del entry, cards_payload, rng
+    traces: list[dict] = []
+    evokers = [unit for unit in board if unit["card_id"] == FIRE_FORGED_EVOKER]
+    vindicators = [unit for unit in board if unit["card_id"] == CRIMSON_VINDICATOR]
+    protected_warpwings: list[tuple[dict, int]] = []
+    for index, unit in enumerate(board):
+        if unit["card_id"] != WARPWING:
+            continue
+        adjacent_poets = [
+            board[neighbor]
+            for neighbor in (index - 1, index + 1)
+            if 0 <= neighbor < len(board) and board[neighbor]["card_id"] == PERSISTENT_POET
+        ]
+        if adjacent_poets:
+            multiplier = max(2 if poet["golden"] else 1 for poet in adjacent_poets)
+            protected_warpwings.append((unit, multiplier))
+    evoker_attack = sum(4 if unit["golden"] else 2 for unit in evokers)
+    evoker_health = sum(2 if unit["golden"] else 1 for unit in evokers)
+
+    for turn in range(online_turn, checkpoint_turn + 1):
+        dragonbreaths = sum(2 if unit["golden"] else 1 for unit in vindicators)
+        dragonbreath_attack = dragonbreaths * 2
+        dragonbreath_health = dragonbreaths * 2
+        retained_attack = evoker_attack + dragonbreath_attack
+        retained_health = evoker_health + dragonbreath_health
+        for unit, poet_multiplier in protected_warpwings:
+            unit["attack"] += retained_attack * poet_multiplier
+            unit["health"] += retained_health * poet_multiplier
+        # Each combat-cast Dragonbreath doubles the Evoker's current buff for
+        # later fights; it cannot enlarge the Start-of-Combat effect already
+        # resolved this combat.
+        evoker_attack *= 2**dragonbreaths
+        evoker_health *= 2**dragonbreaths
+        events = [
+            (
+                f"Retained +{retained_attack}/+{retained_health} on "
+                f"{len(protected_warpwings)} Poet-protected Warpwings after "
+                f"{dragonbreaths} Mighty Dragonbreath casts"
+            )
+        ]
+        traces.append(_snapshot(turn, board, events))
+    return traces
+
+
 def _representative_trace(successes: list[dict], target_power: int) -> dict:
     return min(successes, key=lambda run: (abs(run["power"] - target_power), run["run"]))
 
@@ -483,6 +604,14 @@ def evaluate_comp(
             ]
             if profile == "hogrider":
                 trace = _simulate_hogrider(
+                    entry, cards_payload, board, online_turn, checkpoint_turn, power_rng
+                )
+            elif profile == "plaguerunner-butchering":
+                trace = _simulate_plaguerunner(
+                    entry, cards_payload, board, online_turn, checkpoint_turn, power_rng
+                )
+            elif profile == "vindicator-poet-warpwing":
+                trace = _simulate_warpwing(
                     entry, cards_payload, board, online_turn, checkpoint_turn, power_rng
                 )
             else:

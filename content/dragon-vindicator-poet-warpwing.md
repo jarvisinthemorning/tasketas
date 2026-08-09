@@ -8,8 +8,13 @@ tags: [season 14, rally, combat scaling, divine shield, windfury]
 core: [120301, 132953, 108463, 92413]
 addons: [132957, 133713, 112001]
 cycle: []
-composition_minions: []
-composition_spells: []
+composition_minions:
+  - {card_id: 120301, count: 1, golden_count: 0}
+  - {card_id: 132953, count: 1, golden_count: 0}
+  - {card_id: 108463, count: 1, golden_count: 0}
+  - {card_id: 92413, count: 1, golden_count: 0}
+composition_spells:
+  - {card_id: 132995, count: 1}
 board_examples: []
 source:
   type: youtube

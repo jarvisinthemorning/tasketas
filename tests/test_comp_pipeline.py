@@ -7,6 +7,7 @@ from comp_pipeline import (
     RESULT_FIELDS,
     CardCatalog,
     CompError,
+    _materialize_power_summary,
     _parse_markdown,
     analyze_board_examples,
     build_index,
@@ -102,6 +103,39 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
+    def test_power_summary_explains_plaguerunner_and_warpwing_profiles(self):
+        metrics = {
+            "probability": 0.1,
+            "turns_to_online": 13,
+            "p20_power": 100,
+            "p50_power": 200,
+            "p80_power": 300,
+        }
+        undead = _materialize_power_summary(
+            metrics,
+            [
+                {"card_id": 126451},
+                {"card_id": 120104},
+                {"card_id": 120219},
+            ],
+        )
+        dragons = _materialize_power_summary(
+            metrics,
+            [
+                {"card_id": 120301},
+                {"card_id": 132953},
+                {"card_id": 108463},
+                {"card_id": 92413},
+            ],
+        )
+
+        self.assertTrue(any("Butchering" in note for note in undead["notes"]))
+        self.assertTrue(any("conditional" in note for note in undead["notes"]))
+        self.assertTrue(any("trinket odds" in note for note in undead["notes"]))
+        self.assertTrue(any("Poet" in note for note in dragons["notes"]))
+        self.assertTrue(any("doubles" in note for note in dragons["notes"]))
+        self.assertTrue(any("does not assign" in note for note in dragons["notes"]))
+
     def test_board_analysis_calculates_observed_stats_and_growth(self):
         boards = [
             {

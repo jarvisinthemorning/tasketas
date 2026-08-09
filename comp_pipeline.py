@@ -18,9 +18,16 @@ from comp_power import (
     BALINDA,
     CHECKPOINT_TURN,
     CONTENTION_HOLD_CHANCE,
+    CRIMSON_VINDICATOR,
+    DRUSTFALLEN_BUTCHER,
+    FIRE_FORGED_EVOKER,
+    FRIENDLY_GEIST,
     HOGRIDER,
+    PERSISTENT_POET,
+    PLAGUERUNNER,
     ROLL_START_TURN,
     ROLL_TURNS,
+    WARPWING,
 )
 
 
@@ -378,6 +385,22 @@ def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dic
     if HOGRIDER in minion_ids:
         notes.append(
             "Each Turbo Hogrider turns every Choose One card into Blood Gems for the rest of the Quilboar board."
+        )
+    if {PLAGUERUNNER, DRUSTFALLEN_BUTCHER, FRIENDLY_GEIST} <= minion_ids:
+        notes.append(
+            "Butchering and Plaguerunner add permanent Attack to every Undead; "
+            "Friendly Geist increases the Tavern-spell portion of later loops."
+        )
+        notes.append(
+            "The acquisition probability is conditional on already owning Plaguerunner Portrait; "
+            "it excludes Portrait and optional trinket odds."
+        )
+    if {FIRE_FORGED_EVOKER, CRIMSON_VINDICATOR, PERSISTENT_POET, WARPWING} <= minion_ids:
+        notes.append(
+            "Persistent Poet makes Warpwing retain Fire-forged Evoker and Crimson "
+            "Vindicator combat gains between fights; each combat-cast Mighty "
+            "Dragonbreath doubles the Evoker buff for the next fight. The score "
+            "does not assign extra utility to Warpwing being Immune while attacking."
         )
     return {
         "probability": probability,

@@ -6,7 +6,10 @@ import unittest
 from pathlib import Path
 
 from comp_power import (
+    _profile_for,
     _simulate_hogrider,
+    _simulate_plaguerunner,
+    _simulate_warpwing,
     effective_board_power,
     evaluate_comp,
     recalculate_registry,
@@ -114,6 +117,197 @@ def demon_entry(with_balinda=True):
 
 
 class CompPowerTests(unittest.TestCase):
+    def test_warpwing_poet_does_not_retain_for_nonadjacent_warpwings(self):
+        def unit(card_id, attack, health, tribes):
+            return {
+                "card_id": card_id,
+                "name": str(card_id),
+                "attack": attack,
+                "health": health,
+                "golden": False,
+                "keywords": [],
+                "tribes": tribes,
+                "blood_gem_attack": 0,
+                "blood_gem_health": 0,
+            }
+
+        board = [
+            unit(92413, 12, 4, ["dragon"]),
+            unit(120301, 8, 5, ["dragon"]),
+            unit(132953, 8, 9, ["dragon"]),
+            unit(108463, 2, 3, ["dragon"]),
+            unit(92413, 12, 4, ["dragon"]),
+        ]
+
+        _simulate_warpwing({}, CARDS, board, 13, 13, random.Random(1))
+
+        self.assertEqual((board[0]["attack"], board[0]["health"]), (12, 4))
+        self.assertEqual((board[4]["attack"], board[4]["health"]), (16, 7))
+
+    def test_warpwing_poet_retains_evoker_and_vindicator_combat_buffs(self):
+        def unit(card_id, attack, health, tribes, keywords=()):
+            return {
+                "card_id": card_id,
+                "name": str(card_id),
+                "attack": attack,
+                "health": health,
+                "golden": False,
+                "keywords": list(keywords),
+                "tribes": tribes,
+                "blood_gem_attack": 0,
+                "blood_gem_health": 0,
+            }
+
+        board = [
+            unit(120301, 8, 5, ["dragon"]),
+            unit(132953, 8, 9, ["dragon"], ["divine shield"]),
+            unit(92413, 12, 4, ["dragon"]),
+            unit(108463, 2, 3, ["dragon"], ["divine shield"]),
+            unit(92413, 12, 4, ["dragon"]),
+        ]
+
+        trace = _simulate_warpwing({}, CARDS, board, 13, 14, random.Random(1))
+
+        self.assertEqual(len(trace), 2)
+        self.assertEqual((board[2]["attack"], board[2]["health"]), (22, 11))
+        self.assertEqual((board[4]["attack"], board[4]["health"]), (22, 11))
+        self.assertIn("2 Poet-protected Warpwings", trace[-1]["events"][0])
+
+    def test_plaguerunner_converts_butchering_refills_into_permanent_attack(self):
+        def unit(card_id, attack, health, tribes):
+            return {
+                "card_id": card_id,
+                "name": str(card_id),
+                "attack": attack,
+                "health": health,
+                "golden": False,
+                "keywords": [],
+                "tribes": tribes,
+                "blood_gem_attack": 0,
+                "blood_gem_health": 0,
+            }
+
+        board = [
+            unit(126451, 4, 2, ["undead"]),
+            unit(130884, 6, 10, []),
+            unit(120219, 6, 3, ["undead"]),
+            unit(120219, 6, 3, ["undead"]),
+            unit(133081, 7, 7, ["undead"]),
+            unit(120104, 2, 7, ["undead"]),
+            unit(120104, 2, 7, ["undead"]),
+        ]
+
+        trace = _simulate_plaguerunner({}, CARDS, board, 13, 14, random.Random(1))
+
+        self.assertEqual(len(trace), 2)
+        self.assertEqual(board[0]["attack"], 46)
+        self.assertEqual(board[1]["attack"], 6)
+        self.assertIn("3 Butchering actions", trace[-1]["events"][0])
+
+    def test_plaguerunner_evaluation_uses_its_engine_trace(self):
+        cards = json.loads(json.dumps(CARDS))
+        cards["cards"].update(
+            {
+                "126451": {
+                    "id": 126451,
+                    "name": "Plaguerunner",
+                    "type": "minion",
+                    "tier": 4,
+                    "attack": 4,
+                    "health": 2,
+                    "attack_gold": 8,
+                    "health_gold": 4,
+                    "keywords": ["deathrattle"],
+                    "tribes": ["Undead"],
+                    "modes": ["solo"],
+                    "categories": ["tavern"],
+                    "pool": True,
+                },
+                "120104": {
+                    "id": 120104,
+                    "name": "Drustfallen Butcher",
+                    "type": "minion",
+                    "tier": 5,
+                    "attack": 2,
+                    "health": 7,
+                    "attack_gold": 4,
+                    "health_gold": 14,
+                    "keywords": ["avenge"],
+                    "tribes": ["Undead"],
+                    "modes": ["solo"],
+                    "categories": ["tavern"],
+                    "pool": True,
+                },
+            }
+        )
+        entry = {
+            "slug": "plaguerunner-test",
+            "tribes": ["undead"],
+            "minions": [
+                {"card_id": 126451, "count": 1},
+                {"card_id": 120104, "count": 1},
+            ],
+            "spells": [{"card_id": 110412, "count": 1}],
+        }
+
+        summary, artifact = evaluate_comp(entry, cards, simulations=200, seed=77)
+
+        self.assertGreater(summary["probability"], 0)
+        success = next(run for run in artifact["simulations"] if run["online_turn"] is not None)
+        self.assertIn("Butchering actions", success["turns"][-1]["events"][0])
+
+    def test_warpwing_evaluation_uses_its_engine_trace(self):
+        catalog = json.loads((Path(__file__).parents[1] / "data/cards.json").read_text())
+        required = (120301, 132953, 108463, 92413)
+        cards = {"cards": {str(card_id): catalog["cards"][str(card_id)] for card_id in required}}
+        entry = {
+            "slug": "warpwing-test",
+            "tribes": ["dragon"],
+            "minions": [{"card_id": card_id, "count": 1} for card_id in required],
+            "spells": [{"card_id": 132995, "count": 1}],
+        }
+
+        summary, artifact = evaluate_comp(entry, cards, simulations=200, seed=77)
+
+        self.assertGreater(summary["probability"], 0)
+        success = next(run for run in artifact["simulations"] if run["online_turn"] is not None)
+        self.assertIn("Poet-protected Warpwings", success["turns"][-1]["events"][0])
+
+    def test_warpwing_profile_requires_the_full_retention_engine(self):
+        entry = {
+            "minions": [
+                {"card_id": 120301, "count": 1},
+                {"card_id": 132953, "count": 1},
+                {"card_id": 108463, "count": 1},
+                {"card_id": 92413, "count": 1},
+            ],
+            "spells": [{"card_id": 132995, "count": 1}],
+        }
+        self.assertEqual(_profile_for(entry), "vindicator-poet-warpwing")
+
+        entry["spells"] = []
+        with self.assertRaisesRegex(ValueError, "Mighty Dragonbreath"):
+            _profile_for(entry)
+
+        entry["spells"] = [{"card_id": 132995, "count": 1}]
+        entry["minions"] = entry["minions"][:-1]
+        with self.assertRaisesRegex(ValueError, "No deterministic power profile"):
+            _profile_for(entry)
+
+    def test_plaguerunner_profile_requires_butchering_fuel(self):
+        entry = {
+            "minions": [
+                {"card_id": 126451, "count": 1},
+                {"card_id": 120104, "count": 2},
+            ],
+            "spells": [{"card_id": 110412, "count": 1}],
+        }
+        self.assertEqual(_profile_for(entry), "plaguerunner-butchering")
+
+        entry["spells"] = []
+        with self.assertRaisesRegex(ValueError, "Butchering"):
+            _profile_for(entry)
+
     def test_hogrider_delays_end_of_turn_fuel_and_resolves_gatekeeper_tea_set(self):
         def unit(card_id, tribes):
             return {

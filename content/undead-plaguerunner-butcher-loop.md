@@ -8,8 +8,14 @@ tags: [season 14, trinket, deathrattle, attack scaling, cycle]
 core: [133391, 126451, 120104]
 addons: [133712, 130884, 120219, 97408, 132322, 133081]
 cycle: [110412]
-composition_minions: []
-composition_spells: []
+composition_minions:
+  - {card_id: 126451, count: 1, golden_count: 0}
+  - {card_id: 130884, count: 1, golden_count: 0}
+  - {card_id: 120219, count: 1, golden_count: 0}
+  - {card_id: 133081, count: 1, golden_count: 0}
+  - {card_id: 120104, count: 1, golden_count: 0}
+composition_spells:
+  - {card_id: 110412, count: 1}
 board_examples:
   - stage: end
     turn: 14

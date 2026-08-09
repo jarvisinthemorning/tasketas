@@ -774,15 +774,51 @@
         "attack scaling",
         "cycle"
       ],
-      "minions": [],
-      "spells": [],
+      "minions": [
+        {
+          "card_id": 126451,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130884,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120219,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133081,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120104,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 110412,
+          "count": 1
+        }
+      ],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=8d42ovfpwBw",
       "source_author": "BeterBabbit",
       "source_id": "8d42ovfpwBw",
       "discovery_sources": [],
-      "published_at": "2026-08-09T19:33:49+00:00"
+      "published_at": "2026-08-09T19:33:49+00:00",
+      "probability": 0.0288,
+      "turns_to_online": 13,
+      "p20_power": 170,
+      "p50_power": 170,
+      "p80_power": 170
     },
     {
       "slug": "dragon-vindicator-poet-warpwing",
@@ -802,15 +838,46 @@
         "divine shield",
         "windfury"
       ],
-      "minions": [],
-      "spells": [],
+      "minions": [
+        {
+          "card_id": 120301,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132953,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 108463,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 92413,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 132995,
+          "count": 1
+        }
+      ],
       "verified_at": "2026-08-09",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=VDLCBxk_-48",
       "source_author": "Shadybunny",
       "source_id": "VDLCBxk_-48",
       "discovery_sources": [],
-      "published_at": "2026-08-09T19:33:49+00:00"
+      "published_at": "2026-08-09T19:33:49+00:00",
+      "probability": 0.0354,
+      "turns_to_online": 13,
+      "p20_power": 80,
+      "p50_power": 80,
+      "p80_power": 96
     }
   ]
 }
