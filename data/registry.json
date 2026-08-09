@@ -493,6 +493,50 @@
         90425
       ],
       "published_at": "2026-08-09T05:20:45+00:00"
+    },
+    {
+      "slug": "infinite-reborn-leeroy-scam",
+      "title": "Infinite Reborn Leeroy Scam",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/infinite-reborn-leeroy-scam.html",
+      "season": 14,
+      "modes": [
+        "solo",
+        "duos"
+      ],
+      "tribes": [
+        "undead"
+      ],
+      "tags": [
+        "season 14",
+        "scam",
+        "reborn",
+        "venomous",
+        "utility"
+      ],
+      "core": [
+        127446,
+        90425
+      ],
+      "addons": [
+        65031,
+        122219
+      ],
+      "cycle": [
+        126966
+      ],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=weHaBCZDvQw",
+      "source_author": "XQN",
+      "source_id": "weHaBCZDvQw",
+      "cards": [
+        127446,
+        90425,
+        65031,
+        122219,
+        126966
+      ],
+      "published_at": "2026-08-09T07:26:13+00:00"
     }
   ]
 }
