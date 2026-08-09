@@ -5,8 +5,8 @@ season: 14
 modes: [solo]
 tribes: [dragon]
 tags: [season 14, rally, combat scaling, divine shield, windfury]
-core: [132953, 132957, 120301, 108463, 92413]
-addons: [127441, 130298, 133713, 112001]
+core: [120301, 132953, 108463, 92413]
+addons: [132957, 133713, 112001]
 cycle: []
 composition_minions: []
 composition_spells: []
@@ -17,7 +17,7 @@ source:
   author: Shadybunny
 video:
   id: VDLCBxk_-48
-  timestamp: 615
+  timestamp: 472
 source_published_at: '2026-08-09'
 verified_at: '2026-08-09'
 ---
@@ -26,7 +26,7 @@ verified_at: '2026-08-09'
 
 This Dragon line turns temporary combat buffs into permanent keywords and stats. [[card:132953|Crimson Vindicator]] casts Mighty Dragonbreath through Rally, [[card:132957|Sky-hatch Runaway]] triggers that Rally during recruit, and [[card:120301|Fire-forged Evoker]] improves its start-of-combat Dragon buff as Tavern spells are cast.
 
-The combat conversion comes from [[card:108463|Persistent Poet]] or [[card:127441|Timewarped Poet]]. Put [[card:92413|Warpwing]] beside a Poet so combat-granted stats, Divine Shield, Windfury, and other bonus keywords persist. Warpwing is then a premium recipient: immunity while attacking lets the retained attack and Windfury translate into repeated safe hits.
+The combat conversion comes from [[card:108463|Persistent Poet]]. Put [[card:92413|Warpwing]] beside it so combat-granted stats, Divine Shield, Windfury, and other bonus keywords persist. Warpwing is then a premium recipient: immunity while attacking lets retained attack and Windfury translate into repeated safe hits.
 
 ## When to commit
 
@@ -34,7 +34,6 @@ The source does not force Dragons from the opening. It stabilizes with an early 
 
 ## Enablers
 
-- [[card:130298|Balinda Stonehearth]] doubles friendly-targeting spells and improves the early Vindicator Rally payoff.
 - [[card:133713|Maldraxxus Dagger]] repeatedly creates extra Dark-Gifted copies of a chosen warband minion; the source uses those extra copies to deepen the Dragon package.
 - [[card:112001|Azeroth Model Globe]] supplies Tier 6 discoveries and Gold, helping reach Vindicator and additional Warpwing copies.
 - Tavern spells are not filler: every cast permanently improves Fire-forged Evoker's future start-of-combat buff.
@@ -43,13 +42,13 @@ The source does not force Dragons from the opening. It stabilizes with an early 
 
 1. Use a reasonable early board instead of buying weak Dragons merely for the tribe label.
 2. Accumulate Tavern-spell casts so Fire-forged Evoker's combat buff becomes worth preserving.
-3. Use Sky-hatch Runaway on Crimson Vindicator to cast Mighty Dragonbreath during recruit; Balinda can double that payoff while she remains on board.
-4. Place Warpwing adjacent to Persistent Poet, or use Timewarped Poet when available, so combat-granted stats and bonus keywords become permanent.
+3. Use Sky-hatch Runaway on Crimson Vindicator to cast another Mighty Dragonbreath during recruit.
+4. Place Warpwing adjacent to Persistent Poet so combat-granted stats and bonus keywords become permanent.
 5. Add or copy further Warpwings only when Poet coverage and board space remain functional.
 
 ## Positioning
 
-Poet adjacency decides which Dragons keep combat gains. The source repeatedly checks the two protected slots and eventually moves the largest Warpwing away from an early attack once it becomes too valuable to expose. Attack with immune Warpwing carries early enough to exploit Windfury, but keep pure support pieces behind them.
+Poet adjacency decides which Dragons keep combat gains. Lead with one Vindicator so Mighty Dragonbreath resolves before the immune Warpwings attack, then keep pure support pieces behind the carry package. Poet coverage can shift after an older Dragon has already retained its important keywords.
 
 ## Failure modes
 
