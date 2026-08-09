@@ -444,13 +444,27 @@
       "source_url": "https://www.youtube.com/watch?v=IV8rBG-3CA8",
       "source_author": "Rdu Hearthstone",
       "source_id": "IV8rBG-3CA8",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/14/undead-attack-scaling",
+          "comp_id": "14",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "undead_butcher",
+          "label": "Firestone composition directory"
+        }
+      ],
       "cards": [
         133083,
         133081,
         120104,
         113158
       ],
-      "published_at": "2026-08-08T23:33:55+00:00"
+      "published_at": "2026-08-09T10:04:15+00:00"
     },
     {
       "slug": "murloc-primitive-painter-cycle",

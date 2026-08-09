@@ -18,6 +18,13 @@ core:
 addons:
 - 113158
 cycle: []
+discovery_sources:
+- type: hsreplay
+  url: https://hsreplay.net/battlegrounds/comps/14/undead-attack-scaling
+  comp_id: '14'
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: undead_butcher
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=IV8rBG-3CA8
