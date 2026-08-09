@@ -742,6 +742,7 @@ composition_spells: []
             self.assertIn("25.7k", html)
             self.assertIn("Turn 11", html)
             self.assertIn("P20", html)
+            self.assertIn("power-v6", html)
             self.assertIn("8.2k", html)
             self.assertIn("P50", html)
             self.assertIn("16.4k", html)

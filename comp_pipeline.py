@@ -42,6 +42,7 @@ from comp_power import (
     LEEROY,
     MANA_SURGE,
     MOAT_CUSTODIAN,
+    MODEL_VERSION,
     PERSISTENT_POET,
     PLAGUERUNNER,
     ROLL_START_TURN,
@@ -501,7 +502,7 @@ def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dic
             "pool copy is held by a rival. Online is the median turn among successful assemblies."
         ),
         "score_note": (
-            "Power is a versioned mechanics-aware board-strength score, not combat simulation "
+            f"Power model {MODEL_VERSION} is a mechanics-aware board-strength score, not combat simulation "
             "or win probability. Percentiles include only successful assemblies."
         ),
         "p20": powers[0],
