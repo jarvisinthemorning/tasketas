@@ -43,6 +43,10 @@ board_examples:
   - {card_id: 120674, slot: 4, attack: 5.5k, health: 10k}
   - {card_id: 96786, slot: 5, attack: 246, health: 419}
   - {card_id: 122516, slot: 6, attack: 269, health: 445}
+discovery_sources:
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: elemental_boost
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=eeyh2yyJVPE
