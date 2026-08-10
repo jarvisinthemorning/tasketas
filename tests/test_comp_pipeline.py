@@ -115,6 +115,7 @@ class PipelineTests(unittest.TestCase):
             ([132796, 132808, 132800], "source-verified Headhunter Gryphon"),
             ([60630, 96786, 132955, 132957], "one immediate Chromadrake"),
             ([132981, 120674], "two Elementals"),
+            ([132983, 126173], "Spirit Swap"),
             ([132893, 120905, 98588, 130298, 101314], "Drakkari repeats"),
             ([119942, 120905, 130298], "Meditative's spell bonus"),
             ([132762, 132925, 132921], "Only Castaway counts as a Discover"),

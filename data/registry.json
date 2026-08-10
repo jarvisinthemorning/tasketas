@@ -918,6 +918,56 @@
       "p20_power": 110,
       "p50_power": 110,
       "p80_power": 151
+    },
+    {
+      "slug": "elemental-tempest-revenant-spirit-swap",
+      "title": "Tempest–Revenant Spirit-Swap APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/elemental-tempest-revenant-spirit-swap.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "elemental"
+      ],
+      "tags": [
+        "APM",
+        "scaling",
+        "tavern-stats",
+        "hero-specific"
+      ],
+      "minions": [
+        {
+          "card_id": 132983,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126173,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [
+        {
+          "card_id": 71464,
+          "count": 1
+        }
+      ],
+      "verified_at": "2026-08-10",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=KRm5_T4KuA0",
+      "source_author": "JeefHS",
+      "source_id": "KRm5_T4KuA0",
+      "discovery_sources": [],
+      "published_at": "2026-08-10T07:29:15+00:00",
+      "probability": 0.1012,
+      "turns_to_online": 12,
+      "p20_power": 51,
+      "p50_power": 81,
+      "p80_power": 129
     }
   ]
 }

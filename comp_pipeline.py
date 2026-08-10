@@ -15,6 +15,7 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
 from comp_power import (
+    AIR_REVENANT,
     BALINDA,
     BARRIER_BANSHEE,
     BRANN,
@@ -55,6 +56,7 @@ from comp_power import (
     TRANQUIL_MEDITATIVE,
     TRENCH_FIGHTER,
     TWILIGHT_TIDEHUNTER,
+    UNBOUND_TEMPEST,
     UTILITY_DRONE,
     VIGILANT_BRISTLEMANE,
     WARPWING,
@@ -426,6 +428,13 @@ def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dic
         notes.append(
             "The trace plays two Elementals per recruit phase through Mana Surge, then credits one "
             "Moat Custodian Rally improvement; extra cycle and Rally-enabler odds are excluded."
+        )
+    if {UNBOUND_TEMPEST, AIR_REVENANT} <= minion_ids:
+        notes.append(
+            "This source-demonstrated line is conditional on Spirit Swap; hero-selection odds and "
+            "random Dark Gifts are excluded. The trace adds one Air Revenant activation per recruit "
+            "turn, bounds each active Easterly Winds to one +6/+6 hit on the selected Tavern anchor, "
+            "then resolves one Tempest trigger after three Elemental plays."
         )
     if {GLAMBOT, FAUNA_WHISPERER, UTILITY_DRONE, BALINDA, DRAKKARI_ENCHANTER} <= minion_ids:
         notes.append(

@@ -10,6 +10,7 @@ import comp_power
 from comp_power import (
     _profile_for,
     _simulate_hogrider,
+    _simulate_legacy,
     _simulate_plaguerunner,
     _simulate_warpwing,
     effective_board_power,
@@ -369,6 +370,7 @@ class CompPowerTests(unittest.TestCase):
             "lobster-deathstrider": ([132796, 132808, 132800], [], [], []),
             "kalecgos-battlecry": ([60630, 96786, 132955, 132955, 132957], [], [], []),
             "moat-mana-surge": ([132981, 120674], [], [], []),
+            "tempest-revenant": ([132983, 126173], [], [], [71464]),
             "utility-drone-magnetics": (
                 [132893, 120905, 98588, 130298, 101314],
                 [104472],
@@ -405,6 +407,44 @@ class CompPowerTests(unittest.TestCase):
                     ],
                 }
                 self.assertEqual(_profile_for(entry), expected)
+
+    def test_tempest_revenant_requires_spirit_swap_and_keeps_temporary_swap_out_of_board_state(self):
+        entry = {
+            "minions": [
+                {"card_id": 132983, "count": 1},
+                {"card_id": 126173, "count": 1},
+            ],
+            "spells": [],
+            "prerequisites": [{"card_id": 71464, "count": 1}],
+        }
+        self.assertEqual(_profile_for(entry), "tempest-revenant")
+
+        entry["prerequisites"] = []
+        with self.assertRaisesRegex(ValueError, "Spirit Swap"):
+            _profile_for(entry)
+
+        def unit(card_id, attack, health):
+            return {
+                "card_id": card_id,
+                "name": str(card_id),
+                "attack": attack,
+                "health": health,
+                "golden": False,
+                "keywords": [],
+                "tribes": ["elemental"],
+                "blood_gem_attack": 0,
+                "blood_gem_health": 0,
+            }
+
+        board = [unit(126173, 3, 6), unit(132983, 3, 12)]
+        trace = _simulate_legacy(
+            "tempest-revenant", entry, REAL_CARDS, board, 13, 14, random.Random(1)
+        )
+
+        self.assertEqual((board[0]["attack"], board[0]["health"]), (3, 6))
+        self.assertEqual((board[1]["attack"], board[1]["health"]), (12, 30))
+        self.assertIn("2 active Easterly Winds", trace[-1]["events"][0])
+        self.assertIn("Spirit Swap copied 6 Attack", trace[-1]["events"][0])
 
         one_embalmer = {
             "minions": [
