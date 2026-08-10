@@ -965,9 +965,9 @@
       "published_at": "2026-08-10T07:29:15+00:00",
       "probability": 0.1012,
       "turns_to_online": 12,
-      "p20_power": 51,
-      "p50_power": 81,
-      "p80_power": 129
+      "p20_power": 39,
+      "p50_power": 63,
+      "p80_power": 105
     }
   ]
 }

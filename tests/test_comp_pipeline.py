@@ -116,6 +116,8 @@ class PipelineTests(unittest.TestCase):
             ([60630, 96786, 132955, 132957], "one immediate Chromadrake"),
             ([132981, 120674], "two Elementals"),
             ([132983, 126173], "Spirit Swap"),
+            ([132983, 126173], "randomly across six Tavern slots"),
+            ([132983, 126173], "base minion stats"),
             ([132893, 120905, 98588, 130298, 101314], "Drakkari repeats"),
             ([119942, 120905, 130298], "Meditative's spell bonus"),
             ([132762, 132925, 132921], "Only Castaway counts as a Discover"),
@@ -743,7 +745,7 @@ composition_spells: []
             self.assertIn("25.7k", html)
             self.assertIn("Turn 11", html)
             self.assertIn("P20", html)
-            self.assertIn("power-v6", html)
+            self.assertIn("power-v7", html)
             self.assertIn("8.2k", html)
             self.assertIn("P50", html)
             self.assertIn("16.4k", html)

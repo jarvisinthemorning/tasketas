@@ -438,13 +438,27 @@ class CompPowerTests(unittest.TestCase):
 
         board = [unit(126173, 3, 6), unit(132983, 3, 12)]
         trace = _simulate_legacy(
-            "tempest-revenant", entry, REAL_CARDS, board, 13, 14, random.Random(1)
+            "tempest-revenant", entry, REAL_CARDS, board, 12, 14, random.Random(1)
         )
 
         self.assertEqual((board[0]["attack"], board[0]["health"]), (3, 6))
-        self.assertEqual((board[1]["attack"], board[1]["health"]), (12, 30))
+        self.assertEqual((board[1]["attack"], board[1]["health"]), (30, 24))
+        self.assertIn("deferred", trace[0]["events"][0])
         self.assertIn("2 active Easterly Winds", trace[-1]["events"][0])
-        self.assertIn("Spirit Swap copied 6 Attack", trace[-1]["events"][0])
+        self.assertIn("selected anchor received 1 hit", trace[-1]["events"][0])
+        self.assertIn("Spirit Swap copied 12 Attack", trace[-1]["events"][0])
+
+        registry = json.loads((Path(__file__).resolve().parents[1] / "data" / "registry.json").read_text())
+        published = next(
+            page for page in registry["pages"] if page["slug"] == "elemental-tempest-revenant-spirit-swap"
+        )
+        _, artifact = evaluate_comp(published, REAL_CARDS, simulations=500, seed=14_014)
+        self.assertIn("base Tavern-minion stats", " ".join(artifact["assumptions"]))
+        successful = next(run for run in artifact["simulations"] if run["online_turn"] is not None)
+        self.assertIn("deferred", successful["turns"][0]["events"][0])
+        self.assertTrue(
+            any("random Tavern slots" in event for turn in successful["turns"] for event in turn["events"])
+        )
 
         one_embalmer = {
             "minions": [

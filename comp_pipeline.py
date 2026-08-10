@@ -432,9 +432,11 @@ def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dic
     if {UNBOUND_TEMPEST, AIR_REVENANT} <= minion_ids:
         notes.append(
             "This source-demonstrated line is conditional on Spirit Swap; hero-selection odds and "
-            "random Dark Gifts are excluded. The trace adds one Air Revenant activation per recruit "
-            "turn, bounds each active Easterly Winds to one +6/+6 hit on the selected Tavern anchor, "
-            "then resolves one Tempest trigger after three Elemental plays."
+            "random Dark Gifts, repeated Elemental fuel, and cycle-card acquisition odds are excluded. "
+            "The assembly turn grants no loop. On each later recruit turn the trace adds one Air Revenant "
+            "activation, distributes every active Easterly Winds randomly across six Tavern slots, and "
+            "selects the slot with the most hits while excluding its base minion stats. Spirit Swap then "
+            "adds the strongest friendly Attack before one Tempest trigger after three Elemental plays."
         )
     if {GLAMBOT, FAUNA_WHISPERER, UTILITY_DRONE, BALINDA, DRAKKARI_ENCHANTER} <= minion_ids:
         notes.append(

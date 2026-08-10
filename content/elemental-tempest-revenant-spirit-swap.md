@@ -5,9 +5,9 @@ season: 14
 modes: [solo]
 tribes: [elemental]
 tags: [APM, scaling, tavern-stats, hero-specific]
-core: [132983, 126173]
-addons: [71464, 132207, 96786]
-cycle: [64077, 64189, 126924]
+core: [132983, 126173, 71464]
+addons: [120705, 132207, 133453]
+cycle: [64038, 64040, 119951, 64189]
 composition_minions:
   - {card_id: 132983, count: 1, golden_count: 0}
   - {card_id: 126173, count: 1, golden_count: 0}
@@ -43,7 +43,7 @@ Do not force this from Air Revenant alone. Jeef only pivots after the Pirate rou
 ## Enablers
 
 - [[card:132207|Admiration]] is the source's preferred Dark Gift and adds another way to convert a neighboring giant into combat stats; random Dark Gift odds are not included in the model.
-- [[card:96786|Brann Bronzebeard]] improves Elemental generation from Tavern Tempest but is support, not the engine.
+- [[card:133453|Living Prison]] is a source-shown one-off conversion: Activate it before buying a giant Tavern minion so Prison gains that minion's stats.
 - A large existing attacker gives Spirit Swap something meaningful to copy into the Tavern immediately.
 
 ## How to play
@@ -56,7 +56,7 @@ Do not force this from Air Revenant alone. Jeef only pivots after the Pirate rou
 
 ## Cycle and temporary pieces
 
-The source visibly cycles ordinary Elementals while counting each set of three. [[card:64077|Tavern Tempest]] replaces itself with another Elemental, while [[card:64189|Wildfire Elemental]] and [[card:126924|Flaming Enforcer]] are source-shown bodies that can advance the counter before being replaced when the board tightens.
+The source's [[card:120705|Recycling Sticker]] turns each Elemental played into a free refresh, connecting the Tempest counter directly to Tavern growth. Source-shown fuel includes [[card:64038|Sellemental]], [[card:64040|Water Droplet]], and [[card:119951|Glowing Cinder]]. [[card:64189|Wildfire Elemental]] advances the counter too, but becomes a retained cleave payoff once its Attack is large enough.
 
 ## Failure modes
 
