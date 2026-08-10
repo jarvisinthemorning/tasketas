@@ -18,6 +18,11 @@ core:
 addons:
 - 96786
 - 130662
+- 132899
+- 97408
+- 126173
+- 126924
+- 100949
 cycle: []
 composition_minions:
 - {card_id: 132901, count: 1, golden_count: 0}
@@ -64,7 +69,7 @@ video:
   id: WYybK8pRz8Y
   timestamp: 694
 source_published_at: '2026-08-06'
-verified_at: '2026-08-08'
+verified_at: '2026-08-10'
 ---
 
 ## Game plan
@@ -85,3 +90,11 @@ This is a resource engine first and a large-Demon board second: spells and Battl
 Do not hoard resources so long that the shop-consuming turns never happen. The source retains Brann and Balinda while they multiply real actions, but they are support pieces—not excuses to leave a tiny board. [[card:130662|Twisted Wrathguard]] can absorb secondary scaling, but it is not the engine.
 
 The proof is visible at 17:14: Devilish Distractor is 1.3k/1.3k, Golden Felboar reaches 4k/4k, and the second Felboar reaches 2.3k/2.4k. If the spell and consume actions are not producing that kind of acceleration, stop protecting every support piece and buy tempo.
+
+## Imp-lusionist shop-buff route
+
+[Sevel's Demon shop-buff game](https://www.youtube.com/watch?v=HHpCusxZk_k&t=399s) demonstrates an alternative resource package for the same consume family. [[card:132899|Imp-lusionist]] generates two [[card:132903|Methodical Madness]] spells when its Deathrattle resolves; [[card:97408|Titus Rivendare]] makes that Deathrattle trigger again. Each Madness then lets a chosen Demon consume two random Tavern minions, so the package supplies concrete repeatable fuel instead of waiting for naturally offered Tavern spells.
+
+[[card:126173|Air Revenant]] and refreshes grow Tavern targets through Easterly Winds. [[card:126924|Flaming Enforcer]] converts the highest-Health target at end of turn, while Methodical Madness moves two random shop bodies onto the chosen Demon immediately. [[card:100949|Soul Rewinder]] is source-shown tempo support for the Demon shell; it is not the shop-scaling engine.
+
+Commit to this variant when Imp-lusionist plus Titus can generate several Madness casts and you already have a Demon worth feeding. Do not hold a tiny Imp-lusionist/Titus board for a future payoff while ignoring immediate stats—the spells matter only when the Tavern has been meaningfully inflated. The Turn 15 recruit board around [21:00](https://www.youtube.com/watch?v=HHpCusxZk_k&t=1260s) shows the mature result with multiple six-figure bodies before the final boss at **21:56**.
