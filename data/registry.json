@@ -610,35 +610,36 @@
       ],
       "core": [
         132901,
-        132899,
-        130298,
-        110664
+        130662
       ],
       "dynamic": [
+        132899,
+        130298,
+        110664,
         72060,
         96786,
-        121687,
         132903,
+        121687,
         100949
       ],
       "cards": [
         132901,
+        130662,
         132899,
         130298,
         110664,
-        130662,
         72060,
         96786,
-        121687,
         132903,
+        121687,
         100949
       ],
       "minion_ids": [
         132901,
+        130662,
         132899,
         130298,
         110664,
-        130662,
         72060,
         96786,
         121687,
@@ -664,30 +665,6 @@
           "tier": 6,
           "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/130662-twisted-wrathguard.png",
           "detail": "https://hsreplay.net/battlegrounds/minions/130662/twisted-wrathguard"
-        },
-        "132899": {
-          "id": 132899,
-          "name": "Imp-lusionist",
-          "type": "minion",
-          "tier": 5,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/132899-imp-lusionist.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/132899/imp-lusionist"
-        },
-        "130298": {
-          "id": 130298,
-          "name": "Balinda Stonehearth",
-          "type": "minion",
-          "tier": 6,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
-        },
-        "110664": {
-          "id": 110664,
-          "name": "Felboar",
-          "type": "minion",
-          "tier": 5,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/110664-felboar.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/110664/felboar"
         }
       },
       "minions": [
@@ -697,32 +674,12 @@
           "golden_count": 0
         },
         {
-          "card_id": 132899,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 130298,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 110664,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
           "card_id": 130662,
           "count": 1,
           "golden_count": 0
         }
       ],
-      "spells": [
-        {
-          "card_id": 132903,
-          "count": 1
-        }
-      ],
+      "spells": [],
       "hand_minions": [],
       "prerequisites": [],
       "verified_at": "2026-08-11",
