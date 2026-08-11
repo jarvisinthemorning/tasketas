@@ -417,6 +417,7 @@ def publish_comp(
             title = raw_package.get("title")
             purpose = raw_package.get("purpose")
             optional = raw_package.get("optional", True)
+            badge = raw_package.get("badge")
             ids = raw_package.get("cards")
             if not isinstance(title, str) or not title.strip():
                 raise CompError(f"packages[{package_index}].title must be non-empty text")
@@ -424,6 +425,8 @@ def publish_comp(
                 raise CompError(f"packages[{package_index}].purpose must be non-empty text")
             if not isinstance(optional, bool):
                 raise CompError(f"packages[{package_index}].optional must be true or false")
+            if badge is not None and (not isinstance(badge, str) or not badge.strip()):
+                raise CompError(f"packages[{package_index}].badge must be non-empty text")
             if not isinstance(ids, list) or not ids:
                 raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
             cards = [package_card(card_id) for card_id in ids]
@@ -432,6 +435,9 @@ def publish_comp(
                     "title": title.strip(),
                     "purpose": purpose.strip(),
                     "optional": optional,
+                    "badge": badge.strip() if badge is not None else (
+                        "Optional package" if optional else "Required"
+                    ),
                     "cards": cards,
                 }
             )
@@ -453,6 +459,7 @@ def publish_comp(
                         "title": title,
                         "purpose": purpose,
                         "optional": optional,
+                        "badge": "Optional package" if optional else "Required",
                         "cards": [package_card(card["id"]) for card in sections[key]],
                     }
                 )
@@ -468,6 +475,38 @@ def publish_comp(
                 catalog.require_current(item)
                 if item not in all_ids:
                     all_ids.append(item)
+
+    raw_related_routes = metadata.get("related_routes")
+    if raw_related_routes is None:
+        raw_related_routes = []
+    if not isinstance(raw_related_routes, list):
+        raise CompError("related_routes must be a list")
+    related_routes: list[dict] = []
+    for route_index, raw_route in enumerate(raw_related_routes, start=1):
+        if not isinstance(raw_route, dict):
+            raise CompError(f"related_routes[{route_index}] must be a mapping")
+        title = raw_route.get("title")
+        slug = raw_route.get("slug")
+        purpose = raw_route.get("purpose")
+        ids = raw_route.get("cards")
+        if not isinstance(title, str) or not title.strip():
+            raise CompError(f"related_routes[{route_index}].title must be non-empty text")
+        if not isinstance(slug, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug):
+            raise CompError(f"related_routes[{route_index}].slug must be a lowercase guide slug")
+        if slug == metadata["slug"]:
+            raise CompError(f"related_routes[{route_index}].slug cannot link to the current guide")
+        if not isinstance(purpose, str) or not purpose.strip():
+            raise CompError(f"related_routes[{route_index}].purpose must be non-empty text")
+        if not isinstance(ids, list) or not 1 <= len(ids) <= 3:
+            raise CompError(f"related_routes[{route_index}].cards must contain one to three card IDs")
+        related_routes.append(
+            {
+                "title": title.strip(),
+                "slug": slug,
+                "purpose": purpose.strip(),
+                "cards": [dict(catalog.require_current(card_id)) for card_id in ids],
+            }
+        )
 
     raw_boards = metadata.get("board_examples", []) or []
     if not isinstance(raw_boards, list):
@@ -630,6 +669,7 @@ def publish_comp(
     comp["discovery_sources"] = discovery_sources
     comp["sections"] = sections
     comp["packages"] = packages
+    comp["related_routes"] = related_routes
     comp["board_examples"] = board_examples
     comp["minions"] = minions
     comp["spells"] = spells

@@ -412,6 +412,7 @@ class PipelineTests(unittest.TestCase):
             packages = """packages:
   - title: Core
     purpose: Trigger Lobster scaling repeatedly during combat.
+    badge: Commit signal
     optional: false
     cards: [132796]
   - title: Add-ons
@@ -453,8 +454,8 @@ class PipelineTests(unittest.TestCase):
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
             self.assertIn("Trigger Lobster scaling repeatedly during combat.", html)
+            self.assertIn("Commit signal", html)
             self.assertIn("Improve the engine when offered.", html)
-            self.assertIn("Required", html)
             self.assertIn("Optional package", html)
             self.assertIn("Titus Rivendare", html)
             self.assertIn('class="card-rarity"', html)
@@ -491,6 +492,69 @@ class PipelineTests(unittest.TestCase):
             saved = json.loads(registry.read_text(encoding="utf-8"))
             self.assertEqual(saved["pages"], [])
             self.assertTrue((root / "dist/comps/tasty-lobstah.html").exists())
+
+    def test_related_route_renders_distinct_core_cards_and_link_before_guide(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            related = """related_routes:
+  - title: Alternative deathrattle route
+    slug: beast-alternative
+    purpose: Switch when these core cards arrive first.
+    cards: [132796, 97408]
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", related + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=False,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn('class="related-routes"', html)
+            self.assertIn("Alternative deathrattle route", html)
+            self.assertIn("Switch when these core cards arrive first.", html)
+            self.assertIn("Tasty Lobster", html)
+            self.assertIn("Titus Rivendare", html)
+            self.assertIn('href="beast-alternative.html"', html)
+            self.assertLess(html.index('class="related-routes"'), html.index('class="guide-copy"'))
+
+    def test_related_routes_rejects_falsy_non_list_values(self):
+        for invalid_yaml in ("{}", "''", "0", "false"):
+            with self.subTest(invalid_yaml=invalid_yaml), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                content = root / "guide.md"
+                content.write_text(
+                    VALID_MARKDOWN.replace("source:\n", f"related_routes: {invalid_yaml}\nsource:\n"),
+                    encoding="utf-8",
+                )
+                cards = root / "cards.json"
+                cards.write_text(json.dumps(CARDS), encoding="utf-8")
+                registry = root / "registry.json"
+                registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+                with self.assertRaisesRegex(CompError, "related_routes must be a list"):
+                    publish_comp(
+                        content_path=content,
+                        cards_path=cards,
+                        registry_path=registry,
+                        template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                        output_dir=root / "dist",
+                        public_base_url="http://127.0.0.1:8000",
+                        register=False,
+                    )
 
     def test_source_section_is_rendered_after_the_guide(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -19,6 +19,37 @@ addons:
 - 132636
 - 110664
 cycle: []
+packages:
+- title: Gem Rat
+  purpose: Improve Blood Gems and bank one repeatable Choose One card each turn while both Quilboar routes remain open.
+  badge: Commit signal
+  optional: false
+  cards: [116434]
+- title: Turbo Hogrider
+  purpose: Convert every Choose One play into broad permanent Blood Gem scaling across your Quilboar board.
+  badge: Required core
+  optional: false
+  cards: [116195]
+- title: Choose One
+  purpose: Feed Hogrider with cheap choices, doubled effects, repeatable Rally generation, and a late whole-board payoff.
+  badge: Shopping engine
+  optional: false
+  cards: [116182, 132630, 116190, 132632, 113154, 132634, 132929]
+- title: Blood Gem quality
+  purpose: Raise the value of every Hogrider trigger once Choose One generation is stable.
+  badge: Scaling upgrades
+  optional: true
+  cards: [122566, 80755]
+- title: Final carries
+  purpose: Convert the broad spell-and-Gem economy into resilient bodies or an additional Rally threat.
+  badge: Optional finishers
+  optional: true
+  cards: [132636, 133329, 110664]
+related_routes:
+- title: Gem Rat → Blood Golems
+  slug: quilboar-bristlemane-juggernaut
+  purpose: Switch when Juggernaut arrives with Bristlemane loading or repeatable Gem Confiscation before Turbo Hogrider.
+  cards: [132320, 126671, 132636]
 composition_minions:
 - {card_id: 132632, count: 1, golden_count: 0}
 - {card_id: 116195, count: 1, golden_count: 0}
@@ -66,18 +97,19 @@ video:
   id: d50H4G3vd58
   timestamp: 248
 source_published_at: '2026-08-04'
-verified_at: '2026-08-08'
+verified_at: '2026-08-11'
 ---
 
 ## Game plan
 
-Generate repeated Choose One cards with [[card:116434|Gem Rat]] and related effects, then let [[card:116195|Turbo Hogrider]] convert those casts into Blood-Gem scaling. [[card:132636|Jailbird Juggernaut]] is the source's primary Rally carry, while [[card:116190|Thorned Trailblazer]] adds more Choose One value.
+Use [[card:116434|Gem Rat]] as the soft commitment signal while both Quilboar routes remain open. When [[card:116195|Turbo Hogrider]] arrives, repeated Choose One cards become broad Blood-Gem scaling. [[card:132636|Jailbird Juggernaut]] is the source's primary Rally carry, while [[card:116190|Thorned Trailblazer]] adds more Choose One value.
 
 [[card:110664|Felboar]] can consume shop stats in the demonstrated line, but the comp's identity is Hogrider plus Choose One volume—not generic Demon consumption.
 
 ## How to build it
 
-- **Bridge:** collect Choose One generation without sacrificing basic board strength.
+- **Commit softly:** Gem Rat improves Blood Gems and banks a Gem Day every turn, but do not ignore an earlier Bristlemane/Juggernaut or Confiscation core.
+- **Bridge:** collect the cards in the Choose One shopping section without sacrificing basic board strength.
 - **Commit:** the source calls Turbo Hogrider the scaler; without it, the package lacks a reliable ceiling.
 - **Scale:** cast Choose One effects in the order that maximizes Gem production before moving stats.
 - **Finish:** transfer accumulated Blood Gems into resilient final carries and keep Juggernaut positioned to Rally safely.
@@ -89,3 +121,5 @@ Do not spread permanent Gems across units you expect to sell. Delay transfers un
 The source's blunt warning is useful: miss Turbo Hogrider and this can become a very efficient route to eighth place. Treat the card as the commitment signal, not a hoped-for future miracle.
 
 The late Tavern proof is much stronger than the earlier transition board: the source finishes with carries at 1.5k/2.2k, 1.9k/2.8k, and 2.4k/3.6k before winning. That is the payoff standard—not merely assembling the named pieces.
+
+If Juggernaut plus Bristlemane or repeatable Gem Confiscation appears before Turbo Hogrider, use the pivot panel above rather than forcing this route.

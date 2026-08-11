@@ -9,6 +9,37 @@ core: [132320, 132636]
 addons: [116434, 130298]
 cycle: []
 flex: [126671, 96786]
+packages:
+  - title: Gem Rat
+    purpose: Improve Blood Gems while keeping both major Quilboar payoff routes open.
+    badge: Commit signal
+    optional: false
+    cards: [116434]
+  - title: Bristlemane Golems
+    purpose: Target Bristlemane to load adjacent Juggernaut directly, then turn those Gems into attacking Golems.
+    badge: Choose one core
+    optional: false
+    cards: [132320, 132636]
+  - title: Confiscation Golems
+    purpose: Let Vineweaver or other neighbors build Gems, then consolidate them onto Juggernaut with repeatable Gem Confiscation.
+    badge: Choose one core
+    optional: false
+    cards: [126671, 122562, 110642, 132636]
+  - title: Blood Gem generators
+    purpose: Feed targeted casts, immediate tempo, and the Gem package that your chosen Golem core converts.
+    badge: Shopping support
+    optional: true
+    cards: [70143, 70157, 116182, 122098, 132630, 126669, 126667, 70173, 132929]
+  - title: Late upgrades
+    purpose: Duplicate targeted spells or permanently raise every Blood Gem once the Golem engine is already online.
+    badge: Luxury ceiling
+    optional: true
+    cards: [130298, 122566, 80755]
+related_routes:
+  - title: Gem Rat → Turbo Hogrider
+    slug: quilboar-choose-one-hogrider
+    purpose: Switch when Turbo Hogrider and repeatable Choose One cards arrive before a credible Golem loader.
+    cards: [116195, 116190, 132632]
 board_examples:
   - stage: late
     timestamp: 1300
@@ -37,7 +68,7 @@ video:
   id: 08tFc8FYcsI
   timestamp: 309
 source_published_at: '2026-08-01'
-verified_at: '2026-08-09'
+verified_at: '2026-08-11'
 ---
 
 ## Game plan
@@ -48,13 +79,13 @@ This is deliberately separate from the Choose One Turbo Hogrider guide. Hogrider
 
 ## When to commit
 
-Do not commit because you found one Bristlemane. You need three things:
+Gem Rat is the soft commitment signal: it improves Blood Gems while leaving both Hogrider and Golem payoffs open. Do not hard-lock this page because you found one Bristlemane. For the Golem route you still need three things:
 
 - enough cheap targeted spells or Blood-Gem generation to trigger Bristlemane repeatedly;
 - two adjacent minions worth receiving the Gems during the scaling phase; and
 - a credible way to move the accumulated Gems onto Juggernaut before the lobby outruns you.
 
-A Golden Bristlemane is a major acceleration point because each targeted cast applies twice as many Gems to both neighbors. [[card:116434|Gem Rat]] supplies useful Gem and Choose One volume, but it is support rather than the payoff.
+A Golden Bristlemane is a major acceleration point because each targeted cast applies twice as many Gems to both neighbors. [[card:116434|Gem Rat]] is the shared starting signal, not the payoff; switch to the linked Hogrider route if its actual core arrives first.
 
 ## How to play
 

@@ -217,6 +217,33 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
 }
 .rarity-note { margin: -5px 6px 4px; color: var(--muted); font-size: .78rem; line-height: 1.45; }
 
+.related-routes {
+  overflow: hidden;
+  border: 1px solid rgba(139, 104, 210, .48);
+  background: linear-gradient(145deg, rgba(74, 45, 119, .26), rgba(21, 17, 33, .84));
+  padding: 20px 0;
+}
+.related-route {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, .72fr);
+  align-items: center;
+  gap: 14px;
+  margin: 0 14px;
+  border: 1px solid rgba(170, 135, 226, .32);
+  border-radius: 16px;
+  background: rgba(14, 10, 24, .62);
+  padding: 14px;
+  color: var(--text);
+  text-decoration: none;
+}
+.related-route h3 { margin: 0 0 7px; color: #e8d8ff; }
+.related-route p { margin: 0 0 12px; color: var(--muted); font-size: .84rem; line-height: 1.4; }
+.related-route strong { color: #cfaeff; font-size: .82rem; }
+.related-route-cards { display: flex; justify-content: flex-end; gap: 4px; min-width: 0; }
+.related-route-cards span { display: grid; min-width: 0; flex: 0 1 82px; justify-items: center; }
+.related-route-cards img { width: 100%; max-width: 82px; aspect-ratio: 2 / 3; object-fit: contain; }
+.related-route-cards small { overflow: hidden; width: 100%; text-align: center; text-overflow: ellipsis; white-space: nowrap; font-size: .62rem; }
+
 .guide-copy {
   padding: 20px;
 }
@@ -415,6 +442,8 @@ footer a { color: #bba8cf; }
 }
 
 @media (max-width: 679px) {
+  .related-route { grid-template-columns: 1fr; }
+  .related-route-cards { justify-content: flex-start; }
   .board-example-header { align-items: flex-start; flex-wrap: wrap; }
   .board-note { overflow-wrap: anywhere; }
   .card-popover {

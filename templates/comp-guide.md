@@ -12,12 +12,18 @@ cycle: []
 packages:
   - title: Core
     purpose: One sentence explaining how the mandatory engine pieces interact.
+    badge: Required core
     optional: false
     cards: []
   - title: Engine-specific package
     purpose: One sentence explaining why these cards are useful purchases.
     optional: true
     cards: []
+related_routes:
+  - title: Alternative route title
+    slug: existing-related-guide-slug
+    purpose: One sentence explaining which core signal should make the player switch.
+    cards: [] # One to three recognition-signature cards.
 composition_minions: []
 composition_spells: []
 board_examples: []

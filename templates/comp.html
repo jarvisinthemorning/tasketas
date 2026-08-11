@@ -31,7 +31,7 @@
       <section class="card-section" aria-labelledby="package-{{ loop.index }}-heading">
         <div class="section-heading">
           <div>
-            <div class="section-kicker">{{ 'Optional package' if package.optional else 'Required' }}</div>
+            <div class="section-kicker">{{ package.badge }}</div>
             <h2 id="package-{{ loop.index }}-heading">{{ package.title }}</h2>
           </div>
           <p>{{ package.purpose }}</p>
@@ -54,7 +54,30 @@
         </div>
       </section>
     {% endfor %}
-    <p class="rarity-note">Rarity is the chance to see that card in one eligible refresh or offer, assuming the needed tribe is active and the Solo pool is full and uncontested. Generated minions are labeled instead of given a false shop percentage; trinkets use a clearly marked catalog baseline because offer eligibility varies.</p>
+    <p class="rarity-note">Rarity is the chance to see that card in one eligible refresh or offer, assuming the needed tribe is active and the Solo pool is full and uncontested. Generated minions are labeled instead of given a false shop percentage; trinkets use a clearly marked catalog baseline because offer eligibility varies.</p>{% if comp.related_routes %}
+    <section class="related-routes" aria-labelledby="related-routes-heading">
+      <div class="section-heading">
+        <div>
+          <div class="section-kicker">Pivot route</div>
+          <h2 id="related-routes-heading">Found the other payoff?</h2>
+        </div>
+        <p>Use these core cards as the signal to switch guides.</p>
+      </div>
+      {% for route in comp.related_routes %}
+      <a class="related-route" href="{{ route.slug }}.html">
+        <div>
+          <h3>{{ route.title }}</h3>
+          <p>{{ route.purpose }}</p>
+          <strong>Open this route →</strong>
+        </div>
+        <div class="related-route-cards" aria-label="{{ route.title }} core cards">
+          {% for card in route.cards %}
+          <span><img src="{{ card.image }}" alt="{{ card.name }}" loading="lazy"><small>{{ card.name }}</small></span>
+          {% endfor %}
+        </div>
+      </a>
+      {% endfor %}
+    </section>{% endif %}
 
     {% if comp.board_examples %}
     <section class="board-examples" aria-labelledby="board-examples-heading">
