@@ -835,6 +835,121 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-11T18:50:18+00:00"
+    },
+    {
+      "slug": "murlocs-apm",
+      "title": "Murlocs APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/murlocs-apm.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "murloc"
+      ],
+      "tags": [
+        "season 14",
+        "APM",
+        "spells",
+        "hand scaling"
+      ],
+      "type": "meta",
+      "commit": [],
+      "core": [
+        96786,
+        133026
+      ],
+      "dynamic": [
+        103670,
+        132883,
+        122277,
+        132989,
+        130298,
+        126637,
+        108922,
+        122219,
+        98948,
+        110400
+      ],
+      "cards": [
+        96786,
+        133026,
+        103670,
+        132883,
+        122277,
+        132989,
+        130298,
+        126637,
+        108922,
+        122219,
+        98948,
+        110400
+      ],
+      "minion_ids": [
+        96786,
+        133026,
+        103670,
+        132883,
+        122277,
+        132989,
+        130298,
+        126637,
+        108922,
+        122219,
+        98948
+      ],
+      "spell_ids": [
+        110400
+      ],
+      "other_ids": [],
+      "card_previews": {
+        "96786": {
+          "id": 96786,
+          "name": "Brann Bronzebeard",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/96786-brann-bronzebeard.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/96786/brann-bronzebeard"
+        },
+        "133026": {
+          "id": 133026,
+          "name": "Shamanic Tidecaller",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/murloc/133026-shamanic-tidecaller.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/133026/shamanic-tidecaller"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133026,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Ppj60f3j_AE",
+      "source_author": "Shadybunny",
+      "source_id": "Ppj60f3j_AE",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/67/murlocs-apm",
+          "comp_id": "67",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-11T19:18:32+00:00"
     }
   ],
   "schema_version": 3
