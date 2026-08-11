@@ -178,6 +178,59 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-09T10:11:05+00:00"
+    },
+    {
+      "slug": "mechs-magnetics",
+      "title": "Mechs Magnetics",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/mechs-magnetics.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "mech"
+      ],
+      "tags": [
+        "season 14",
+        "magnetic",
+        "scaling",
+        "mid-game pivot"
+      ],
+      "minions": [
+        {
+          "card_id": 132676,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98592,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132312,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=ODSiIR9LlNI",
+      "source_author": "Sevel",
+      "source_id": "ODSiIR9LlNI",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics",
+          "comp_id": "2",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-11T13:57:58+00:00"
     }
   ],
   "schema_version": 2
