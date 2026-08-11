@@ -11,6 +11,7 @@ tags:
 - choose one
 - blood gems
 - rally
+classification: meta
 core:
 - 116195
 - 116434
@@ -58,7 +59,19 @@ composition_minions:
 - {card_id: 116434, count: 1, golden_count: 0}
 composition_spells:
 - {card_id: 116596, count: 1}
-board_examples: []
+board_examples:
+- stage: mid
+  turn: 10
+  timestamp: 715
+  phase: start_of_turn
+  image: /static/boards/quilboar-choose-one-hogrider-mid.webp
+  note: A clean start-of-turn view of the active midgame line, useful as a commitment and board-space benchmark.
+- stage: late
+  turn: 14
+  timestamp: 1359
+  phase: combat
+  image: /static/boards/quilboar-choose-one-hogrider-late-combat.webp
+  note: A heavy late-combat fallback showing the mature board when the source offers no unobstructed late Tavern state.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one

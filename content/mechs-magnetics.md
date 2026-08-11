@@ -11,6 +11,7 @@ tags:
 - magnetic
 - scaling
 - mid-game pivot
+classification: meta
 core:
 - 98592
 - 132676

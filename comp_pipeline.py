@@ -126,12 +126,14 @@ def _parse_markdown(path: Path) -> tuple[dict, str]:
     metadata = yaml.safe_load(match.group(1)) or {}
     if not isinstance(metadata, dict):
         raise CompError("Guide frontmatter must be a mapping")
-    for field in ("title", "slug", "season", "tribes", "tags", "source", "verified_at"):
+    for field in ("title", "slug", "season", "tribes", "tags", "classification", "source", "verified_at"):
         if field not in metadata:
             raise CompError(f"Missing required frontmatter field: {field}")
     for field in ("tribes", "tags"):
         if not isinstance(metadata[field], list) or not metadata[field]:
             raise CompError(f"{field} must be a non-empty list")
+    if metadata["classification"] not in {"meta", "variant", "highroll"}:
+        raise CompError("classification must be meta, variant, or highroll")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", str(metadata["slug"])):
         raise CompError("slug must contain lowercase letters, numbers, and hyphens only")
     if not isinstance(metadata["source"], dict) or not metadata["source"].get("url"):
@@ -567,9 +569,18 @@ def publish_comp(
                 f"board_examples[{board_index}] is screenshot-only; remove transcribed units"
             )
         phase = raw_board.get("phase")
-        if phase not in {"tavern", "start_of_turn"}:
+        phase_labels = {
+            "tavern": "Tavern phase",
+            "start_of_turn": "Start of turn",
+            "combat": "Combat phase",
+        }
+        if phase not in phase_labels:
             raise CompError(
-                f"board_examples[{board_index}].phase must be tavern or start_of_turn"
+                f"board_examples[{board_index}].phase must be tavern, start_of_turn, or combat"
+            )
+        if phase == "combat" and stage != "late":
+            raise CompError(
+                f"board_examples[{board_index}].phase combat is allowed only for late fallback screenshots"
             )
         image = raw_board.get("image")
         if not isinstance(image, str) or not re.fullmatch(
@@ -588,7 +599,7 @@ def publish_comp(
                 "turn": turn,
                 "timestamp": timestamp,
                 "phase": phase,
-                "phase_label": "Start of turn" if phase == "start_of_turn" else "Tavern phase",
+                "phase_label": phase_labels[phase],
                 "image": f"{public_base_url.rstrip('/')}{image}",
                 "note": str(raw_board.get("note", "")).strip(),
             }
@@ -705,6 +716,29 @@ def publish_comp(
     destination.write_text(html, encoding="utf-8")
 
     url = f"{public_base_url.rstrip('/')}/comps/{metadata['slug']}.html"
+    if raw_packages is not None:
+        commit_ids = [int(card["id"]) for card in packages[0]["cards"]]
+        core_ids = [int(card["id"]) for card in packages[1]["cards"]]
+    else:
+        commit_ids = [int(card_id) for card_id in (metadata.get("commit", []) or [])]
+        core_ids = [int(card_id) for card_id in (metadata.get("core", []) or [])]
+    featured_ids = list(dict.fromkeys(commit_ids + core_ids))
+    dynamic_ids = [card_id for card_id in all_ids if card_id not in featured_ids]
+    minion_ids = [card_id for card_id in all_ids if catalog.require_current(card_id).get("type") == "minion"]
+    spell_ids = [card_id for card_id in all_ids if catalog.require_current(card_id).get("type") == "spell"]
+    other_ids = [card_id for card_id in all_ids if card_id not in set(minion_ids + spell_ids)]
+    card_previews = {
+        str(card_id): {
+            "id": card_id,
+            "name": catalog.require_current(card_id)["name"],
+            "type": catalog.require_current(card_id).get("type"),
+            "tier": catalog.require_current(card_id).get("tier"),
+            "image": catalog.require_current(card_id).get("image"),
+            "detail": catalog.require_current(card_id).get("detail")
+            or catalog.require_current(card_id).get("hsreplay"),
+        }
+        for card_id in featured_ids
+    }
     entry = {
         "slug": metadata["slug"],
         "title": metadata["title"],
@@ -713,6 +747,15 @@ def publish_comp(
         "modes": metadata.get("modes", []) or [],
         "tribes": metadata.get("tribes", []) or [],
         "tags": metadata.get("tags", []) or [],
+        "type": metadata["classification"],
+        "commit": commit_ids,
+        "core": core_ids,
+        "dynamic": dynamic_ids,
+        "cards": all_ids,
+        "minion_ids": minion_ids,
+        "spell_ids": spell_ids,
+        "other_ids": other_ids,
+        "card_previews": card_previews,
         "minions": minions,
         "spells": spells,
         "hand_minions": hand_minions,
@@ -731,7 +774,7 @@ def publish_comp(
         ),
     }
     if register:
-        registry["schema_version"] = 2
+        registry["schema_version"] = 3
         pages = registry.setdefault("pages", [])
         if existing_index is None:
             pages.append(entry)

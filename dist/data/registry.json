@@ -17,6 +17,94 @@
         "rally",
         "scaling"
       ],
+      "type": "highroll",
+      "commit": [
+        132796,
+        132808,
+        132806,
+        132800
+      ],
+      "core": [
+        132796,
+        132808
+      ],
+      "dynamic": [
+        108909,
+        97408,
+        132802,
+        132804,
+        95286,
+        70173,
+        70157,
+        126637,
+        132794
+      ],
+      "cards": [
+        132796,
+        132808,
+        108909,
+        97408,
+        132802,
+        132804,
+        132806,
+        132800,
+        95286,
+        70173,
+        70157,
+        126637,
+        132794
+      ],
+      "minion_ids": [
+        132796,
+        132808,
+        108909,
+        97408,
+        132802,
+        132804,
+        132806,
+        132800,
+        95286,
+        70173,
+        70157,
+        126637,
+        132794
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "132796": {
+          "id": 132796,
+          "name": "Tasty Lobster",
+          "type": "minion",
+          "tier": 3,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/beast/132796-tasty-lobster.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132796/tasty-lobster"
+        },
+        "132808": {
+          "id": 132808,
+          "name": "Deathstrider",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/beast/132808-deathstrider.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132808/deathstrider"
+        },
+        "132806": {
+          "id": 132806,
+          "name": "Wolf Pup",
+          "type": "minion",
+          "tier": 3,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/beast/132806-wolf-pup.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132806/wolf-pup"
+        },
+        "132800": {
+          "id": 132800,
+          "name": "Headhunter Gryphon",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/beast/132800-headhunter-gryphon.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132800/headhunter-gryphon"
+        }
+      },
       "minions": [
         {
           "card_id": 132796,
@@ -63,6 +151,87 @@
         "blood gems",
         "rally"
       ],
+      "type": "meta",
+      "commit": [
+        116434
+      ],
+      "core": [
+        116195,
+        132632
+      ],
+      "dynamic": [
+        116190,
+        132636,
+        110664,
+        116182,
+        132630,
+        113154,
+        132634,
+        132929,
+        122566,
+        80755,
+        133329
+      ],
+      "cards": [
+        116195,
+        116434,
+        116190,
+        132636,
+        110664,
+        132632,
+        116182,
+        132630,
+        113154,
+        132634,
+        132929,
+        122566,
+        80755,
+        133329
+      ],
+      "minion_ids": [
+        116195,
+        116434,
+        116190,
+        132636,
+        110664,
+        132632,
+        116182,
+        132630,
+        113154,
+        132634,
+        132929,
+        122566,
+        80755,
+        133329
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "116434": {
+          "id": 116434,
+          "name": "Gem Rat",
+          "type": "minion",
+          "tier": 3,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/quilboar/116434-gem-rat.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/116434/gem-rat"
+        },
+        "116195": {
+          "id": 116195,
+          "name": "Turbo Hogrider",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/quilboar/116195-turbo-hogrider.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/116195/turbo-hogrider"
+        },
+        "132632": {
+          "id": 132632,
+          "name": "Bramble Tunneler",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/quilboar/132632-bramble-tunneler.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132632/bramble-tunneler"
+        }
+      },
       "minions": [
         {
           "card_id": 132632,
@@ -138,6 +307,95 @@
         "rally",
         "stat transfer"
       ],
+      "type": "variant",
+      "commit": [
+        116434
+      ],
+      "core": [
+        132636
+      ],
+      "dynamic": [
+        132320,
+        130298,
+        126671,
+        122562,
+        110642,
+        70143,
+        70157,
+        116182,
+        122098,
+        132630,
+        126669,
+        126667,
+        70173,
+        132929,
+        122566,
+        80755,
+        96786
+      ],
+      "cards": [
+        132320,
+        132636,
+        116434,
+        130298,
+        126671,
+        122562,
+        110642,
+        70143,
+        70157,
+        116182,
+        122098,
+        132630,
+        126669,
+        126667,
+        70173,
+        132929,
+        122566,
+        80755,
+        96786
+      ],
+      "minion_ids": [
+        132320,
+        132636,
+        116434,
+        130298,
+        126671,
+        122562,
+        70143,
+        70157,
+        116182,
+        122098,
+        132630,
+        126669,
+        126667,
+        70173,
+        132929,
+        122566,
+        80755,
+        96786
+      ],
+      "spell_ids": [
+        110642
+      ],
+      "other_ids": [],
+      "card_previews": {
+        "116434": {
+          "id": 116434,
+          "name": "Gem Rat",
+          "type": "minion",
+          "tier": 3,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/quilboar/116434-gem-rat.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/116434/gem-rat"
+        },
+        "132636": {
+          "id": 132636,
+          "name": "Jailbird Juggernaut",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/quilboar/132636-jailbird-juggernaut.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132636/jailbird-juggernaut"
+        }
+      },
       "minions": [
         {
           "card_id": 126671,
@@ -196,6 +454,102 @@
         "scaling",
         "mid-game pivot"
       ],
+      "type": "meta",
+      "commit": [
+        132676,
+        98592
+      ],
+      "core": [
+        132676,
+        98592,
+        132312
+      ],
+      "dynamic": [
+        98588,
+        101314,
+        120025,
+        98576,
+        129109,
+        130798,
+        97408,
+        112364,
+        98582,
+        96812,
+        61930,
+        133381,
+        103069,
+        133075,
+        126916
+      ],
+      "cards": [
+        98592,
+        132676,
+        132312,
+        98588,
+        101314,
+        120025,
+        98576,
+        129109,
+        130798,
+        97408,
+        112364,
+        98582,
+        96812,
+        61930,
+        133381,
+        103069,
+        133075,
+        126916
+      ],
+      "minion_ids": [
+        98592,
+        132676,
+        132312,
+        98588,
+        101314,
+        120025,
+        98576,
+        129109,
+        130798,
+        97408,
+        112364,
+        98582,
+        96812,
+        61930,
+        103069,
+        133075,
+        126916
+      ],
+      "spell_ids": [],
+      "other_ids": [
+        133381
+      ],
+      "card_previews": {
+        "132676": {
+          "id": 132676,
+          "name": "Spark Snapper",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/132676-spark-snapper.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132676/spark-snapper"
+        },
+        "98592": {
+          "id": 98592,
+          "name": "Scrap Scraper",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/98592-scrap-scraper.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/98592/scrap-scraper"
+        },
+        "132312": {
+          "id": 132312,
+          "name": "Drone Duplicator",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/132312-drone-duplicator.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132312/drone-duplicator"
+        }
+      },
       "minions": [
         {
           "card_id": 132676,
@@ -233,5 +587,5 @@
       "published_at": "2026-08-11T13:57:58+00:00"
     }
   ],
-  "schema_version": 2
+  "schema_version": 3
 }

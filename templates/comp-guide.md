@@ -5,6 +5,7 @@ season: 14
 modes: [solo]
 tribes: [beast]
 tags: [deathrattle, scaling]
+classification: meta # Exactly one of: meta, variant, highroll
 # Legacy compatibility fields; visual presentation comes from packages.
 core: []
 addons: []
@@ -36,7 +37,7 @@ related_routes:
     cards: [] # One to three recognition-signature cards.
 composition_minions: []
 composition_spells: []
-board_examples: [] # Screenshot-only. Replace with verified Tavern/start-of-turn crops when available.
+board_examples: [] # Screenshot-only. Prefer Tavern/start-of-turn; a readable late-game combat frame captured mid-fight is the fallback when no clean late frame exists.
 # Example:
 # - stage: early
 #   turn: 7

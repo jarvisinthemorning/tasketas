@@ -5,6 +5,7 @@ season: 14
 modes: [solo]
 tribes: [quilboar]
 tags: [season 14, blood gems, spell targeting, rally, stat transfer]
+classification: variant
 core: [132320, 132636]
 addons: [116434, 130298]
 cycle: []
@@ -45,7 +46,12 @@ related_routes:
     slug: quilboar-choose-one-hogrider
     purpose: Switch when Turbo Hogrider and repeatable Choose One cards arrive before a credible Golem loader.
     cards: [116195, 116190, 132632]
-board_examples: []
+board_examples:
+  - stage: late
+    timestamp: 1300
+    phase: tavern
+    image: /static/boards/quilboar-bristlemane-juggernaut-late.webp
+    note: Use this mature Tavern state as the visual payoff benchmark; earlier candidates were obstructed or combat.
 discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane

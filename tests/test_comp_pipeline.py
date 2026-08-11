@@ -75,6 +75,7 @@ season: 14
 modes: [solo, duos]
 tribes: [beast]
 tags: [deathrattle, scaling]
+classification: meta
 core: [132796]
 addons: []
 cycle: []
@@ -113,6 +114,20 @@ class PipelineTests(unittest.TestCase):
             content.write_text(VALID_MARKDOWN.replace("tags: [deathrattle, scaling]", "tags: []"), encoding="utf-8")
             with self.assertRaisesRegex(CompError, "tags must be a non-empty list"):
                 _parse_markdown(content)
+
+    def test_guide_requires_supported_classification(self):
+        for value in ("missing", "invalid"):
+            with self.subTest(value=value), tempfile.TemporaryDirectory() as tmp:
+                content = Path(tmp) / "guide.md"
+                if value == "missing":
+                    source = VALID_MARKDOWN.replace("classification: meta\n", "")
+                    message = "Missing required frontmatter field: classification"
+                else:
+                    source = VALID_MARKDOWN.replace("classification: meta", "classification: experimental")
+                    message = "classification must be meta, variant, or highroll"
+                content.write_text(source, encoding="utf-8")
+                with self.assertRaisesRegex(CompError, message):
+                    _parse_markdown(content)
 
     def test_index_fetches_registry_first_and_lazy_loads_card_filter(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -159,9 +174,16 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('<details id="filters-panel" class="filters">', html)
             self.assertNotIn('<details id="filters-panel" class="filters" open', html)
             self.assertIn('id="tribe-filter"', html)
+            self.assertIn('id="type-filter"', html)
             self.assertIn('id="tag-filter"', html)
             self.assertIn('id="card-filter"', html)
             self.assertIn('data-sort="title"', html)
+            self.assertIn('data-label="Commit"', html)
+            self.assertIn('data-label="Core"', html)
+            self.assertIn("comp.card_previews", html)
+            self.assertIn("comp.commit", html)
+            self.assertIn("comp.core", html)
+            self.assertIn("comp.cards", html)
             self.assertNotIn('data-sort="probability"', html)
             self.assertNotIn('data-sort="power"', html)
             self.assertNotIn('data-sort="online"', html)
@@ -375,7 +397,18 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(saved["pages"][0]["modes"], ["solo", "duos"])
             self.assertEqual(saved["pages"][0]["tribes"], ["beast"])
             self.assertEqual(saved["pages"][0]["tags"], ["deathrattle", "scaling"])
-            self.assertNotIn("core", saved["pages"][0])
+            self.assertEqual(saved["pages"][0]["type"], "meta")
+            self.assertEqual(saved["pages"][0]["commit"], [])
+            self.assertEqual(saved["pages"][0]["core"], [132796])
+            self.assertEqual(saved["pages"][0]["dynamic"], [97408])
+            self.assertEqual(saved["pages"][0]["cards"], [132796, 97408])
+            self.assertEqual(saved["pages"][0]["minion_ids"], [132796, 97408])
+            self.assertEqual(saved["pages"][0]["spell_ids"], [])
+            self.assertEqual(saved["pages"][0]["other_ids"], [])
+            self.assertEqual(
+                saved["pages"][0]["card_previews"]["132796"]["name"],
+                "Tasty Lobster",
+            )
             self.assertEqual(saved["pages"][0]["source_author"], "Shadybunny")
 
     def test_custom_visual_packages_render_with_purpose_and_optional_status(self):
@@ -427,7 +460,7 @@ class PipelineTests(unittest.TestCase):
                 template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
                 output_dir=root / "dist",
                 public_base_url="http://127.0.0.1:8000",
-                register=False,
+                register=True,
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
@@ -447,6 +480,14 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("needed tribe active", html)
             self.assertIn('<article class="guide-copy">', html)
             self.assertNotIn('<details class="guide-details">', html)
+            self.assertIn('class="index-link" href="../index.html"', html)
+            self.assertIn('All compositions', html)
+            entry = json.loads(registry.read_text(encoding="utf-8"))["pages"][0]
+            self.assertEqual(entry["commit"], [])
+            self.assertEqual(entry["core"], [132796])
+            self.assertEqual(entry["dynamic"], [97408, 64040])
+            self.assertEqual(entry["cards"], [132796, 97408, 64040])
+            self.assertEqual(set(entry["card_previews"]), {"132796"})
 
     def test_custom_packages_require_fixed_commit_and_core(self):
         invalid_packages = (
@@ -846,6 +887,42 @@ class PipelineTests(unittest.TestCase):
             self.assertNotIn("Late game · Turn", html)
             self.assertIn("watch?v=jCupcgaSjvo&t=600s", html)
 
+    def test_board_example_allows_stable_late_combat_fallback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            board_yaml = """board_examples:
+  - stage: late
+    turn: 14
+    timestamp: 1320
+    phase: combat
+    note: A stable late combat fallback when no clean late Tavern frame exists.
+    image: /static/boards/combat.webp
+"""
+            content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
+            board_dir = root / "static/boards"
+            board_dir.mkdir(parents=True)
+            (board_dir / "combat.webp").write_bytes(b"test-image")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=False,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn("Combat phase", html)
+            self.assertIn("Late game · Turn 14", html)
+            self.assertIn("watch?v=jCupcgaSjvo&t=1320s", html)
+
     def test_board_examples_reject_transcribed_units_and_unsafe_images(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -858,6 +935,7 @@ class PipelineTests(unittest.TestCase):
             for board_yaml, error in (
                 ("""board_examples:\n  - stage: early\n    timestamp: 180\n    phase: tavern\n    image: /static/boards/early.webp\n    units: []\n""", "screenshot-only"),
                 ("""board_examples:\n  - stage: early\n    timestamp: 180\n    phase: tavern\n    image: ../secret.webp\n""", "image must be"),
+                ("""board_examples:\n  - stage: mid\n    timestamp: 180\n    phase: combat\n    image: /static/boards/combat.webp\n""", "combat is allowed only for late"),
             ):
                 content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
                 with self.assertRaisesRegex(CompError, error):
@@ -1131,9 +1209,12 @@ composition_spells: []
             )
             self.assertEqual(entry["spells"], [])
             self.assertEqual(entry["published_at"], "2026-08-01T00:00:00+00:00")
+            self.assertEqual(saved["schema_version"], 3)
+            self.assertEqual(entry["core"], [132796])
+            self.assertEqual(entry["cards"], [132796, 97408])
             for result_field in ("probability", "turns_to_online", "p20_power", "p50_power", "p80_power"):
                 self.assertNotIn(result_field, entry)
-            for obsolete in ("evaluation", "core", "addons", "cycle", "cards"):
+            for obsolete in ("evaluation", "addons", "cycle"):
                 self.assertNotIn(obsolete, entry)
 
 

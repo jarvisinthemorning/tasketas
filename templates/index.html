@@ -30,13 +30,19 @@
       <details id="filters-panel" class="filters">
         <summary>
           <span>Filter and sort</span>
-          <span class="summary-hint">Tribe · tags · any contained card</span>
+          <span class="summary-hint">Tribe · type · tags · any contained card</span>
         </summary>
         <div class="filter-grid">
           <label>
             <span>Tribe</span>
             <select id="tribe-filter">
               <option value="">All tribes</option>
+            </select>
+          </label>
+          <label>
+            <span>Type</span>
+            <select id="type-filter">
+              <option value="">All types</option>
             </select>
           </label>
           <label>
@@ -69,6 +75,9 @@
           <thead>
             <tr>
               <th scope="col"><button type="button" data-sort="title">Composition <span aria-hidden="true">↕</span></button></th>
+              <th scope="col">Tribe / type</th>
+              <th scope="col" data-label="Commit">Commit</th>
+              <th scope="col" data-label="Core">Core</th>
             </tr>
           </thead>
           <tbody id="comp-rows">
@@ -92,6 +101,7 @@
       const body = document.querySelector('#comp-rows');
 
       const tribe = document.querySelector('#tribe-filter');
+      const type = document.querySelector('#type-filter');
       const tag = document.querySelector('#tag-filter');
       const card = document.querySelector('#card-filter');
       const sortSelect = document.querySelector('#sort-select');
@@ -110,7 +120,7 @@
       const titleCase = value => text(value).replaceAll('-', ' ').replace(/\b\w/g, letter => letter.toUpperCase());
 
       const allCardIds = comp => [...new Set(
-        [...(comp.minions || []), ...(comp.spells || [])]
+        (Array.isArray(comp.cards) ? comp.cards : [...(comp.minions || []), ...(comp.spells || [])])
           .map(item => Number(typeof item === 'number' ? item : item.card_id))
           .filter(Number.isInteger)
       )];
@@ -125,8 +135,10 @@
 
       const populateRegistryFilters = () => {
         const tribes = [...new Set(comps.flatMap(comp => comp.tribes || []))].sort((a, b) => text(a).localeCompare(text(b)));
+        const types = [...new Set(comps.map(comp => comp.type).filter(Boolean))].sort((a, b) => text(a).localeCompare(text(b)));
         const tags = [...new Set(comps.flatMap(comp => comp.tags || []))].sort((a, b) => text(a).localeCompare(text(b)));
         tribes.forEach(value => addOption(tribe, slugKey(value), titleCase(value)));
+        types.forEach(value => addOption(type, slugKey(value), titleCase(value)));
         tags.forEach(value => addOption(tag, slugKey(value), titleCase(value)));
       };
 
@@ -191,22 +203,21 @@
         return wrapper;
       };
 
-      const hydrateCoreCards = () => {
-        if (!cardsById) return;
-        document.querySelectorAll('.core-cards[data-core-ids]').forEach(container => {
-          container.replaceChildren();
-          const ids = container.dataset.coreIds.split(' ').filter(Boolean);
-          ids.forEach(id => {
-            const cardData = cardsById[id];
-            if (cardData) container.appendChild(renderCardPreview(cardData, container.dataset.compSlug));
-          });
-          if (!container.children.length) {
-            const missing = document.createElement('span');
-            missing.className = 'muted';
-            missing.textContent = 'No core cards listed';
-            container.appendChild(missing);
-          }
+      const renderCardGroup = (comp, ids, emptyLabel) => {
+        const container = document.createElement('div');
+        container.className = 'index-card-list';
+        const previews = comp.card_previews || {};
+        (ids || []).forEach(id => {
+          const cardData = previews[String(id)];
+          if (cardData) container.appendChild(renderCardPreview(cardData, comp.slug));
         });
+        if (!container.children.length) {
+          const missing = document.createElement('span');
+          missing.className = 'muted';
+          missing.textContent = emptyLabel;
+          container.appendChild(missing);
+        }
+        return container;
       };
 
       const renderRows = () => {
@@ -216,6 +227,7 @@
           const cardIds = allCardIds(comp);
           row.dataset.title = slugKey(comp.title);
           row.dataset.tribes = (comp.tribes || []).map(slugKey).join(' ');
+          row.dataset.type = slugKey(comp.type);
           row.dataset.tags = (comp.tags || []).map(slugKey).join(' ');
           row.dataset.cardIds = cardIds.join(' ');
           row.dataset.publishedAt = comp.published_at || '';
@@ -233,7 +245,19 @@
             titleCell.appendChild(meta);
           }
 
-          row.append(titleCell);
+          const infoCell = labelledCell('Tribe / type');
+          const chips = document.createElement('div');
+          chips.className = 'chip-list';
+          (comp.tribes || []).forEach(value => chips.appendChild(chip(value, 'tribe-chip')));
+          if (comp.type) chips.appendChild(chip(titleCase(comp.type), `type-chip type-chip--${slugKey(comp.type)}`));
+          infoCell.appendChild(chips);
+
+          const commitCell = labelledCell('Commit');
+          commitCell.appendChild(renderCardGroup(comp, comp.commit, 'Core is the commit'));
+          const coreCell = labelledCell('Core');
+          coreCell.appendChild(renderCardGroup(comp, comp.core, 'No core listed'));
+
+          row.append(titleCell, infoCell, commitCell, coreCell);
           body.appendChild(row);
         });
         rows = [...body.querySelectorAll('tr[data-title]')];
@@ -241,7 +265,7 @@
           const row = document.createElement('tr');
           row.className = 'empty-row';
           const cell = document.createElement('td');
-          cell.colSpan = 1;
+          cell.colSpan = 4;
           cell.textContent = 'No guides have been published yet.';
           row.appendChild(cell);
           body.appendChild(row);
@@ -280,6 +304,7 @@
           const tags = (row.dataset.tags || '').split(' ');
           const cards = (row.dataset.cardIds || '').split(' ');
           const matches = (!tribe.value || tribes.includes(tribe.value))
+            && (!type.value || row.dataset.type === type.value)
             && (!tag.value || tags.includes(tag.value))
             && (!card.value || cards.includes(card.value));
           row.hidden = !matches;
@@ -306,7 +331,7 @@
         card.disabled = false;
       };
 
-      [tribe, tag, card].forEach(control => control.addEventListener('change', applyFilters));
+      [tribe, type, tag, card].forEach(control => control.addEventListener('change', applyFilters));
       sortSelect.addEventListener('change', () => {
         const [key, direction] = sortSelect.value.split(':');
         setSort(key, direction);
@@ -317,6 +342,7 @@
       }));
       document.querySelector('#reset-filters').addEventListener('click', () => {
         tribe.value = '';
+        type.value = '';
         tag.value = '';
         card.value = '';
         setSort('date', 'desc');

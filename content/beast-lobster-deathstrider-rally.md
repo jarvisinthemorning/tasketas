@@ -11,6 +11,7 @@ tags:
 - deathrattle
 - rally
 - scaling
+classification: highroll
 core:
 - 132796
 - 132808
@@ -42,6 +43,25 @@ packages:
   purpose: Reborn gives Lobster another Deathrattle; Titus doubles every Lobster Deathrattle trigger.
   optional: true
   cards: [108909, 97408]
+board_examples:
+- stage: early
+  turn: 7
+  timestamp: 90
+  phase: tavern
+  image: /static/boards/beast-lobster-deathstrider-rally-early.webp
+  note: A clean recruit snapshot before the source's later setup, useful as a transition baseline.
+- stage: mid
+  turn: 8
+  timestamp: 120
+  phase: tavern
+  image: /static/boards/beast-lobster-deathstrider-rally-mid.webp
+  note: The intermediate recruit state shows the developing line rather than skipping directly to the final board.
+- stage: late
+  turn: 9
+  timestamp: 149
+  phase: tavern
+  image: /static/boards/beast-lobster-deathstrider-rally-late.webp
+  note: The last clean Tavern snapshot before this edited source moves into combat-heavy footage.
 composition_minions:
 - {card_id: 132796, count: 1, golden_count: 0}
 - {card_id: 132808, count: 1, golden_count: 0}

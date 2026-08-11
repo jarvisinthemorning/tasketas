@@ -16,9 +16,11 @@
 <body>
   <header class="hero">
     <div class="shell">
+      <a class="index-link" href="../index.html"><span aria-hidden="true">←</span> All compositions</a>
       <div class="eyebrow">Battlegrounds comp · Season {{ comp.season }}</div>
       <h1>{{ comp.title }}</h1>
       <div class="chips" aria-label="Guide metadata">
+        <span class="chip chip--type">{{ comp.classification | capitalize }}</span>
         {% for mode in comp.modes or [] %}<span class="chip">{{ mode }}</span>{% endfor %}
         {% for tribe in comp.tribes or [] %}<span class="chip chip--tribe">{{ tribe }}</span>{% endfor %}
         <span class="chip chip--verified">Verified {{ comp.verified_at }}</span>
@@ -86,7 +88,7 @@
           <div class="section-kicker">Recorded boards</div>
           <h2 id="board-examples-heading">Board examples</h2>
         </div>
-        <p>Source-verified Tavern screenshots from the original video.</p>
+        <p>Source-verified gameplay screenshots from the original video.</p>
       </div>
       <div class="board-example-list">
         {% for board in comp.board_examples %}
