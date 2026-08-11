@@ -8,6 +8,36 @@ tags: [season 14, trinket, deathrattle, attack scaling, cycle]
 core: [133391, 126451, 120104]
 addons: [133712, 130884, 120219, 97408, 132322, 133081]
 cycle: [110412]
+packages:
+  - title: Commit
+    purpose: Plaguerunner Portrait is the permission slip. Without the refund trinket, this is not the repeatable Portrait loop.
+    badge: Trinket gate
+    cards: [133391]
+  - title: Core
+    purpose: Destroy Plaguerunner outside combat with Butchering; the spell and Deathrattle add permanent Attack, then Portrait refunds the sacrifice target.
+    badge: Required loop
+    cards: [133391, 126451, 110412]
+  - title: Butchering supply
+    purpose: Butcher generates the first spells in combat; Sphere and Harbinger refill them when Butchering is the last Tavern spell cast.
+    badge: Keep looping
+    cards: [120104, 110412, 133712, 130884]
+  - title: Spell amplification
+    purpose: Friendly Geist improves later Tavern spells permanently, and Titus multiplies the Geist Deathrattle while that package remains active.
+    badge: Bigger casts
+    cards: [120219, 97408]
+  - title: Extra Plaguerunner triggers
+    purpose: Bellringer can destroy Plaguerunner outside combat for another boosted Deathrattle and another Portrait refund.
+    badge: Recruit-phase proc
+    cards: [132322, 126451]
+  - title: Defensive payoff
+    purpose: Banshee converts the Reborn layer into Health and Divine Shields so the attack-heavy loop survives return hits.
+    badge: Add durability
+    cards: [133081]
+related_routes:
+  - slug: undead-snazzy-reborn
+    title: General Undead Attack Scaling
+    purpose: The standard Butcher route uses summon volume, spell amplification, Reborn conversion, and Banshee defense without requiring Plaguerunner Portrait.
+    cards: [120104, 95265, 133083]
 composition_minions:
   - {card_id: 126451, count: 1, golden_count: 0}
   - {card_id: 130884, count: 1, golden_count: 0}

@@ -461,7 +461,7 @@
     },
     {
       "slug": "undead-snazzy-reborn",
-      "title": "Snazzy Phantom Reborn Conversion",
+      "title": "Undead Attack Scaling",
       "url": "https://jarvisinthemorning.github.io/tasketas/comps/undead-snazzy-reborn.html",
       "season": 14,
       "modes": [
@@ -472,47 +472,57 @@
       ],
       "tags": [
         "season 14",
+        "attack scaling",
+        "butchering",
         "reborn",
-        "deathrattle",
         "stat transfer"
       ],
       "minions": [
         {
-          "card_id": 133083,
+          "card_id": 108992,
           "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132322,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120104,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133083,
+          "count": 2,
           "golden_count": 0
         },
         {
           "card_id": 133081,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 95265,
-          "count": 1,
+          "count": 2,
           "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 110412,
+          "count": 1
+        }
+      ],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-10",
+      "verified_at": "2026-08-11",
       "source_type": "youtube",
-      "source_url": "https://www.youtube.com/watch?v=IV8rBG-3CA8",
-      "source_author": "Rdu Hearthstone",
-      "source_id": "IV8rBG-3CA8",
+      "source_url": "https://www.youtube.com/watch?v=gVDdCE_xjaQ",
+      "source_author": "Sevel",
+      "source_id": "gVDdCE_xjaQ",
       "discovery_sources": [
         {
           "type": "hsreplay",
           "url": "https://hsreplay.net/battlegrounds/comps/14/undead-attack-scaling",
           "comp_id": "14",
           "label": "HSReplay composition guide"
-        },
-        {
-          "type": "firestone",
-          "url": "https://www.firestoneapp.com/battlegrounds/comps",
-          "comp_id": "undead_butcher",
-          "label": "Firestone composition directory"
         }
       ],
       "published_at": "2026-08-09T10:04:15+00:00"

@@ -21,6 +21,11 @@ addons:
 - 132804
 cycle: []
 packages:
+- title: Commit
+  purpose: Commit only with Lobster, Deathstrider, and enough Rally attackers to trigger the engine repeatedly; Lobster alone is tempo, not a comp.
+  badge: Engine + Rally density
+  optional: false
+  cards: [132796, 132808, 132806, 132800]
 - title: Core
   purpose: Use Rally attacks to trigger Lobster repeatedly in combat; use Fishbaits for permanent Tavern-phase stats.
   optional: false

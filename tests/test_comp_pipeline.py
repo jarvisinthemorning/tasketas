@@ -410,9 +410,14 @@ class PipelineTests(unittest.TestCase):
             root = Path(tmp)
             content = root / "guide.md"
             packages = """packages:
+  - title: Commit
+    purpose: No separate pre-core commitment signal; assemble Core before staying on this route.
+    badge: No early commit
+    optional: false
+    cards: []
   - title: Core
     purpose: Trigger Lobster scaling repeatedly during combat.
-    badge: Commit signal
+    badge: Required core
     optional: false
     cards: [132796]
   - title: Add-ons
@@ -453,8 +458,11 @@ class PipelineTests(unittest.TestCase):
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn("No separate pre-core commitment signal", html)
+            self.assertIn("No early commit", html)
+            self.assertLess(html.index(">Commit</h2>"), html.index(">Core</h2>"))
             self.assertIn("Trigger Lobster scaling repeatedly during combat.", html)
-            self.assertIn("Commit signal", html)
+            self.assertIn("Required core", html)
             self.assertIn("Improve the engine when offered.", html)
             self.assertIn("Optional package", html)
             self.assertIn("Titus Rivendare", html)
@@ -466,6 +474,52 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("needed tribe active", html)
             self.assertIn('<article class="guide-copy">', html)
             self.assertNotIn('<details class="guide-details">', html)
+
+    def test_custom_packages_require_fixed_commit_and_core(self):
+        invalid_packages = (
+            (
+                "packages:\n"
+                "  - title: Core\n"
+                "    purpose: Required engine.\n"
+                "    optional: false\n"
+                "    cards: [132796]\n",
+                "packages must start with fixed Commit and Core sections",
+            ),
+            (
+                "packages:\n"
+                "  - title: Commit\n"
+                "    purpose: No separate commitment signal.\n"
+                "    optional: false\n"
+                "    cards: []\n"
+                "  - title: Core\n"
+                "    purpose: Required engine.\n"
+                "    optional: false\n"
+                "    cards: []\n",
+                "Core cards must be a non-empty list",
+            ),
+        )
+        for packages, message in invalid_packages:
+            with self.subTest(message=message), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                content = root / "guide.md"
+                content.write_text(
+                    VALID_MARKDOWN.replace("source:\n", packages + "source:\n"),
+                    encoding="utf-8",
+                )
+                cards = root / "cards.json"
+                cards.write_text(json.dumps(CARDS), encoding="utf-8")
+                registry = root / "registry.json"
+                registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+                with self.assertRaisesRegex(CompError, message):
+                    publish_comp(
+                        content_path=content,
+                        cards_path=cards,
+                        registry_path=registry,
+                        template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                        output_dir=root / "dist",
+                        public_base_url="http://127.0.0.1:8000",
+                        register=False,
+                    )
 
     def test_preview_build_does_not_update_registry(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -881,7 +935,8 @@ composition_spells: []
                         "schema_version": 2,
                         "pages": [
                             {
-                                "source_id": "jCupcgaSjvo",
+                                "source_id": "oldVideo123",
+                                "slug": "tasty-lobstah",
                                 "url": "https://old.example",
                                 "published_at": "2026-08-01T00:00:00+00:00",
                                 "tribes": ["demon"],
@@ -894,7 +949,13 @@ composition_spells: []
                                 "p20_power": 8200,
                                 "p50_power": 16400,
                                 "p80_power": 25700,
-                            }
+                            },
+                            {
+                                "source_id": "jCupcgaSjvo",
+                                "slug": "tasty-lobstah",
+                                "url": "https://duplicate.example",
+                                "published_at": "2026-08-02T00:00:00+00:00",
+                            },
                         ],
                     }
                 ),
@@ -916,6 +977,7 @@ composition_spells: []
             saved = json.loads(registry.read_text(encoding="utf-8"))
             self.assertEqual(len(saved["pages"]), 1)
             entry = saved["pages"][0]
+            self.assertEqual(entry["source_id"], "jCupcgaSjvo")
             self.assertEqual(entry["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
             self.assertEqual(
                 entry["minions"],

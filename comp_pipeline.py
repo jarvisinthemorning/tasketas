@@ -365,15 +365,32 @@ def publish_comp(
         raise CompError(f"source.type must be {source_type}")
 
     registry = _load_json(registry_path)
-    existing_index = next(
-        (index for index, page in enumerate(registry.get("pages", [])) if page.get("source_id") == source_id),
-        None,
-    )
-    existing_entry = (
-        registry.get("pages", [])[existing_index] if existing_index is not None else None
-    )
-    if register and existing_index is not None and not update:
+    registry_pages = registry.get("pages", [])
+    source_indices = [
+        index for index, page in enumerate(registry_pages) if page.get("source_id") == source_id
+    ]
+    slug_indices = [
+        index for index, page in enumerate(registry_pages) if page.get("slug") == metadata["slug"]
+    ]
+    if register and not update and source_indices:
         raise CompError(f"Source {source_id} was already published")
+    if register and not update and slug_indices:
+        raise CompError(f"Slug {metadata['slug']} was already published; use update")
+    existing_indices = sorted(set(source_indices + (slug_indices if update else [])))
+    if update and len(existing_indices) > 1:
+        conflicting_slugs = {
+            registry_pages[index].get("slug")
+            for index in existing_indices
+            if registry_pages[index].get("slug") not in (None, metadata["slug"])
+        }
+        if conflicting_slugs:
+            raise CompError(
+                f"Update would merge source {source_id} across different slugs: {sorted(conflicting_slugs)}"
+            )
+    existing_index = existing_indices[0] if existing_indices else None
+    existing_entry = (
+        registry_pages[existing_index] if existing_index is not None else None
+    )
 
     cards_payload = _load_json(cards_path)
     catalog = CardCatalog(cards_payload)
@@ -411,12 +428,18 @@ def publish_comp(
     if raw_packages is not None:
         if not isinstance(raw_packages, list) or not raw_packages:
             raise CompError("packages must be a non-empty list")
+        fixed_titles = [
+            package.get("title") if isinstance(package, dict) else None
+            for package in raw_packages[:2]
+        ]
+        if len(raw_packages) < 2 or fixed_titles != ["Commit", "Core"]:
+            raise CompError("packages must start with fixed Commit and Core sections")
         for package_index, raw_package in enumerate(raw_packages, start=1):
             if not isinstance(raw_package, dict):
                 raise CompError(f"packages[{package_index}] must be a mapping")
             title = raw_package.get("title")
             purpose = raw_package.get("purpose")
-            optional = raw_package.get("optional", True)
+            optional = raw_package.get("optional", package_index > 2)
             badge = raw_package.get("badge")
             ids = raw_package.get("cards")
             if not isinstance(title, str) or not title.strip():
@@ -427,7 +450,11 @@ def publish_comp(
                 raise CompError(f"packages[{package_index}].optional must be true or false")
             if badge is not None and (not isinstance(badge, str) or not badge.strip()):
                 raise CompError(f"packages[{package_index}].badge must be non-empty text")
-            if not isinstance(ids, list) or not ids:
+            if not isinstance(ids, list):
+                raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
+            if not ids and package_index != 1:
+                if package_index == 2:
+                    raise CompError("Core cards must be a non-empty list")
                 raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
             cards = [package_card(card_id) for card_id in ids]
             packages.append(
@@ -723,5 +750,7 @@ def publish_comp(
             pages.append(entry)
         else:
             pages[existing_index] = entry
+            for duplicate_index in reversed(existing_indices[1:]):
+                del pages[duplicate_index]
         registry_path.write_text(json.dumps(registry, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return entry

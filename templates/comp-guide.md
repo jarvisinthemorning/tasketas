@@ -10,10 +10,11 @@ core: []
 addons: []
 cycle: []
 packages:
-  # Optional fixed section. Delete it entirely when there is no meaningful pre-core commitment signal.
+  # Fixed first section. Keep it even when no meaningful pre-Core commitment signal exists.
+  # In that case, use an honest badge/purpose and leave cards empty; never fabricate a signal.
   - title: Commit
-    purpose: Explain why this signal opens the line without yet proving the final payoff.
-    badge: Commit signal
+    purpose: Explain the concrete signal, or state that Core must be assembled before staying on the route.
+    badge: Commit signal # Or: No early commit
     optional: false
     cards: []
   # Required fixed section. Keep this exact title and include the minimum defining engine.
