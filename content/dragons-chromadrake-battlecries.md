@@ -78,6 +78,11 @@ supporting_sources:
   author: Shadybunny
   label: Bronze Timewalker plus Sky-hatch Runaway Rally generator
   timestamp: 533
+- type: youtube
+  url: https://www.youtube.com/watch?v=VDLCBxk_-48
+  author: Shadybunny
+  label: Warpwing and Crimson Vindicator highroll package
+  timestamp: 945
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=dCwe93sXIiM
@@ -108,18 +113,19 @@ The current source wins with Hired Mount, two Kalecgos, Brann, repeatable Chroma
 2. **Preserve space.** Keep one board slot and enough hand room before generating Chromadrakes. The primary source visibly runs into a full-hand sequencing problem; making more cards than you can play is just elaborate confetti.
 3. **Play Battlecries through Brann.** Generated Chromadrakes provide the repeated Battlecry volume. With Kalecgos present, every trigger also buffs the Dragon board permanently.
 4. **Cycle, do not collect.** Use the generated Battlecry, then sell the weakest temporary body unless it has become one of your best scaled Dragons. A seven-piece museum display switches off the engine.
-5. **Upgrade the payoff.** A second Kalecgos or Golden Kalecgos sharply increases permanent scaling. [[card:92413|Warpwing]] is the cleanest attacking carry; [[card:133329|Gatekeeper Amalgam]] and [[card:132953|Crimson Vindicator]] are flexible late bodies when their own support is already present.
-6. **Sell setup when it stops paying.** In the final combats, replace a weak generator when one more Chromadrake is worth less than a protected attacker, tech card, or already-scaled body.
+5. **Upgrade the payoff.** The cited games show additional Kalecgos copies and golden engine pieces raising the ceiling. [[card:92413|Warpwing]], [[card:133329|Gatekeeper Amalgam]], and [[card:132953|Crimson Vindicator]] are optional late bodies, not pieces the evidence supports forcing from behind.
 
 ## Positioning
 
-Put Warpwing early enough to exploit its safe attacks, especially after it gains Windfury or Divine Shield. Brann and any weak generator are economy pieces rather than combat anchors; do not let their board slots prevent a necessary tech card. Kalecgos placement is otherwise flexible because its scaling happens during the Recruit phase.
+The cited sources do not establish one mandatory attack order. Brann, Kalecgos, and the generators do their defining work during the Recruit phase; arrange the actual combat board for the opponent rather than copying the recorded screenshot slot for slot.
 
 ## Why this is Underdog
 
 The current complete directory audit found no HSReplay or Firestone composition whose Core is the Dragon/Kalecgos Chromadrake loop. Firestone does list a different **Neutral Tea Set** route that can use Chromadrake generation, but its Core is Brann, Balinda Stonehearth, and Gatekeeper Amalgam—not this Dragon composition.
 
-This route is therefore **Underdog**, not Meta. It is also not inherently Highroll: Hired Mount, Kalecgos, Brann, Bronze Timewalker, and Sky-hatch Runaway are ordinary Tavern cards. [[card:133403|Dragon's Eye]], [[card:112082|Goldenizer Supply]], Dark Gifts, hero powers, and multiple golden engine pieces are accelerants or source ceilings, not commitment requirements. Do not use the source's four-digit final board as the expected floor.
+This route is therefore classified **Underdog**, not Meta. Its minimum loop uses ordinary Tavern cards: Hired Mount or Timewalker-plus-Runaway supplies Chromadrakes, Brann doubles their Battlecries, and Kalecgos converts those triggers into permanent Dragon stats. [[card:133403|Dragon's Eye]], [[card:112082|Goldenizer Supply]], Dark Gifts, hero powers, and multiple golden engine pieces accelerate that loop but are not required by its card mechanics.
+
+Evidence confidence is lower than for a tracked Meta guide: both public examples reach their demonstrated ceiling with premium acceleration. The Underdog label applies to the reproducible minimum engine, not as a claim that the source's four-digit final board is an ordinary result.
 
 ## Common failure modes
 
@@ -139,3 +145,4 @@ This route is therefore **Underdog**, not Meta. It is also not inherently Highro
 - **21:52** — first place is visibly confirmed.
 - **Shadybunny 8:53** — the supporting source demonstrates Sky-hatch Runaway triggering the Dragon Rally package.
 - **Shadybunny 10:10** — double Kalecgos and the accelerated Runaway line are established.
+- **Shadybunny Eudora 15:45** — related Warpwing/Vindicator ceiling; Dark Gift and hero interactions make this highroll context only.

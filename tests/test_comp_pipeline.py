@@ -363,7 +363,10 @@ class PipelineTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             content = root / "guide.md"
-            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            content.write_text(
+                VALID_MARKDOWN.replace("classification: meta", "classification: underdog"),
+                encoding="utf-8",
+            )
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             registry = root / "registry.json"
@@ -372,6 +375,7 @@ class PipelineTests(unittest.TestCase):
             template.write_text(
                 "<meta name=viewport content='width=device-width, initial-scale=1'>  \n"
                 "<h1>{{ comp.title }}</h1>"
+                "<span class='classification'>{{ comp.classification|title }}</span>"
                 "{% for card in comp.sections.core %}"
                 "<a href='{{ card.hsreplay }}'><img src='{{ card.image }}' alt='{{ card.name }}'></a>"
                 "{% endfor %}"
@@ -392,6 +396,7 @@ class PipelineTests(unittest.TestCase):
             html = (output / "comps" / "tasty-lobstah.html").read_text(encoding="utf-8")
             self.assertIn("width=device-width", html)
             self.assertIn("Tasty Lobster", html)
+            self.assertIn("<span class='classification'>Underdog</span>", html)
             self.assertIn("hsreplay.net/battlegrounds/minions/132796", html)
             self.assertIn('class="card-ref"', html)
             self.assertIn('class="card-ref-trigger"', html)
@@ -414,7 +419,7 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(saved["pages"][0]["modes"], ["solo", "duos"])
             self.assertEqual(saved["pages"][0]["tribes"], ["beast"])
             self.assertEqual(saved["pages"][0]["tags"], ["deathrattle", "scaling"])
-            self.assertEqual(saved["pages"][0]["type"], "meta")
+            self.assertEqual(saved["pages"][0]["type"], "underdog")
             self.assertEqual(saved["pages"][0]["commit"], [])
             self.assertEqual(saved["pages"][0]["core"], [132796])
             self.assertEqual(saved["pages"][0]["dynamic"], [97408])
