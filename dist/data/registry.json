@@ -585,6 +585,161 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-11T13:57:58+00:00"
+    },
+    {
+      "slug": "demons-shop-buff",
+      "title": "Demons Shop Buff",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/demons-shop-buff.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "demon"
+      ],
+      "tags": [
+        "season 14",
+        "shop buff",
+        "consume",
+        "spells"
+      ],
+      "type": "meta",
+      "commit": [
+        132901,
+        130662
+      ],
+      "core": [
+        132901,
+        132899,
+        130298,
+        110664
+      ],
+      "dynamic": [
+        72060,
+        96786,
+        121687,
+        132903,
+        100949
+      ],
+      "cards": [
+        132901,
+        132899,
+        130298,
+        110664,
+        130662,
+        72060,
+        96786,
+        121687,
+        132903,
+        100949
+      ],
+      "minion_ids": [
+        132901,
+        132899,
+        130298,
+        110664,
+        130662,
+        72060,
+        96786,
+        121687,
+        100949
+      ],
+      "spell_ids": [
+        132903
+      ],
+      "other_ids": [],
+      "card_previews": {
+        "132901": {
+          "id": 132901,
+          "name": "Devilish Distractor",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/132901-devilish-distractor.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132901/devilish-distractor"
+        },
+        "130662": {
+          "id": 130662,
+          "name": "Twisted Wrathguard",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/130662-twisted-wrathguard.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130662/twisted-wrathguard"
+        },
+        "132899": {
+          "id": 132899,
+          "name": "Imp-lusionist",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/132899-imp-lusionist.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132899/imp-lusionist"
+        },
+        "130298": {
+          "id": 130298,
+          "name": "Balinda Stonehearth",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
+        },
+        "110664": {
+          "id": 110664,
+          "name": "Felboar",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/110664-felboar.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/110664/felboar"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 132901,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132899,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 110664,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130662,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 132903,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=7dFLg3c2GxA",
+      "source_author": "Shadybunny2",
+      "source_id": "7dFLg3c2GxA",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff",
+          "comp_id": "41",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-11T17:10:29+00:00"
     }
   ],
   "schema_version": 3

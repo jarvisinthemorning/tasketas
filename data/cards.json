@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T18:06:30+00:00",
+  "generated_at": "2026-08-11T16:58:25+00:00",
   "source": "https://hsbg.cards/api-docs",
   "cards": {
     "57555": {
@@ -36866,37 +36866,6 @@
       "detail": "https://hsreplay.net/battlegrounds/minions/133028/eredar-escapist",
       "hsreplay": "https://hsreplay.net/battlegrounds/minions/133028/eredar-escapist"
     },
-    "133039": {
-      "id": 133039,
-      "card_id": "BG36_210",
-      "slug": "hoarding-hyena",
-      "name": "Hoarding Hyena",
-      "type": "minion",
-      "tier": 5,
-      "attack": 5,
-      "health": 6,
-      "attack_gold": 10,
-      "health_gold": 12,
-      "text": "<b>Rally:</b> Summon a Tasty Lobster.",
-      "text_gold": "<b>Rally:</b> Summon a Golden Tasty Lobster.",
-      "keywords": [
-        "rally"
-      ],
-      "tribes": [
-        "Beast"
-      ],
-      "categories": [
-        "tavern"
-      ],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/minions/beast/133039-hoarding-hyena.png",
-      "detail": "https://hsreplay.net/battlegrounds/minions/133039/hoarding-hyena",
-      "hsreplay": "https://hsreplay.net/battlegrounds/minions/133039/hoarding-hyena"
-    },
     "133041": {
       "id": 133041,
       "card_id": "BG36_211",
@@ -38932,31 +38901,6 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/133713-maldraxxus-dagger.png",
       "detail": "https://hsbg.cards/card/maldraxxus-dagger",
       "hsreplay": "https://hsbg.cards/card/maldraxxus-dagger"
-    },
-    "133714": {
-      "id": 133714,
-      "card_id": "BG36_MagicItem_363",
-      "slug": "escapee-portrait",
-      "name": "Escapee Portrait",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "Get a Golden Enterprising\nEscapee. Your Lockboxes\nopen 2 turns sooner.",
-      "text_gold": null,
-      "keywords": [],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/133714-escapee-portrait.png",
-      "detail": "https://hsbg.cards/card/escapee-portrait",
-      "hsreplay": "https://hsbg.cards/card/escapee-portrait"
     },
     "133715": {
       "id": 133715,
