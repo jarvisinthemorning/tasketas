@@ -26,15 +26,15 @@ packages:
   optional: false
   cards: [116434]
 - title: Turbo Hogrider
-  purpose: Convert every Choose One play into broad permanent Blood Gem scaling across your Quilboar board.
+  purpose: Let Bramble Tunneler generate repeatable Choose One cards, then convert every play into broad Blood Gem scaling with Hogrider.
   badge: Required core
   optional: false
-  cards: [116195]
+  cards: [116195, 132632]
 - title: Choose One
   purpose: Feed Hogrider with cheap choices, doubled effects, repeatable Rally generation, and a late whole-board payoff.
   badge: Shopping engine
   optional: false
-  cards: [116182, 132630, 116190, 132632, 113154, 132634, 132929]
+  cards: [116182, 132630, 116190, 113154, 132634, 132929]
 - title: Blood Gem quality
   purpose: Raise the value of every Hogrider trigger once Choose One generation is stable.
   badge: Scaling upgrades
@@ -102,7 +102,7 @@ verified_at: '2026-08-11'
 
 ## Game plan
 
-Use [[card:116434|Gem Rat]] as the soft commitment signal while both Quilboar routes remain open. When [[card:116195|Turbo Hogrider]] arrives, repeated Choose One cards become broad Blood-Gem scaling. [[card:132636|Jailbird Juggernaut]] is the source's primary Rally carry, while [[card:116190|Thorned Trailblazer]] adds more Choose One value.
+Use [[card:116434|Gem Rat]] as the soft commitment signal while both Quilboar routes remain open. [[card:132632|Bramble Tunneler]] then supplies repeatable Choose One cards through Rally, and [[card:116195|Turbo Hogrider]] converts every one you play into broad Blood-Gem scaling. [[card:132636|Jailbird Juggernaut]] is the source's primary Rally carry, while [[card:116190|Thorned Trailblazer]] adds more Choose One value.
 
 [[card:110664|Felboar]] can consume shop stats in the demonstrated line, but the comp's identity is Hogrider plus Choose One volume—not generic Demon consumption.
 
@@ -110,7 +110,7 @@ Use [[card:116434|Gem Rat]] as the soft commitment signal while both Quilboar ro
 
 - **Commit softly:** Gem Rat improves Blood Gems and banks a Gem Day every turn, but do not ignore an earlier Bristlemane/Juggernaut or Confiscation core.
 - **Bridge:** collect the cards in the Choose One shopping section without sacrificing basic board strength.
-- **Commit:** the source calls Turbo Hogrider the scaler; without it, the package lacks a reliable ceiling.
+- **Commit:** pair Turbo Hogrider with Bramble Tunneler. Hogrider provides the scaling payoff and Tunneler keeps generating the Choose One fuel that sustains it.
 - **Scale:** cast Choose One effects in the order that maximizes Gem production before moving stats.
 - **Finish:** transfer accumulated Blood Gems into resilient final carries and keep Juggernaut positioned to Rally safely.
 
