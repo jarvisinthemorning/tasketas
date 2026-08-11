@@ -5,7 +5,7 @@ season: 14
 modes: [solo]
 tribes: [beast]
 tags: [deathrattle, scaling]
-classification: meta # Exactly one of: meta, variant, highroll
+classification: meta # Exactly one of: meta, variant, underdog, highroll
 # Legacy compatibility fields; visual presentation comes from packages.
 core: []
 addons: []

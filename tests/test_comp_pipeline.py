@@ -115,6 +115,18 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaisesRegex(CompError, "tags must be a non-empty list"):
                 _parse_markdown(content)
 
+    def test_guide_accepts_underdog_classification(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            content = Path(tmp) / "guide.md"
+            content.write_text(
+                VALID_MARKDOWN.replace("classification: meta", "classification: underdog"),
+                encoding="utf-8",
+            )
+
+            metadata, _ = _parse_markdown(content)
+
+            self.assertEqual(metadata["classification"], "underdog")
+
     def test_guide_requires_supported_classification(self):
         for value in ("missing", "invalid"):
             with self.subTest(value=value), tempfile.TemporaryDirectory() as tmp:
@@ -124,10 +136,15 @@ class PipelineTests(unittest.TestCase):
                     message = "Missing required frontmatter field: classification"
                 else:
                     source = VALID_MARKDOWN.replace("classification: meta", "classification: experimental")
-                    message = "classification must be meta, variant, or highroll"
+                    message = "classification must be meta, variant, underdog, or highroll"
                 content.write_text(source, encoding="utf-8")
                 with self.assertRaisesRegex(CompError, message):
                     _parse_markdown(content)
+
+    def test_index_styles_underdog_classification(self):
+        stylesheet = (Path(__file__).parents[1] / "static" / "index.css").read_text(encoding="utf-8")
+
+        self.assertIn(".type-chip--underdog", stylesheet)
 
     def test_index_fetches_registry_first_and_lazy_loads_card_filter(self):
         with tempfile.TemporaryDirectory() as tmp:

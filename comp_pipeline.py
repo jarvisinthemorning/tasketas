@@ -132,8 +132,8 @@ def _parse_markdown(path: Path) -> tuple[dict, str]:
     for field in ("tribes", "tags"):
         if not isinstance(metadata[field], list) or not metadata[field]:
             raise CompError(f"{field} must be a non-empty list")
-    if metadata["classification"] not in {"meta", "variant", "highroll"}:
-        raise CompError("classification must be meta, variant, or highroll")
+    if metadata["classification"] not in {"meta", "variant", "underdog", "highroll"}:
+        raise CompError("classification must be meta, variant, underdog, or highroll")
     if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", str(metadata["slug"])):
         raise CompError("slug must contain lowercase letters, numbers, and hyphens only")
     if not isinstance(metadata["source"], dict) or not metadata["source"].get("url"):

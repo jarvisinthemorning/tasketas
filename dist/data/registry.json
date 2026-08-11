@@ -1241,6 +1241,160 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-11T20:03:14+00:00"
+    },
+    {
+      "slug": "dragons-chromadrake-battlecries",
+      "title": "Dragons — Chromadrake Battlecries",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/dragons-chromadrake-battlecries.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "dragon"
+      ],
+      "tags": [
+        "season 14",
+        "battlecry",
+        "rally",
+        "scaling",
+        "chromadrakes"
+      ],
+      "type": "underdog",
+      "commit": [
+        132955,
+        132957
+      ],
+      "core": [
+        132955,
+        132957,
+        60630,
+        96786
+      ],
+      "dynamic": [
+        132951,
+        126860,
+        92413,
+        133329,
+        132953,
+        133403,
+        112082
+      ],
+      "cards": [
+        132955,
+        132957,
+        60630,
+        96786,
+        132951,
+        126860,
+        92413,
+        133329,
+        132953,
+        133403,
+        112082
+      ],
+      "minion_ids": [
+        132955,
+        132957,
+        60630,
+        96786,
+        132951,
+        126860,
+        92413,
+        133329,
+        132953
+      ],
+      "spell_ids": [],
+      "other_ids": [
+        133403,
+        112082
+      ],
+      "card_previews": {
+        "132955": {
+          "id": 132955,
+          "name": "Bronze Timewalker",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/dragon/132955-bronze-timewalker.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132955/bronze-timewalker"
+        },
+        "132957": {
+          "id": 132957,
+          "name": "Sky-hatch Runaway",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/dragon/132957-sky-hatch-runaway.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132957/sky-hatch-runaway"
+        },
+        "60630": {
+          "id": 60630,
+          "name": "Kalecgos, Arcane Aspect",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/dragon/60630-kalecgos-arcane-aspect.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/60630/kalecgos-arcane-aspect"
+        },
+        "96786": {
+          "id": 96786,
+          "name": "Brann Bronzebeard",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/96786-brann-bronzebeard.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/96786/brann-bronzebeard"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 132955,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132957,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 60630,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 92413,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=dCwe93sXIiM",
+      "source_author": "Sevel",
+      "source_id": "dCwe93sXIiM",
+      "discovery_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=-bP5beZRYW4",
+          "source_id": "-bP5beZRYW4",
+          "author": "Shadybunny",
+          "label": "Bronze Timewalker plus Sky-hatch Runaway Rally generator",
+          "timestamp": 533
+        }
+      ],
+      "published_at": "2026-08-11T22:06:09+00:00"
     }
   ],
   "schema_version": 3

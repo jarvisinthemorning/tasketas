@@ -133,6 +133,7 @@ select:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid
 .tribe-chip { border: 1px solid rgba(242, 201, 127, 0.35); color: var(--gold); background: rgba(242, 201, 127, 0.08); }
 .type-chip { border: 1px solid rgba(185, 140, 255, 0.34); color: #e0caff; background: var(--purple-soft); }
 .type-chip--meta { border-color: rgba(103, 214, 167, 0.38); color: #9ce9c3; background: rgba(45, 151, 104, 0.14); }
+.type-chip--underdog { border-color: rgba(105, 199, 231, 0.4); color: #a9e9ff; background: rgba(50, 137, 167, 0.16); }
 .type-chip--highroll { border-color: rgba(239, 130, 177, 0.38); color: #ffacd0; background: rgba(173, 62, 112, 0.14); }
 .tag-chip { border: 1px solid rgba(185, 140, 255, 0.3); color: #d8baff; background: var(--purple-soft); }
 .muted { color: var(--muted); font-size: 0.82rem; }
