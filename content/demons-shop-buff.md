@@ -35,22 +35,22 @@ packages:
   cards: [132901, 130662]
 - title: Fodder economy
   purpose: Brann accelerates the buy-and-sell economy that keeps Wrathguard's future Refreshes stocked with Fodder.
-  badge: Demonstrated engine
+  badge: Optional — demonstrated engine
   optional: true
   cards: [130662, 96786]
 - title: Madness conversion
   purpose: Imp-lusionist generates Methodical Madness; Balinda can double the targeted spell and its shop-to-board conversion.
-  badge: Current Meta extension
+  badge: Optional — current Meta extension
   optional: true
   cards: [132899, 132903, 130298]
 - title: Other consumers
   purpose: Felboar converts spell volume and Ur'zul converts Demon plays when either arrives before the full Madness package.
-  badge: Choose another payoff
+  badge: Optional — choose another payoff
   optional: true
   cards: [110664, 72060]
 - title: Conditional support
   purpose: Ashen adds temporary shop stats only in a self-damage line; Soul Rewinder makes that damage safe.
-  badge: Self-damage only
+  badge: Optional — self-damage only
   optional: true
   cards: [121687, 100949]
 related_routes: []
