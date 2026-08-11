@@ -20,12 +20,12 @@ addons:
 - 110664
 cycle: []
 packages:
-- title: Gem Rat
+- title: Commit
   purpose: Improve Blood Gems and bank one repeatable Choose One card each turn while both Quilboar routes remain open.
   badge: Commit signal
   optional: false
   cards: [116434]
-- title: Turbo Hogrider
+- title: Core
   purpose: Let Bramble Tunneler generate repeatable Choose One cards, then convert every play into broad Blood Gem scaling with Hogrider.
   badge: Required core
   optional: false

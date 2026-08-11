@@ -10,19 +10,24 @@ addons: [116434, 130298]
 cycle: []
 flex: [126671, 96786]
 packages:
-  - title: Gem Rat
-    purpose: Improve Blood Gems while keeping both major Quilboar payoff routes open.
+  - title: Commit
+    purpose: Improve Blood Gems while keeping both Quilboar payoff routes open until the shop gives you a real engine.
     badge: Commit signal
     optional: false
     cards: [116434]
-  - title: Bristlemane Golems
-    purpose: Target Bristlemane to load adjacent Juggernaut directly, then turn those Gems into attacking Golems.
-    badge: Choose one core
+  - title: Core
+    purpose: Jailbird Juggernaut is the shared Rally payoff that turns concentrated Blood Gems into recurring Golems.
+    badge: Required core
+    optional: false
+    cards: [132636]
+  - title: Bristlemane loading
+    purpose: Target Vigilant Bristlemane with spells so Juggernaut keeps receiving permanent Gems before Rally.
+    badge: Choose one loader
     optional: false
     cards: [132320, 132636]
-  - title: Confiscation Golems
+  - title: Confiscation loading
     purpose: Let Vineweaver or other neighbors build Gems, then consolidate them onto Juggernaut with repeatable Gem Confiscation.
-    badge: Choose one core
+    badge: Choose one loader
     optional: false
     cards: [126671, 122562, 110642, 132636]
   - title: Blood Gem generators

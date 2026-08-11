@@ -10,11 +10,19 @@ core: []
 addons: []
 cycle: []
 packages:
+  # Optional fixed section. Delete it entirely when there is no meaningful pre-core commitment signal.
+  - title: Commit
+    purpose: Explain why this signal opens the line without yet proving the final payoff.
+    badge: Commit signal
+    optional: false
+    cards: []
+  # Required fixed section. Keep this exact title and include the minimum defining engine.
   - title: Core
     purpose: One sentence explaining how the mandatory engine pieces interact.
     badge: Required core
     optional: false
     cards: []
+  # Everything below Core is dynamic and may repeat card IDs from Commit/Core when roles overlap.
   - title: Engine-specific package
     purpose: One sentence explaining why these cards are useful purchases.
     optional: true
