@@ -34,7 +34,7 @@ packages:
   purpose: Feed Hogrider with cheap choices, doubled effects, repeatable Rally generation, and a late whole-board payoff.
   badge: Shopping engine
   optional: false
-  cards: [116182, 132630, 116190, 113154, 132634, 132929]
+  cards: [116182, 132630, 116190, 132632, 113154, 132634, 132929]
 - title: Blood Gem quality
   purpose: Raise the value of every Hogrider trigger once Choose One generation is stable.
   badge: Scaling upgrades
