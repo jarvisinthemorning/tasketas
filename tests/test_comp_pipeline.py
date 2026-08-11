@@ -568,6 +568,18 @@ class PipelineTests(unittest.TestCase):
             ),
             (
                 "packages:\n"
+                "  - title: Core\n"
+                "    purpose: Required engine.\n"
+                "    optional: false\n"
+                "    cards: [132796]\n"
+                "  - title: ' Commit '\n"
+                "    purpose: Whitespace must not bypass reserved ordering.\n"
+                "    optional: false\n"
+                "    cards: [97408]\n",
+                "Commit and Core are reserved package titles",
+            ),
+            (
+                "packages:\n"
                 "  - title: Commit\n"
                 "    purpose: Empty placeholders are not valid commit signals.\n"
                 "    optional: false\n"

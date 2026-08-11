@@ -435,18 +435,23 @@ def publish_comp(
     if raw_packages is not None:
         if not isinstance(raw_packages, list) or not raw_packages:
             raise CompError("packages must be a non-empty list")
-        first_title = raw_packages[0].get("title") if isinstance(raw_packages[0], dict) else None
+
+        def normalized_package_title(package: object) -> object:
+            title = package.get("title") if isinstance(package, dict) else None
+            return title.strip() if isinstance(title, str) else title
+
+        first_title = normalized_package_title(raw_packages[0])
         has_commit = first_title == "Commit"
         core_index = 1 if has_commit else 0
         core_is_valid = (
             len(raw_packages) > core_index
             and isinstance(raw_packages[core_index], dict)
-            and raw_packages[core_index].get("title") == "Core"
+            and normalized_package_title(raw_packages[core_index]) == "Core"
         )
         if not core_is_valid:
             raise CompError("packages must start with Core, or Commit followed by Core")
         if any(
-            isinstance(package, dict) and package.get("title") in {"Commit", "Core"}
+            normalized_package_title(package) in {"Commit", "Core"}
             for package in raw_packages[core_index + 1 :]
         ):
             raise CompError("Commit and Core are reserved package titles")
