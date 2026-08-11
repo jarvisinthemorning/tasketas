@@ -604,16 +604,13 @@
         "spells"
       ],
       "type": "meta",
-      "commit": [
-        132901,
-        130662
-      ],
+      "commit": [],
       "core": [
         132901,
-        130662
+        132899
       ],
       "dynamic": [
-        132899,
+        130662,
         130298,
         110664,
         72060,
@@ -624,8 +621,8 @@
       ],
       "cards": [
         132901,
-        130662,
         132899,
+        130662,
         130298,
         110664,
         72060,
@@ -636,8 +633,8 @@
       ],
       "minion_ids": [
         132901,
-        130662,
         132899,
+        130662,
         130298,
         110664,
         72060,
@@ -658,13 +655,13 @@
           "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/132901-devilish-distractor.png",
           "detail": "https://hsreplay.net/battlegrounds/minions/132901/devilish-distractor"
         },
-        "130662": {
-          "id": 130662,
-          "name": "Twisted Wrathguard",
+        "132899": {
+          "id": 132899,
+          "name": "Imp-lusionist",
           "type": "minion",
-          "tier": 6,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/130662-twisted-wrathguard.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/130662/twisted-wrathguard"
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/132899-imp-lusionist.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132899/imp-lusionist"
         }
       },
       "minions": [
@@ -674,7 +671,7 @@
           "golden_count": 0
         },
         {
-          "card_id": 130662,
+          "card_id": 132899,
           "count": 1,
           "golden_count": 0
         }

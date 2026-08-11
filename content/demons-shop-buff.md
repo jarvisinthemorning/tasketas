@@ -14,9 +14,9 @@ tags:
 classification: meta
 core:
 - 132901
-- 130662
-addons:
 - 132899
+addons:
+- 130662
 - 130298
 - 110664
 - 72060
@@ -24,15 +24,15 @@ addons:
 cycle: []
 packages:
 - title: Commit
-  purpose: Stay only after persistent shop buffs meet a real conversion engine; Distractor alone is not a Demon comp.
-  badge: Buffed shop + conversion
+  purpose: There is no separate pre-Core signal; assemble Distractor and Imp-lusionist before treating this as the shop-buff composition.
+  badge: No early commit
   optional: false
-  cards: [132901, 130662]
+  cards: []
 - title: Core
-  purpose: Grow future Tavern minions with Distractor, then turn each Refresh into permanent Demon stats through Wrathguard's Fodder.
+  purpose: Grow future Tavern minions with Distractor, then use Imp-lusionist's Madness to convert those shop stats and keywords.
   badge: Required core
   optional: false
-  cards: [132901, 130662]
+  cards: [132901, 132899]
 - title: Fodder economy
   purpose: Brann accelerates the buy-and-sell economy that keeps Wrathguard's future Refreshes stocked with Fodder.
   badge: Optional — demonstrated engine
@@ -56,7 +56,7 @@ packages:
 related_routes: []
 composition_minions:
 - {card_id: 132901, count: 1, golden_count: 0}
-- {card_id: 130662, count: 1, golden_count: 0}
+- {card_id: 132899, count: 1, golden_count: 0}
 composition_spells: []
 board_examples:
 - stage: mid
@@ -88,29 +88,30 @@ verified_at: '2026-08-11'
 
 ## How it works
 
-The minimum Tasketas engine is [[card:132901|Devilish Distractor]] plus [[card:130662|Twisted Wrathguard]]. Spells cast on Distractor permanently improve future Tavern minions; selling expendable bodies lets Wrathguard seed later Refreshes with Fodder, which feeds those enlarged shop stats to your Demons.
+The minimum Tasketas engine is [[card:132901|Devilish Distractor]] plus [[card:132899|Imp-lusionist]]. Spells cast on Distractor permanently improve future Tavern minions; Imp-lusionist generates two [[card:132903|Methodical Madness]] spells to turn those shop stats and keywords into permanent Demon strength. There is no honest earlier commitment section—the two-card Core is the signal.
 
-The linked Shadybunny game demonstrates that Wrathguard/Fodder pivot, with a Golden [[card:96786|Brann Bronzebeard]] supplying the economy to keep buying and selling. It also uses [[card:132899|Imp-lusionist]] for [[card:132903|Methodical Madness]]. The current HSReplay directory additionally lists [[card:130298|Balinda Stonehearth]] and [[card:110664|Felboar]] in its Core package, with [[card:72060|Insatiable Ur'zul]], [[card:121687|Ashen Corruptor]], and [[card:100949|Soul Rewinder]] as add-ons. Those rows are current-Meta extensions supported by their card text, not choices attributed to Shadybunny's game.
+The linked Shadybunny game demonstrates a Wrathguard/Fodder alternative, with a Golden [[card:96786|Brann Bronzebeard]] supplying the economy to keep buying and selling. It also uses Imp-lusionist for Methodical Madness. The current HSReplay directory additionally lists [[card:130298|Balinda Stonehearth]] and [[card:110664|Felboar]] in its Core package, with [[card:72060|Insatiable Ur'zul]], [[card:121687|Ashen Corruptor]], and [[card:100949|Soul Rewinder]] as add-ons. Those rows are current-Meta extensions supported by their card text, not choices attributed to Shadybunny's game.
 
-The source begins on a different route and explicitly refuses to commit from one Distractor. The Demon pivot becomes credible only after Golden Brann and Twisted Wrathguard create the economy and conversion needed to exploit the shop. That is the useful lesson: build the line the game offers, not the line named on the guide.
+The source begins on a different route and explicitly refuses to commit from one Distractor. Its Demon pivot becomes credible only after Golden Brann and [[card:130662|Twisted Wrathguard]] create an alternative economy and conversion route. The useful lesson is the same: build the line the game offers, not the line named on the guide.
 
-## When to commit
+## When the Core is real
 
-- **Not enough:** one [[card:132901|Devilish Distractor]] with no reliable way to convert the future shop. Spending Gold on permanent buffs is wasted if the final board cannot eat those stats.
-- **Demonstrated signal:** Distractor plus [[card:130662|Twisted Wrathguard]], with enough economy to buy, sell, and reach the Fodder Refreshes.
-- **Strong accelerator:** [[card:96786|Brann Bronzebeard]] and useful Battlecries provide the actions that made the source's pivot practical.
-- **Current-Meta alternatives:** repeatable [[card:132903|Methodical Madness]], [[card:110664|Felboar]], or [[card:72060|Insatiable Ur'zul]] can convert an already-buffed Tavern, but they are alternative payoffs rather than additional mandatory Core cards.
-- **Stay flexible:** the source keeps a functioning alternative line until the Demon engine actually appears. Do the same; do not sell a board for a future shop that may never arrive.
+- **Not enough:** one Distractor without Imp-lusionist or another immediate way to convert the future shop.
+- **Core assembled:** Distractor plus Imp-lusionist gives you both persistent shop scaling and repeatable Madness conversion.
+- **Madness support:** [[card:130298|Balinda Stonehearth]] upgrades the spell route, but it is not part of the minimum Core.
+- **Fodder alternative:** Wrathguard plus Brann-supported economy can open the demonstrated route instead of waiting for the Madness package.
+- **Other alternatives:** [[card:110664|Felboar]] or [[card:72060|Insatiable Ur'zul]] can consume an already-buffed Tavern, but neither makes every optional package mandatory.
+- **Stay flexible:** keep a functioning board until the full engine actually appears; do not sell everything for a future shop that may never arrive.
 
 ## Shopping and sequencing
 
-1. Pair [[card:132901|Devilish Distractor]] with a real conversion engine before sinking repeated spells into permanent shop buffs.
-2. In the demonstrated Wrathguard route, use Battlecry economy to buy and sell deliberately, seeding future Refreshes with Fodder without running out of board or hand space.
-3. Target Distractor with useful spells so its permanent Tavern scaling is attached to actions you already wanted to take.
-4. If [[card:132899|Imp-lusionist]] appears, leave hand space for both copies of [[card:132903|Methodical Madness]] when its Deathrattle resolves.
-5. Add [[card:130298|Balinda Stonehearth]] only when targeted spells are plentiful enough for the double cast to matter. Felboar and Ur'zul are alternative consumers; do not wait for all three routes.
-6. Spend Madness on Demons you intend to keep, especially when the Tavern offers defensive keywords that convert raw stats into combat value.
-7. Once several carries are large, use the remaining Gold on economy and matchup tech instead of greedily making the future Tavern even larger.
+1. Assemble Distractor and Imp-lusionist before treating this as the shop-buff composition.
+2. Target Distractor with useful spells so its permanent Tavern scaling is attached to actions you already wanted to take.
+3. Leave hand space for both Methodical Madness copies when Imp-lusionist's Deathrattle resolves.
+4. Spend Madness on Demons you intend to keep, especially when the Tavern offers defensive keywords that convert raw stats into combat value.
+5. Add Balinda only when targeted spells are plentiful enough for the double cast to matter.
+6. If the Fodder route appears instead, use Battlecry economy to buy and sell deliberately without running out of board or hand space.
+7. Felboar and Ur'zul are alternative consumers; do not wait for every package. Once several carries are large, spend the remaining Gold on matchup tech rather than a greedier future Tavern.
 
 ## Positioning and traps
 
