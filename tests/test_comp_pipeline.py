@@ -4,10 +4,8 @@ import unittest
 from pathlib import Path
 
 from comp_pipeline import (
-    RESULT_FIELDS,
     CardCatalog,
     CompError,
-    _materialize_power_summary,
     _parse_markdown,
     analyze_board_examples,
     build_index,
@@ -103,72 +101,6 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
-    def test_power_summary_discloses_every_legacy_profile_assumption(self):
-        metrics = {
-            "probability": 0.1,
-            "turns_to_online": 13,
-            "p20_power": 100,
-            "p50_power": 200,
-            "p80_power": 300,
-        }
-        cases = [
-            ([132796, 132808, 132800], "source-verified Headhunter Gryphon"),
-            ([60630, 96786, 132955, 132957], "one immediate Chromadrake"),
-            ([132981, 120674], "two Elementals"),
-            ([132983, 126173], "Spirit Swap"),
-            ([132983, 126173], "randomly across six Tavern slots"),
-            ([132983, 126173], "base minion stats"),
-            ([132893, 120905, 98588, 130298, 101314], "Drakkari repeats"),
-            ([119942, 120905, 130298], "Meditative's spell bonus"),
-            ([132762, 132925, 132921], "Only Castaway counts as a Discover"),
-            ([133083, 133081, 95265], "Handless Forsaken Reborn"),
-            ([133026, 132989, 98948, 126637], "Bream Counter in hand"),
-            ([133329, 130298], "Maldraxxus Dagger"),
-            ([127446, 90425], "five bounded removal uses"),
-            ([127446, 90425], "Timewarped setup odds"),
-            ([126671, 132320, 132636], "transfers them to Juggernaut"),
-        ]
-
-        for card_ids, phrase in cases:
-            with self.subTest(phrase=phrase):
-                summary = _materialize_power_summary(
-                    metrics, [{"card_id": card_id} for card_id in card_ids]
-                )
-                self.assertTrue(any(phrase in note for note in summary["notes"]))
-
-    def test_power_summary_explains_plaguerunner_and_warpwing_profiles(self):
-        metrics = {
-            "probability": 0.1,
-            "turns_to_online": 13,
-            "p20_power": 100,
-            "p50_power": 200,
-            "p80_power": 300,
-        }
-        undead = _materialize_power_summary(
-            metrics,
-            [
-                {"card_id": 126451},
-                {"card_id": 120104},
-                {"card_id": 120219},
-            ],
-        )
-        dragons = _materialize_power_summary(
-            metrics,
-            [
-                {"card_id": 120301},
-                {"card_id": 132953},
-                {"card_id": 108463},
-                {"card_id": 92413},
-            ],
-        )
-
-        self.assertTrue(any("Butchering" in note for note in undead["notes"]))
-        self.assertTrue(any("conditional" in note for note in undead["notes"]))
-        self.assertTrue(any("trinket odds" in note for note in undead["notes"]))
-        self.assertTrue(any("adjacent Dragons" in note for note in dragons["notes"]))
-        self.assertTrue(any("doubles" in note for note in dragons["notes"]))
-        self.assertTrue(any("does not assign" in note for note in dragons["notes"]))
-
     def test_board_analysis_calculates_observed_stats_and_growth(self):
         boards = [
             {
@@ -262,19 +194,19 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('id="tag-filter"', html)
             self.assertIn('id="card-filter"', html)
             self.assertIn('data-sort="title"', html)
-            self.assertIn('data-sort="probability"', html)
-            self.assertIn('data-sort="power"', html)
-            self.assertIn('data-sort="online"', html)
+            self.assertNotIn('data-sort="probability"', html)
+            self.assertNotIn('data-sort="power"', html)
+            self.assertNotIn('data-sort="online"', html)
             self.assertIn("data/registry.json", html)
             self.assertIn("data/cards.json", html)
             self.assertNotIn("Promise.all", html)
             self.assertIn("addEventListener('toggle'", html)
             self.assertIn('<option value="date:desc" selected>Newest first</option>', html)
             self.assertNotIn("Tasty Lobstah", html)
-            self.assertIn("Probability", html)
-            self.assertIn("P80 power score", html)
-            self.assertIn("Turns online", html)
-            self.assertIn("not combat simulation or win probability", html)
+            self.assertNotIn("Probability", html)
+            self.assertNotIn("P80 power score", html)
+            self.assertNotIn("Turns online", html)
+            self.assertNotIn("not combat simulation or win probability", html)
             self.assertNotIn("Rating", html)
             self.assertNotIn("Difficulty", html)
 
@@ -485,14 +417,27 @@ class PipelineTests(unittest.TestCase):
   - title: Add-ons
     purpose: Improve the engine when offered.
     optional: true
-    cards: [97408]
+    cards: [97408, 64040]
 """
             content.write_text(
                 VALID_MARKDOWN.replace("source:\n", packages + "source:\n"),
                 encoding="utf-8",
             )
             cards = root / "cards.json"
-            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            card_fixture = json.loads(json.dumps(CARDS))
+            card_fixture["cards"]["64040"] = {
+                "id": 64040,
+                "name": "Water Droplet",
+                "type": "minion",
+                "tier": 1,
+                "tribes": ["Elemental"],
+                "pool": True,
+                "categories": ["token"],
+                "modes": ["solo"],
+                "image": "https://example.com/water-droplet.png",
+                "detail": "https://example.com/water-droplet",
+            }
+            cards.write_text(json.dumps(card_fixture), encoding="utf-8")
             registry = root / "registry.json"
             registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
 
@@ -512,7 +457,14 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("Required", html)
             self.assertIn("Optional package", html)
             self.assertIn("Titus Rivendare", html)
-            self.assertIn('<details class="guide-details">', html)
+            self.assertIn('class="card-rarity"', html)
+            self.assertIn('% / refresh', html)
+            self.assertIn('class="card-rarity unavailable"', html)
+            self.assertIn('Generated', html)
+            self.assertNotIn('>0.0% / refresh<', html)
+            self.assertIn("needed tribe active", html)
+            self.assertIn('<article class="guide-copy">', html)
+            self.assertNotIn('<details class="guide-details">', html)
 
     def test_preview_build_does_not_update_registry(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -679,7 +631,7 @@ class PipelineTests(unittest.TestCase):
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
-            board_html = html[html.index('<section class="board-examples"'):html.index('<section class="source-card"')]
+            board_html = html[html.index('<section class="board-examples"'):html.index('<article class="guide-copy">')]
             self.assertIn('<section class="board-examples"', html)
             self.assertNotIn('loading="lazy"', board_html)
             self.assertIn('class="board-unit"', html)
@@ -693,6 +645,7 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("watch?v=jCupcgaSjvo&t=180s", html)
             self.assertIn("Last Tavern turn before winning · Turn 12", html)
             self.assertLess(html.index("Tasty Lobster"), html.index("Titus Rivendare"))
+            self.assertLess(html.index('<section class="board-examples"'), html.index('<article class="guide-copy">'))
             self.assertLess(html.index('<section class="board-examples"'), html.index('<section class="source-card"'))
 
     def test_board_example_allows_useful_late_snapshot_without_known_turn(self):
@@ -729,7 +682,7 @@ class PipelineTests(unittest.TestCase):
             self.assertNotIn("Late game · Turn", html)
             self.assertIn("watch?v=jCupcgaSjvo&t=600s", html)
 
-    def test_compact_registry_metrics_render_without_guide_evaluation_metadata(self):
+    def test_legacy_power_metrics_are_not_rendered_or_republished(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             content = root / "guide.md"
@@ -777,24 +730,16 @@ composition_spells: []
                 template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
                 output_dir=root / "dist",
                 public_base_url="http://127.0.0.1:8000",
-                register=False,
+                register=True,
+                update=True,
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
-            self.assertIn('class="power-badges"', html)
-            self.assertIn("Common · 22%", html)
-            self.assertIn("25.7k", html)
-            self.assertIn("Turn 11", html)
-            self.assertIn("P20", html)
-            self.assertIn("power-v7", html)
-            self.assertIn("8.2k", html)
-            self.assertIn("P50", html)
-            self.assertIn("16.4k", html)
-            self.assertIn("among successful assemblies", html)
-            self.assertIn("random tribe availability", html)
-            self.assertIn("chance that one pool copy is held by a rival", html)
-            self.assertNotIn("quant-evaluation", html)
-            self.assertNotIn("Observed board trajectory", html)
+            self.assertNotIn('class="power-summary"', html)
+            self.assertNotIn("P80 power", html)
+            saved = json.loads(registry.read_text(encoding="utf-8"))["pages"][0]
+            for obsolete in ("probability", "turns_to_online", "p20_power", "p50_power", "p80_power"):
+                self.assertNotIn(obsolete, saved)
 
     def test_composition_recipe_rejects_more_than_seven_board_bodies(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -914,7 +859,7 @@ composition_spells: []
             )
             self.assertEqual(entry["spells"], [])
             self.assertEqual(entry["published_at"], "2026-08-01T00:00:00+00:00")
-            for result_field in RESULT_FIELDS:
+            for result_field in ("probability", "turns_to_online", "p20_power", "p50_power", "p80_power"):
                 self.assertNotIn(result_field, entry)
             for obsolete in ("evaluation", "core", "addons", "cycle", "cards"):
                 self.assertNotIn(obsolete, entry)

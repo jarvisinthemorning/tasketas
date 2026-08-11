@@ -58,9 +58,6 @@
               <option value="date:asc">Oldest first</option>
               <option value="title:asc">Composition A–Z</option>
               <option value="title:desc">Composition Z–A</option>
-              <option value="probability:desc">Highest probability</option>
-              <option value="power:desc">Highest P80 power score</option>
-              <option value="online:asc">Fastest online</option>
             </select>
           </label>
           <button id="reset-filters" class="reset-button" type="button">Reset</button>
@@ -72,18 +69,15 @@
           <thead>
             <tr>
               <th scope="col"><button type="button" data-sort="title">Composition <span aria-hidden="true">↕</span></button></th>
-              <th scope="col"><button type="button" data-sort="probability">Probability <span aria-hidden="true">↕</span></button></th>
-              <th scope="col"><button type="button" data-sort="power">P80 power score <span aria-hidden="true">↕</span></button></th>
-              <th scope="col"><button type="button" data-sort="online">Turns online <span aria-hidden="true">↕</span></button></th>
             </tr>
           </thead>
           <tbody id="comp-rows">
-            <tr class="loading-row"><td colspan="4">Loading composition registry…</td></tr>
+            <tr class="loading-row"><td>Loading composition registry…</td></tr>
           </tbody>
         </table>
         <p id="empty-filter" class="empty-filter" hidden>No compositions match those filters.</p>
       </div>
-      <p class="metric-disclaimer">Power is a mechanics-aware board-strength score, not combat simulation or win probability.</p>
+
     </section>
   </main>
 
@@ -121,19 +115,6 @@
           .filter(Number.isInteger)
       )];
 
-      const probabilityLabel = probability => {
-        if (!Number.isFinite(probability)) return 'Not modeled';
-        if (probability >= 0.20) return 'Common';
-        if (probability >= 0.05) return 'Regular';
-        if (probability >= 0.01) return 'Rare';
-        if (probability >= 0.001) return 'High-roll';
-        return 'Lottery';
-      };
-      const formatPower = value => {
-        if (!Number.isFinite(value)) return '—';
-        if (value < 1000) return String(value);
-        return `${(value / 1000).toFixed(1).replace(/\.0$/, '')}k`;
-      };
 
       const addOption = (select, value, label) => {
         const option = document.createElement('option');
@@ -237,9 +218,6 @@
           row.dataset.tribes = (comp.tribes || []).map(slugKey).join(' ');
           row.dataset.tags = (comp.tags || []).map(slugKey).join(' ');
           row.dataset.cardIds = cardIds.join(' ');
-          row.dataset.probability = Number.isFinite(comp.probability) ? String(comp.probability) : '-1';
-          row.dataset.power = Number.isFinite(comp.p80_power) ? String(comp.p80_power) : '-1';
-          row.dataset.online = Number.isFinite(comp.turns_to_online) ? String(comp.turns_to_online) : '999';
           row.dataset.publishedAt = comp.published_at || '';
 
           const titleCell = labelledCell('Composition');
@@ -255,23 +233,7 @@
             titleCell.appendChild(meta);
           }
 
-          const probabilityCell = labelledCell('Probability');
-          probabilityCell.className = 'metric-cell';
-          probabilityCell.textContent = Number.isFinite(comp.probability)
-            ? `${probabilityLabel(comp.probability)} · ${Math.round(comp.probability * 100)}%`
-            : 'Not modeled';
-
-          const powerCell = labelledCell('P80 power score');
-          powerCell.className = 'metric-cell metric-cell--power';
-          powerCell.textContent = formatPower(comp.p80_power);
-
-          const onlineCell = labelledCell('Turns online');
-          onlineCell.className = 'metric-cell';
-          onlineCell.textContent = Number.isFinite(comp.turns_to_online)
-            ? `Turn ${comp.turns_to_online}`
-            : '—';
-
-          row.append(titleCell, probabilityCell, powerCell, onlineCell);
+          row.append(titleCell);
           body.appendChild(row);
         });
         rows = [...body.querySelectorAll('tr[data-title]')];
@@ -279,7 +241,7 @@
           const row = document.createElement('tr');
           row.className = 'empty-row';
           const cell = document.createElement('td');
-          cell.colSpan = 4;
+          cell.colSpan = 1;
           cell.textContent = 'No guides have been published yet.';
           row.appendChild(cell);
           body.appendChild(row);
@@ -291,7 +253,6 @@
       const valueFor = (row, key) => {
         if (key === 'date') return Date.parse(row.dataset.publishedAt || 0) || 0;
         if (key === 'tribe') return row.dataset.tribes || '';
-        if (['probability', 'power', 'online'].includes(key)) return Number(row.dataset[key]);
         return row.dataset[key] || '';
       };
 
@@ -376,7 +337,7 @@
         .catch(error => {
           console.error(error);
           count.textContent = 'Unavailable';
-          body.innerHTML = '<tr class="empty-row"><td colspan="4">Could not load the composition registry.</td></tr>';
+          body.innerHTML = '<tr class="empty-row"><td>Could not load the composition registry.</td></tr>';
         });
 
       let cardsRequested = false;

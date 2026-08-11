@@ -14,79 +14,11 @@ import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
-from comp_power import (
-    AIR_REVENANT,
-    BALINDA,
-    BARRIER_BANSHEE,
-    BRANN,
-    BRONZE_TIMEWALKER,
-    CHECKPOINT_TURN,
-    CHORAL_MRGLR,
-    CLEVER_CASTAWAY,
-    CONTENTION_HOLD_CHANCE,
-    CRIMSON_VINDICATOR,
-    DEATHSTRIDER,
-    DRAKKARI_ENCHANTER,
-    DRUSTFALLEN_BUTCHER,
-    ENTERPRISING_ESCAPEE,
-    EXPERT_AVIATOR,
-    FAUNA_WHISPERER,
-    FIRE_FORGED_EVOKER,
-    FRIENDLY_GEIST,
-    GATEKEEPER_AMALGAM,
-    GLAMBOT,
-    HANDLESS_FORSAKEN,
-    HOGRIDER,
-    HOOKTUSK,
-    JAILBIRD_JUGGERNAUT,
-    KALECGOS,
-    LEEROY,
-    MANA_SURGE,
-    MOAT_CUSTODIAN,
-    MODEL_VERSION,
-    PERSISTENT_POET,
-    PLAGUERUNNER,
-    ROLL_START_TURN,
-    ROLL_TURNS,
-    SHAMANIC_TIDECALLER,
-    SKY_HATCH_RUNAWAY,
-    SNAZZY_PHANTOM,
-    TASTY_LOBSTER,
-    TIMEWARPED_EMBALMER,
-    TRANQUIL_MEDITATIVE,
-    TRENCH_FIGHTER,
-    TWILIGHT_TIDEHUNTER,
-    UNBOUND_TEMPEST,
-    UTILITY_DRONE,
-    VIGILANT_BRISTLEMANE,
-    WARPWING,
-)
+from comp_rarity import RarityUnavailable, calculate_card_rarity
 
 
 class CompError(ValueError):
     """Raised when a comp source or guide cannot be published safely."""
-
-
-RESULT_FIELDS = ("probability", "turns_to_online", "p20_power", "p50_power", "p80_power")
-
-
-def probability_label(probability: float) -> str:
-    if probability >= 0.20:
-        return "Common"
-    if probability >= 0.05:
-        return "Regular"
-    if probability >= 0.01:
-        return "Rare"
-    if probability >= 0.001:
-        return "High-roll"
-    return "Lottery"
-
-
-def format_power(value: int) -> str:
-    if value < 1_000:
-        return str(value)
-    compact = f"{value / 1_000:.1f}".rstrip("0").rstrip(".")
-    return f"{compact}k"
 
 
 def _recorded_stat_number(value: int | str) -> int:
@@ -391,141 +323,6 @@ def _normalize_composition_cards(
     return normalized
 
 
-def _materialize_power_summary(metrics: dict | None, minions: list[dict]) -> dict | None:
-    if not metrics or not all(field in metrics for field in RESULT_FIELDS):
-        return None
-    probability = metrics["probability"]
-    turns = metrics["turns_to_online"]
-    powers = [metrics[field] for field in ("p20_power", "p50_power", "p80_power")]
-    if (
-        isinstance(probability, bool)
-        or not isinstance(probability, (int, float))
-        or not 0 <= probability <= 1
-        or isinstance(turns, bool)
-        or not isinstance(turns, int)
-        or turns < 1
-        or any(isinstance(value, bool) or not isinstance(value, int) or value < 0 for value in powers)
-        or powers != sorted(powers)
-    ):
-        raise CompError("registry power result values are invalid")
-    minion_ids = {item["card_id"] for item in minions}
-    notes: list[str] = []
-    if BALINDA in minion_ids:
-        notes.append(
-            "Balinda makes targeted spells cast twice, multiplying both spell effects and the triggers they cause."
-        )
-    if {TASTY_LOBSTER, DEATHSTRIDER} <= minion_ids:
-        notes.append(
-            "A source-verified Headhunter Gryphon Rally triggers one Lobster Deathrattle per combat; "
-            "combat buffs do not persist and Lobster's hidden future-improvement scalar is unmodeled."
-        )
-    if {KALECGOS, BRANN, BRONZE_TIMEWALKER, SKY_HATCH_RUNAWAY} <= minion_ids:
-        notes.append(
-            "Sky-hatch Runaway supplies one immediate Chromadrake on assembly; two natural Timewalker "
-            "Rallies resolve in combat and their Chromadrakes become playable next recruit turn."
-        )
-    if {MOAT_CUSTODIAN, MANA_SURGE} <= minion_ids:
-        notes.append(
-            "The trace plays two Elementals per recruit phase through Mana Surge, then credits one "
-            "Moat Custodian Rally improvement; extra cycle and Rally-enabler odds are excluded."
-        )
-    if {UNBOUND_TEMPEST, AIR_REVENANT} <= minion_ids:
-        notes.append(
-            "This source-demonstrated line is conditional on Spirit Swap; hero-selection odds and "
-            "random Dark Gifts, repeated Elemental fuel, and cycle-card acquisition odds are excluded. "
-            "The assembly turn grants no loop. On each later recruit turn the trace adds one Air Revenant "
-            "activation, distributes every active Easterly Winds randomly across six Tavern slots, and "
-            "selects the slot with the most hits while excluding its base minion stats. Spirit Swap then "
-            "adds the strongest friendly Attack before one Tempest trigger after three Elemental plays."
-        )
-    if {GLAMBOT, FAUNA_WHISPERER, UTILITY_DRONE, BALINDA, DRAKKARI_ENCHANTER} <= minion_ids:
-        notes.append(
-            "Fauna targets adjacent Mechs; Balinda repeats each Natural Blessing and Drakkari repeats "
-            "the end-of-turn sequence before Utility Drone counts each resulting Magnetization."
-        )
-    if {TRANQUIL_MEDITATIVE, FAUNA_WHISPERER, BALINDA} <= minion_ids:
-        notes.append(
-            "Each turn resolves Meditative's spell bonus before Fauna's generated Natural Blessings; "
-            "Balinda repeats targeted casts and generated-spell offer odds are excluded."
-        )
-    if {ENTERPRISING_ESCAPEE, HOOKTUSK, CLEVER_CASTAWAY} <= minion_ids:
-        notes.append(
-            "The trace spends 10 Gold per turn and tracks Lockbox openings separately from Clever "
-            "Castaway Activates. Only Castaway counts as a Discover for Hooktusk; the random Lockbox "
-            "body and Hooktusk's hidden Golden-minion improvement scalar are unmodeled."
-        )
-    if {SNAZZY_PHANTOM, BARRIER_BANSHEE, HANDLESS_FORSAKEN} <= minion_ids:
-        notes.append(
-            "One Handless Forsaken Reborn event gives Barrier Banshee itself +7/+7 and Divine Shield, "
-            "while Snazzy gives +2/+2 to the right-most Undead; all combat gains remain temporary."
-        )
-    if {SHAMANIC_TIDECALLER, TWILIGHT_TIDEHUNTER, CHORAL_MRGLR, EXPERT_AVIATOR} <= minion_ids:
-        notes.append(
-            "The trace requires a separately declared Bream Counter in hand, one targetable Tavern "
-            "spell, and one Murloc cycle per turn; Choral and Expert Aviator gains are combat-only."
-        )
-    if {GATEKEEPER_AMALGAM, BALINDA} <= minion_ids:
-        notes.append(
-            "This line is conditional on already owning Maldraxxus Dagger. Amalgamation is cast "
-            "twice through Balinda on assembly; Dagger copies begin on the next recruit turn."
-        )
-    if {TIMEWARPED_EMBALMER, LEEROY} <= minion_ids:
-        notes.append(
-            "Two Embalmers, two Leeroys, and Reborn Rites provide five bounded removal uses. The "
-            "score measures available removal capacity—not guaranteed kills or a combat-win rate—and "
-            "Timewarped setup odds are excluded."
-        )
-    if {TRENCH_FIGHTER, VIGILANT_BRISTLEMANE, JAILBIRD_JUGGERNAUT} <= minion_ids:
-        notes.append(
-            "Trench Fighter's generated Gem Confiscation becomes usable one turn later. The trace "
-            "banks Gems through Bristlemane, then transfers them to Juggernaut at the checkpoint."
-        )
-    if HOGRIDER in minion_ids:
-        notes.append(
-            "Each Turbo Hogrider turns every Choose One card into Blood Gems for the rest of the Quilboar board."
-        )
-    if {PLAGUERUNNER, DRUSTFALLEN_BUTCHER, FRIENDLY_GEIST} <= minion_ids:
-        notes.append(
-            "Butchering and Plaguerunner add permanent Attack to every Undead; "
-            "Friendly Geist increases the Tavern-spell portion of later loops."
-        )
-        notes.append(
-            "The acquisition probability is conditional on already owning Plaguerunner Portrait; "
-            "it excludes Portrait and optional trinket odds."
-        )
-    if {FIRE_FORGED_EVOKER, CRIMSON_VINDICATOR, PERSISTENT_POET, WARPWING} <= minion_ids:
-        notes.append(
-            "Persistent Poet makes adjacent Dragons—including Vindicator and Warpwing—retain "
-            "Fire-forged Evoker and Crimson Vindicator combat gains between fights; each "
-            "combat-cast Mighty Dragonbreath doubles the Evoker buff for the next fight. "
-            "The score does not assign extra utility to Warpwing being Immune while attacking."
-        )
-    return {
-        "probability": probability,
-        "probability_percent": round(probability * 100),
-        "probability_label": probability_label(probability),
-        "turns_to_online": turns,
-        "checkpoint_turn": CHECKPOINT_TURN,
-        "probability_note": (
-            f"Probability includes random tribe availability and finding every listed minion over "
-            f"{ROLL_TURNS} Tavern 6 recruit phases from Turn {ROLL_START_TURN}. "
-            f"Each required card has a {round(CONTENTION_HOLD_CHANCE * 100)}% chance that one "
-            "pool copy is held by a rival. Online is the median turn among successful assemblies."
-        ),
-        "score_note": (
-            f"Power model {MODEL_VERSION} is a mechanics-aware board-strength score, not combat simulation "
-            "or win probability. Percentiles include only successful assemblies."
-        ),
-        "p20": powers[0],
-        "p50": powers[1],
-        "p80": powers[2],
-        "p20_label": format_power(powers[0]),
-        "p50_label": format_power(powers[1]),
-        "p80_label": format_power(powers[2]),
-        "notes": notes,
-    }
-
-
 def build_index(
     *,
     registry_path: Path,
@@ -578,7 +375,24 @@ def publish_comp(
     if register and existing_index is not None and not update:
         raise CompError(f"Source {source_id} was already published")
 
-    catalog = CardCatalog(_load_json(cards_path))
+    cards_payload = _load_json(cards_path)
+    catalog = CardCatalog(cards_payload)
+
+    def package_card(card_id: int) -> dict:
+        card = dict(catalog.require_current(card_id))
+        try:
+            rarity = calculate_card_rarity(cards_payload, card_id)
+        except RarityUnavailable as error:
+            rarity = {
+                "percent": None,
+                "display": "Generated",
+                "basis": "no direct offer percentage",
+                "assumption": str(error),
+            }
+        if rarity.get("percent") is not None:
+            rarity["short_basis"] = "/ refresh" if card.get("type") == "minion" else "/ offer"
+        card["rarity"] = rarity
+        return card
     sections: dict[str, list[dict]] = {}
     all_ids: list[int] = []
     for section in ("core", "addons", "cycle"):
@@ -612,7 +426,7 @@ def publish_comp(
                 raise CompError(f"packages[{package_index}].optional must be true or false")
             if not isinstance(ids, list) or not ids:
                 raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
-            cards = [catalog.require_current(card_id) for card_id in ids]
+            cards = [package_card(card_id) for card_id in ids]
             packages.append(
                 {
                     "title": title.strip(),
@@ -639,7 +453,7 @@ def publish_comp(
                         "title": title,
                         "purpose": purpose,
                         "optional": optional,
-                        "cards": sections[key],
+                        "cards": [package_card(card["id"]) for card in sections[key]],
                     }
                 )
 
@@ -812,22 +626,6 @@ def publish_comp(
         card_ids = [item["card_id"] for item in items]
         if len(card_ids) != len(set(card_ids)):
             raise CompError(f"{field} must combine duplicate card IDs into one count")
-    composition_unchanged = bool(
-        existing_entry
-        and existing_entry.get("minions") == minions
-        and existing_entry.get("spells") == spells
-        and existing_entry.get("hand_minions", []) == hand_minions
-        and existing_entry.get("prerequisites", []) == prerequisites
-        and existing_entry.get("tribes") == metadata["tribes"]
-    )
-    metrics = (
-        {field: existing_entry[field] for field in RESULT_FIELDS}
-        if composition_unchanged
-        and existing_entry is not None
-        and all(field in existing_entry for field in RESULT_FIELDS)
-        else None
-    )
-
     comp = dict(metadata)
     comp["discovery_sources"] = discovery_sources
     comp["sections"] = sections
@@ -837,7 +635,6 @@ def publish_comp(
     comp["spells"] = spells
     comp["hand_minions"] = hand_minions
     comp["prerequisites"] = prerequisites
-    comp["power_summary"] = _materialize_power_summary(metrics, minions)
     comp.pop("evaluation", None)
     comp["source"]["type"] = source_type
     comp["source"]["url"] = source_url
@@ -879,8 +676,6 @@ def publish_comp(
             else datetime.now(timezone.utc).replace(microsecond=0).isoformat()
         ),
     }
-    if metrics:
-        entry.update(metrics)
     if register:
         registry["schema_version"] = 2
         pages = registry.setdefault("pages", [])

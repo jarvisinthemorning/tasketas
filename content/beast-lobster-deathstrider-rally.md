@@ -28,7 +28,7 @@ packages:
 - title: Rally
   purpose: Any Rally attacker triggers Deathstrider. Prefer useful early bodies and Windfury for extra triggers.
   optional: true
-  cards: [70157, 126637, 132806, 70173, 132800, 95286]
+  cards: [132806, 132800, 95286, 70173, 70157, 126637]
 - title: Fishbait
   purpose: Create Fishbaits with Lionfish or Snarky Shark, then feed them to your left-most Beast.
   optional: true

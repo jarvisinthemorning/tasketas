@@ -17,15 +17,15 @@ uv run python scripts/refresh_cards.py
 
 The catalogue uses numeric card IDs and public card data/images from https://hsbg.cards. Minions link to their public HSReplay detail pages.
 
-## Recalculate modeled probability and power
+## Check card rarity
 
-Evaluated guides declare only `composition_minions` and `composition_spells` in frontmatter. Minion entries support `count` and `golden_count`; model constants and card/effect handlers live in `comp_power.py`.
+Package cards receive a simple card-level rarity status during publication—not a whole-comp completion score. Tavern minions assume the needed tribe is active with a full, uncontested Solo pool; generated minions are labeled rather than assigned a false shop percentage.
 
 ```bash
-uv run python scripts/recalculate_power.py
+uv run python scripts/calculate_rarity.py <card-id> [<card-id> ...]
 ```
 
-One deterministic run updates only `probability`, `turns_to_online`, `p20_power`, `p50_power`, and `p80_power` in `data/registry.json`, writes every full simulation to `data/simulations/<slug>.json.gz`, and rebuilds the evaluated detail pages plus the homepage. Probability requires every listed minion copy, including the three physical copies represented by a Golden body, and applies the centrally configured light-contention model. Power is a versioned mechanics-aware board-strength score, not combat simulation or win probability. Change `CHECKPOINT_TURN` in `comp_power.py` to move the global checkpoint, then rerun this command. Use `--no-render` only when deliberately updating data without static pages.
+Tavern minions use tier pool copies and shop size. Tavern and categorized generated spells use their relevant catalog, Hero Powers use the selectable Solo hero count, and trinkets show a disclosed catalog baseline because their actual offer eligibility varies. The old power-model scripts remain in the repository for reference but are not part of guide publication.
 
 ## Preview a guide
 

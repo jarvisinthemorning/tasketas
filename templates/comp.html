@@ -42,45 +42,19 @@
             <img src="{{ card.image }}" alt="{{ card.name }}" loading="lazy">
             <span class="card-name">{{ card.name }}</span>
             <span class="card-meta">{% if card.tier %}Tier {{ card.tier }}{% endif %}{% if card.tribes %} · {{ card.tribes | join(' / ') }}{% endif %}</span>
+            {% if card.rarity %}
+              {% if card.rarity.percent is not none %}
+                <span class="card-rarity" title="{{ card.rarity.basis }} · {{ card.rarity.assumption }}">{{ card.rarity.percent }}% {{ card.rarity.short_basis }}</span>
+              {% else %}
+                <span class="card-rarity unavailable" title="{{ card.rarity.basis }} · {{ card.rarity.assumption }}">{{ card.rarity.display }}</span>
+              {% endif %}
+            {% endif %}
           </a>
           {% endfor %}
         </div>
       </section>
     {% endfor %}
-
-    <details class="guide-details">
-      <summary>How it works, positioning &amp; traps</summary>
-      <article class="guide-copy">
-        {{ body_html | safe }}
-      </article>
-    </details>
-
-    {% if comp.power_summary %}
-    <section class="power-summary" aria-labelledby="power-summary-heading">
-      <div class="power-badges" aria-label="Composition simulation summary">
-        <span class="power-badge"><small>Probability</small><strong>{{ comp.power_summary.probability_label }} · {{ comp.power_summary.probability_percent }}%</strong></span>
-        <span class="power-badge"><small>P80 power</small><strong>{{ comp.power_summary.p80_label }}</strong></span>
-        <span class="power-badge"><small>Online</small><strong>Turn {{ comp.power_summary.turns_to_online }}</strong></span>
-      </div>
-      <div class="section-heading">
-        <div>
-          <div class="section-kicker">Deterministic simulation</div>
-          <h2 id="power-summary-heading">Power distribution</h2>
-        </div>
-        <p>P20 is the low-roll outcome, P50 the median, and P80 a strong outcome at Turn {{ comp.power_summary.checkpoint_turn }}, among successful assemblies.</p>
-      </div>
-      <div class="power-percentiles">
-        <span><small>P20</small><strong>{{ comp.power_summary.p20_label }}</strong></span>
-        <span><small>P50</small><strong>{{ comp.power_summary.p50_label }}</strong></span>
-        <span><small>P80</small><strong>{{ comp.power_summary.p80_label }}</strong></span>
-      </div>
-      <ul class="power-notes">
-        <li>{{ comp.power_summary.probability_note }}</li>
-        <li>{{ comp.power_summary.score_note }}</li>
-        {% for note in comp.power_summary.notes %}<li>{{ note }}</li>{% endfor %}
-      </ul>
-    </section>
-    {% endif %}
+    <p class="rarity-note">Rarity is the chance to see that card in one eligible refresh or offer, assuming the needed tribe is active and the Solo pool is full and uncontested. Generated minions are labeled instead of given a false shop percentage; trinkets use a clearly marked catalog baseline because offer eligibility varies.</p>
 
     {% if comp.board_examples %}
     <section class="board-examples" aria-labelledby="board-examples-heading">
@@ -119,6 +93,10 @@
       </div>
     </section>
     {% endif %}
+
+    <article class="guide-copy">
+      {{ body_html | safe }}
+    </article>
 
     <section class="source-card" aria-labelledby="source-heading">
       <div>
