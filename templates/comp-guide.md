@@ -22,9 +22,10 @@ packages:
     badge: Required core
     optional: false
     cards: []
-  # Everything below Core is dynamic and may repeat card IDs from Commit/Core when roles overlap.
-  - title: Engine-specific package
-    purpose: One sentence explaining why these cards are useful purchases.
+  # Everything below Core is completely dynamic and may repeat card IDs from Commit/Core or another package.
+  - title: Composition-specific package
+    purpose: Explain the shopping role this package serves in this particular composition.
+    badge: Composition-specific label
     optional: true
     cards: []
 related_routes:
