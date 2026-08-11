@@ -1085,6 +1085,162 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-11T19:51:43+00:00"
+    },
+    {
+      "slug": "elementals-stat-scaling",
+      "title": "Elementals — Stat Scaling",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/elementals-stat-scaling.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "elemental"
+      ],
+      "tags": [
+        "scaling",
+        "battlecry",
+        "cycling"
+      ],
+      "type": "meta",
+      "commit": [
+        119951
+      ],
+      "core": [
+        119951,
+        120674,
+        132981,
+        96786
+      ],
+      "dynamic": [
+        117406,
+        101267,
+        132983,
+        64296,
+        64038,
+        119949,
+        64042,
+        64077
+      ],
+      "cards": [
+        119951,
+        120674,
+        132981,
+        96786,
+        117406,
+        101267,
+        132983,
+        64296,
+        64038,
+        119949,
+        64042,
+        64077
+      ],
+      "minion_ids": [
+        119951,
+        120674,
+        132981,
+        96786,
+        117406,
+        101267,
+        132983,
+        64296,
+        64038,
+        119949,
+        64042,
+        64077
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "119951": {
+          "id": 119951,
+          "name": "Glowing Cinder",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/119951-glowing-cinder.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/119951/glowing-cinder"
+        },
+        "120674": {
+          "id": 120674,
+          "name": "Unleashed Mana Surge",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/120674-unleashed-mana-surge.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/120674/unleashed-mana-surge"
+        },
+        "132981": {
+          "id": 132981,
+          "name": "Moat Custodian",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/132981-moat-custodian.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132981/moat-custodian"
+        },
+        "96786": {
+          "id": 96786,
+          "name": "Brann Bronzebeard",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/96786-brann-bronzebeard.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/96786/brann-bronzebeard"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 119951,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120674,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132981,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 117406,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 101267,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132983,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=urKD45-Agjw",
+      "source_author": "JeefHS",
+      "source_id": "urKD45-Agjw",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/37/elementals-stat-scaling",
+          "comp_id": "37",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-11T20:03:14+00:00"
     }
   ],
   "schema_version": 3
