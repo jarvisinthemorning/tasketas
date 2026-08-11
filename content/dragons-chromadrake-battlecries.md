@@ -125,7 +125,7 @@ The current complete directory audit found no HSReplay or Firestone composition 
 
 This route is therefore classified **Underdog**, not Meta. Its minimum loop uses ordinary Tavern cards: Hired Mount or Timewalker-plus-Runaway supplies Chromadrakes, Brann doubles their Battlecries, and Kalecgos converts those triggers into permanent Dragon stats. [[card:133403|Dragon's Eye]], [[card:112082|Goldenizer Supply]], Dark Gifts, hero powers, and multiple golden engine pieces accelerate that loop but are not required by its card mechanics.
 
-Evidence confidence is lower than for a tracked Meta guide: both public examples reach their demonstrated ceiling with premium acceleration. The Underdog label applies to the reproducible minimum engine, not as a claim that the source's four-digit final board is an ordinary result.
+Evidence confidence is lower than for a tracked Meta guide: both full-loop examples reach their demonstrated ceiling with premium acceleration. The Underdog label applies to the reproducible minimum engine, not as a claim that the source's four-digit final board is an ordinary result.
 
 ## Common failure modes
 
