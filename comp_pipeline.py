@@ -589,7 +589,7 @@ def publish_comp(
                 "timestamp": timestamp,
                 "phase": phase,
                 "phase_label": "Start of turn" if phase == "start_of_turn" else "Tavern phase",
-                "image": image,
+                "image": f"{public_base_url.rstrip('/')}{image}",
                 "note": str(raw_board.get("note", "")).strip(),
             }
         )
