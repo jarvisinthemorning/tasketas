@@ -950,6 +950,141 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-11T19:18:32+00:00"
+    },
+    {
+      "slug": "pirates-apm-golden",
+      "title": "Pirates APM Golden",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/pirates-apm-golden.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "pirate"
+      ],
+      "tags": [
+        "season 14",
+        "APM",
+        "golden minions",
+        "discovers",
+        "bounties"
+      ],
+      "type": "meta",
+      "commit": [
+        132762
+      ],
+      "core": [
+        132762,
+        122516,
+        132925
+      ],
+      "dynamic": [
+        122520,
+        96786,
+        132921,
+        132987,
+        104448,
+        133712,
+        132764,
+        99035,
+        132766,
+        59604
+      ],
+      "cards": [
+        132762,
+        122516,
+        132925,
+        122520,
+        96786,
+        132921,
+        132987,
+        104448,
+        133712,
+        132764,
+        99035,
+        132766,
+        59604
+      ],
+      "minion_ids": [
+        132762,
+        122516,
+        132925,
+        122520,
+        96786,
+        132921,
+        132987,
+        132764,
+        99035
+      ],
+      "spell_ids": [
+        104448,
+        132766,
+        59604
+      ],
+      "other_ids": [
+        133712
+      ],
+      "card_previews": {
+        "132762": {
+          "id": 132762,
+          "name": "Enterprising Escapee",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/pirate/132762-enterprising-escapee.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132762/enterprising-escapee"
+        },
+        "122516": {
+          "id": 122516,
+          "name": "Sky Admiral Rogers",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/pirate/122516-sky-admiral-rogers.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/122516/sky-admiral-rogers"
+        },
+        "132925": {
+          "id": 132925,
+          "name": "Hooktusk, Master Marauder",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/pirate/132925-hooktusk-master-marauder.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132925/hooktusk-master-marauder"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 132762,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 122516,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132925,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=IvdTja9QGqg",
+      "source_author": "Shadybunny2",
+      "source_id": "IvdTja9QGqg",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden",
+          "comp_id": "89",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-11T19:51:43+00:00"
     }
   ],
   "schema_version": 3
