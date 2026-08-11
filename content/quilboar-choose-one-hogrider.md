@@ -58,30 +58,7 @@ composition_minions:
 - {card_id: 116434, count: 1, golden_count: 0}
 composition_spells:
 - {card_id: 116596, count: 1}
-board_examples:
-- stage: mid
-  turn: 10
-  timestamp: 715
-  note: The Choose One shell is fully online, with Turbo Hogrider and repeated Gem Rat choices feeding a broad Blood Gem board.
-  units:
-  - {card_id: 132632, slot: 1, attack: 51, health: 83}
-  - {card_id: 132632, slot: 2, attack: 56, health: 91}
-  - {card_id: 132636, slot: 3, attack: 95, health: 158}
-  - {card_id: 116195, slot: 4, attack: 17, health: 29}
-  - {card_id: 113154, slot: 5, attack: 26, health: 45}
-  - {card_id: 116434, slot: 6, attack: 149, health: 89}
-  - {card_id: 116434, slot: 7, attack: 61, health: 93}
-- stage: end
-  turn: 14
-  timestamp: 1290
-  note: The last stable Tavern board before the final combat, with the Choose One engine spread across two Turbo Hogriders while Gatekeeper Amalgam carries 2.4k/3.6k.
-  units:
-  - {card_id: 132632, slot: 1, attack: 1.5k, health: 2.2k}
-  - {card_id: 116195, slot: 2, attack: 661, health: 960}
-  - {card_id: 132636, slot: 3, attack: 1.9k, health: 2.8k}
-  - {card_id: 116195, slot: 4, attack: 513, health: 746}
-  - {card_id: 133329, slot: 5, attack: 2.4k, health: 3.6k, annotation: Divine Shield}
-  - {card_id: 116434, slot: 6, attack: 496, health: 344, golden: true}
+board_examples: []
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/88/quilboar-choose-one
@@ -120,6 +97,6 @@ Do not spread permanent Gems across units you expect to sell. Delay transfers un
 
 The source's blunt warning is useful: miss Turbo Hogrider and this can become a very efficient route to eighth place. Treat the card as the commitment signal, not a hoped-for future miracle.
 
-The late Tavern proof is much stronger than the earlier transition board: the source finishes with carries at 1.5k/2.2k, 1.9k/2.8k, and 2.4k/3.6k before winning. That is the payoff standard—not merely assembling the named pieces.
+The source's late Tavern state is much stronger than its earlier transition. That mature payoff is the standard—not merely assembling the named pieces.
 
 If Juggernaut plus Bristlemane or repeatable Gem Confiscation appears before Turbo Hogrider, use the pivot panel above rather than forcing this route.

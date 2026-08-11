@@ -64,7 +64,25 @@ composition_minions:
 - {card_id: 98592, count: 1, golden_count: 0}
 - {card_id: 132312, count: 1, golden_count: 0}
 composition_spells: []
-board_examples: []
+board_examples:
+- stage: early
+  turn: 9
+  timestamp: 470
+  phase: tavern
+  image: /static/boards/mechs-magnetics-early.webp
+  note: The transition still carries bridge bodies beside the developing engine; use this snapshot to judge what can remain while the comp comes online.
+- stage: mid
+  turn: 12
+  timestamp: 785
+  phase: tavern
+  image: /static/boards/mechs-magnetics-mid.webp
+  note: The engine now occupies most of the board while one flexible slot remains for utility or the next upgrade.
+- stage: late
+  turn: 13
+  timestamp: 889
+  phase: start_of_turn
+  image: /static/boards/mechs-magnetics-late.webp
+  note: A stable start-of-turn view of the mature board, useful for comparing permanent engine slots with the remaining replaceable support.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics

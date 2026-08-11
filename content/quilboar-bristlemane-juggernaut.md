@@ -45,16 +45,7 @@ related_routes:
     slug: quilboar-choose-one-hogrider
     purpose: Switch when Turbo Hogrider and repeatable Choose One cards arrive before a credible Golem loader.
     cards: [116195, 116190, 132632]
-board_examples:
-  - stage: late
-    timestamp: 1300
-    note: A stable late Tavern board before combat. Golden Jailbird Juggernaut carries the concentrated Blood Gems at 8.2k/8.8k, with Golden Gem Rat and Golden Balinda retaining a smaller support package.
-    units:
-      - {card_id: 126671, slot: 1, attack: 149, health: 161}
-      - {card_id: 132636, slot: 2, attack: 8.2k, health: 8.8k, golden: true}
-      - {card_id: 116434, slot: 3, attack: 860, health: 861, golden: true}
-      - {card_id: 96786, slot: 4, attack: 145, health: 153}
-      - {card_id: 130298, slot: 5, attack: 203, health: 213, golden: true}
+board_examples: []
 discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane
