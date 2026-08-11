@@ -5,9 +5,19 @@ season: 14
 modes: [solo]
 tribes: [beast]
 tags: [deathrattle, scaling]
+# Legacy compatibility fields; visual presentation comes from packages.
 core: []
 addons: []
 cycle: []
+packages:
+  - title: Core
+    purpose: One sentence explaining how the mandatory engine pieces interact.
+    optional: false
+    cards: []
+  - title: Engine-specific package
+    purpose: One sentence explaining why these cards are useful purchases.
+    optional: true
+    cards: []
 composition_minions: []
 composition_spells: []
 board_examples: []
@@ -29,38 +39,20 @@ source_published_at: 'YYYY-MM-DD'
 verified_at: 'YYYY-MM-DD'
 ---
 
-## Description
+## How it works
 
-Explain the demonstrated engine in one or two compact paragraphs.
+Explain the demonstrated engine in one compact paragraph.
 
-## When to commit
+## Pivot signal
 
-State the concrete cards, trinkets, hero, gifts, tribes, or board state that make the line viable. Explain what is insufficient by itself when the source does.
+- State the concrete minimum signal that makes the line viable.
+- State what is insufficient by itself.
 
-## Enablers
+## Positioning and traps
 
-- Enabler grounded in the original strategy source.
-- Another enabler.
-
-## How to play
-
-1. First actionable step.
-2. How the engine comes together.
-3. How the board converts into scaling or combat strength.
-
-## Positioning
-
-Include only when positioning matters and is supported by the source.
-
-## Cycle and temporary pieces
-
-Explain every card listed under `cycle`. Omit this section when `cycle` is empty.
-
-## Failure modes
-
-- A practical way the line fails.
-- A common mistake explicitly shown or explained by the source.
+- Include only meaningful, source-supported positioning.
+- Name the most likely way the engine fails.
 
 ## Useful timestamps
 
-- **0:00** — Why this moment matters.
+- **0:00** — Include only genuinely useful moments.

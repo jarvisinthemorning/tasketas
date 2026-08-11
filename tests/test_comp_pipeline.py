@@ -473,6 +473,47 @@ class PipelineTests(unittest.TestCase):
             self.assertNotIn("core", saved["pages"][0])
             self.assertEqual(saved["pages"][0]["source_author"], "Shadybunny")
 
+    def test_custom_visual_packages_render_with_purpose_and_optional_status(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            packages = """packages:
+  - title: Core
+    purpose: Trigger Lobster scaling repeatedly during combat.
+    optional: false
+    cards: [132796]
+  - title: Add-ons
+    purpose: Improve the engine when offered.
+    optional: true
+    cards: [97408]
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", packages + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=False,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn("Trigger Lobster scaling repeatedly during combat.", html)
+            self.assertIn("Improve the engine when offered.", html)
+            self.assertIn("Required", html)
+            self.assertIn("Optional package", html)
+            self.assertIn("Titus Rivendare", html)
+            self.assertIn('<details class="guide-details">', html)
+
     def test_preview_build_does_not_update_registry(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

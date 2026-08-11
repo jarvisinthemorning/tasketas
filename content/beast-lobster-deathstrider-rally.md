@@ -15,9 +15,28 @@ core:
 - 132796
 - 132808
 addons:
+- 108909
+- 97408
 - 132802
 - 132804
 cycle: []
+packages:
+- title: Core
+  purpose: Use Rally attacks to trigger Lobster repeatedly in combat; use Fishbaits for permanent Tavern-phase stats.
+  optional: false
+  cards: [132796, 132808]
+- title: Rally
+  purpose: Any Rally attacker triggers Deathstrider. Prefer useful early bodies and Windfury for extra triggers.
+  optional: true
+  cards: [70157, 126637, 132806, 70173, 132800, 95286]
+- title: Fishbait
+  purpose: Create Fishbaits with Lionfish or Snarky Shark, then feed them to your left-most Beast.
+  optional: true
+  cards: [132802, 132794, 132804]
+- title: Add-ons
+  purpose: Reborn gives Lobster another Deathrattle; Titus doubles every Lobster Deathrattle trigger.
+  optional: true
+  cards: [108909, 97408]
 composition_minions:
 - {card_id: 132796, count: 1, golden_count: 0}
 - {card_id: 132808, count: 1, golden_count: 0}
@@ -31,24 +50,24 @@ video:
   id: rJ66OM7pENQ
   timestamp: 180
 source_published_at: '2026-08-07'
-verified_at: '2026-08-08'
+verified_at: '2026-08-11'
 ---
 
-## Game plan
+## How it works
 
-Use [[card:132796|Tasty Lobster]] as the combat-scaling payload, [[card:132808|Deathstrider]] as the repeatable trigger, and [[card:132800|Headhunter Gryphon]] as the source-verified Rally attacker. Gryphon's Rally lets Deathstrider fire the left-most Lobster Deathrattle; later Lobsters improve through their hidden counter, but the published metric deliberately does not invent that hidden scalar.
+Keep [[card:132796|Tasty Lobster]] as your left-most Deathrattle. Every friendly Rally minion that attacks lets [[card:132808|Deathstrider]] trigger it again. Windfury Rally minions can trigger it twice.
 
-[[card:132802|Fishbait]] and [[card:132804|Snarky Shark]] support the Deathrattle shell, but the comp should still be built around the Lobster–Deathstrider–Gryphon engine rather than a pile of unrelated Beasts.
+[[card:132794|Lurking Lionfish]] and [[card:132804|Snarky Shark]] create [[card:132802|Fishbait]] in the Tavern. Your left-most Beast attacks it and keeps the +5/+5 permanently. Headhunter Gryphon is source-demonstrated; the other Rally cards above are current-pool, mechanically compatible shopping options.
 
-## How to build it
+## Pivot signal
 
-- **Bridge:** play efficient Beasts and Deathrattles without forcing the final board too early.
-- **Commit:** keep Lobster once Deathstrider and a reliable Rally attacker are available.
-- **Scale:** preserve trigger density and enough board space for the engine to resolve cleanly.
-- **Finish:** protect the scaling core and use the remaining slots for utility or combat protection.
+- **Hold Lobster for tempo; do not force the comp from Lobster alone.**
+- **Commit:** Lobster + Deathstrider + at least two Rally attackers.
+- **Best upgrades:** Windfury Rally attackers, [[card:97408|Titus Rivendare]], and more Lobsters after the hidden improvement has grown.
 
 ## Positioning and traps
 
-Put Tasty Lobster to the left of other Deathrattles so Deathstrider selects it, and make sure Headhunter Gryphon can complete its Rally attack. Do not fill every slot with low-impact support: the engine does nothing if no friendly Rally actually triggers.
-
-The source board visibly includes Headhunter Gryphon as its Rally driver.
+- Lobster must be your **left-most Deathrattle** for Deathstrider.
+- Rally minions must survive long enough to attack; Windfury only helps if both attacks happen.
+- Lionfish and Snarky Shark make your **left-most Beast** attack Fishbait, so move the Beast you want to keep scaling into that slot first.
+- Titus doubles the Deathrattle, but it does not replace Rally trigger density.

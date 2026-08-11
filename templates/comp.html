@@ -27,25 +27,17 @@
   </header>
 
   <main class="shell main-flow">
-    {% set labels = {'core': 'Core', 'addons': 'Addons', 'cycle': 'Cycle'} %}
-    {% set descriptions = {
-      'core': 'The engine pieces that make the comp work.',
-      'addons': 'Permanent support and scaling pieces.',
-      'cycle': 'Temporary cards or repeatable resources used to assemble and accelerate the board.'
-    } %}
-    {% for key in ['core', 'addons', 'cycle'] %}
-      {% set cards = comp.sections[key] %}
-      {% if cards %}
-      <section class="card-section" aria-labelledby="{{ key }}-heading">
+    {% for package in comp.packages %}
+      <section class="card-section" aria-labelledby="package-{{ loop.index }}-heading">
         <div class="section-heading">
           <div>
-            <div class="section-kicker">{{ labels[key] }} cards</div>
-            <h2 id="{{ key }}-heading">{{ labels[key] }}</h2>
+            <div class="section-kicker">{{ 'Optional package' if package.optional else 'Required' }}</div>
+            <h2 id="package-{{ loop.index }}-heading">{{ package.title }}</h2>
           </div>
-          <p>{{ descriptions[key] }}</p>
+          <p>{{ package.purpose }}</p>
         </div>
         <div class="card-row">
-          {% for card in cards %}
+          {% for card in package.cards %}
           <a class="card" href="{{ card.detail or card.hsreplay }}" target="_blank" rel="noopener noreferrer">
             <img src="{{ card.image }}" alt="{{ card.name }}" loading="lazy">
             <span class="card-name">{{ card.name }}</span>
@@ -54,12 +46,14 @@
           {% endfor %}
         </div>
       </section>
-      {% endif %}
     {% endfor %}
 
-    <article class="guide-copy">
-      {{ body_html | safe }}
-    </article>
+    <details class="guide-details">
+      <summary>How it works, positioning &amp; traps</summary>
+      <article class="guide-copy">
+        {{ body_html | safe }}
+      </article>
+    </details>
 
     {% if comp.power_summary %}
     <section class="power-summary" aria-labelledby="power-summary-heading">

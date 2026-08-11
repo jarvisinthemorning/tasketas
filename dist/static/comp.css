@@ -91,7 +91,7 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
 .card-section,
 .board-examples,
 .power-summary,
-.guide-copy {
+.guide-details {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: linear-gradient(145deg, rgba(34, 28, 45, .96), rgba(22, 19, 31, .98));
@@ -201,7 +201,19 @@ h3 { margin-top: 28px; font-size: 1.22rem; }
 .card-name { display: block; margin-top: 3px; font-weight: 850; line-height: 1.18; }
 .card-meta { display: block; margin-top: 3px; color: var(--muted); font-size: .7rem; }
 
-.guide-copy { padding: 20px; }
+.guide-details { overflow: hidden; }
+.guide-details summary {
+  min-height: 56px;
+  padding: 17px 20px;
+  color: #f2c97f;
+  font-weight: 850;
+  cursor: pointer;
+}
+.guide-details summary::marker { color: var(--gold); }
+.guide-copy {
+  border-top: 1px solid rgba(212, 168, 95, .27);
+  padding: 20px;
+}
 .guide-copy h2 {
   margin: 32px 0 10px;
   border-top: 1px solid rgba(212, 168, 95, .27);
@@ -423,6 +435,7 @@ footer a { color: #bba8cf; }
   .section-heading { grid-template-columns: 1fr auto; align-items: end; padding-inline: 28px; }
   .section-heading p { max-width: 330px; text-align: right; }
   .card-row { grid-auto-columns: 190px; gap: 12px; padding-inline: 24px; }
+  .guide-details summary { padding-inline: 28px; }
   .guide-copy { padding: 30px; }
   .board-example-header, .board-note { padding-inline: 28px; }
   .board-lineup { grid-template-columns: repeat(7, 132px); gap: 10px; padding-inline: 24px; }

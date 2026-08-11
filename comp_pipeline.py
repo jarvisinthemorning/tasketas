@@ -592,6 +592,57 @@ def publish_comp(
             if card_id not in all_ids:
                 all_ids.append(card_id)
 
+    raw_packages = metadata.get("packages")
+    packages: list[dict] = []
+    if raw_packages is not None:
+        if not isinstance(raw_packages, list) or not raw_packages:
+            raise CompError("packages must be a non-empty list")
+        for package_index, raw_package in enumerate(raw_packages, start=1):
+            if not isinstance(raw_package, dict):
+                raise CompError(f"packages[{package_index}] must be a mapping")
+            title = raw_package.get("title")
+            purpose = raw_package.get("purpose")
+            optional = raw_package.get("optional", True)
+            ids = raw_package.get("cards")
+            if not isinstance(title, str) or not title.strip():
+                raise CompError(f"packages[{package_index}].title must be non-empty text")
+            if not isinstance(purpose, str) or not purpose.strip():
+                raise CompError(f"packages[{package_index}].purpose must be non-empty text")
+            if not isinstance(optional, bool):
+                raise CompError(f"packages[{package_index}].optional must be true or false")
+            if not isinstance(ids, list) or not ids:
+                raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
+            cards = [catalog.require_current(card_id) for card_id in ids]
+            packages.append(
+                {
+                    "title": title.strip(),
+                    "purpose": purpose.strip(),
+                    "optional": optional,
+                    "cards": cards,
+                }
+            )
+            for card in cards:
+                card_id = int(card["id"])
+                if card_id not in all_ids:
+                    all_ids.append(card_id)
+    else:
+        package_defaults = {
+            "core": ("Core", "The engine pieces that make the comp work.", False),
+            "addons": ("Add-ons", "Permanent support and scaling pieces.", True),
+            "cycle": ("Cycle", "Temporary cards or repeatable resources that accelerate the board.", True),
+        }
+        for key in ("core", "addons", "cycle"):
+            if sections[key]:
+                title, purpose, optional = package_defaults[key]
+                packages.append(
+                    {
+                        "title": title,
+                        "purpose": purpose,
+                        "optional": optional,
+                        "cards": sections[key],
+                    }
+                )
+
     # Keep the aggregate future-proof: any top-level list of numeric card IDs
     # participates in validation and local index filtering, even if the guide
     # template does not yet give that section a dedicated visual block.
@@ -780,6 +831,7 @@ def publish_comp(
     comp = dict(metadata)
     comp["discovery_sources"] = discovery_sources
     comp["sections"] = sections
+    comp["packages"] = packages
     comp["board_examples"] = board_examples
     comp["minions"] = minions
     comp["spells"] = spells
