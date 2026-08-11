@@ -86,31 +86,22 @@
           <div class="section-kicker">Recorded boards</div>
           <h2 id="board-examples-heading">Board examples</h2>
         </div>
-        <p>Source-verified snapshots. Units are shown left to right with their recorded attack and health.</p>
+        <p>Source-verified Tavern screenshots from the original video.</p>
       </div>
       <div class="board-example-list">
         {% for board in comp.board_examples %}
         <article class="board-example">
           <header class="board-example-header">
             <div>
-              <div class="section-kicker">{{ board.label }}</div>
+              <div class="section-kicker">{{ board.phase_label }}</div>
               <h3>{{ board.label }}{% if board.turn %} · Turn {{ board.turn }}{% endif %}</h3>
             </div>
             <a href="https://www.youtube.com/watch?v={{ comp.video.id }}&t={{ board.timestamp }}s" target="_blank" rel="noopener noreferrer">Watch {{ '%d:%02d' | format(board.timestamp // 60, board.timestamp % 60) }} ↗</a>
           </header>
           {% if board.note %}<p class="board-note">{{ board.note }}</p>{% endif %}
-          <div class="board-lineup" role="list" aria-label="{{ board.label }} board from left to right">
-            {% for unit in board.units %}
-            <a class="board-unit" href="{{ unit.card.detail or unit.card.hsreplay }}" target="_blank" rel="noopener noreferrer" role="listitem"{% if unit.golden %} data-golden="true"{% endif %}>
-              <span class="board-position">{{ unit.slot }}</span>
-              <img src="{{ unit.card.image }}" alt="{{ unit.card.name }}">
-              <strong>{{ unit.card.name }}</strong>
-              <span class="board-stats">{{ unit.attack }} / {{ unit.health }}</span>
-              {% if unit.golden %}<span class="board-badge">Golden</span>{% endif %}
-              {% if unit.annotation %}<small>{{ unit.annotation }}</small>{% endif %}
-            </a>
-            {% endfor %}
-          </div>
+          <a class="board-frame" href="https://www.youtube.com/watch?v={{ comp.video.id }}&t={{ board.timestamp }}s" target="_blank" rel="noopener noreferrer" aria-label="Watch {{ board.label }} at {{ '%d:%02d' | format(board.timestamp // 60, board.timestamp % 60) }}">
+            <img class="board-frame-image" src="{{ board.image }}" alt="{{ board.label }} {{ board.phase_label | lower }} screenshot from the source video">
+          </a>
         </article>
         {% endfor %}
       </div>

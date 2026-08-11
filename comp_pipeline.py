@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import html
 import json
-import math
 import re
 import shutil
 from dataclasses import dataclass
@@ -19,64 +18,6 @@ from comp_rarity import RarityUnavailable, calculate_card_rarity
 
 class CompError(ValueError):
     """Raised when a comp source or guide cannot be published safely."""
-
-
-def _recorded_stat_number(value: int | str) -> int:
-    """Convert an exact stat or the game's rounded `1.2k` display to a number."""
-    if isinstance(value, int) and not isinstance(value, bool):
-        return value
-    if isinstance(value, str) and re.fullmatch(r"\d+(?:\.\d+)?k", value):
-        return round(float(value[:-1]) * 1000)
-    raise CompError(f"Unsupported recorded stat: {value!r}")
-
-
-def analyze_board_examples(board_examples: list[dict]) -> list[dict]:
-    """Derive reproducible raw-board metrics from recorded Tavern snapshots.
-
-    Values abbreviated by the client (for example ``1.5k``) remain estimates;
-    the rendered evaluation labels the resulting totals accordingly.
-    """
-    analyzed: list[dict] = []
-    previous: dict | None = None
-    for board in board_examples:
-        units = board.get("units", [])
-        stats = [
-            (_recorded_stat_number(unit["attack"]), _recorded_stat_number(unit["health"]))
-            for unit in units
-        ]
-        annotations = [str(unit.get("annotation", "")).lower() for unit in units]
-        result = {
-            "stage": board.get("stage"),
-            "turn": board.get("turn"),
-            "total_attack": sum(attack for attack, _ in stats),
-            "total_health": sum(health for _, health in stats),
-            "total_stats": sum(attack + health for attack, health in stats),
-            "largest_body_stats": max((attack + health for attack, health in stats), default=0),
-            "bodies_100_plus": sum(max(attack, health) >= 100 for attack, health in stats),
-            "bodies_500_plus": sum(max(attack, health) >= 500 for attack, health in stats),
-            "bodies_1000_plus": sum(max(attack, health) >= 1000 for attack, health in stats),
-            "golden_units": sum(bool(unit.get("golden", False)) for unit in units),
-            "divine_shields": sum("divine shield" in annotation for annotation in annotations),
-            "reborns": sum("reborn" in annotation for annotation in annotations),
-            "estimated_from_abbreviated_stats": any(
-                isinstance(unit.get(stat_name), str)
-                for unit in units
-                for stat_name in ("attack", "health")
-            ),
-            "turns_since_previous": None,
-            "stats_multiplier_per_turn": None,
-        }
-        turn = result["turn"]
-        if previous and isinstance(turn, int) and isinstance(previous["turn"], int) and turn > previous["turn"]:
-            elapsed = turn - previous["turn"]
-            result["turns_since_previous"] = elapsed
-            if previous["total_stats"] > 0:
-                result["stats_multiplier_per_turn"] = math.pow(
-                    result["total_stats"] / previous["total_stats"], 1 / elapsed
-                )
-        analyzed.append(result)
-        previous = result
-    return analyzed
 
 
 EXPLICITLY_BANNED_CARDS = {
@@ -621,63 +562,35 @@ def publish_comp(
             raise CompError(f"board_examples[{board_index}].turn must be a positive integer when provided")
         if not isinstance(timestamp, int) or isinstance(timestamp, bool) or timestamp < 0:
             raise CompError(f"board_examples[{board_index}].timestamp must be a non-negative integer")
-        raw_units = raw_board.get("units")
-        if not isinstance(raw_units, list) or not 1 <= len(raw_units) <= 7:
-            raise CompError(f"board_examples[{board_index}].units must contain 1 to 7 units")
-        units: list[dict] = []
-        used_slots: set[int] = set()
-        for unit_index, raw_unit in enumerate(raw_units, start=1):
-            if not isinstance(raw_unit, dict):
-                raise CompError(f"board_examples[{board_index}].units[{unit_index}] must be a mapping")
-            card_id = raw_unit.get("card_id")
-            if not isinstance(card_id, int) or isinstance(card_id, bool):
-                raise CompError(
-                    f"board_examples[{board_index}].units[{unit_index}].card_id must be an integer"
-                )
-            card_data = catalog.require_current(card_id)
-            slot = raw_unit.get("slot", unit_index)
-            if not isinstance(slot, int) or isinstance(slot, bool) or not 1 <= slot <= 7:
-                raise CompError(f"board_examples[{board_index}].units[{unit_index}].slot must be from 1 to 7")
-            if slot in used_slots:
-                raise CompError(f"board_examples[{board_index}] contains duplicate board slot {slot}")
-            used_slots.add(slot)
-            attack = raw_unit.get("attack")
-            health = raw_unit.get("health")
-            for stat_name, stat in (("attack", attack), ("health", health)):
-                is_exact = isinstance(stat, int) and not isinstance(stat, bool) and stat >= 0
-                is_game_display = isinstance(stat, str) and re.fullmatch(r"\d+(?:\.\d+)?k", stat)
-                if not is_exact and not is_game_display:
-                    raise CompError(
-                        f"board_examples[{board_index}].units[{unit_index}].{stat_name} "
-                        "must be a non-negative integer or a recorded value such as 1.2k"
-                    )
-            golden = raw_unit.get("golden", False)
-            annotation = raw_unit.get("annotation", "")
-            if not isinstance(golden, bool):
-                raise CompError(f"board_examples[{board_index}].units[{unit_index}].golden must be true or false")
-            if not isinstance(annotation, str):
-                raise CompError(f"board_examples[{board_index}].units[{unit_index}].annotation must be text")
-            units.append(
-                {
-                    "card": card_data,
-                    "slot": slot,
-                    "attack": attack,
-                    "health": health,
-                    "golden": golden,
-                    "annotation": annotation.strip(),
-                }
+        if "units" in raw_board:
+            raise CompError(
+                f"board_examples[{board_index}] is screenshot-only; remove transcribed units"
             )
-            numeric_card_id = int(card_data["id"])
-            if numeric_card_id not in all_ids:
-                all_ids.append(numeric_card_id)
+        phase = raw_board.get("phase")
+        if phase not in {"tavern", "start_of_turn"}:
+            raise CompError(
+                f"board_examples[{board_index}].phase must be tavern or start_of_turn"
+            )
+        image = raw_board.get("image")
+        if not isinstance(image, str) or not re.fullmatch(
+            r"/static/boards/[a-z0-9][a-z0-9._-]*\.(?:png|jpe?g|webp)", image
+        ):
+            raise CompError(
+                f"board_examples[{board_index}].image must be a local /static/boards image"
+            )
+        project_root = content_path.parent.parent if content_path.parent.name == "content" else content_path.parent
+        if not (project_root / image.removeprefix("/")).is_file():
+            raise CompError(f"board_examples[{board_index}].image does not exist: {image}")
         board_examples.append(
             {
                 "stage": stage,
                 "label": stage_labels[stage],
                 "turn": turn,
                 "timestamp": timestamp,
+                "phase": phase,
+                "phase_label": "Start of turn" if phase == "start_of_turn" else "Tavern phase",
+                "image": image,
                 "note": str(raw_board.get("note", "")).strip(),
-                "units": units,
             }
         )
 
@@ -718,32 +631,15 @@ def publish_comp(
     raw_hand_minions = metadata.get("composition_hand_minions", [])
     raw_prerequisites = metadata.get("composition_prerequisites", [])
     if raw_minions is None:
-        if board_examples:
-            stage_order = {"early": 0, "mid": 1, "late": 2, "end": 3}
-            reference_board = max(
-                board_examples,
-                key=lambda board: (stage_order[board["stage"]], board.get("turn") or -1),
+        raw_minions = [
+            card_id
+            for card_id in all_ids
+            if catalog.require_current(card_id).get("type") == "minion"
+        ]
+        if len(raw_minions) > 7:
+            raise CompError(
+                "composition_minions is required when guide mentions exceed seven minions"
             )
-            grouped: dict[int, dict] = {}
-            for unit in reference_board["units"]:
-                card_id = int(unit["card"]["id"])
-                item = grouped.setdefault(
-                    card_id,
-                    {"card_id": card_id, "count": 0, "golden_count": 0},
-                )
-                item["count"] += 1
-                item["golden_count"] += int(unit["golden"])
-            raw_minions = list(grouped.values())
-        else:
-            raw_minions = [
-                card_id
-                for card_id in all_ids
-                if catalog.require_current(card_id).get("type") == "minion"
-            ]
-            if len(raw_minions) > 7:
-                raise CompError(
-                    "composition_minions is required when guide mentions exceed seven minions"
-                )
     if raw_spells is None:
         raw_spells = [card_id for card_id in all_ids if catalog.require_current(card_id).get("type") == "spell"]
     minions = _normalize_composition_cards(

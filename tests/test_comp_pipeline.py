@@ -7,7 +7,6 @@ from comp_pipeline import (
     CardCatalog,
     CompError,
     _parse_markdown,
-    analyze_board_examples,
     build_index,
     canonical_source,
     normalize_api_cards,
@@ -101,37 +100,6 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
-    def test_board_analysis_calculates_observed_stats_and_growth(self):
-        boards = [
-            {
-                "stage": "mid",
-                "turn": 10,
-                "units": [
-                    {"attack": 100, "health": 120, "golden": False, "annotation": "Divine Shield"},
-                    {"attack": "1.5k", "health": "2k", "golden": True, "annotation": ""},
-                ],
-            },
-            {
-                "stage": "end",
-                "turn": 12,
-                "units": [
-                    {"attack": "4k", "health": "4k", "golden": True, "annotation": "Divine Shield"},
-                    {"attack": 500, "health": 600, "golden": False, "annotation": "Reborn"},
-                ],
-            },
-        ]
-
-        result = analyze_board_examples(boards)
-
-        self.assertEqual(result[0]["total_attack"], 1600)
-        self.assertEqual(result[0]["total_health"], 2120)
-        self.assertEqual(result[0]["total_stats"], 3720)
-        self.assertEqual(result[0]["bodies_1000_plus"], 1)
-        self.assertEqual(result[0]["divine_shields"], 1)
-        self.assertEqual(result[1]["reborns"], 1)
-        self.assertEqual(result[1]["turns_since_previous"], 2)
-        self.assertAlmostEqual(result[1]["stats_multiplier_per_turn"], (9100 / 3720) ** 0.5, places=4)
-
     def test_guide_requires_nonempty_tribes(self):
         with tempfile.TemporaryDirectory() as tmp:
             content = Path(tmp) / "guide.md"
@@ -786,7 +754,7 @@ class PipelineTests(unittest.TestCase):
                     public_base_url="https://example.pages.dev",
                 )
 
-    def test_video_board_examples_render_ordered_cards_and_stats_before_source(self):
+    def test_video_board_examples_render_tavern_crops_before_guide_prose(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             content = root / "guide.md"
@@ -794,40 +762,25 @@ class PipelineTests(unittest.TestCase):
   - stage: early
     turn: 6
     timestamp: 180
+    phase: tavern
     note: Lobster starts scaling beside protected support.
-    units:
-      - card_id: 132796
-        slot: 2
-        attack: 8
-        health: 12
-        golden: false
-        annotation: Reborn
-      - card_id: 97408
-        slot: 5
-        attack: 3
-        health: 6
-        golden: true
-      - card_id: 132796
-        slot: 7
-        attack: 1.2k
-        health: 1.3k
+    image: /static/boards/early.webp
   - stage: mid
     turn: 9
     timestamp: 300
-    units:
-      - card_id: 132796
-        attack: 100
-        health: 101
+    phase: tavern
+    image: /static/boards/mid.webp
   - stage: end
     turn: 12
     timestamp: 600
-    units:
-      - card_id: 97408
-        attack: 2
-        health: 14
-        golden: true
+    phase: start_of_turn
+    image: /static/boards/end.webp
 """
             content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
+            board_dir = root / "static/boards"
+            board_dir.mkdir(parents=True)
+            for name in ("early.webp", "mid.webp", "end.webp"):
+                (board_dir / name).write_bytes(b"test-image")
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             registry = root / "registry.json"
@@ -847,17 +800,14 @@ class PipelineTests(unittest.TestCase):
             board_html = html[html.index('<section class="board-examples"'):html.index('<article class="guide-copy">')]
             self.assertIn('<section class="board-examples"', html)
             self.assertNotIn('loading="lazy"', board_html)
-            self.assertIn('class="board-unit"', html)
-            self.assertIn('class="board-stats">8 / 12', html)
-            self.assertIn('<small>Reborn</small>', html)
-            self.assertIn('class="board-stats">1.2k / 1.3k', html)
-            self.assertIn('class="board-badge">Golden', html)
-            self.assertNotIn('style="grid-column:', html)
-            self.assertIn('class="board-position">2', html)
-            self.assertIn('class="board-position">5', html)
+            self.assertIn('class="board-frame-image"', html)
+            self.assertIn('src="/static/boards/early.webp"', html)
+            self.assertIn('src="/static/boards/mid.webp"', html)
+            self.assertIn('src="/static/boards/end.webp"', html)
+            self.assertNotIn('class="board-unit"', html)
+            self.assertNotIn('class="board-stats"', html)
             self.assertIn("watch?v=jCupcgaSjvo&t=180s", html)
             self.assertIn("Last Tavern turn before winning · Turn 12", html)
-            self.assertLess(html.index("Tasty Lobster"), html.index("Titus Rivendare"))
             self.assertLess(html.index('<section class="board-examples"'), html.index('<article class="guide-copy">'))
             self.assertLess(html.index('<section class="board-examples"'), html.index('<section class="source-card"'))
 
@@ -868,13 +818,14 @@ class PipelineTests(unittest.TestCase):
             board_yaml = """board_examples:
   - stage: late
     timestamp: 600
+    phase: tavern
     note: A useful late-game Tavern board from a source whose overlay hides the turn number.
-    units:
-      - card_id: 132796
-        attack: 900
-        health: 901
+    image: /static/boards/late.webp
 """
             content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
+            board_dir = root / "static/boards"
+            board_dir.mkdir(parents=True)
+            (board_dir / "late.webp").write_bytes(b"test-image")
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             registry = root / "registry.json"
@@ -894,6 +845,31 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("Late game", html)
             self.assertNotIn("Late game · Turn", html)
             self.assertIn("watch?v=jCupcgaSjvo&t=600s", html)
+
+    def test_board_examples_reject_transcribed_units_and_unsafe_images(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            for board_yaml, error in (
+                ("""board_examples:\n  - stage: early\n    timestamp: 180\n    phase: tavern\n    image: /static/boards/early.webp\n    units: []\n""", "screenshot-only"),
+                ("""board_examples:\n  - stage: early\n    timestamp: 180\n    phase: tavern\n    image: ../secret.webp\n""", "image must be"),
+            ):
+                content.write_text(VALID_MARKDOWN.replace("source:\n", board_yaml + "source:\n"), encoding="utf-8")
+                with self.assertRaisesRegex(CompError, error):
+                    publish_comp(
+                        content_path=content,
+                        cards_path=cards,
+                        registry_path=registry,
+                        template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                        output_dir=root / "dist",
+                        public_base_url="http://127.0.0.1:8000",
+                        register=False,
+                    )
 
     def test_legacy_power_metrics_are_not_rendered_or_republished(self):
         with tempfile.TemporaryDirectory() as tmp:

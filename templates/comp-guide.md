@@ -36,7 +36,14 @@ related_routes:
     cards: [] # One to three recognition-signature cards.
 composition_minions: []
 composition_spells: []
-board_examples: []
+board_examples: [] # Screenshot-only. Replace with verified Tavern/start-of-turn crops when available.
+# Example:
+# - stage: early
+#   turn: 7
+#   timestamp: 320
+#   phase: tavern
+#   image: /static/boards/lowercase-guide-stage.webp
+#   note: Short player-facing reason this snapshot is useful.
 discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/COMP_ID/comp-slug
