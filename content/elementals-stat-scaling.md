@@ -11,12 +11,12 @@ addons: [117406, 101267, 132983, 64296]
 cycle: [64038, 119949, 64042, 64077]
 packages:
   - title: Commit
-    purpose: Glowing Cinder plus an Elemental board and enough economy to keep cycling opens the route; Cinder alone does not.
+    purpose: A Cinder you can trigger, an Elemental board, and enough economy to keep cycling open the route; Cinder alone does not.
     badge: Commit signal
     optional: false
     cards: [119951]
   - title: Core
-    purpose: Cinder and Custodian improve permanent scaling, Mana Surge converts every played Elemental into board stats, and Brann doubles the useful Battlecries.
+    purpose: Trigger Cinder's Deathrattle and Custodian's Rally, then let Mana Surge and Brann convert repeated Elemental plays into board stats.
     badge: Required core
     optional: false
     cards: [119951, 120674, 132981, 96786]
@@ -57,9 +57,9 @@ verified_at: '2026-08-11'
 
 ## How it works
 
-The current route turns every Elemental play into several layers of permanent stats. [[card:120674|Unleashed Mana Surge]] gives your Elementals +4/+4 whenever you play an Elemental. [[card:119951|Glowing Cinder]] permanently improves the Health that your Elementals grant, while [[card:132981|Moat Custodian]] permanently improves both sides of that scaling through Rally. [[card:96786|Brann Bronzebeard]] makes the best Battlecry Elementals produce more economy or permanent scaling, so the same Gold creates more plays and larger buffs.
+The current route turns every Elemental play into several layers of permanent stats. [[card:120674|Unleashed Mana Surge]] gives your Elementals +4/+4 whenever you play an Elemental. You must trigger [[card:119951|Glowing Cinder]]'s Deathrattle before its permanent extra-Health effect exists; [[card:132981|Moat Custodian]] similarly needs its Rally trigger to improve future Elemental buffs. [[card:96786|Brann Bronzebeard]] makes the best Battlecry Elementals produce more economy or permanent scaling, so the same Gold creates more plays and larger buffs.
 
-The JeefHS source demonstrates the same Cinder–Mana Surge cycling decision model and explicitly marks the Elemental commit point, but it predates the current Season 14 card package. In that recording Mana Surge used an older three-target version and the late economy came from older Deathrattle generators. The packages above therefore use the **current** HSReplay Core and current card text rather than pretending the video played Moat Custodian or today's exact Mana Surge.
+The JeefHS source demonstrates the same Cinder–Mana Surge cycling decision model and explicitly marks the Elemental commit point, but it predates the current Season 14 card package. The current HSReplay video API no longer links a gameplay video for comp 37; this source's own description preserves the exact comp-37 URL, so it is used as historically associated strategy evidence rather than represented as a current directory link. In that recording Mana Surge used an older three-target version and the late economy came from older Deathrattle generators. The packages above therefore use the **current** HSReplay Core and current card text rather than pretending the video played Moat Custodian or today's exact Mana Surge.
 
 ## When to commit
 
