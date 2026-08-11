@@ -435,18 +435,27 @@ def publish_comp(
     if raw_packages is not None:
         if not isinstance(raw_packages, list) or not raw_packages:
             raise CompError("packages must be a non-empty list")
-        fixed_titles = [
-            package.get("title") if isinstance(package, dict) else None
-            for package in raw_packages[:2]
-        ]
-        if len(raw_packages) < 2 or fixed_titles != ["Commit", "Core"]:
-            raise CompError("packages must start with fixed Commit and Core sections")
+        first_title = raw_packages[0].get("title") if isinstance(raw_packages[0], dict) else None
+        has_commit = first_title == "Commit"
+        core_index = 1 if has_commit else 0
+        core_is_valid = (
+            len(raw_packages) > core_index
+            and isinstance(raw_packages[core_index], dict)
+            and raw_packages[core_index].get("title") == "Core"
+        )
+        if not core_is_valid:
+            raise CompError("packages must start with Core, or Commit followed by Core")
+        if any(
+            isinstance(package, dict) and package.get("title") in {"Commit", "Core"}
+            for package in raw_packages[core_index + 1 :]
+        ):
+            raise CompError("Commit and Core are reserved package titles")
         for package_index, raw_package in enumerate(raw_packages, start=1):
             if not isinstance(raw_package, dict):
                 raise CompError(f"packages[{package_index}] must be a mapping")
             title = raw_package.get("title")
             purpose = raw_package.get("purpose")
-            optional = raw_package.get("optional", package_index > 2)
+            optional = raw_package.get("optional", package_index > core_index + 1)
             badge = raw_package.get("badge")
             ids = raw_package.get("cards")
             if not isinstance(title, str) or not title.strip():
@@ -459,8 +468,10 @@ def publish_comp(
                 raise CompError(f"packages[{package_index}].badge must be non-empty text")
             if not isinstance(ids, list):
                 raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
-            if not ids and package_index != 1:
-                if package_index == 2:
+            if not ids:
+                if has_commit and package_index == 1:
+                    raise CompError("Commit cards must be a non-empty list")
+                if package_index == core_index + 1:
                     raise CompError("Core cards must be a non-empty list")
                 raise CompError(f"packages[{package_index}].cards must be a non-empty list of card IDs")
             cards = [package_card(card_id) for card_id in ids]
@@ -717,8 +728,13 @@ def publish_comp(
 
     url = f"{public_base_url.rstrip('/')}/comps/{metadata['slug']}.html"
     if raw_packages is not None:
-        commit_ids = [int(card["id"]) for card in packages[0]["cards"]]
-        core_ids = [int(card["id"]) for card in packages[1]["cards"]]
+        commit_package = next(
+            (package for package in packages if package["title"] == "Commit"),
+            None,
+        )
+        core_package = next(package for package in packages if package["title"] == "Core")
+        commit_ids = [int(card["id"]) for card in commit_package["cards"]] if commit_package else []
+        core_ids = [int(card["id"]) for card in core_package["cards"]]
     else:
         commit_ids = [int(card_id) for card_id in (metadata.get("commit", []) or [])]
         core_ids = [int(card_id) for card_id in (metadata.get("core", []) or [])]

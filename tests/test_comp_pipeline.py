@@ -417,10 +417,10 @@ class PipelineTests(unittest.TestCase):
             content = root / "guide.md"
             packages = """packages:
   - title: Commit
-    purpose: No separate pre-core commitment signal; assemble Core before staying on this route.
-    badge: No early commit
+    purpose: Water Droplet is the concrete early signal that opens this route.
+    badge: Commit signal
     optional: false
-    cards: []
+    cards: [64040]
   - title: Core
     purpose: Trigger Lobster scaling repeatedly during combat.
     badge: Required core
@@ -464,8 +464,8 @@ class PipelineTests(unittest.TestCase):
             )
 
             html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
-            self.assertIn("No separate pre-core commitment signal", html)
-            self.assertIn("No early commit", html)
+            self.assertIn("Water Droplet is the concrete early signal", html)
+            self.assertIn("Commit signal", html)
             self.assertLess(html.index(">Commit</h2>"), html.index(">Core</h2>"))
             self.assertIn("Trigger Lobster scaling repeatedly during combat.", html)
             self.assertIn("Required core", html)
@@ -483,28 +483,103 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('class="index-link" href="../index.html"', html)
             self.assertIn('All compositions', html)
             entry = json.loads(registry.read_text(encoding="utf-8"))["pages"][0]
+            self.assertEqual(entry["commit"], [64040])
+            self.assertEqual(entry["core"], [132796])
+            self.assertEqual(entry["dynamic"], [97408])
+            self.assertEqual(entry["cards"], [132796, 64040, 97408])
+            self.assertEqual(set(entry["card_previews"]), {"132796", "64040"})
+
+    def test_custom_packages_allow_core_without_commit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            packages = """packages:
+  - title: Core
+    purpose: The minimum engine is also the first honest commitment point.
+    badge: Required core
+    optional: false
+    cards: [132796]
+  - title: Add-ons
+    purpose: Improve the engine when offered.
+    cards: [97408]
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", packages + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="http://127.0.0.1:8000",
+                register=True,
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertNotIn(">Commit</h2>", html)
+            self.assertIn(">Core</h2>", html)
+            self.assertIn("Optional package", html)
+            entry = json.loads(registry.read_text(encoding="utf-8"))["pages"][0]
             self.assertEqual(entry["commit"], [])
             self.assertEqual(entry["core"], [132796])
-            self.assertEqual(entry["dynamic"], [97408, 64040])
-            self.assertEqual(entry["cards"], [132796, 97408, 64040])
+            self.assertEqual(entry["dynamic"], [97408])
             self.assertEqual(set(entry["card_previews"]), {"132796"})
 
-    def test_custom_packages_require_fixed_commit_and_core(self):
+    def test_custom_packages_require_core_first_or_after_commit(self):
         invalid_packages = (
+            (
+                "packages:\n"
+                "  - title: Add-ons\n"
+                "    purpose: Optional support.\n"
+                "    optional: true\n"
+                "    cards: [132796]\n",
+                "packages must start with Core, or Commit followed by Core",
+            ),
+            (
+                "packages:\n"
+                "  - title: Commit\n"
+                "    purpose: Early signal.\n"
+                "    optional: false\n"
+                "    cards: [132796]\n"
+                "  - title: Add-ons\n"
+                "    purpose: Optional support.\n"
+                "    optional: true\n"
+                "    cards: [97408]\n",
+                "packages must start with Core, or Commit followed by Core",
+            ),
             (
                 "packages:\n"
                 "  - title: Core\n"
                 "    purpose: Required engine.\n"
                 "    optional: false\n"
-                "    cards: [132796]\n",
-                "packages must start with fixed Commit and Core sections",
+                "    cards: [132796]\n"
+                "  - title: Commit\n"
+                "    purpose: Misplaced reserved section.\n"
+                "    optional: false\n"
+                "    cards: [97408]\n",
+                "Commit and Core are reserved package titles",
             ),
             (
                 "packages:\n"
                 "  - title: Commit\n"
-                "    purpose: No separate commitment signal.\n"
+                "    purpose: Empty placeholders are not valid commit signals.\n"
                 "    optional: false\n"
                 "    cards: []\n"
+                "  - title: Core\n"
+                "    purpose: Required engine.\n"
+                "    optional: false\n"
+                "    cards: [132796]\n",
+                "Commit cards must be a non-empty list",
+            ),
+            (
+                "packages:\n"
                 "  - title: Core\n"
                 "    purpose: Required engine.\n"
                 "    optional: false\n"

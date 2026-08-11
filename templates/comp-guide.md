@@ -11,14 +11,14 @@ core: []
 addons: []
 cycle: []
 packages:
-  # Fixed first section. Keep it even when no meaningful pre-Core commitment signal exists.
-  # In that case, use an honest badge/purpose and leave cards empty; never fabricate a signal.
-  - title: Commit
-    purpose: Explain the concrete signal, or state that Core must be assembled before staying on the route.
-    badge: Commit signal # Or: No early commit
-    optional: false
-    cards: []
-  # Required fixed section. Keep this exact title and include the minimum defining engine.
+  # Optional. Include Commit only when a concrete pre-Core signal genuinely opens the line.
+  # When present, it must be first and immediately followed by Core.
+  # - title: Commit
+  #   purpose: Explain the concrete early signal without pretending it is the finished engine.
+  #   badge: Commit signal
+  #   optional: false
+  #   cards: [CARD_ID]
+  # Core is always required and is first when Commit is omitted.
   - title: Core
     purpose: One sentence explaining how the mandatory engine pieces interact.
     badge: Required core
