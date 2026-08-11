@@ -23,11 +23,6 @@ addons:
 - 96786
 cycle: []
 packages:
-- title: Commit
-  purpose: There is no separate pre-Core signal; assemble Distractor and Imp-lusionist before treating this as the shop-buff composition.
-  badge: No early commit
-  optional: false
-  cards: []
 - title: Core
   purpose: Grow future Tavern minions with Distractor, then use Imp-lusionist's Madness to convert those shop stats and keywords.
   badge: Required core
