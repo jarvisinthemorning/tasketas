@@ -39,13 +39,19 @@ discovery_sources:
   - type: firestone
     url: https://www.firestoneapp.com/battlegrounds/comps
     comp_id: quilboar_choose_one
+supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=SUPPORT_VIDEO_ID
+    author: Creator name
+    label: Optional package demonstration
+    timestamp: 388
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=VIDEO_ID
   author: Creator name
 ```
 
-HSReplay requires its public composition-specific URL and numeric comp ID. Firestone currently exposes stable public comp IDs but no composition-specific permalinks, so its directory URL and `comp_id` are stored together. The publisher validates and normalizes both forms, renders them beside the original strategy source, and preserves them in `registry.json`.
+HSReplay requires its public composition-specific URL and numeric comp ID. Firestone currently exposes stable public comp IDs but no composition-specific permalinks, so its directory URL and `comp_id` are stored together. `supporting_sources` records secondary public evidence for a specific package or variation; it never replaces the primary strategy source. The publisher validates and normalizes these forms, renders them beside the original strategy source, and preserves them in `registry.json`.
 
 ```bash
 uv run python scripts/publish_comp.py content/<guide>.md \
@@ -76,6 +82,8 @@ https://jarvisinthemorning.github.io/tasketas/
 
 ## Season 14 library
 
-The current public library contains 13 source-backed Season 14 guides. The homepage and `data/registry.json` are the authoritative guide count.
+The active catalogue currently contains three new-format reference guides. Thirteen older guides are preserved as public artifacts under `dist/legacy/` but are excluded from the homepage and active `data/registry.json`. `content/legacy/registry.json` is an internal migration record for those archived pages, not the active site registry.
+
+The default test suite covers publisher, schema, registry, and rarity code with synthetic fixtures. It does not assert editorial choices inside live guides. See `tests/README.md` for the test policy and the explicitly opt-in legacy Power suite.
 
 Unofficial, non-commercial fan project. Hearthstone and its assets belong to Blizzard Entertainment.

@@ -127,6 +127,16 @@
         <h2 id="source-heading">{{ comp.source.author }}</h2>
         <p>This guide condenses the linked public {{ comp.source.type }} source. Watch or read the original for the complete game and commentary.</p>
         <a class="source-link" href="{{ comp.source.url }}" target="_blank" rel="noopener noreferrer">Open original source <span aria-hidden="true">↗</span></a>
+        {% if comp.supporting_sources %}
+        <div class="discovery-sources">
+          <div class="section-kicker">Supporting strategy sources</div>
+          <ul>
+            {% for supporting in comp.supporting_sources %}
+            <li><a class="source-link" href="{{ supporting.url }}{% if supporting.type == 'youtube' and supporting.timestamp %}&t={{ supporting.timestamp }}s{% endif %}" target="_blank" rel="noopener noreferrer">{{ supporting.label }} — {{ supporting.author }} <span aria-hidden="true">↗</span></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
         {% if comp.discovery_sources %}
         <div class="discovery-sources">
           <div class="section-kicker">Composition directories</div>

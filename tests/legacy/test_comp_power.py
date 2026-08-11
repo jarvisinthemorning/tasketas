@@ -103,7 +103,7 @@ CARDS = {
     }
 }
 
-REAL_CARDS = json.loads((Path(__file__).parents[1] / "data" / "cards.json").read_text())
+REAL_CARDS = json.loads((Path(__file__).parents[2] / "data" / "cards.json").read_text())
 
 
 def demon_entry(with_balinda=True):
@@ -448,7 +448,9 @@ class CompPowerTests(unittest.TestCase):
         self.assertIn("selected anchor received 1 hit", trace[-1]["events"][0])
         self.assertIn("Spirit Swap copied 12 Attack", trace[-1]["events"][0])
 
-        registry = json.loads((Path(__file__).resolve().parents[1] / "data" / "registry.json").read_text())
+        registry = json.loads(
+            (Path(__file__).resolve().parents[2] / "content" / "legacy" / "registry.json").read_text()
+        )
         published = next(
             page for page in registry["pages"] if page["slug"] == "elemental-tempest-revenant-spirit-swap"
         )
@@ -638,7 +640,7 @@ class CompPowerTests(unittest.TestCase):
         self.assertIn("Butchering actions", success["turns"][-1]["events"][0])
 
     def test_warpwing_evaluation_uses_its_engine_trace(self):
-        catalog = json.loads((Path(__file__).parents[1] / "data/cards.json").read_text())
+        catalog = json.loads((Path(__file__).parents[2] / "data/cards.json").read_text())
         required = (120301, 132953, 108463, 92413)
         cards = {"cards": {str(card_id): catalog["cards"][str(card_id)] for card_id in required}}
         entry = {

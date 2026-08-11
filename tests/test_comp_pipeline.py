@@ -275,6 +275,11 @@ class PipelineTests(unittest.TestCase):
             ("reddit", "abc123", "https://www.reddit.com/comments/abc123"),
         )
 
+    def test_canonical_source_rejects_reddit_lookalike_hosts(self):
+        for host in ("notreddit.com", "evilreddit.com"):
+            with self.subTest(host=host), self.assertRaisesRegex(CompError, "public YouTube video or Reddit post"):
+                canonical_source(f"https://{host}/r/BobsTavern/comments/abc123/title/")
+
     def test_catalog_rejects_rotated_cards(self):
         catalog = CardCatalog(CARDS)
         self.assertEqual(catalog.require_current(132796)["name"], "Tasty Lobster")
@@ -691,6 +696,96 @@ class PipelineTests(unittest.TestCase):
                 ],
             )
 
+    def test_supporting_strategy_source_renders_and_registers_with_timestamp(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            supporting_yaml = """supporting_sources:
+  - type: youtube
+    url: https://youtu.be/8d42ovfpwBw?si=tracking
+    author: BeterBabbit
+    label: Plaguerunner Portrait variation
+    timestamp: 388
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", supporting_yaml + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="https://example.pages.dev",
+            )
+
+            html = (root / "dist/comps/tasty-lobstah.html").read_text(encoding="utf-8")
+            self.assertIn("Supporting strategy sources", html)
+            self.assertIn("Plaguerunner Portrait variation — BeterBabbit", html)
+            self.assertIn("https://www.youtube.com/watch?v=8d42ovfpwBw&t=388s", html)
+            saved = json.loads(registry.read_text(encoding="utf-8"))["pages"][0]
+            self.assertEqual(
+                saved["supporting_sources"],
+                [
+                    {
+                        "type": "youtube",
+                        "url": "https://www.youtube.com/watch?v=8d42ovfpwBw",
+                        "source_id": "8d42ovfpwBw",
+                        "author": "BeterBabbit",
+                        "label": "Plaguerunner Portrait variation",
+                        "timestamp": 388,
+                    }
+                ],
+            )
+
+    def test_supporting_source_cannot_reuse_another_guides_primary_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            supporting_yaml = """supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=8d42ovfpwBw
+    author: BeterBabbit
+    label: Portrait variation
+"""
+            content.write_text(
+                VALID_MARKDOWN.replace("source:\n", supporting_yaml + "source:\n"),
+                encoding="utf-8",
+            )
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 2,
+                        "pages": [
+                            {
+                                "slug": "existing-guide",
+                                "source_id": "8d42ovfpwBw",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(CompError, "already published as the primary source"):
+                publish_comp(
+                    content_path=content,
+                    cards_path=cards,
+                    registry_path=registry,
+                    template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                    output_dir=root / "dist",
+                    public_base_url="https://example.pages.dev",
+                )
+
     def test_video_board_examples_render_ordered_cards_and_stats_before_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -911,6 +1006,81 @@ composition_spells: []
                     output_dir=root / "dist",
                     public_base_url="https://example.pages.dev",
                 )
+
+    def test_publish_refuses_source_already_used_as_supporting_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 2,
+                        "pages": [
+                            {
+                                "slug": "existing-guide",
+                                "source_id": "different1",
+                                "supporting_sources": [
+                                    {
+                                        "type": "youtube",
+                                        "source_id": "jCupcgaSjvo",
+                                        "url": "https://www.youtube.com/watch?v=jCupcgaSjvo",
+                                    }
+                                ],
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(CompError, "already used as supporting evidence"):
+                publish_comp(
+                    content_path=content,
+                    cards_path=cards,
+                    registry_path=registry,
+                    template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                    output_dir=root / "dist",
+                    public_base_url="https://example.pages.dev",
+                )
+
+    def test_source_collision_keys_include_source_type(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 2,
+                        "pages": [
+                            {
+                                "slug": "reddit-guide",
+                                "source_type": "reddit",
+                                "source_id": "jCupcgaSjvo",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            publish_comp(
+                content_path=content,
+                cards_path=cards,
+                registry_path=registry,
+                template_path=Path(__file__).resolve().parents[1] / "templates/comp.html",
+                output_dir=root / "dist",
+                public_base_url="https://example.pages.dev",
+            )
+            saved = json.loads(registry.read_text(encoding="utf-8"))
+            self.assertEqual(len(saved["pages"]), 2)
 
     def test_update_replaces_an_existing_source_registry_entry(self):
         with tempfile.TemporaryDirectory() as tmp:

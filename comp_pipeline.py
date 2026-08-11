@@ -98,7 +98,7 @@ def canonical_source(url: str) -> tuple[str, str, str]:
             raise CompError(f"Invalid YouTube URL: {url}")
         return "youtube", source_id, f"https://www.youtube.com/watch?v={source_id}"
 
-    if host.endswith("reddit.com"):
+    if host == "reddit.com" or host.endswith(".reddit.com"):
         match = re.search(r"/comments/([A-Za-z0-9]+)", parsed.path)
         if not match:
             raise CompError(f"Invalid Reddit post URL: {url}")
@@ -253,6 +253,49 @@ def _normalize_discovery_sources(raw_sources: object) -> list[dict]:
     return normalized
 
 
+def _normalize_supporting_sources(raw_sources: object) -> list[dict]:
+    if raw_sources is None:
+        return []
+    if not isinstance(raw_sources, list):
+        raise CompError("supporting_sources must be a list")
+
+    normalized: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for index, raw in enumerate(raw_sources, start=1):
+        if not isinstance(raw, dict):
+            raise CompError(f"supporting_sources[{index}] must be a mapping")
+        declared_type = str(raw.get("type", "")).strip().lower()
+        source_type, source_id, source_url = canonical_source(str(raw.get("url", "")))
+        if declared_type and declared_type != source_type:
+            raise CompError(f"supporting_sources[{index}].type must be {source_type}")
+        author = str(raw.get("author", "")).strip()
+        label = str(raw.get("label", "")).strip()
+        if not author:
+            raise CompError(f"supporting_sources[{index}].author is required")
+        if not label:
+            raise CompError(f"supporting_sources[{index}].label is required")
+        raw_timestamp = raw.get("timestamp", 0)
+        if isinstance(raw_timestamp, bool) or not isinstance(raw_timestamp, int) or raw_timestamp < 0:
+            raise CompError(f"supporting_sources[{index}].timestamp must be a non-negative integer")
+        if raw_timestamp and source_type != "youtube":
+            raise CompError(f"supporting_sources[{index}].timestamp is only valid for YouTube")
+        key = (source_type, source_id)
+        if key in seen:
+            raise CompError(f"supporting_sources[{index}] duplicates source {source_id}")
+        seen.add(key)
+        normalized.append(
+            {
+                "type": source_type,
+                "url": source_url,
+                "source_id": source_id,
+                "author": author,
+                "label": label,
+                "timestamp": raw_timestamp,
+            }
+        )
+    return normalized
+
+
 def _render_inline_cards(body: str, catalog: CardCatalog) -> tuple[str, list[int]]:
     inline_ids: list[int] = []
     occurrence = 0
@@ -367,8 +410,29 @@ def publish_comp(
     registry = _load_json(registry_path)
     registry_pages = registry.get("pages", [])
     source_indices = [
-        index for index, page in enumerate(registry_pages) if page.get("source_id") == source_id
+        index
+        for index, page in enumerate(registry_pages)
+        if page.get("source_id") == source_id
+        and page.get("source_type", source_type) == source_type
     ]
+    supporting_source_indices = [
+        index
+        for index, page in enumerate(registry_pages)
+        if any(
+            supporting.get("source_id") == source_id
+            and supporting.get("type", source_type) == source_type
+            for supporting in page.get("supporting_sources", [])
+            if isinstance(supporting, dict)
+        )
+    ]
+    foreign_supporting_indices = [
+        index
+        for index in supporting_source_indices
+        if registry_pages[index].get("slug") != metadata["slug"]
+    ]
+    if register and foreign_supporting_indices:
+        owner = registry_pages[foreign_supporting_indices[0]].get("slug", "another guide")
+        raise CompError(f"Source {source_id} is already used as supporting evidence by {owner}")
     slug_indices = [
         index for index, page in enumerate(registry_pages) if page.get("slug") == metadata["slug"]
     ]
@@ -618,6 +682,31 @@ def publish_comp(
         )
 
     discovery_sources = _normalize_discovery_sources(metadata.get("discovery_sources"))
+    supporting_sources = _normalize_supporting_sources(metadata.get("supporting_sources"))
+    if any(item["type"] == source_type and item["source_id"] == source_id for item in supporting_sources):
+        raise CompError("supporting_sources must not repeat the primary source")
+    if register:
+        for supporting in supporting_sources:
+            supporting_id = supporting["source_id"]
+            for page in registry_pages:
+                if page.get("slug") == metadata["slug"]:
+                    continue
+                if (
+                    page.get("source_id") == supporting_id
+                    and page.get("source_type", supporting["type"]) == supporting["type"]
+                ):
+                    raise CompError(
+                        f"Supporting source {supporting_id} was already published as the primary source of {page.get('slug', 'another guide')}"
+                    )
+                if any(
+                    existing.get("source_id") == supporting_id
+                    and existing.get("type", supporting["type"]) == supporting["type"]
+                    for existing in page.get("supporting_sources", [])
+                    if isinstance(existing, dict)
+                ):
+                    raise CompError(
+                        f"Supporting source {supporting_id} is already used by {page.get('slug', 'another guide')}"
+                    )
     body, inline_ids = _render_inline_cards(body, catalog)
     for card_id in inline_ids:
         if card_id not in all_ids:
@@ -694,6 +783,7 @@ def publish_comp(
             raise CompError(f"{field} must combine duplicate card IDs into one count")
     comp = dict(metadata)
     comp["discovery_sources"] = discovery_sources
+    comp["supporting_sources"] = supporting_sources
     comp["sections"] = sections
     comp["packages"] = packages
     comp["related_routes"] = related_routes
@@ -737,6 +827,7 @@ def publish_comp(
         "source_author": metadata["source"].get("author", "Original source"),
         "source_id": source_id,
         "discovery_sources": discovery_sources,
+        "supporting_sources": supporting_sources,
         "published_at": (
             existing_entry.get("published_at")
             if existing_entry and existing_entry.get("published_at")

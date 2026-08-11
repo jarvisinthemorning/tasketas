@@ -44,6 +44,13 @@ discovery_sources:
   - type: firestone
     url: https://www.firestoneapp.com/battlegrounds/comps
     comp_id: firestone_comp_id
+# Optional strategy evidence for one variation or supporting claim. Keep one canonical primary source below.
+supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=SUPPORTING_VIDEO_ID
+    author: Supporting creator
+    label: Package or variation demonstrated
+    timestamp: 0
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=VIDEO_ID

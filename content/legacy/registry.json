@@ -1,0 +1,749 @@
+{
+  "schema_version": 2,
+  "archived_at": "2026-08-11",
+  "pages": [
+    {
+      "slug": "demon-felboar-spell-consume",
+      "title": "Distractor–Felboar Spell-Consume",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/demon-felboar-spell-consume.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "demon"
+      ],
+      "tags": [
+        "season 14",
+        "consume",
+        "spells",
+        "battlecry"
+      ],
+      "minions": [
+        {
+          "card_id": 132901,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 110664,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 132903,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-10",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=WYybK8pRz8Y",
+      "source_author": "XQN",
+      "source_id": "WYybK8pRz8Y",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff",
+          "comp_id": "41",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "demons_fermenter",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "published_at": "2026-08-09T16:30:35+00:00",
+      "archived": true
+    },
+    {
+      "slug": "dragon-kalecgos-battlecry",
+      "title": "Kalecgos Battlecry Dragons",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/dragon-kalecgos-battlecry.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "dragon"
+      ],
+      "tags": [
+        "season 14",
+        "battlecry",
+        "kalecgos",
+        "cycling"
+      ],
+      "minions": [
+        {
+          "card_id": 60630,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132955,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132957,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=dCwe93sXIiM",
+      "source_author": "Sevel",
+      "source_id": "dCwe93sXIiM",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T00:13:46+00:00",
+      "archived": true
+    },
+    {
+      "slug": "elemental-moat-mana-surge",
+      "title": "Moat Custodian Mana Surge",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/elemental-moat-mana-surge.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "elemental"
+      ],
+      "tags": [
+        "season 14",
+        "buff amplification",
+        "cycling",
+        "rally"
+      ],
+      "minions": [
+        {
+          "card_id": 132981,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120674,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=eeyh2yyJVPE",
+      "source_author": "Shadybunny",
+      "source_id": "eeyh2yyJVPE",
+      "discovery_sources": [
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "elemental_boost",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "published_at": "2026-08-09T10:02:40+00:00",
+      "archived": true
+    },
+    {
+      "slug": "mech-utility-drone-magnetics",
+      "title": "Utility Drone Magnetics",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/mech-utility-drone-magnetics.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "mech"
+      ],
+      "tags": [
+        "season 14",
+        "magnetic",
+        "end of turn",
+        "generation"
+      ],
+      "minions": [
+        {
+          "card_id": 132893,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120905,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98588,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 101314,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 104472,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=EhDY7nt7obg",
+      "source_author": "dogdog",
+      "source_id": "EhDY7nt7obg",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics",
+          "comp_id": "2",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "published_at": "2026-08-09T10:03:28+00:00",
+      "archived": true
+    },
+    {
+      "slug": "naga-fauna-spellcraft",
+      "title": "Fauna Whisperer Spellcraft",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/naga-fauna-spellcraft.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "naga"
+      ],
+      "tags": [
+        "season 14",
+        "spellcraft",
+        "end of turn",
+        "spell power"
+      ],
+      "minions": [
+        {
+          "card_id": 119942,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120905,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 104472,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=qZNlfhwDl7E",
+      "source_author": "Shadybunny",
+      "source_id": "qZNlfhwDl7E",
+      "discovery_sources": [],
+      "published_at": "2026-08-08T19:25:34+00:00",
+      "archived": true
+    },
+    {
+      "slug": "pirate-escapee-hooktusk-apm",
+      "title": "Escapee Hooktusk Lockbox APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/pirate-escapee-hooktusk-apm.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "pirate"
+      ],
+      "tags": [
+        "season 14",
+        "lockbox",
+        "apm",
+        "golden minions"
+      ],
+      "minions": [
+        {
+          "card_id": 132762,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132925,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132921,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 132766,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
+      "source_author": "Rdu Hearthstone",
+      "source_id": "ti8h4WQoG2Q",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden",
+          "comp_id": "89",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "pirates_escapee_chef",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "published_at": "2026-08-09T09:59:04+00:00",
+      "archived": true
+    },
+    {
+      "slug": "undead-snazzy-reborn",
+      "title": "Undead Attack Scaling",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/undead-snazzy-reborn.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "undead"
+      ],
+      "tags": [
+        "season 14",
+        "attack scaling",
+        "butchering",
+        "reborn",
+        "stat transfer"
+      ],
+      "minions": [
+        {
+          "card_id": 108992,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132322,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120104,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133083,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133081,
+          "count": 2,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 110412,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-11",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=gVDdCE_xjaQ",
+      "source_author": "Sevel",
+      "source_id": "gVDdCE_xjaQ",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/14/undead-attack-scaling",
+          "comp_id": "14",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "published_at": "2026-08-09T10:04:15+00:00",
+      "archived": true
+    },
+    {
+      "slug": "murloc-primitive-painter-cycle",
+      "title": "Tidecaller–Tidehunter Handbuff APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/murloc-primitive-painter-cycle.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "murloc"
+      ],
+      "tags": [
+        "season 14",
+        "handbuff",
+        "spell targeting",
+        "apm"
+      ],
+      "minions": [
+        {
+          "card_id": 133026,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132989,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98948,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126637,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [
+        {
+          "card_id": 98509,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "prerequisites": [],
+      "verified_at": "2026-08-08",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Ppj60f3j_AE",
+      "source_author": "Shadybunny",
+      "source_id": "Ppj60f3j_AE",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/67/murlocs-apm",
+          "comp_id": "67",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "published_at": "2026-08-09T10:01:26+00:00",
+      "archived": true
+    },
+    {
+      "slug": "menagerie-dagger-amalgamation",
+      "title": "Dagger Amalgamation Menagerie",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/menagerie-dagger-amalgamation.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "menagerie"
+      ],
+      "tags": [
+        "season 14",
+        "dark gifts",
+        "spells",
+        "scaling"
+      ],
+      "minions": [
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 132790,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [
+        {
+          "card_id": 133713,
+          "count": 1
+        }
+      ],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Ic08mTl1-HA",
+      "source_author": "JeefHS",
+      "source_id": "Ic08mTl1-HA",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T05:20:45+00:00",
+      "archived": true
+    },
+    {
+      "slug": "infinite-reborn-leeroy-scam",
+      "title": "Infinite Reborn Leeroy Scam",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/infinite-reborn-leeroy-scam.html",
+      "season": 14,
+      "modes": [
+        "solo",
+        "duos"
+      ],
+      "tribes": [
+        "undead"
+      ],
+      "tags": [
+        "season 14",
+        "scam",
+        "reborn",
+        "venomous",
+        "utility"
+      ],
+      "minions": [
+        {
+          "card_id": 127446,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 90425,
+          "count": 2,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 126271,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=weHaBCZDvQw",
+      "source_author": "XQN",
+      "source_id": "weHaBCZDvQw",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T07:26:13+00:00",
+      "archived": true
+    },
+    {
+      "slug": "undead-plaguerunner-butcher-loop",
+      "title": "Plaguerunner Portrait Butchering Loop",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/undead-plaguerunner-butcher-loop.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "undead"
+      ],
+      "tags": [
+        "season 14",
+        "trinket",
+        "deathrattle",
+        "attack scaling",
+        "cycle"
+      ],
+      "minions": [
+        {
+          "card_id": 126451,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130884,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120219,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133081,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120104,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 110412,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=8d42ovfpwBw",
+      "source_author": "BeterBabbit",
+      "source_id": "8d42ovfpwBw",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T19:33:49+00:00",
+      "archived": true
+    },
+    {
+      "slug": "dragon-vindicator-poet-warpwing",
+      "title": "Vindicator–Poet Warpwing Dragons",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/dragon-vindicator-poet-warpwing.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "dragon"
+      ],
+      "tags": [
+        "season 14",
+        "rally",
+        "combat scaling",
+        "divine shield",
+        "windfury"
+      ],
+      "minions": [
+        {
+          "card_id": 120301,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132953,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 108463,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 92413,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [
+        {
+          "card_id": 132995,
+          "count": 1
+        }
+      ],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-09",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=VDLCBxk_-48",
+      "source_author": "Shadybunny",
+      "source_id": "VDLCBxk_-48",
+      "discovery_sources": [],
+      "published_at": "2026-08-09T19:33:49+00:00",
+      "archived": true
+    },
+    {
+      "slug": "elemental-tempest-revenant-spirit-swap",
+      "title": "Tempest–Revenant Spirit-Swap APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/legacy/elemental-tempest-revenant-spirit-swap.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "elemental"
+      ],
+      "tags": [
+        "APM",
+        "scaling",
+        "tavern-stats",
+        "hero-specific"
+      ],
+      "minions": [
+        {
+          "card_id": 132983,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126173,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [
+        {
+          "card_id": 71464,
+          "count": 1
+        }
+      ],
+      "verified_at": "2026-08-10",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=KRm5_T4KuA0",
+      "source_author": "JeefHS",
+      "source_id": "KRm5_T4KuA0",
+      "discovery_sources": [],
+      "published_at": "2026-08-10T07:29:15+00:00",
+      "archived": true
+    }
+  ]
+}
