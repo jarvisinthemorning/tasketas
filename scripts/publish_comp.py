@@ -13,7 +13,7 @@ from comp_pipeline import CompError, build_index, publish_comp
 
 def run_git_publish(root: Path, slug: str) -> None:
     commands = [
-        ["git", "add", "content", "data/cards.json", "data/registry.json", "dist"],
+        ["git", "add", "content", "data/cards.json", "data/registry.json", "dist", "scripts", "static", "templates", "tests"],
         ["git", "commit", "-m", f"Publish comp: {slug}"],
         ["git", "push"],
     ]
@@ -48,7 +48,14 @@ def main() -> int:
             template_path=root / "templates/index.html",
             output_dir=root / "dist",
         )
-    except CompError as exc:
+        from build_early_game import build as build_early_game
+
+        build_early_game(
+            root / "data/cards.json",
+            root / "templates/early-game.html",
+            root / "dist/early-game.html",
+        )
+    except (CompError, ValueError) as exc:
         print(f"Error: {exc}", file=sys.stderr)
         return 2
 
