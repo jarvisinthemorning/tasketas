@@ -14,7 +14,7 @@ PACKAGES = [
     (1, "Buff into a shield", "Mini-synergy", "Mini-Myrmidon pushes Scarlet Survivor toward 6 Attack; the Shield is tempo, not a Dragon commitment.", [129749, 80738]),
     (1, "Gems without forcing Quilboar", "Economy", "Razorfen Geomancer supplies two flexible buffs; Tusked Camper grows while attacking. Buy the stats, not a tribe promise.", [70143, 122568]),
     (1, "Flexible gold and stats", "Economy", "Southsea Busker smooths next turn. Suspicious Prisonguard is a solid body whose paid +3/+3 can rescue a weak combat.", [98501, 132915]),
-    (2, "Beetle bridge", "Mini-synergy", "Forest Rover improves Beetles and leaves one behind; Flittering Bat supplies extra Beast bodies to exploit the buff.", [115577, 132792]),
+    (2, "Beetle bridge", "Mini-synergy", "Forest Rover permanently improves your Beetles and summons one; Buzzing Vermin adds another Beetle body in combat.", [115577, 116240]),
     (2, "Recruit-phase Beast hit", "Mini-synergy", "Lionfish turns a Tavern card into Fishbait; your left-most Beast attacks it and keeps the +5/+5 reward for combat.", [132794, 132802]),
     (2, "Cheap Mech reinforcement", "Mini-synergy", "Interpreter adds immediate stats to played or Magnetized Mechs; Cord Puller is a sturdy early target and summon.", [115678, 110101]),
     (2, "Economy that still boards", "Economy", "These bodies preserve value for a later turn. Take them when their current stats do not leave you exposed.", [64038, 80740, 97604]),
