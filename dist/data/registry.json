@@ -1403,6 +1403,138 @@
         }
       ],
       "published_at": "2026-08-11T22:06:09+00:00"
+    },
+    {
+      "slug": "naga-balinda-torrential-ruiner",
+      "title": "Naga Balinda Torrential Ruiner",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/naga-balinda-torrential-ruiner.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "naga"
+      ],
+      "tags": [
+        "season 14",
+        "spells",
+        "spellcraft",
+        "scaling",
+        "divine shield"
+      ],
+      "type": "underdog",
+      "commit": [
+        130298,
+        99054,
+        122221
+      ],
+      "core": [
+        130298,
+        133707
+      ],
+      "dynamic": [
+        80746,
+        80738,
+        80742,
+        80745,
+        115563,
+        110406,
+        120905,
+        119942
+      ],
+      "cards": [
+        130298,
+        133707,
+        99054,
+        80746,
+        122221,
+        80738,
+        80742,
+        80745,
+        115563,
+        110406,
+        120905,
+        119942
+      ],
+      "minion_ids": [
+        130298,
+        133707,
+        99054,
+        80746,
+        122221,
+        80738,
+        80742,
+        80745,
+        115563,
+        120905,
+        119942
+      ],
+      "spell_ids": [
+        110406
+      ],
+      "other_ids": [],
+      "card_previews": {
+        "130298": {
+          "id": 130298,
+          "name": "Balinda Stonehearth",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
+        },
+        "99054": {
+          "id": 99054,
+          "name": "Zesty Shaker",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/99054-zesty-shaker.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/99054/zesty-shaker"
+        },
+        "122221": {
+          "id": 122221,
+          "name": "Rimescale Priestess",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/122221-rimescale-priestess.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/122221/rimescale-priestess"
+        },
+        "133707": {
+          "id": 133707,
+          "name": "Torrential Ruiner",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/133707-torrential-ruiner.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/133707/torrential-ruiner"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133707,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 99054,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-12",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=U7-hocc1XKw",
+      "source_author": "Shadybunny",
+      "source_id": "U7-hocc1XKw",
+      "discovery_sources": [],
+      "supporting_sources": [],
+      "published_at": "2026-08-12T12:21:16+00:00"
     }
   ],
   "schema_version": 3
