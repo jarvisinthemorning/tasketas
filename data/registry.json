@@ -1406,7 +1406,7 @@
     },
     {
       "slug": "naga-balinda-torrential-ruiner",
-      "title": "Naga Balinda Torrential Ruiner",
+      "title": "Naga Balinda–Torrential Ruiner Spell Burst",
       "url": "https://jarvisinthemorning.github.io/tasketas/comps/naga-balinda-torrential-ruiner.html",
       "season": 14,
       "modes": [
@@ -1420,57 +1420,53 @@
         "spells",
         "spellcraft",
         "scaling",
-        "divine shield"
+        "divine shield",
+        "dark gifts"
       ],
-      "type": "underdog",
-      "commit": [
-        130298,
-        99054,
-        122221
-      ],
+      "type": "highroll",
+      "commit": [],
       "core": [
         130298,
         133707
       ],
       "dynamic": [
+        99054,
         80746,
-        80738,
-        80742,
-        80745,
+        84362,
         115563,
-        110406,
-        120905,
-        119942
+        117584,
+        133711,
+        104448,
+        115910,
+        120905
       ],
       "cards": [
         130298,
         133707,
         99054,
         80746,
-        122221,
-        80738,
-        80742,
-        80745,
+        84362,
         115563,
-        110406,
-        120905,
-        119942
+        117584,
+        133711,
+        104448,
+        115910,
+        120905
       ],
       "minion_ids": [
         130298,
         133707,
         99054,
         80746,
-        122221,
-        80738,
-        80742,
-        80745,
         115563,
-        120905,
-        119942
+        120905
       ],
       "spell_ids": [
-        110406
+        84362,
+        117584,
+        133711,
+        104448,
+        115910
       ],
       "other_ids": [],
       "card_previews": {
@@ -1481,22 +1477,6 @@
           "tier": 6,
           "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
           "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
-        },
-        "99054": {
-          "id": 99054,
-          "name": "Zesty Shaker",
-          "type": "minion",
-          "tier": 4,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/99054-zesty-shaker.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/99054/zesty-shaker"
-        },
-        "122221": {
-          "id": 122221,
-          "name": "Rimescale Priestess",
-          "type": "minion",
-          "tier": 4,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/122221-rimescale-priestess.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/122221/rimescale-priestess"
         },
         "133707": {
           "id": 133707,

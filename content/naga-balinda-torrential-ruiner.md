@@ -1,45 +1,30 @@
 ---
-title: Naga Balinda Torrential Ruiner
+title: Naga Balinda–Torrential Ruiner Spell Burst
 slug: naga-balinda-torrential-ruiner
 season: 14
 modes: [solo]
 tribes: [naga]
-tags: [season 14, spells, spellcraft, scaling, divine shield]
-classification: underdog
+tags: [season 14, spells, spellcraft, scaling, divine shield, dark gifts]
+classification: highroll
 core: [130298, 133707]
-addons: [99054, 80746, 122221]
-cycle: [80738, 80742, 80745, 115563, 110406]
+addons: [99054, 80746, 84362]
+cycle: [115563, 117584, 133711, 104448, 115910]
 packages:
-  - title: Commit
-    purpose: Take the Naga line when Balinda arrives with several immediate targeted casts; Balinda without spell access is not enough.
-    badge: Commit signal
-    optional: false
-    cards: [130298, 99054, 122221]
   - title: Core
     purpose: Balinda doubles targeted spells while Torrential Ruiner turns every cast on a Naga into fast board-wide scaling.
     badge: Required core
     optional: false
     cards: [130298, 133707]
-  - title: Cheap targeted casts
-    purpose: Buy inexpensive Spellcraft bodies and point their spells at a Naga to trigger Ruiner repeatedly.
+  - title: Spellcraft fuel
+    purpose: Generate repeated targeted casts; Zesty supplies extra copies and Glowscale converts those casts into shields.
     badge: Shopping engine
     optional: false
-    cards: [80738, 115563, 80742, 80745]
-  - title: More spell supply
-    purpose: Refill targeted casts when the basic Spellcraft bodies are not enough to keep the engine moving.
-    badge: Spell supply
+    cards: [115563, 99054, 80746, 84362]
+  - title: Targeted spell fuel
+    purpose: Prioritize efficient spells that can target a Naga; flexible Discovers can refill the cycle.
+    badge: Optional — spell fuel
     optional: true
-    cards: [122221, 110406]
-  - title: Shield package
-    purpose: Reuse Glowscale on Zesty Shaker to protect several scaled bodies instead of adding stats alone.
-    badge: Optional — shield package
-    optional: true
-    cards: [99054, 80746]
-  - title: Alternative scaling
-    purpose: Fauna needs room and spell support; use it as a deliberate alternative, not an automatic seventh body.
-    badge: Optional — end-turn route
-    optional: true
-    cards: [120905, 119942]
+    cards: [117584, 133711, 104448, 115910]
 related_routes: []
 composition_minions:
   - card_id: 130298
@@ -78,41 +63,43 @@ verified_at: '2026-08-12'
 
 ## When to commit
 
-- The demonstrated commitment starts when Balinda is chosen with several spells and Naga resources already available; it becomes a real composition once Torrential Ruiner appears.
+- There is no honest pre-Core Commit package. Earlier Nagas and Zesty Shaker are tempo and resource pieces, not proof that this composition should be forced.
+- The mechanical commitment begins only when [[card:130298|Balinda Stonehearth]] meets [[card:133707|Torrential Ruiner]] with targeted spell fuel available.
 - Prefer the line when you need fast scaling now and can produce multiple targeted casts in the same recruit turn.
 - Do **not** force it from [[card:130298|Balinda Stonehearth]] alone. Without spell supply, or without [[card:133707|Torrential Ruiner]], the interaction does not become the source's board-wide engine.
-- Extra Ruiners and a Golden Balinda raise the ceiling dramatically, but they are upgrades—not the minimum functional route.
+- Extra Ruiners and a Golden Balinda raise the ceiling dramatically, but the source obtains them through exceptional assistance rather than an ordinary Tavern assembly.
 
 ## How to play
 
 1. Keep enough immediate tempo to survive while looking for Balinda and spell density; the source was already low on Health and could not afford a slow setup.
-2. Once Balinda and Ruiner meet, buy cheap Spellcraft bodies and cast their spells **on a Naga**. Ruiner also buffs non-Naga bodies, so existing tempo can remain while the whole board grows.
-3. Prefer low-cost targeted spells over expensive effects that do little without their own support. [[card:110406|Spitescale Special]] can refill several Spellcraft casts when hand space allows.
-4. [[card:99054|Zesty Shaker]] plus [[card:80746|Glowscale]] is the source's practical shield plan: repeat the shield Spellcraft and protect several already-scaled bodies.
+2. Once Balinda and Ruiner meet, cast targeted spells **on a Naga**. Ruiner also buffs non-Naga bodies, so existing tempo can remain while the whole board grows.
+3. [[card:115563|Thaumaturgist]] provides cheap Spellcraft fuel. [[card:99054|Zesty Shaker]] creates an extra copy, while [[card:80746|Glowscale]] and [[card:84362|Glowing Crown]] turn repeated casts into temporary Divine Shields.
+4. Prefer efficient targeted effects such as [[card:117584|Forest's Bounty]] and [[card:133711|Repair Job]]. [[card:115910|Boundless Potential]] refills resources but is not itself a Ruiner trigger.
 5. Manage hand space. The source deliberately avoids filling the hand with effects that would strand Tavern spells or prevent the preferred Spellcraft resources from returning.
 6. Stop casting when preserving Spellcraft cards for another turn is worth more than one final small trigger; the source makes this exact late-game restraint before the last matchup.
 
 ## Positioning and traps
 
 - Windfury can let a large protected attacker remove two opposing threats, but the source does not establish one universal attack order for every lobby.
-- The biggest trap is confusing the showcased ceiling with the ordinary route. Cenarius's copied Hero Power, repeated Dark Gifts, a Greater Trinket, Golden Balinda, and multiple Golden Ruiners all accelerated this game. None belongs in Core, and the guide does not promise the same final numbers.
-- Do not squeeze [[card:120905|Fauna Whisperer]] and an end-of-turn multiplier onto the board automatically. Shady discusses that route, but Beter keeps the shield/utility setup instead; slots and immediate survival matter.
-- This is an **Underdog** toolbox route: current complete HSReplay and Firestone directory snapshots do not list a Naga composition, and Shady calls it an outlier that is useful when a game needs fast recovery—not the strongest default line.
+- The biggest trap is confusing a transferable interaction with a reproducible route. The source uses the Dark Gifts anomaly, Ominous Stone, a gifted Rally engine, Cenarius's spell-copying Hero Power, Sphere of Memory, Golden Balinda, and multiple Golden Ruiners. None belongs in Core, and the guide does not promise the same final numbers.
+- Shady speculates about [[card:120905|Fauna Whisperer]] and an end-of-turn multiplier but explicitly says he has not played that line. Treat it as a different, unproven engine—not positioning advice for this guide.
+- This is a **Highroll** curiosity. Complete current HSReplay and Firestone snapshots do not list a Naga composition, while Shady calls this an outlier/toolbox recovery line rather than a top Meta build.
 
 ## Post-loss check
 
 - **No scaling:** Did you have both Balinda and Ruiner, or only the attractive half of the engine?
 - **Too few triggers:** Did you buy real targeted spell supply, or roll past cheap Spellcraft bodies looking only for premium pieces?
 - **Hand jammed:** Did generated resources block the spells you actually wanted to reuse?
-- **Died during setup:** Were you already too weak to sell established tempo for Fauna or another slow ceiling piece?
+- **Died during setup:** Did you mistake source-specific Gift, Hero Power, and trinket acceleration for an assembly line available in your game?
 - **Lost through large stats:** Did you convert the scaled board into shields and useful attack keywords when those were available?
 
 ## Useful timestamps
 
-- **5:48** — Balinda is chosen with several immediate spell casts available.
+- **5:48** — A Gift-assisted triple produces Balinda with several immediate spell casts available.
 - **7:38** — The Naga direction becomes explicit around Balinda.
 - **8:53** — Torrential Ruiner is identified as the fast scaling partner.
-- **9:51** — A second Ruiner turns each targeted spell into rapid board-wide growth.
+- **9:51** — Two Ruiners establish the actual mechanical commitment and turn each targeted spell into rapid board-wide growth.
+- **11:36** — Sphere of Memory, Galaxy's Lens, and Golden Touch begin forcing premium golden pieces; this is ceiling evidence, not an ordinary route.
 - **15:40** — Hand-space and spell-retention sequencing are explained.
 - **16:29** — Shady frames the line as fast recovery scaling, with a warning that Beter's execution makes it look easier.
 - **18:09** — The source calls the composition an outlier/toolbox line rather than a top Meta build.
