@@ -1081,9 +1081,40 @@
           "url": "https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden",
           "comp_id": "89",
           "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "pirate_discover",
+          "label": "Firestone composition directory"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=ti8h4WQoG2Q",
+          "source_id": "ti8h4WQoG2Q",
+          "author": "Rdu Hearthstone",
+          "label": "Escapee, Rogers and Privateer execution with board-space cuts",
+          "timestamp": 1535
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=FvZJNm95cps",
+          "source_id": "FvZJNm95cps",
+          "author": "Rdu Hearthstone",
+          "label": "Triple-Escapee ceiling and Hooktusk timing",
+          "timestamp": 555
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=zITEQk66_0E",
+          "source_id": "zITEQk66_0E",
+          "author": "BeterBabbit",
+          "label": "Lockbox transition with Golden Brann acceleration",
+          "timestamp": 0
+        }
+      ],
       "published_at": "2026-08-11T19:51:43+00:00"
     },
     {

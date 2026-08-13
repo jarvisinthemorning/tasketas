@@ -87,10 +87,35 @@ board_examples:
   phase: tavern
   image: /static/boards/pirates-apm-golden-late.webp
   note: A stable late Tavern state showing why the APM shell must eventually give way to scaled combat bodies and a finished board.
+- stage: late
+  turn: 15
+  timestamp: 2040
+  phase: tavern
+  image: /static/boards/pirates-apm-golden-escapee-engine.webp
+  note: A second source's clean Recruit turn after the Escapee engine matures, useful for judging which economy slots must become combat cards.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden
   comp_id: '89'
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: pirate_discover
+supporting_sources:
+- type: youtube
+  url: https://www.youtube.com/watch?v=ti8h4WQoG2Q
+  author: Rdu Hearthstone
+  label: Escapee, Rogers and Privateer execution with board-space cuts
+  timestamp: 1535
+- type: youtube
+  url: https://www.youtube.com/watch?v=FvZJNm95cps
+  author: Rdu Hearthstone
+  label: Triple-Escapee ceiling and Hooktusk timing
+  timestamp: 555
+- type: youtube
+  url: https://www.youtube.com/watch?v=zITEQk66_0E
+  author: BeterBabbit
+  label: Lockbox transition with Golden Brann acceleration
+  timestamp: 0
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=IvdTja9QGqg
@@ -132,6 +157,13 @@ Shadybunny2's game receives unusually strong acceleration from Nightmare Lord Xa
 8. Add [[card:99035|Blade Collector]] early enough for Hooktusk and Bounty stats to land on it. Its own attacks hit adjacent enemies, so the effect matters only when Blade Collector is large enough to survive and reach a useful target.
 9. Stop cycling before the rope. Play the final Golden minions, finish Discovers, sell temporary economy, field seven combat cards, and check order rather than entering combat with half the engine in hand.
 
+## Escapee execution checkpoints
+
+- **Do not level away the Lockbox turn.** The supporting source runs out of Gold after leveling before Rogers is online. Stay when another Escapee trigger, Golden cash-out, or stable combat matters more than one Tavern Tier.
+- **Sequence Golden cash-outs before Discover scaling.** When a Lockbox is about to open, leave hand and board space, play the useful Golden first, then resolve Hooktusk Discovers.
+- **Rogers and Privateer are working slots, not sacred furniture.** Keep them while doubled Bounties fund the turn. Once the engine sustains itself without that package, replace Rogers with cleave or another finished combat body and preserve one cycle slot.
+- **Buy time as carefully as Gold.** Rdu calls the route difficult even with the pieces assembled. Decide likely cuts before the APM turn starts; improvising seven board slots under the rope is how the Tavern becomes an escape room.
+
 ## Positioning and traps
 
 - **Golden first, Discover second:** Hooktusk's scaling is improved by Golden minions already played this game. Reversing the order leaves permanent stats behind.
@@ -141,6 +173,7 @@ Shadybunny2's game receives unusually strong acceleration from Nightmare Lord Xa
 - **Protect the cleave:** Blade Collector needs enough stats and a clean attack. Check Taunt placement and avoid exposing it to an obvious opposing cleave or early removal when another attacker can go first.
 - **Keep the payoff bodies present:** Hooktusk buffs other Pirates, so selling the intended recipients during the Discover chain wastes the scale.
 - **Do not chase the source ceiling:** Dark Gifts and repeated Golden Touches supplied exceptional Golden density. A normal game should convert earlier and accept a smaller but complete combat board.
+- **Mobile warning:** the newer source explicitly calls the route poor on mobile. If animations or input make full APM turns unrealistic, convert the first strong Golden/Hooktusk cycle into combat instead of hoarding a theoretical infinite turn.
 
 ## After a loss
 
@@ -161,3 +194,10 @@ Shadybunny2's game receives unusually strong acceleration from Nightmare Lord Xa
 - **15:00** — Brann is sold so Rogers and the permanent Pirate board can take over.
 - **18:15** — The final recruit turn starts with the mature engine visible and enough time to convert.
 - **20:06** — The game ends in a win despite a final positioning mistake, reinforcing that APM still needs a combat check.
+- **Rdu 0:38** — the Escapee, Rogers and Privateer engine is stated before the game develops.
+- **Rdu 11:42** — missing Rogers causes the first run-out; leveling timing is questioned.
+- **Rdu 14:04** — the source calls the composition hard and weighs Escapee against cleave.
+- **Rdu 25:22** — Lockbox is identified as the pivot and its acceleration is explained.
+- **Rdu 32:55** — the mature engine evaluates whether Castaway and the Bounty package are still needed.
+- **Rdu 35:51** — Rogers becomes the cut for cleave, leaving one cycle slot.
+- **Rdu 43:43** — explicit warning that the APM route is not mobile-friendly.
