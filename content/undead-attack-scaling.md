@@ -54,6 +54,11 @@ packages:
   badge: Optional — late upgrades
   optional: true
   cards: [133081, 133083, 97408, 130298]
+- title: Mummifier reset loop
+  purpose: Bellringer destroys a Reborn Mummifier; Mummifier's Deathrattle gives Bellringer Reborn, and Butchering Bellringer resets its Activate for another cycle.
+  badge: Optional — execution package
+  optional: true
+  cards: [108992, 132322, 110412, 133083]
 related_routes: []
 composition_minions:
 - {card_id: 95265, count: 1, golden_count: 0}
@@ -71,10 +76,27 @@ board_examples:
   phase: tavern
   image: /static/boards/undead-attack-scaling-late.webp
   note: A stable late Tavern state showing the mature split between Reborn triggers, scaling pieces, and protected payoff bodies.
+- stage: late
+  turn: 12
+  timestamp: 722
+  phase: tavern
+  image: /static/boards/undead-attack-scaling-mummifier-loop.webp
+  note: A clean Recruit-phase view immediately before the repeated Mummifier and Bellringer reset sequence is demonstrated.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/14/undead-attack-scaling
   comp_id: '14'
+supporting_sources:
+- type: youtube
+  url: https://www.youtube.com/watch?v=Lx0X-QmruhM
+  author: JeefHS
+  label: Full Mummifier and Bellringer reset-loop demonstration
+  timestamp: 719
+- type: youtube
+  url: https://www.youtube.com/watch?v=kboObgosKSQ
+  author: JeefHS
+  label: Short Mummifier loop explainer
+  timestamp: 0
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=JGU9TeaO6VE
@@ -113,6 +135,17 @@ Shadybunny's source demonstrates the route with [[card:121558|Maw Caster Portrai
 7. Use [[card:97408|Titus Rivendare]] only when doubling Friendly Geist, Handless Forsaken, Mummifier, or another useful Deathrattle earns the board slot. Titus does not multiply Snazzy's non-Deathrattle trigger.
 8. Add Balinda when targeted spells—especially Butchering—are frequent enough to justify a Tier 6 support slot. Do not wait for every optional card before improving the final board.
 
+## Mummifier reset loop
+
+This is an optional execution package once [[card:108992|Mummifier]], [[card:132322|Dead Bellringer]], [[card:110412|Butchering]], and enough Gold are available. It does not replace the ordinary Butcher/Reborn Core.
+
+1. **Activate Bellringer on Mummifier.** Mummifier gains Reborn, is destroyed, and returns. Its Deathrattle gives Bellringer Reborn.
+2. **Cast Butchering on Bellringer.** Bellringer dies, returns through Reborn, and its Activate is available again. Butchering also adds the permanent Undead Attack.
+3. **Repeat while resources justify it.** Each pass creates two Reborn events for Snazzy—one from Mummifier and one from Bellringer—while adding another Butchering layer.
+4. **Keep the recipient right-most.** The loop is only worth the clicks if [[card:133083|Snazzy Phantom]] sends those Reborn stats to the intended carry.
+
+The full source produces roughly ten Activates and twenty Reborn events in a turn, but that ceiling depends on an exceptional supply of Butchering and Gold. In a normal game, count the spells you can actually cast before reserving both board slots.
+
 ## Positioning and traps
 
 - **Right-most matters:** Snazzy always buffs the right-most Undead. Recheck the order after every buy, sell, Reborn setup, or temporary tech card.
@@ -122,6 +155,7 @@ Shadybunny's source demonstrates the route with [[card:121558|Maw Caster Portrai
 - **Tripling can reduce triggers:** the source notes that two separate activations can be better than one Golden copy during the build-up. Triple only when the stronger text or board space is worth losing a second trigger body.
 - **Hand and board space still matter:** summon engines, generated Undead, and Reborn setup compete for slots. Decide which scaling pieces are permanent before the turn becomes a small administrative crisis.
 - **Do not copy the source ceiling:** Maw Caster Portrait supplied extra Gold after destruction. Without that trinket, expect fewer actions and prioritize the minimum engine over recreating every displayed piece.
+- **Do not start the reset backwards:** Bellringer targets Mummifier first so Mummifier's Deathrattle grants Bellringer Reborn. Butchering an unprotected Bellringer simply deletes half the loop. A tiny sequencing error with admirably large consequences.
 
 ## After a loss
 
@@ -142,3 +176,9 @@ Shadybunny's source demonstrates the route with [[card:121558|Maw Caster Portrai
 - **18:30** — Rechecks the Snazzy plan and catches a Reborn sequencing mistake.
 - **21:00** — Clean late Tavern snapshot with the mature engine.
 - **22:54** — Adjusts positioning to preserve the protected payoff before the final fight.
+- **Jeef 3:14** — the Mummifier/Bellringer reset sequence is introduced before assembly.
+- **Jeef 8:03** — confirms the package is set up and identifies repeated Butchering as its fuel.
+- **Jeef 11:07** — Bellringer is identified as the best Butchering fuel.
+- **Jeef 11:59** — the complete loop is demonstrated step by step.
+- **Jeef 12:44** — explains the one-Gold cadence and two Snazzy Reborn triggers per pass.
+- **Jeef 15:26** — closes the teaching segment and notes Balinda as a further ceiling.

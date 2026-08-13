@@ -833,7 +833,24 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=Lx0X-QmruhM",
+          "source_id": "Lx0X-QmruhM",
+          "author": "JeefHS",
+          "label": "Full Mummifier and Bellringer reset-loop demonstration",
+          "timestamp": 719
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=kboObgosKSQ",
+          "source_id": "kboObgosKSQ",
+          "author": "JeefHS",
+          "label": "Short Mummifier loop explainer",
+          "timestamp": 0
+        }
+      ],
       "published_at": "2026-08-11T18:50:18+00:00"
     },
     {
