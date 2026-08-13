@@ -33,6 +33,8 @@
         97408,
         132802,
         132804,
+        133400,
+        67213,
         95286,
         70173,
         70157,
@@ -46,6 +48,8 @@
         97408,
         132802,
         132804,
+        133400,
+        67213,
         132806,
         132800,
         95286,
@@ -61,6 +65,7 @@
         97408,
         132802,
         132804,
+        67213,
         132806,
         132800,
         95286,
@@ -70,7 +75,9 @@
         132794
       ],
       "spell_ids": [],
-      "other_ids": [],
+      "other_ids": [
+        133400
+      ],
       "card_previews": {
         "132796": {
           "id": 132796,
@@ -130,8 +137,46 @@
       "source_url": "https://www.youtube.com/watch?v=rJ66OM7pENQ",
       "source_author": "HIQ MU",
       "source_id": "rJ66OM7pENQ",
-      "discovery_sources": [],
-      "supporting_sources": [],
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/87/beasts-tasty-lobstah",
+          "comp_id": "87",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "beast_lobster",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=Bf9VfxtDWQI",
+          "source_id": "Bf9VfxtDWQI",
+          "author": "Rdu Hearthstone",
+          "label": "Stricter Golden Deathstrider commit gate",
+          "timestamp": 0
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=SapUxehxlu8",
+          "source_id": "SapUxehxlu8",
+          "author": "dogdog",
+          "label": "Titus and Wolfhead Flail premium ceiling",
+          "timestamp": 709
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=caFAHGy_ebE",
+          "source_id": "caFAHGy_ebE",
+          "author": "dogdog",
+          "label": "Dark Gift-created Fish of N'Zoth package",
+          "timestamp": 560
+        }
+      ],
       "published_at": "2026-08-08T16:53:17+00:00"
     },
     {
