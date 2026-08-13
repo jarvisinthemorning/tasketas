@@ -1213,6 +1213,9 @@
         101267,
         132983,
         64296,
+        63626,
+        126173,
+        133453,
         64038,
         119949,
         64042,
@@ -1227,6 +1230,9 @@
         101267,
         132983,
         64296,
+        63626,
+        126173,
+        133453,
         64038,
         119949,
         64042,
@@ -1241,6 +1247,9 @@
         101267,
         132983,
         64296,
+        63626,
+        126173,
+        133453,
         64038,
         119949,
         64042,
@@ -1335,7 +1344,16 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=hWQIUBEHVCk",
+          "source_id": "hWQIUBEHVCk",
+          "author": "dogdog",
+          "label": "Nomi–Brann economy branch with Golden Brann ceiling",
+          "timestamp": 884
+        }
+      ],
       "published_at": "2026-08-11T20:03:14+00:00"
     },
     {

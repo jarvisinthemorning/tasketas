@@ -7,7 +7,7 @@ tribes: [elemental]
 tags: [scaling, battlecry, cycling]
 classification: meta
 core: [119951, 120674, 132981, 96786]
-addons: [117406, 101267, 132983, 64296]
+addons: [117406, 101267, 132983, 64296, 63626, 126173, 133453]
 cycle: [64038, 119949, 64042, 64077]
 packages:
   - title: Commit
@@ -25,6 +25,11 @@ packages:
     badge: Shopping engine
     optional: false
     cards: [64038, 119949, 64042, 64077]
+  - title: Nomi–Brann shop branch
+    purpose: Nomi inflates Tavern Elementals; Brann and Tavern Tempest extend the cycle, then Unbound Tempest or Living Prison converts the strongest shop body into permanent stats.
+    badge: Optional — demanding economy branch
+    optional: true
+    cards: [63626, 96786, 64077, 126173, 132983, 133453]
   - title: Scaling carries
     purpose: Keep the bodies that turn repeated plays, sells, or a buffed Tavern into permanent combat stats.
     badge: Optional — scaling carries
@@ -40,10 +45,22 @@ board_examples:
     phase: tavern
     image: /static/boards/elementals-stat-scaling-late.webp
     note: A stable late Tavern turn showing the mature engine before another high-volume Elemental cycle.
+  - stage: late
+    turn: 15
+    timestamp: 1120
+    phase: tavern
+    image: /static/boards/elementals-stat-scaling-nomi-brann.webp
+    note: A clean late Recruit-phase view of the Nomi/Brann branch after the Tavern has been inflated and conversion bodies are online.
 discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/37/elementals-stat-scaling
     comp_id: '37'
+supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=hWQIUBEHVCk
+    author: dogdog
+    label: Nomi–Brann economy branch with Golden Brann ceiling
+    timestamp: 884
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=urKD45-Agjw
@@ -75,6 +92,17 @@ The JeefHS source demonstrates the same Cinder–Mana Surge cycling decision mod
 4. Keep [[card:120674|Unleashed Mana Surge]] on board while cycling; selling the payoff to squeeze in one extra body defeats the route.
 5. Only add [[card:132983|Unbound Tempest]] when your economy is already strong and you can keep the Tavern buffed. It is a payoff for sustained volume, not the card that creates the volume.
 
+## Nomi–Brann shop branch
+
+This optional branch uses [[card:63626|Nomi, Kitchen Nightmare]] to inflate Tavern Elementals before converting those shop stats into permanent bodies. It shares the guide's Brann and Elemental-cycle infrastructure but does not replace the directory-backed Cinder/Mana Surge Core.
+
+1. **Start only with cycle volume.** Nomi needs enough Elementals to improve multiple future shops; buying it late with no generation is delayed optimism wearing a chef's hat.
+2. **Use Brann with actual Battlecries.** [[card:64077|Tavern Tempest]] is the cleanest supply engine, while [[card:126173|Air Revenant]] can add more resources as Gold is spent.
+3. **Convert the Tavern.** [[card:132983|Unbound Tempest]] repeatedly absorbs the highest-Health shop body after three Elemental plays. [[card:133453|Living Prison]] can instead absorb the next minion bought when that creates a better permanent carry.
+4. **Sell Nomi when future shops stop mattering.** Once conversion pieces and cycle supply are established—or one more scaler blocks the combat board—cash out the Tavern quality instead of preserving it forever.
+
+The source calls Golden Brann close to self-sustaining and questions whether ordinary Brann can compete in that exact line. Treat Golden Brann as the demonstrated ceiling, not the entry condition. “Infinite money” is shorthand: Gold, generated cards, hand and board space, animations, and the timer remain annoyingly finite.
+
 ## Positioning and traps
 
 - The source values economy generators before greed: without enough Gold or generated Elementals, you cannot find and repeatedly trigger the real engine.
@@ -82,6 +110,7 @@ The JeefHS source demonstrates the same Cinder–Mana Surge cycling decision mod
 - Do not keep every scaler. [[card:64296|Molten Rock]], [[card:117406|Meteorite Crasher]], and [[card:101267|Flourishing Frostling]] are possible carries, but board space is also an economic resource.
 - Brann multiplies Battlecries; it does not double Mana Surge's non-Battlecry trigger. Buy it for Sand Swirler, Refreshing Anomaly, Tavern Tempest, and similar fuel—not as a second Mana Surge.
 - If the engine cannot generate enough buys, stop chasing the high ceiling and preserve the strongest combat board you can field.
+- Nomi buffs future Tavern Elementals; it does not directly scale the bodies already on your board. Do not keep cycling when the shop gains can no longer be converted before combat.
 
 ## After a loss
 
@@ -98,3 +127,9 @@ The JeefHS source demonstrates the same Cinder–Mana Surge cycling decision mod
 - **7:14** — He evaluates economy versus keeping Glowing Cinder.
 - **13:23** — He explains why every Elemental play is now worth a large permanent stat gain.
 - **18:29** — Stable late Tavern turn showing the mature cycle before the final fights.
+- **dogdog 7:38** — commits to the Elemental branch.
+- **dogdog 11:26** — searches for additional Nomi copies while the shop engine develops.
+- **dogdog 14:44** — evaluates whether Golden Brann makes the cycle self-sustaining.
+- **dogdog 15:14** — discusses when Nomi should leave and how to convert Tavern stats.
+- **dogdog 17:07** — identifies Golden Brann as the demonstrated economy ceiling.
+- **dogdog 18:35** — says Nomi must be sold soon as the board converts.
