@@ -82,6 +82,12 @@ board_examples:
   phase: tavern
   image: /static/boards/undead-attack-scaling-mummifier-loop.webp
   note: A clean Recruit-phase view immediately before the repeated Mummifier and Bellringer reset sequence is demonstrated.
+- stage: mid
+  turn: 10
+  timestamp: 755
+  phase: tavern
+  image: /static/boards/undead-attack-scaling-snazzy-sequencing.webp
+  note: A second source's clean Recruit-phase board showing the transition where Reborn supply and the right-most recipient must be planned before adding more Tier 6 support.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/14/undead-attack-scaling
@@ -97,6 +103,16 @@ supporting_sources:
   author: JeefHS
   label: Short Mummifier loop explainer
   timestamp: 0
+- type: youtube
+  url: https://www.youtube.com/watch?v=IV8rBG-3CA8
+  author: Rdu Hearthstone
+  label: Reborn and Snazzy transition with a verified winning line
+  timestamp: 755
+- type: youtube
+  url: https://www.youtube.com/watch?v=ZUuFKCLgS4o
+  author: dogdog
+  label: Reborn shopping priority and Snazzy stat clarification
+  timestamp: 1079
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=JGU9TeaO6VE
@@ -135,6 +151,14 @@ Shadybunny's source demonstrates the route with [[card:121558|Maw Caster Portrai
 7. Use [[card:97408|Titus Rivendare]] only when doubling Friendly Geist, Handless Forsaken, Mummifier, or another useful Deathrattle earns the board slot. Titus does not multiply Snazzy's non-Deathrattle trigger.
 8. Add Balinda when targeted spells—especially Butchering—are frequent enough to justify a Tier 6 support slot. Do not wait for every optional card before improving the final board.
 
+## Reborn and Snazzy sequencing
+
+- **Acquire fuel before Phantom.** Handless Forsaken, Mummifier, Bellringer, and other reliable Reborn bodies make [[card:133083|Snazzy Phantom]] functional. The supporting source repeatedly identifies missing Reborn as the bottleneck before finding Snazzy.
+- **Use the Reborn unit's Attack.** Snazzy grants stats equal to the minion's Attack when it Reborns—not a larger pre-death value it may have displayed. Scale the bodies that will actually return.
+- **Lock the recipient last.** Keep the permanent carry as the right-most Undead before combat and after every temporary buy, sell, or tech insertion. The source later catches the cost of failing to switch the order.
+- **Deathly Striker is optional.** [[card:115610|Deathly Striker]] adds generation in a summon-heavy board, but neither independent source requires it for the Butcher/Snazzy engine. Do not spend a Tier 6 slot on it when direct Reborn fuel or protection is more urgent.
+- **Balinda accelerates; it does not unlock.** Add Balinda when Butchering or other targeted spells are already plentiful. It cannot rescue a Snazzy board that still has no Reborn events.
+
 ## Mummifier reset loop
 
 This is an optional execution package once [[card:108992|Mummifier]], [[card:132322|Dead Bellringer]], [[card:110412|Butchering]], and enough Gold are available. It does not replace the ordinary Butcher/Reborn Core.
@@ -149,6 +173,7 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 ## Positioning and traps
 
 - **Right-most matters:** Snazzy always buffs the right-most Undead. Recheck the order after every buy, sell, Reborn setup, or temporary tech card.
+- **Pre-death stats do not transfer:** Snazzy reads the Reborn body's Attack. Do not arrange the board around a giant temporary pre-death number that disappears when the minion returns.
 - **Attack is not Health:** global Attack scaling creates glass cannons unless Reborn, summons, Divine Shield, or Snazzy conversion keeps bodies alive.
 - **Protect Snazzy:** it must survive long enough to watch friendly minions Reborn. Do not expose it as an early attacker without a matchup-specific reason.
 - **Banshee must participate:** Barrier Banshee only refreshes its protection after friendly Reborn events. The source deliberately considers Taunt and attack order so it can convert that protection into combat value.
@@ -182,3 +207,8 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 - **Jeef 11:59** — the complete loop is demonstrated step by step.
 - **Jeef 12:44** — explains the one-Gold cadence and two Snazzy Reborn triggers per pass.
 - **Jeef 15:26** — closes the teaching segment and notes Balinda as a further ceiling.
+- **dogdog 10:02** — identifies missing Reborn as the active bottleneck.
+- **dogdog 13:56** — finally finds Snazzy after preserving the Undead route.
+- **dogdog 15:00** — explicitly rejects Deathly Striker as mandatory and continues toward Snazzy/Balinda.
+- **dogdog 17:59** — clarifies that Snazzy uses the Reborn unit's Attack, not its pre-death current stats.
+- **dogdog 22:57** — repeats the stat rule while reviewing the right-most setup.

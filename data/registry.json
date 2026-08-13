@@ -881,6 +881,22 @@
           "author": "JeefHS",
           "label": "Short Mummifier loop explainer",
           "timestamp": 0
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=IV8rBG-3CA8",
+          "source_id": "IV8rBG-3CA8",
+          "author": "Rdu Hearthstone",
+          "label": "Reborn and Snazzy transition with a verified winning line",
+          "timestamp": 755
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=ZUuFKCLgS4o",
+          "source_id": "ZUuFKCLgS4o",
+          "author": "dogdog",
+          "label": "Reborn shopping priority and Snazzy stat clarification",
+          "timestamp": 1079
         }
       ],
       "published_at": "2026-08-11T18:50:18+00:00"
