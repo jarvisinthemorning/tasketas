@@ -65,6 +65,11 @@ composition_minions:
 - {card_id: 98592, count: 1, golden_count: 0}
 - {card_id: 132312, count: 1, golden_count: 0}
 composition_spells: []
+related_routes:
+- title: 'Mechs Deathrattle: Kangor–Sky Golem'
+  slug: mechs-kangor-sky-golem-deathrattle
+  purpose: Pivot when Kangor can resurrect scaled Falling Sky Golems and Deathrattle history is stronger than the Snapper duplication line.
+  cards: [59935, 130798]
 board_examples:
 - stage: early
   turn: 9

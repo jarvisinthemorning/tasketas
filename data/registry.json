@@ -1515,6 +1515,125 @@
       "discovery_sources": [],
       "supporting_sources": [],
       "published_at": "2026-08-12T12:21:16+00:00"
+    },
+    {
+      "slug": "mechs-kangor-sky-golem-deathrattle",
+      "title": "Mechs Deathrattle: Kangor–Sky Golem",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/mechs-kangor-sky-golem-deathrattle.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "mech"
+      ],
+      "tags": [
+        "season 14",
+        "deathrattle",
+        "resurrection",
+        "scaling",
+        "late-game pivot"
+      ],
+      "type": "meta",
+      "commit": [
+        59935,
+        130798
+      ],
+      "core": [
+        59935,
+        130798
+      ],
+      "dynamic": [
+        97408,
+        120025,
+        61930,
+        98592,
+        112364,
+        96812,
+        90425
+      ],
+      "cards": [
+        59935,
+        130798,
+        97408,
+        120025,
+        61930,
+        98592,
+        112364,
+        96812,
+        90425
+      ],
+      "minion_ids": [
+        59935,
+        130798,
+        97408,
+        120025,
+        61930,
+        98592,
+        112364,
+        96812,
+        90425
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "59935": {
+          "id": 59935,
+          "name": "Kangor's Apprentice",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/59935-kangors-apprentice.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/59935/kangors-apprentice"
+        },
+        "130798": {
+          "id": 130798,
+          "name": "Falling Sky Golem",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/130798-falling-sky-golem.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130798/falling-sky-golem"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 59935,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130798,
+          "count": 2,
+          "golden_count": 0
+        },
+        {
+          "card_id": 97408,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 61930,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-13",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=KjKTgeAppVI",
+      "source_author": "Shadybunny2",
+      "source_id": "KjKTgeAppVI",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/68/mechs-deathrattle",
+          "comp_id": "68",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-13T05:51:22+00:00"
     }
   ],
   "schema_version": 3
