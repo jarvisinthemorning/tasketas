@@ -692,6 +692,7 @@
         110664,
         72060,
         96786,
+        132207,
         132903,
         121687,
         100949
@@ -704,6 +705,7 @@
         110664,
         72060,
         96786,
+        132207,
         132903,
         121687,
         100949
@@ -720,6 +722,7 @@
         100949
       ],
       "spell_ids": [
+        132207,
         132903
       ],
       "other_ids": [],
@@ -769,7 +772,16 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=JX8sAmT5NSU",
+          "source_id": "JX8sAmT5NSU",
+          "author": "dogdog",
+          "label": "Felboar consume engine with stacked Admiration Dark Gifts",
+          "timestamp": 899
+        }
+      ],
       "published_at": "2026-08-11T17:10:29+00:00"
     },
     {

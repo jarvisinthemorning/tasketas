@@ -21,6 +21,7 @@ addons:
 - 110664
 - 72060
 - 96786
+- 132207
 cycle: []
 packages:
 - title: Core
@@ -38,11 +39,21 @@ packages:
   badge: Optional — current Meta extension
   optional: true
   cards: [132899, 132903, 130298]
-- title: Other consumers
-  purpose: Felboar converts spell volume and Ur'zul converts Demon plays when either arrives before the full Madness package.
-  badge: Optional — choose another payoff
+- title: Felboar spell consumption
+  purpose: Spell volume activates Felboar to consume the inflated Tavern; Balinda accelerates targeted-spell volume when those casts already have good targets.
+  badge: Optional — current Meta consumer
   optional: true
-  cards: [110664, 72060]
+  cards: [110664, 132901, 130298]
+- title: Admiration ceiling
+  purpose: Place each gifted recipient immediately right of the largest carry so Admiration adds that left neighbor's stats at Start of Combat.
+  badge: Source highroll — Dark Gift required
+  optional: true
+  cards: [110664, 132207]
+- title: Ur'zul consumer
+  purpose: Ur'zul converts Demon plays when it arrives before the full Madness or Felboar package.
+  badge: Optional — alternative payoff
+  optional: true
+  cards: [72060]
 - title: Conditional support
   purpose: Ashen adds temporary shop stats only in a self-damage line; Soul Rewinder makes that damage safe.
   badge: Optional — self-damage only
@@ -66,10 +77,22 @@ board_examples:
   phase: tavern
   image: /static/boards/demons-shop-buff-late.webp
   note: A clean late Tavern state showing why the line wants several consumers and protected carries rather than one pile of stats.
+- stage: late
+  turn: 12
+  timestamp: 899
+  phase: tavern
+  image: /static/boards/demons-shop-buff-admiration-felboar.webp
+  note: A clean late Recruit-phase view of the Gift-gated Admiration/Felboar ceiling; its scale is not an ordinary expectation for the Meta Core.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/41/demons-shop-buff
   comp_id: '41'
+supporting_sources:
+- type: youtube
+  url: https://www.youtube.com/watch?v=JX8sAmT5NSU
+  author: dogdog
+  label: Felboar consume engine with stacked Admiration Dark Gifts
+  timestamp: 899
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=7dFLg3c2GxA
@@ -108,6 +131,20 @@ The source begins on a different route and explicitly refuses to commit from one
 6. If the Fodder route appears instead, use Battlecry economy to buy and sell deliberately without running out of board or hand space.
 7. Felboar and Ur'zul are alternative consumers; do not wait for every package. Once several carries are large, spend the remaining Gold on matchup tech rather than a greedier future Tavern.
 
+## Admiration ceiling
+
+[[card:110664|Felboar]] is a normal alternative consumer for a spell-heavy, inflated Tavern. After every three spells it consumes a Tavern minion and gains its stats; Golden Felboar gains double. This lets Distractor scaling and ordinary spell volume become permanent board strength without waiting for Madness.
+
+[[card:132207|Admiration]] is not normal access. It is a Dark Gift that gives its recipient the stats of the minion immediately to its left at Start of Combat. The supporting source stacks several copies around already-large Felboars, so treat that result as a Gift-gated ceiling:
+
+1. Preserve enough spell volume to activate Felboar in groups of three.
+2. Grow the Tavern before each consume whenever the sequencing does not waste useful casts.
+3. Spread permanent stats across at least two carries before adding more greed.
+4. If Admiration appears, place each recipient immediately right of the carry whose stats it should gain.
+5. Recheck every adjacency after a sell, tech substitution, or final-board reorder.
+
+Admiration adds combat-start stats; it does not improve Felboar's consume cadence. Multiple copies are exceptional Gift access, and the source's final numbers are not an ordinary Felboar result.
+
 ## Positioning and traps
 
 - Distractor is an investment, not a carry by itself. If you cannot consume the shop soon, preserve tempo and stay on another route.
@@ -116,6 +153,8 @@ The source begins on a different route and explicitly refuses to commit from one
 - [[card:130662|Twisted Wrathguard]] rewards selling, but frantic cycling can leave the final board short on bodies or time. Decide which Demons are permanent before the last seconds.
 - One gigantic Demon is vulnerable to scam. The source deliberately spreads keywords and stats, and later declines a greedier triple when it would make the board easier to counter.
 - [[card:100949|Soul Rewinder]] belongs only when self-damage is part of the line. It does not advance ordinary shop scaling by itself.
+- Admiration reads the minion immediately to its left. A single misplaced tech card can turn the Gift from a giant copy into expensive confetti.
+- Do not wait for Admiration before building Felboar. The transferable package is Tavern scaling plus three-spell consume cycles; the Gift is merely the absurd hat on top.
 
 ## After a loss
 
@@ -135,3 +174,6 @@ The source begins on a different route and explicitly refuses to commit from one
 - **12:48** — A harder shop-scaling turn comes together.
 - **16:22** — The source starts replacing greed with final-fight utility.
 - **20:10** — Clean late Tavern state before the final combat.
+- **Admiration source 8:00** — transition shop with Felboar support pieces available.
+- **Admiration source 14:59** — stable mature Tavern state with the Gift-gated carry structure online.
+- **Admiration source 18:01** — combat evidence for the two-carry endpoint; not used as the publication crop because effects obscure the board.
