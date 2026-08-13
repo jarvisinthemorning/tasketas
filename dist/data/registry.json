@@ -467,6 +467,9 @@
       "dynamic": [
         98588,
         101314,
+        132893,
+        130298,
+        120905,
         120025,
         98576,
         129109,
@@ -487,6 +490,9 @@
         132312,
         98588,
         101314,
+        132893,
+        130298,
+        120905,
         120025,
         98576,
         129109,
@@ -507,6 +513,9 @@
         132312,
         98588,
         101314,
+        132893,
+        130298,
+        120905,
         120025,
         98576,
         129109,
@@ -581,9 +590,32 @@
           "url": "https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics",
           "comp_id": "2",
           "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "mech_magnet",
+          "label": "Firestone composition directory"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=nKcGADMuXfU",
+          "source_id": "nKcGADMuXfU",
+          "author": "Rdu Hearthstone",
+          "label": "Flexible Glambot spell-target assembly",
+          "timestamp": 0
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=EhDY7nt7obg",
+          "source_id": "EhDY7nt7obg",
+          "author": "dogdog",
+          "label": "Glambot, Balinda, Fauna and Utility Drone ceiling",
+          "timestamp": 568
+        }
+      ],
       "published_at": "2026-08-11T13:57:58+00:00"
     },
     {

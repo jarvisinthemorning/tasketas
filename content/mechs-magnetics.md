@@ -19,6 +19,9 @@ core:
 addons:
 - 98588
 - 101314
+- 132893
+- 130298
+- 120905
 - 120025
 - 98576
 - 129109
@@ -50,6 +53,11 @@ packages:
   badge: Convert stacks into stats
   optional: true
   cards: [98588, 101314]
+- title: Glambot spell-target branch
+  purpose: Glambot turns each spell cast on a Mech into another Magnetization; Balinda doubles targeted casts, while Fauna supplies repeatable Natural Blessings at end of turn.
+  badge: Optional — alternate scaling package
+  optional: true
+  cards: [132893, 130298, 120905, 98588, 101314]
 - title: Final carries
   purpose: Put stats behind protection or combat value instead of making one naked pile of numbers.
   badge: Survive scam and combat
@@ -89,10 +97,30 @@ board_examples:
   phase: start_of_turn
   image: /static/boards/mechs-magnetics-late.webp
   note: A stable start-of-turn view of the mature board, useful for comparing permanent engine slots with the remaining replaceable support.
+- stage: mid
+  turn: 9
+  timestamp: 568
+  phase: tavern
+  image: /static/boards/mechs-magnetics-glambot-package.webp
+  note: A clean Recruit-phase view of the spell-target branch while several support slots remain replaceable.
 discovery_sources:
 - type: hsreplay
   url: https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics
   comp_id: '2'
+- type: firestone
+  url: https://www.firestoneapp.com/battlegrounds/comps
+  comp_id: mech_magnet
+supporting_sources:
+- type: youtube
+  url: https://www.youtube.com/watch?v=nKcGADMuXfU
+  author: Rdu Hearthstone
+  label: Flexible Glambot spell-target assembly
+  timestamp: 0
+- type: youtube
+  url: https://www.youtube.com/watch?v=EhDY7nt7obg
+  author: dogdog
+  label: Glambot, Balinda, Fauna and Utility Drone ceiling
+  timestamp: 568
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=ODSiIR9LlNI
@@ -132,6 +160,18 @@ HSReplay also lists [[card:133075|Captain Cookie]] and [[card:126916|Seafloor Re
 
 This is not an APM composition. The important actions are ordered, not frantic: make room, activate Drone, attach the chosen Magnetic, then resolve the rest of the turn.
 
+## Glambot spell-target branch
+
+[[card:132893|Glambot]] offers an alternate way to build Magnetization count: whenever a spell targets a Mech, it attaches a 6/6 Satellite to that Mech. This is a package inside Magnetics, not a replacement Core; take it when Glambot arrives with repeatable targeted spells and a Mech worth growing.
+
+1. **Start with Glambot plus casts.** A lone Glambot with no targeted Tavern spells is merely a six-stat invitation to keep rolling.
+2. **Target a durable Mech.** Each cast adds a separate Magnetization, so [[card:98588|Utility Drone]] later rewards the accumulated stack.
+3. **Add Balinda only with real spell volume.** [[card:130298|Balinda Stonehearth]] repeats friendly-targeted spells, causing Glambot to attach another Satellite for the repeated cast.
+4. **Use Fauna as the recurring ceiling.** Put [[card:120905|Fauna Whisperer]] beside one or two Mechs so its end-of-turn Natural Blessings target them. Balinda repeats the casts; Glambot converts each cast into Magnetizations; Utility Drone then scales those stacks.
+5. **Add Drakkari after the end-turn package exists.** It repeats Fauna and Utility Drone triggers, but does nothing useful for a Glambot with only hand-cast spells.
+
+Do not buy Spark Snapper as a Glambot enabler. Playing a Mech is not casting a spell on one, so Snapper supports the canonical Magnetic route but does not trigger Glambot. The two engines can share Utility Drone without pretending their trigger text is interchangeable.
+
 ## Positioning and traps
 
 - [[card:98592|Scrap Scraper]] needs to die for its Deathrattle; do not hide it where combat cannot reach it when generation still matters.
@@ -140,6 +180,7 @@ This is not an APM composition. The important actions are ordered, not frantic: 
 - [[card:98588|Utility Drone]] rewards the number of Magnetizations already attached. Buying it before you have stacks is weak tempo.
 - One enormous unprotected body can still lose to scam. Divine Shield, Reborn, multiple carries, and Deflect-o-Bot resets turn raw stats into a board that actually survives combat.
 - Sevel's [[card:133381|Wax Lance]] produced [[card:103069|Sea Witch Zar'jira]]. That is a trinket-specific ceiling enhancer, not a reason to force the composition in an ordinary lobby.
+- The dogdog showcase ends with Golden Balinda, Golden Glambots, Fauna, Drakkari, and multiple Utility Drones after several Goldenizers. Treat that as the ceiling, not the shopping list; the creator's own verdict is that it “needs everything.”
 
 ## After a loss
 
@@ -158,3 +199,9 @@ This is not an APM composition. The important actions are ordered, not frantic: 
 - **14:49** — Clean late Tavern board before the final turn's effects.
 - **16:10** — Final combat begins.
 - **16:50** — The source visibly confirms first place.
+- **dogdog 0:36** — tests and rejects Spark Snapper as a Glambot trigger.
+- **dogdog 6:36** — Balinda joins the targeted-spell setup.
+- **dogdog 9:28** — clean Recruit-phase snapshot of the developing Glambot branch.
+- **dogdog 10:58** — searches for Drakkari and Utility Drone to convert the Magnetizations.
+- **dogdog 11:11** — Fauna becomes the repeatable end-of-turn spell source.
+- **dogdog 18:34** — summarizes the demonstrated ceiling as requiring every premium piece.
