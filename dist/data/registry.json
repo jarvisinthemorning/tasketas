@@ -1634,6 +1634,131 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-13T05:51:22+00:00"
+    },
+    {
+      "slug": "menagerie-gatekeeper-balinda",
+      "title": "Menagerie — Gatekeeper + Balinda Tea Sets",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/menagerie-gatekeeper-balinda.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "menagerie"
+      ],
+      "tags": [
+        "season 14",
+        "tavern spells",
+        "spell scaling",
+        "menagerie"
+      ],
+      "type": "variant",
+      "commit": [],
+      "core": [
+        133329,
+        130298
+      ],
+      "dynamic": [
+        119942,
+        122674,
+        132316,
+        132921,
+        120754,
+        105271
+      ],
+      "cards": [
+        133329,
+        130298,
+        119942,
+        122674,
+        132316,
+        132921,
+        120754,
+        105271
+      ],
+      "minion_ids": [
+        133329,
+        130298,
+        119942,
+        122674,
+        132316,
+        132921,
+        120754
+      ],
+      "spell_ids": [
+        105271
+      ],
+      "other_ids": [],
+      "card_previews": {
+        "133329": {
+          "id": 133329,
+          "name": "Gatekeeper Amalgam",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/all/133329-gatekeeper-amalgam.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/133329/gatekeeper-amalgam"
+        },
+        "130298": {
+          "id": 130298,
+          "name": "Balinda Stonehearth",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 119942,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-13",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=C1wCL3B6hA0",
+      "source_author": "Shadybunny",
+      "source_id": "C1wCL3B6hA0",
+      "discovery_sources": [
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "neutral_tea_set",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=7XRXuOyOfHQ",
+          "source_id": "7XRXuOyOfHQ",
+          "author": "Shadybunny",
+          "label": "Golden and all-type ceiling; not the minimum route",
+          "timestamp": 793
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=Ic08mTl1-HA",
+          "source_id": "Ic08mTl1-HA",
+          "author": "JeefHS",
+          "label": "Player-perspective Gatekeeper and Balinda execution",
+          "timestamp": 465
+        }
+      ],
+      "published_at": "2026-08-13T17:09:11+00:00"
     }
   ],
   "schema_version": 3

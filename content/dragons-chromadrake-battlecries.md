@@ -56,7 +56,11 @@ packages:
   badge: Optional — source ceiling
   optional: true
   cards: [133403, 112082]
-related_routes: []
+related_routes:
+- title: Menagerie — Gatekeeper + Balinda Tea Sets
+  slug: menagerie-gatekeeper-balinda
+  purpose: Pivot when Gatekeeper plus Balinda and improved targeted Tavern spells appear before Kalecgos is established.
+  cards: [133329, 130298, 119942]
 composition_minions:
 - {card_id: 132955, count: 1, golden_count: 0}
 - {card_id: 132957, count: 1, golden_count: 0}
