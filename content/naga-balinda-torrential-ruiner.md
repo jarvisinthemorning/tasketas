@@ -25,7 +25,11 @@ packages:
     badge: Optional — spell fuel
     optional: true
     cards: [117584, 133711, 104448, 115910]
-related_routes: []
+related_routes:
+- title: Naga — Fauna End-of-Turn Spells
+  slug: naga-fauna-end-of-turn-spells
+  purpose: Pivot when Fauna plus improved Tavern spells and an end-of-turn multiplier are established before immediate Ruiner spell density.
+  cards: [120905, 119942, 101314]
 composition_minions:
   - card_id: 130298
     count: 1
@@ -82,8 +86,8 @@ verified_at: '2026-08-12'
 
 - Windfury can let a large protected attacker remove two opposing threats, but the source does not establish one universal attack order for every lobby.
 - The biggest trap is confusing a transferable interaction with a reproducible route. The source uses the Dark Gifts anomaly, Ominous Stone, a gifted Rally engine, Cenarius's spell-copying Hero Power, Sphere of Memory, Golden Balinda, and multiple Golden Ruiners. None belongs in Core, and the guide does not promise the same final numbers.
-- Shady speculates about [[card:120905|Fauna Whisperer]] and an end-of-turn multiplier but explicitly says he has not played that line. Treat it as a different, unproven engine—not positioning advice for this guide.
-- This is a **Highroll** curiosity. Complete current HSReplay and Firestone snapshots do not list a Naga composition, while Shady calls this an outlier/toolbox recovery line rather than a top Meta build.
+- This composition is a different route. Fauna plus improved Tavern spells scales at end of turn through Drakkari/Balinda; pivot there when that recurring engine arrives before immediate Ruiner spell density.
+- This is a **Highroll** curiosity. Firestone now tracks a different Fauna end-of-turn Naga route; Shady calls this immediate Ruiner burst line an outlier/toolbox recovery rather than the default Naga build.
 
 ## Post-loss check
 

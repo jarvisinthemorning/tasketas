@@ -1437,8 +1437,7 @@
         117584,
         133711,
         104448,
-        115910,
-        120905
+        115910
       ],
       "cards": [
         130298,
@@ -1450,16 +1449,14 @@
         117584,
         133711,
         104448,
-        115910,
-        120905
+        115910
       ],
       "minion_ids": [
         130298,
         133707,
         99054,
         80746,
-        115563,
-        120905
+        115563
       ],
       "spell_ids": [
         84362,
@@ -1759,6 +1756,134 @@
         }
       ],
       "published_at": "2026-08-13T17:09:11+00:00"
+    },
+    {
+      "slug": "naga-fauna-end-of-turn-spells",
+      "title": "Naga — Fauna End-of-Turn Spells",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/naga-fauna-end-of-turn-spells.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "naga"
+      ],
+      "tags": [
+        "season 14",
+        "spells",
+        "end of turn",
+        "scaling"
+      ],
+      "type": "variant",
+      "commit": [
+        119942,
+        120905
+      ],
+      "core": [
+        119942,
+        120905,
+        101314,
+        130298
+      ],
+      "dynamic": [
+        133707,
+        114816,
+        126916
+      ],
+      "cards": [
+        119942,
+        120905,
+        101314,
+        130298,
+        133707,
+        114816,
+        126916
+      ],
+      "minion_ids": [
+        119942,
+        120905,
+        101314,
+        130298,
+        133707,
+        114816,
+        126916
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "119942": {
+          "id": 119942,
+          "name": "Tranquil Meditative",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/119942-tranquil-meditative.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/119942/tranquil-meditative"
+        },
+        "120905": {
+          "id": 120905,
+          "name": "Fauna Whisperer",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/120905-fauna-whisperer.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/120905/fauna-whisperer"
+        },
+        "101314": {
+          "id": 101314,
+          "name": "Drakkari Enchanter",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/101314-drakkari-enchanter.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/101314/drakkari-enchanter"
+        },
+        "130298": {
+          "id": 130298,
+          "name": "Balinda Stonehearth",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 119942,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120905,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 101314,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-13",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=Us-HN9FXZxc",
+      "source_author": "Rdu Hearthstone",
+      "source_id": "Us-HN9FXZxc",
+      "discovery_sources": [
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "naga_end_of_turn",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-13T17:13:41+00:00"
     }
   ],
   "schema_version": 3
