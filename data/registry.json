@@ -822,6 +822,7 @@
         95263,
         115610,
         97408,
+        126966,
         110412,
         121558
       ],
@@ -839,6 +840,7 @@
         95263,
         115610,
         97408,
+        126966,
         110412,
         121558
       ],
@@ -855,7 +857,8 @@
         133081,
         95263,
         115610,
-        97408
+        97408,
+        126966
       ],
       "spell_ids": [
         110412
@@ -909,7 +912,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-11",
+      "verified_at": "2026-08-14",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=JGU9TeaO6VE",
       "source_author": "Shadybunny",
@@ -954,6 +957,14 @@
           "author": "dogdog",
           "label": "Reborn shopping priority and Snazzy stat clarification",
           "timestamp": 1079
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=tw7ry8hIGiw",
+          "source_id": "tw7ry8hIGiw",
+          "author": "JeefHS",
+          "label": "Heroic Underdog Rally payoff for a high-Attack target",
+          "timestamp": 839
         }
       ],
       "published_at": "2026-08-11T18:50:18+00:00"

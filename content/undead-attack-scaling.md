@@ -27,6 +27,7 @@ addons:
 - 95263
 - 115610
 - 97408
+- 126966
 cycle: []
 packages:
 - title: Commit
@@ -50,10 +51,10 @@ packages:
   optional: true
   cards: [108992, 132322, 95265, 95263, 115610]
 - title: Payoffs and multipliers
-  purpose: Banshee becomes a protected carry, Snazzy turns Reborn Attack into right-most stats, and Titus multiplies useful Deathrattles.
+  purpose: Banshee and Heroic Underdog convert high Attack into durable combat value, Snazzy grows the right-most Undead, and Titus multiplies useful Deathrattles.
   badge: Optional — late upgrades
   optional: true
-  cards: [133081, 133083, 97408, 130298]
+  cards: [126966, 133081, 133083, 97408, 130298]
 - title: Mummifier reset loop
   purpose: Bellringer destroys a Reborn Mummifier; Mummifier's Deathrattle gives Bellringer Reborn, and Butchering Bellringer resets its Activate for another cycle.
   badge: Optional — execution package
@@ -113,6 +114,11 @@ supporting_sources:
   author: dogdog
   label: Reborn shopping priority and Snazzy stat clarification
   timestamp: 1079
+- type: youtube
+  url: https://www.youtube.com/watch?v=tw7ry8hIGiw
+  author: JeefHS
+  label: Heroic Underdog Rally payoff for a high-Attack target
+  timestamp: 839
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=JGU9TeaO6VE
@@ -121,7 +127,7 @@ video:
   id: JGU9TeaO6VE
   timestamp: 436
 source_published_at: '2026-08-01'
-verified_at: '2026-08-11'
+verified_at: '2026-08-14'
 ---
 
 ## How it works
@@ -158,6 +164,7 @@ Shadybunny's source demonstrates the route with [[card:121558|Maw Caster Portrai
 - **Lock the recipient last.** Keep the permanent carry as the right-most Undead before combat and after every temporary buy, sell, or tech insertion. The source later catches the cost of failing to switch the order.
 - **Deathly Striker is optional.** [[card:115610|Deathly Striker]] adds generation in a summon-heavy board, but neither independent source requires it for the Butcher/Snazzy engine. Do not spend a Tier 6 slot on it when direct Reborn fuel or protection is more urgent.
 - **Balinda accelerates; it does not unlock.** Add Balinda when Butchering or other targeted spells are already plentiful. It cannot rescue a Snazzy board that still has no Reborn events.
+- **Heroic Underdog is a neutral Rally payoff.** Once the route has produced a genuinely high-Attack target, [[card:126966|Heroic Underdog]] can copy that Attack behind Stealth. Jeef's supporting source shows it reaching 40/40 from the Rally line; buy it as conversion for scaling you already have, not as a reason to force Undead.
 
 ## Mummifier reset loop
 
@@ -175,6 +182,7 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 - **Right-most matters:** Snazzy always buffs the right-most Undead. Recheck the order after every buy, sell, Reborn setup, or temporary tech card.
 - **Pre-death stats do not transfer:** Snazzy reads the Reborn body's Attack. Do not arrange the board around a giant temporary pre-death number that disappears when the minion returns.
 - **Attack is not Health:** global Attack scaling creates glass cannons unless Reborn, summons, Divine Shield, or Snazzy conversion keeps bodies alive.
+- **Underdog still needs a target:** Heroic Underdog copies Attack through Rally, so it is weak when your best available target is small. It is a payoff slot, not another scaling engine.
 - **Protect Snazzy:** it must survive long enough to watch friendly minions Reborn. Do not expose it as an early attacker without a matchup-specific reason.
 - **Banshee must participate:** Barrier Banshee only refreshes its protection after friendly Reborn events. The source deliberately considers Taunt and attack order so it can convert that protection into combat value.
 - **Tripling can reduce triggers:** the source notes that two separate activations can be better than one Golden copy during the build-up. Triple only when the stronger text or board space is worth losing a second trigger body.
@@ -212,3 +220,4 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 - **dogdog 15:00** — explicitly rejects Deathly Striker as mandatory and continues toward Snazzy/Balinda.
 - **dogdog 17:59** — clarifies that Snazzy uses the Reborn unit's Attack, not its pre-death current stats.
 - **dogdog 22:57** — repeats the stat rule while reviewing the right-most setup.
+- **Jeef 13:59** — Heroic Underdog is shown at 40/40 as a Rally payoff on the established high-Attack board.
