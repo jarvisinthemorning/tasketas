@@ -60,6 +60,11 @@ packages:
   badge: Optional — execution package
   optional: true
   cards: [108992, 132322, 110412, 133083]
+- title: Deathstrider combat loop
+  purpose: Reborn Dustbone attacks with Rally while Deathstrider repeatedly triggers Mummifier; add Titus, Golden Mummifier, or a second Deathstrider for enough resets.
+  badge: Optional — fragile Exodia
+  optional: true
+  cards: [122229, 108992, 132808, 97408]
 related_routes: []
 composition_minions:
 - {card_id: 95265, count: 1, golden_count: 0}
@@ -119,6 +124,11 @@ supporting_sources:
   author: JeefHS
   label: Heroic Underdog Rally payoff for a high-Attack target
   timestamp: 839
+- type: youtube
+  url: https://www.youtube.com/watch?v=Oa_4glj2lxg
+  author: JeefHS
+  label: Deathstrider and Mummifier combat-loop variation
+  timestamp: 89
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=JGU9TeaO6VE
@@ -127,7 +137,7 @@ video:
   id: JGU9TeaO6VE
   timestamp: 436
 source_published_at: '2026-08-01'
-verified_at: '2026-08-14'
+verified_at: '2026-08-15'
 ---
 
 ## How it works
@@ -177,6 +187,14 @@ This is an optional execution package once [[card:108992|Mummifier]], [[card:132
 
 The full source produces roughly ten Activates and twenty Reborn events in a turn, but that ceiling depends on an exceptional supply of Butchering and Gold. In a normal game, count the spells you can actually cast before reserving both board slots.
 
+## Deathstrider combat loop
+
+This is a fragile combat-only variation, not a replacement for the ordinary Butcher/Reborn Core. Start with a Reborn [[card:122229|Dustbone Devastator]], keep [[card:108992|Mummifier]] as the left-most Deathrattle, and add [[card:132808|Deathstrider]]. Each Dustbone Rally attack makes Deathstrider trigger Mummifier so Reborn can be restored while the attacking body returns and continues scaling Undead Attack.
+
+The source's practical reset gate is Deathstrider plus **one multiplier**: Golden Mummifier, [[card:97408|Titus Rivendare]], or a second Deathstrider. Golden Deathstrider is not required. [[card:133083|Snazzy Phantom]] is a ceiling rather than an unlock; if it survives, the repeated Reborn events can turn the right-most Undead into a permanent carry.
+
+Treat the package as matchup tech, not a default end board. Jeef explicitly says the conventional Undead line has a higher cap and demonstrates that Windfury can interrupt the Rally sequence. Sin'dorei Straight Shot is especially dangerous because it can remove Taunt and Reborn; a small enemy Taunt can also redirect the attack order. Multiple Taunts or a Taunted [[card:90425|Leeroy the Reckless]] can buy redundancy, but double disruption still ends the loop.
+
 ## Positioning and traps
 
 - **Right-most matters:** Snazzy always buffs the right-most Undead. Recheck the order after every buy, sell, Reborn setup, or temporary tech card.
@@ -189,6 +207,7 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 - **Hand and board space still matter:** summon engines, generated Undead, and Reborn setup compete for slots. Decide which scaling pieces are permanent before the turn becomes a small administrative crisis.
 - **Do not copy the source ceiling:** Maw Caster Portrait supplied extra Gold after destruction. Without that trinket, expect fewer actions and prioritize the minimum engine over recreating every displayed piece.
 - **Do not start the reset backwards:** Bellringer targets Mummifier first so Mummifier's Deathrattle grants Bellringer Reborn. Butchering an unprotected Bellringer simply deletes half the loop. A tiny sequencing error with admirably large consequences.
+- **The combat loop is not truly infinite:** Windfury, Sin'dorei, awkward enemy Taunts, or losing one reset piece can stop it immediately. Build it for a known matchup or for fun, not because the title promised immortality.
 
 ## After a loss
 
@@ -198,6 +217,7 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 - **Butchering made the board weaker:** you destroyed a current engine piece before a replacement or payoff was ready.
 - **The board ran out of slots:** too many support pieces survived after their job was done; keep the active Reborn engine and remove obsolete bridges.
 - **The source looked much stronger:** subtract Maw Caster Portrait's destruction economy before comparing your ordinary-lobby ceiling.
+- **The Deathstrider loop stopped after one attack:** check that Dustbone had Reborn, Mummifier was the left-most Deathrattle, and you had Golden Mummifier, Titus, or a second Deathstrider to supply enough resets.
 
 ## Useful timestamps
 
@@ -221,3 +241,8 @@ The full source produces roughly ten Activates and twenty Reborn events in a tur
 - **dogdog 17:59** — clarifies that Snazzy uses the Reborn unit's Attack, not its pre-death current stats.
 - **dogdog 22:57** — repeats the stat rule while reviewing the right-most setup.
 - **Jeef 13:59** — Heroic Underdog is shown at 40/40 as a Rally payoff on the established high-Attack board.
+- **Jeef Exodia 1:29** — introduces the Reborn Dustbone, Mummifier, and Deathstrider combat loop.
+- **Jeef Exodia 5:14** — gives the reset gate: Golden Mummifier, Titus, or a second Deathstrider.
+- **Jeef Exodia 7:38** — the assembled engine is visibly repeating in combat.
+- **Jeef Exodia 13:53** — explains why Windfury makes the package unreliable.
+- **Jeef Exodia 17:49** — reviews the disruption the final opponent needs to break the loop.
