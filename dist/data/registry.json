@@ -2065,7 +2065,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-13",
+      "verified_at": "2026-08-16",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=Us-HN9FXZxc",
       "source_author": "Rdu Hearthstone",
@@ -2080,6 +2080,126 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-13T17:13:41+00:00"
+    },
+    {
+      "slug": "naga-groundbreaker-spell-cycling",
+      "title": "Naga — Groundbreaker Spell Cycling",
+      "url": "https://jarvisinthemorning.github.io/tasketas/comps/naga-groundbreaker-spell-cycling.html",
+      "season": 14,
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "naga"
+      ],
+      "tags": [
+        "season 14",
+        "spells",
+        "naga cycling",
+        "rally",
+        "scaling"
+      ],
+      "type": "meta",
+      "commit": [],
+      "core": [
+        114816
+      ],
+      "dynamic": [
+        80740,
+        132316,
+        126916,
+        132957,
+        80745,
+        80746,
+        130298,
+        120610,
+        105664,
+        120905
+      ],
+      "cards": [
+        114816,
+        80740,
+        132316,
+        126916,
+        132957,
+        80745,
+        80746,
+        130298,
+        120610,
+        105664,
+        120905
+      ],
+      "minion_ids": [
+        114816,
+        80740,
+        132316,
+        126916,
+        132957,
+        80745,
+        80746,
+        130298,
+        120905
+      ],
+      "spell_ids": [
+        105664
+      ],
+      "other_ids": [
+        120610
+      ],
+      "card_previews": {
+        "114816": {
+          "id": 114816,
+          "name": "Groundbreaker",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/114816-groundbreaker.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/114816/groundbreaker"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 114816,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126916,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132957,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-16",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=WtROWyVVPY4",
+      "source_author": "Sevel",
+      "source_id": "WtROWyVVPY4",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/20/nagas-groundbreaker",
+          "comp_id": "20",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=fUZ07XMcvfo",
+          "source_id": "fUZ07XMcvfo",
+          "author": "Shadybunny2",
+          "label": "Spell-count commitment and ordinary Groundbreaker sequencing",
+          "timestamp": 278
+        }
+      ],
+      "published_at": "2026-08-16T05:12:20+00:00"
     }
   ],
   "schema_version": 3

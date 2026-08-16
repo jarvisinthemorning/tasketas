@@ -35,6 +35,10 @@ related_routes:
   slug: naga-balinda-torrential-ruiner
   purpose: Pivot to the burst route when Balinda plus Ruiner and immediate targeted-spell density arrive before Fauna's end-of-turn engine.
   cards: [130298, 133707]
+- title: Naga — Groundbreaker Spell Cycling
+  slug: naga-groundbreaker-spell-cycling
+  purpose: Pivot when accumulated spell count and repeatable Naga supply make Groundbreaker the immediate carry before Fauna's end-of-turn engine is complete.
+  cards: [114816, 126916]
 composition_minions:
 - {card_id: 119942, count: 1, golden_count: 0}
 - {card_id: 120905, count: 1, golden_count: 0}
@@ -61,7 +65,7 @@ video:
   id: Us-HN9FXZxc
   timestamp: 620
 source_published_at: '2026-08-05'
-verified_at: '2026-08-13'
+verified_at: '2026-08-16'
 ---
 
 ## How it works
