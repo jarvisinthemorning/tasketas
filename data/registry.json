@@ -1470,11 +1470,14 @@
       "dynamic": [
         132951,
         126860,
+        103676,
         92413,
         133329,
+        130298,
         132953,
         133403,
-        112082
+        112082,
+        110664
       ],
       "cards": [
         132955,
@@ -1483,11 +1486,14 @@
         96786,
         132951,
         126860,
+        103676,
         92413,
         133329,
+        130298,
         132953,
         133403,
-        112082
+        112082,
+        110664
       ],
       "minion_ids": [
         132955,
@@ -1496,9 +1502,12 @@
         96786,
         132951,
         126860,
+        103676,
         92413,
         133329,
-        132953
+        130298,
+        132953,
+        110664
       ],
       "spell_ids": [],
       "other_ids": [
@@ -1595,6 +1604,14 @@
           "source_id": "VDLCBxk_-48",
           "author": "Shadybunny",
           "label": "Warpwing and Crimson Vindicator highroll package",
+          "timestamp": 945
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=Ps6zssVmPi4",
+          "source_id": "Ps6zssVmPi4",
+          "author": "Sevel",
+          "label": "Late Gatekeeper, Balinda and Hooktail hybrid; Felboar pivot diagnosis",
           "timestamp": 945
         }
       ],
