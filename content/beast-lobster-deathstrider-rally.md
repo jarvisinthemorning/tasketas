@@ -11,7 +11,7 @@ tags:
 - deathrattle
 - rally
 - scaling
-classification: highroll
+classification: meta
 core:
 - 132796
 - 132808
@@ -26,11 +26,12 @@ cycle: []
 packages:
 - title: Commit
   purpose: Commit only when Lobster is already improved and you have a premium trigger engine—preferably Golden Deathstrider, or Deathstrider plus Titus and multiple Rally attacks.
-  badge: Premium engine + trigger density
+  badge: Commit signal — premium engine + trigger density
   optional: false
   cards: [132796, 132808, 132806, 132800]
 - title: Core
   purpose: Use Rally attacks to trigger Lobster repeatedly in combat; use Fishbaits for permanent Tavern-phase stats.
+  badge: Required core
   optional: false
   cards: [132796, 132808]
 - title: Rally
@@ -55,6 +56,16 @@ packages:
   badge: Source highroll — Dark Gift required
   optional: true
   cards: [67213, 132796, 97408]
+- title: Herald Sticker duplication
+  purpose: Herald Sticker fires every friendly Deathrattle before combat; Souvenir Stand can copy it for a second premium activation.
+  badge: Optional — trinket ceiling
+  optional: true
+  cards: [120926, 112895, 132796, 97408]
+- title: Treasure Parrot conversion
+  purpose: A Parrot that earns Golden Touch can convert a strong Tavern roll into a Golden Titus or Deathstrider, but cannot be your baseline plan.
+  badge: Optional — generated Golden ceiling
+  optional: true
+  cards: [132987, 104448, 97408, 132808]
 board_examples:
 - stage: early
   turn: 7
@@ -108,6 +119,11 @@ supporting_sources:
   author: dogdog
   label: Dark Gift-created Fish of N'Zoth package
   timestamp: 560
+- type: youtube
+  url: https://www.youtube.com/watch?v=j3rg2SW84Us
+  author: Shadybunny
+  label: Double Herald Sticker and Treasure Parrot Golden Touch ceiling
+  timestamp: 594
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=rJ66OM7pENQ
@@ -116,7 +132,7 @@ video:
   id: rJ66OM7pENQ
   timestamp: 180
 source_published_at: '2026-08-07'
-verified_at: '2026-08-11'
+verified_at: '2026-08-17'
 ---
 
 ## How it works
@@ -136,6 +152,8 @@ Keep [[card:132796|Tasty Lobster]] as your left-most Deathrattle. Every friendly
 
 - **Wolfhead Flail:** [[card:133400|Wolfhead Flail]] triggers all friendly Deathrattles at end of turn. With Titus, this grows future Lobsters before combat and then hands the larger Deathrattle to Deathstrider. It is trinket-only access, not ordinary Core.
 - **Fish copies:** a source-specific Dark Gift discovers a plain copy of a gifted warband minion, allowing additional [[card:67213|Fish of N'Zoth]]. Fish can retain Lobster Deathrattles during combat, but the copied access and multiple Fish are Gift-gated.
+- **Herald duplication:** [[card:120926|Herald Sticker]] triggers every friendly Deathrattle at the start of combat. [[card:112895|Souvenir Stand]] can become a second Sticker, but this double activation is a trinket highroll rather than ordinary progression.
+- **Golden conversion:** [[card:132987|Treasure Parrot]] can earn [[card:104448|Golden Touch]] after dealing enough damage. The supporting source uses that reward to create premium Golden trigger pieces; buy Parrot only when it can realistically connect, not as a substitute for the Core.
 - **Golden ceiling:** Golden Deathstrider, repeated Titus triggers, Flail, and several Fish copies are source ceilings—not a seven-card shopping checklist. The ordinary line should convert sooner and accept fewer triggers.
 
 ## Positioning and traps
@@ -156,3 +174,7 @@ Keep [[card:132796|Tasty Lobster]] as your left-most Deathrattle. Every friendly
 - **Fish source 9:20** — Dark Gift discovers a plain gifted warband copy and selects Fish.
 - **Fish source 11:21** — Rally support is rejected before Titus and Deathstrider; the source calls out the number of required pieces.
 - **Fish source 16:23** — board space forces a choice between another large Lobster and another Fish.
+- **Herald source 9:54** — Souvenir Stand duplicates Herald Sticker, creating two start-of-combat Deathrattle activations.
+- **Herald source 13:42** — Treasure Parrot is evaluated as access to Golden Touch; Deathstrider is found moments later.
+- **Herald source 17:29** — Golden Touch creates Golden Titus and the premium engine finally comes online.
+- **Herald source 22:48** — stable late Tavern board shows the mature double-Sticker/Golden-trigger ceiling.

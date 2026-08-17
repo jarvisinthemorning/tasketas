@@ -17,7 +17,7 @@
         "rally",
         "scaling"
       ],
-      "type": "highroll",
+      "type": "meta",
       "commit": [
         132796,
         132808,
@@ -39,7 +39,11 @@
         70173,
         70157,
         126637,
-        132794
+        132794,
+        120926,
+        112895,
+        132987,
+        104448
       ],
       "cards": [
         132796,
@@ -56,7 +60,11 @@
         70173,
         70157,
         126637,
-        132794
+        132794,
+        120926,
+        112895,
+        132987,
+        104448
       ],
       "minion_ids": [
         132796,
@@ -72,11 +80,16 @@
         70173,
         70157,
         126637,
-        132794
+        132794,
+        132987
       ],
-      "spell_ids": [],
+      "spell_ids": [
+        104448
+      ],
       "other_ids": [
-        133400
+        133400,
+        120926,
+        112895
       ],
       "card_previews": {
         "132796": {
@@ -132,7 +145,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-11",
+      "verified_at": "2026-08-17",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=rJ66OM7pENQ",
       "source_author": "HIQ MU",
@@ -175,6 +188,14 @@
           "author": "dogdog",
           "label": "Dark Gift-created Fish of N'Zoth package",
           "timestamp": 560
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=j3rg2SW84Us",
+          "source_id": "j3rg2SW84Us",
+          "author": "Shadybunny",
+          "label": "Double Herald Sticker and Treasure Parrot Golden Touch ceiling",
+          "timestamp": 594
         }
       ],
       "published_at": "2026-08-08T16:53:17+00:00"
