@@ -1682,7 +1682,8 @@
         117584,
         133711,
         104448,
-        115910
+        115910,
+        133379
       ],
       "cards": [
         130298,
@@ -1694,7 +1695,8 @@
         117584,
         133711,
         104448,
-        115910
+        115910,
+        133379
       ],
       "minion_ids": [
         130298,
@@ -1710,7 +1712,9 @@
         104448,
         115910
       ],
-      "other_ids": [],
+      "other_ids": [
+        133379
+      ],
       "card_previews": {
         "130298": {
           "id": 130298,
@@ -1749,13 +1753,22 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-12",
+      "verified_at": "2026-08-18",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=U7-hocc1XKw",
       "source_author": "Shadybunny",
       "source_id": "U7-hocc1XKw",
       "discovery_sources": [],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=NhR6GX5lpJQ",
+          "source_id": "NhR6GX5lpJQ",
+          "author": "Shadybunny",
+          "label": "Wand economy, honest Ruiner commit, and pivot discipline",
+          "timestamp": 519
+        }
+      ],
       "published_at": "2026-08-12T12:21:16+00:00"
     },
     {
