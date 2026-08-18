@@ -25,6 +25,11 @@ packages:
     badge: Optional — spell fuel
     optional: true
     cards: [117584, 133711, 104448, 115910]
+  - title: Wand refund ceiling
+    purpose: Wand can refund Gold from Balinda's repeated casts, but only after Balinda, Ruiner, and targeted spell supply already justify the route.
+    badge: Optional — trinket economy
+    optional: true
+    cards: [133379, 130298, 133707]
 related_routes:
 - title: Naga — Fauna End-of-Turn Spells
   slug: naga-fauna-end-of-turn-spells
@@ -49,7 +54,12 @@ board_examples:
     image: /static/boards/naga-balinda-torrential-ruiner-late.webp
     note: A stable late Tavern view of the finished fast-scaling route before the final matchup.
 discovery_sources: []
-supporting_sources: []
+supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=NhR6GX5lpJQ
+    author: Shadybunny
+    label: Wand economy, honest Ruiner commit, and pivot discipline
+    timestamp: 519
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=U7-hocc1XKw
@@ -58,7 +68,7 @@ video:
   id: U7-hocc1XKw
   timestamp: 533
 source_published_at: '2026-08-07'
-verified_at: '2026-08-12'
+verified_at: '2026-08-18'
 ---
 
 ## How it works
@@ -81,12 +91,14 @@ verified_at: '2026-08-12'
 4. Prefer efficient targeted effects such as [[card:117584|Forest's Bounty]] and [[card:133711|Repair Job]]. [[card:115910|Boundless Potential]] refills resources but is not itself a Ruiner trigger.
 5. Manage hand space. The source deliberately avoids filling the hand with effects that would strand Tavern spells or prevent the preferred Spellcraft resources from returning.
 6. Stop casting when preserving Spellcraft cards for another turn is worth more than one final small trigger; the source makes this exact late-game restraint before the last matchup.
+7. Treat [[card:133379|Wand of Divination]] as a refund ceiling, not a reason to force the build. The supporting source finds Golden Balinda first but does not truly commit until Ruiner arrives at 8:39–9:13.
 
 ## Positioning and traps
 
 - Windfury can let a large protected attacker remove two opposing threats, but the source does not establish one universal attack order for every lobby.
 - The biggest trap is confusing a transferable interaction with a reproducible route. The source uses the Dark Gifts anomaly, Ominous Stone, a gifted Rally engine, Cenarius's spell-copying Hero Power, Sphere of Memory, Golden Balinda, and multiple Golden Ruiners. None belongs in Core, and the guide does not promise the same final numbers.
 - This composition is a different route. Fauna plus improved Tavern spells scales at end of turn through Drakkari/Balinda; pivot there when that recurring engine arrives before immediate Ruiner spell density.
+- Groundbreaker is another exit. The supporting source passes it early, later identifies that as a missed permanent-carry option, and still does not demonstrate a Groundbreaker game; use that as pivot discipline rather than proof that both engines should be combined.
 - This is a **Highroll** curiosity. Firestone now tracks a different Fauna end-of-turn Naga route; Shady calls this immediate Ruiner burst line an outlier/toolbox recovery rather than the default Naga build.
 
 ## Post-loss check
@@ -108,3 +120,7 @@ verified_at: '2026-08-12'
 - **16:29** — Shady frames the line as fast recovery scaling, with a warning that Beter's execution makes it look easier.
 - **18:09** — The source calls the composition an outlier/toolbox line rather than a top Meta build.
 - **24:57** — The player stops casting to preserve Spellcraft resources for a possible next turn.
+- **Supporting source 5:03** — Golden Balinda is created, but commentary warns that Balinda alone supplies no immediate tempo.
+- **Supporting source 8:39** — Torrential Ruiner arrives and establishes the actual spell-target scaling commitment.
+- **Supporting source 16:07** — Groundbreaker is identified as the missed permanent-carry pivot; the source does not execute that route.
+- **Supporting source 20:30** — the double-Reno novelty begins only after the Balinda–Ruiner engine is established, so it is ceiling rather than comp identity.

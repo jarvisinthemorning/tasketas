@@ -38,9 +38,14 @@ packages:
     cards: [70143, 70157, 116182, 122098, 132630, 126669, 126667, 70173, 132929]
   - title: Late upgrades
     purpose: Duplicate targeted spells or permanently raise every Blood Gem once the Golem engine is already online.
-    badge: Luxury ceiling
+    badge: Optional — luxury ceiling
     optional: true
     cards: [130298, 122566, 80755]
+  - title: Aggem Sticker ceiling
+    purpose: Sticker can flood a menagerie board with end-of-turn Gems, but it accelerates the existing loader rather than replacing Bristlemane or Confiscation.
+    badge: Optional — trinket highroll
+    optional: true
+    cards: [121132, 132320, 132636]
 related_routes:
   - title: Gem Rat → Turbo Hogrider
     slug: quilboar-choose-one-hogrider
@@ -56,6 +61,12 @@ discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/90/quilboar-bristlemane
     comp_id: '90'
+supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=j3DY6PNRCcA
+    author: dogdog
+    label: Aggem Sticker loader and anti-Beast first-place demonstration
+    timestamp: 900
 composition_minions:
 - {card_id: 126671, count: 1, golden_count: 0}
 - {card_id: 132320, count: 1, golden_count: 0}
@@ -70,7 +81,7 @@ video:
   id: 08tFc8FYcsI
   timestamp: 309
 source_published_at: '2026-08-01'
-verified_at: '2026-08-11'
+verified_at: '2026-08-18'
 ---
 
 ## Game plan
@@ -96,6 +107,7 @@ A Golden Bristlemane is a major acceleration point because each targeted cast ap
 3. **Add Juggernaut before the final transfer.** A small Juggernaut is not a win condition. Its Blood Golem inherits the Blood-Gem contribution, so the card becomes threatening only after the concentrated transfer.
 4. **Use [[card:130298|Balinda Stonehearth]] as an accelerator, not a requirement.** Targeted friendly spells cast twice, which can multiply Bristlemane triggers, but the source treats the late Golden Balinda as luxury rather than the reason to enter the comp.
 5. **Open board space before combat.** Rally needs room to summon. The source explicitly notes that repeated Juggernaut triggers can be throttled by a crowded board.
+6. **Keep trinket acceleration in its lane.** [[card:121132|Aggem Sticker]] can provide a huge end-of-turn Gem supply across minion types, but the supporting source still needs Bristlemane/Confiscation loading and Juggernaut conversion. Sticker is ceiling, not Core.
 
 ## Positioning
 
@@ -110,6 +122,7 @@ Juggernaut is particularly awkward for a taunted Leeroy plan: the summoned Golem
 - **No summon space:** a full board can waste the Rally ceiling even when Juggernaut is enormous.
 - **Greedy luxury pieces:** the source's Golden Balinda is spectacular but optional. Do not delay the core transfer while fishing for it.
 - **Overlapping the wrong shell:** if your real engine is repeated Choose One cards plus Turbo Hogrider, follow that line instead of forcing Bristlemane into it.
+- **Mistaking a trinket for the route:** Aggem Sticker makes the source spectacular, but the ordinary decision is still whether you can load and transfer enough Gems into Jailbird.
 
 ## Demonstrated ceiling
 
@@ -126,6 +139,10 @@ At **21:40**, the stable Tavern board shows Golden Jailbird Juggernaut at **8.2k
 - **20:11** — Golden Juggernaut is visibly above 3k while the final package is still being assembled.
 - **21:40** — Stable final Tavern board: 8.2k/8.8k Golden Juggernaut.
 - **23:00** — The enormous Blood Golems produced by the Juggernaut Rally chain are visible in combat.
+- **Supporting source 6:34** — the player commits to Gems before selecting Aggem Sticker; the trinket is acceleration, not the route's identity.
+- **Supporting source 11:43** — Turbo Hogrider is offered and rejected, confirming that this remains the Bristlemane–Juggernaut route.
+- **Supporting source 15:00** — the exact plan is stated: load Vigilant Bristlemane, then move the Gems onto Jailbird Juggernaut.
+- **Supporting source 22:54** — the final combat confirms the Rally carry and anti-Beast tech win the lobby.
 
 The linked commentary is based on JeefHS's original gameplay upload:
 <https://www.youtube.com/watch?v=FZWbxeaiq-w>

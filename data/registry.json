@@ -40,6 +40,7 @@
         70157,
         126637,
         132794,
+        101314,
         120926,
         112895,
         132987,
@@ -61,6 +62,7 @@
         70157,
         126637,
         132794,
+        101314,
         120926,
         112895,
         132987,
@@ -81,6 +83,7 @@
         70157,
         126637,
         132794,
+        101314,
         132987
       ],
       "spell_ids": [
@@ -145,7 +148,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-17",
+      "verified_at": "2026-08-18",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=rJ66OM7pENQ",
       "source_author": "HIQ MU",
@@ -196,6 +199,14 @@
           "author": "Shadybunny",
           "label": "Double Herald Sticker and Treasure Parrot Golden Touch ceiling",
           "timestamp": 594
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=FJyKGdqRj4Q",
+          "source_id": "FJyKGdqRj4Q",
+          "author": "Shadybunny",
+          "label": "Wolfhead Flail end-of-turn Lobster conversion",
+          "timestamp": 706
         }
       ],
       "published_at": "2026-08-08T16:53:17+00:00"

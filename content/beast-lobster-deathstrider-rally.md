@@ -47,13 +47,13 @@ packages:
   optional: true
   cards: [108909, 97408]
 - title: Wolfhead Flail ceiling
-  purpose: Flail triggers all friendly Deathrattles at end of turn; Titus multiplies those activations before the Rally combat engine starts.
-  badge: Source highroll — trinket required
+  purpose: Flail plus Titus and Drakkari can turn a wide Lobster board into an end-of-turn engine, replacing rather than merely boosting Deathstrider Rally.
+  badge: Optional — trinket highroll
   optional: true
-  cards: [133400, 97408, 132796]
+  cards: [133400, 97408, 101314, 132796]
 - title: Fish of N'Zoth copying
   purpose: A Dark Gift can supply Fish copies that retain Lobster Deathrattles in combat; neither Fish access nor multiple copies is an ordinary Tavern expectation.
-  badge: Source highroll — Dark Gift required
+  badge: Optional — Dark Gift highroll
   optional: true
   cards: [67213, 132796, 97408]
 - title: Herald Sticker duplication
@@ -124,6 +124,11 @@ supporting_sources:
   author: Shadybunny
   label: Double Herald Sticker and Treasure Parrot Golden Touch ceiling
   timestamp: 594
+- type: youtube
+  url: https://www.youtube.com/watch?v=FJyKGdqRj4Q
+  author: Shadybunny
+  label: Wolfhead Flail end-of-turn Lobster conversion
+  timestamp: 706
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=rJ66OM7pENQ
@@ -132,7 +137,7 @@ video:
   id: rJ66OM7pENQ
   timestamp: 180
 source_published_at: '2026-08-07'
-verified_at: '2026-08-17'
+verified_at: '2026-08-18'
 ---
 
 ## How it works
@@ -150,7 +155,7 @@ Keep [[card:132796|Tasty Lobster]] as your left-most Deathrattle. Every friendly
 
 ## Premium ceilings
 
-- **Wolfhead Flail:** [[card:133400|Wolfhead Flail]] triggers all friendly Deathrattles at end of turn. With Titus, this grows future Lobsters before combat and then hands the larger Deathrattle to Deathstrider. It is trinket-only access, not ordinary Core.
+- **Wolfhead Flail:** [[card:133400|Wolfhead Flail]] triggers all friendly Deathrattles at end of turn. With [[card:97408|Titus Rivendare]], [[card:101314|Drakkari Enchanter]], and several Lobsters, it can become a separate end-of-turn conversion that no longer needs Deathstrider or Rally. This is a trinket-and-golden ceiling, not ordinary Core; the source explicitly calls it an end-of-turn comp despite the video's Deathrattle marketing.
 - **Fish copies:** a source-specific Dark Gift discovers a plain copy of a gifted warband minion, allowing additional [[card:67213|Fish of N'Zoth]]. Fish can retain Lobster Deathrattles during combat, but the copied access and multiple Fish are Gift-gated.
 - **Herald duplication:** [[card:120926|Herald Sticker]] triggers every friendly Deathrattle at the start of combat. [[card:112895|Souvenir Stand]] can become a second Sticker, but this double activation is a trinket highroll rather than ordinary progression.
 - **Golden conversion:** [[card:132987|Treasure Parrot]] can earn [[card:104448|Golden Touch]] after dealing enough damage. The supporting source uses that reward to create premium Golden trigger pieces; buy Parrot only when it can realistically connect, not as a substitute for the Core.
@@ -178,3 +183,6 @@ Keep [[card:132796|Tasty Lobster]] as your left-most Deathrattle. Every friendly
 - **Herald source 13:42** — Treasure Parrot is evaluated as access to Golden Touch; Deathstrider is found moments later.
 - **Herald source 17:29** — Golden Touch creates Golden Titus and the premium engine finally comes online.
 - **Herald source 22:48** — stable late Tavern board shows the mature double-Sticker/Golden-trigger ceiling.
+- **Flail source 11:46** — Wolfhead Flail makes the end-of-turn commitment explicit after the source rejects an unsupported Deathstrider line.
+- **Flail source 18:46** — five Lobsters with Golden Drakkari and Golden Titus produce the first mature end-of-turn board.
+- **Flail source 23:52** — the premium Goldenizer ceiling reaches 63 end-of-turn Lobster triggers; this is not a normal Rally expectation.
