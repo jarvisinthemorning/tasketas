@@ -408,6 +408,7 @@
         132929,
         122566,
         80755,
+        121132,
         96786
       ],
       "cards": [
@@ -429,6 +430,7 @@
         132929,
         122566,
         80755,
+        121132,
         96786
       ],
       "minion_ids": [
@@ -454,7 +456,9 @@
       "spell_ids": [
         110642
       ],
-      "other_ids": [],
+      "other_ids": [
+        121132
+      ],
       "card_previews": {
         "116434": {
           "id": 116434,
@@ -498,7 +502,7 @@
       ],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-11",
+      "verified_at": "2026-08-18",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=08tFc8FYcsI",
       "source_author": "Shadybunny",
@@ -511,7 +515,16 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=j3DY6PNRCcA",
+          "source_id": "j3DY6PNRCcA",
+          "author": "dogdog",
+          "label": "Aggem Sticker loader and anti-Beast first-place demonstration",
+          "timestamp": 900
+        }
+      ],
       "published_at": "2026-08-09T10:11:05+00:00"
     },
     {
