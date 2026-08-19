@@ -207,6 +207,14 @@
           "author": "Shadybunny",
           "label": "Wolfhead Flail end-of-turn Lobster conversion",
           "timestamp": 706
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=KyFz2BZj27w",
+          "source_id": "KyFz2BZj27w",
+          "author": "Shadybunny",
+          "label": "Golden Windfury Gryphon into stacked Deathstrider Rally ceiling",
+          "timestamp": 340
         }
       ],
       "published_at": "2026-08-08T16:53:17+00:00"
@@ -804,7 +812,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-11",
+      "verified_at": "2026-08-19",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=7dFLg3c2GxA",
       "source_author": "Shadybunny2",
@@ -825,6 +833,14 @@
           "author": "dogdog",
           "label": "Felboar consume engine with stacked Admiration Dark Gifts",
           "timestamp": 899
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=WdmTggS98Lo",
+          "source_id": "WdmTggS98Lo",
+          "author": "BeterBabbit",
+          "label": "Magic Fan spell supply into Felboar and stacked Admiration ceiling",
+          "timestamp": 623
         }
       ],
       "published_at": "2026-08-11T17:10:29+00:00"
@@ -1346,7 +1362,8 @@
         64038,
         119949,
         64042,
-        64077
+        64077,
+        132883
       ],
       "cards": [
         119951,
@@ -1363,7 +1380,8 @@
         64038,
         119949,
         64042,
-        64077
+        64077,
+        132883
       ],
       "minion_ids": [
         119951,
@@ -1380,7 +1398,8 @@
         64038,
         119949,
         64042,
-        64077
+        64077,
+        132883
       ],
       "spell_ids": [],
       "other_ids": [],
@@ -1458,7 +1477,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-11",
+      "verified_at": "2026-08-19",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=urKD45-Agjw",
       "source_author": "JeefHS",
@@ -1479,6 +1498,14 @@
           "author": "dogdog",
           "label": "Nomi–Brann economy branch with Golden Brann ceiling",
           "timestamp": 884
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=pjPRVGf2LTw",
+          "source_id": "pjPRVGf2LTw",
+          "author": "JeefHS",
+          "label": "Nomi-first shop scaling with Air Revenant, Kelp Keeper and Unbound conversion",
+          "timestamp": 329
         }
       ],
       "published_at": "2026-08-11T20:03:14+00:00"
@@ -2189,6 +2216,8 @@
         130298,
         120610,
         105664,
+        99054,
+        133707,
         120905
       ],
       "cards": [
@@ -2202,6 +2231,8 @@
         130298,
         120610,
         105664,
+        99054,
+        133707,
         120905
       ],
       "minion_ids": [
@@ -2213,6 +2244,8 @@
         80745,
         80746,
         130298,
+        99054,
+        133707,
         120905
       ],
       "spell_ids": [
@@ -2251,7 +2284,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-16",
+      "verified_at": "2026-08-19",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=WtROWyVVPY4",
       "source_author": "Sevel",
@@ -2272,6 +2305,14 @@
           "author": "Shadybunny2",
           "label": "Spell-count commitment and ordinary Groundbreaker sequencing",
           "timestamp": 278
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=Ae1eCttdZgE",
+          "source_id": "Ae1eCttdZgE",
+          "author": "Rdu Hearthstone",
+          "label": "Groundbreaker commitment with Zesty and Torrential hybrid scaling",
+          "timestamp": 753
         }
       ],
       "published_at": "2026-08-16T05:12:20+00:00"

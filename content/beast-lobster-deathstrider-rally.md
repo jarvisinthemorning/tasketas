@@ -129,6 +129,11 @@ supporting_sources:
   author: Shadybunny
   label: Wolfhead Flail end-of-turn Lobster conversion
   timestamp: 706
+- type: youtube
+  url: https://www.youtube.com/watch?v=KyFz2BZj27w
+  author: Shadybunny
+  label: Golden Windfury Gryphon into stacked Deathstrider Rally ceiling
+  timestamp: 340
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=rJ66OM7pENQ
@@ -186,3 +191,6 @@ Keep [[card:132796|Tasty Lobster]] as your left-most Deathrattle. Every friendly
 - **Flail source 11:46** — Wolfhead Flail makes the end-of-turn commitment explicit after the source rejects an unsupported Deathstrider line.
 - **Flail source 18:46** — five Lobsters with Golden Drakkari and Golden Titus produce the first mature end-of-turn board.
 - **Flail source 23:52** — the premium Goldenizer ceiling reaches 63 end-of-turn Lobster triggers; this is not a normal Rally expectation.
+- **Gryphon source 5:40** — Lobster joins Golden Windfury Gryphon and Golden Titus, creating the soft commit.
+- **Gryphon source 7:10** — Deathstrider completes the actual Rally trigger engine.
+- **Gryphon source 14:57** — two Golden Deathstriders plus another copy show the generated-Golden APM ceiling, not a baseline board.

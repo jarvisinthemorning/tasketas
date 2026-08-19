@@ -30,6 +30,11 @@ packages:
   badge: Optional — protection and multipliers
   optional: true
   cards: [80745, 80746, 130298]
+- title: Ruiner bridge
+  purpose: Repeated Spellcraft casts can scale Groundbreaker and Torrential together; Zesty adds fuel, but Ruiner remains an optional parallel payoff.
+  badge: Optional — hybrid payoff
+  optional: true
+  cards: [99054, 133707, 130298]
 - title: Archaic Scroll ceiling
   purpose: The source trinket adds extra Nagas after repeated spell casts, accelerating both halves of the loop without defining the ordinary route.
   badge: Optional — trinket highroll
@@ -61,6 +66,11 @@ supporting_sources:
   author: Shadybunny2
   label: Spell-count commitment and ordinary Groundbreaker sequencing
   timestamp: 278
+- type: youtube
+  url: https://www.youtube.com/watch?v=Ae1eCttdZgE
+  author: Rdu Hearthstone
+  label: Groundbreaker commitment with Zesty and Torrential hybrid scaling
+  timestamp: 753
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=WtROWyVVPY4
@@ -69,7 +79,7 @@ video:
   id: WtROWyVVPY4
   timestamp: 846
 source_published_at: '2026-08-02'
-verified_at: '2026-08-16'
+verified_at: '2026-08-19'
 ---
 
 ## How it works
@@ -90,7 +100,8 @@ verified_at: '2026-08-16'
 3. **Play Nagas after Groundbreaker is on board.** Sequence generated Nagas and shop buys so their permanent triggers land before you sell temporary economy pieces.
 4. **Turn Recruiter into repeatable supply.** Put a Naga to its right before the Rally trigger so Chef's Choice generates the intended type. [[card:132957|Sky-hatch Runaway]] can retrigger the Rally, but only while you have hand and board room for the result.
 5. **Convert stats into combat.** [[card:80745|Waverider]] and [[card:80746|Glowscale]] provide temporary Windfury or Divine Shield. [[card:130298|Balinda Stonehearth]] can multiply friendly-targeted spell casts, but the supporting source treats her as helpful rather than mandatory.
-6. **Stop buying engines once supply is solved.** Late slots should protect the scaled carries or answer the opponent; another value body is not automatically better than scam or tech.
+6. **Use the Ruiner bridge only when the casts are already there.** [[card:99054|Zesty Shaker]] can duplicate Spellcraft fuel, while [[card:133707|Torrential Ruiner]] turns each targeted cast on a Naga into board-wide scaling. This supports Groundbreaker; it does not replace the need for Naga supply.
+7. **Stop buying engines once supply is solved.** Late slots should protect the scaled carries or answer the opponent; another value body is not automatically better than scam or tech.
 
 ## Positioning and traps
 
@@ -120,3 +131,7 @@ The related Fauna guide uses improved Tavern spells, [[card:120905|Fauna Whisper
 - **6:47** — the supporting source explains the need for Groundbreaker and more Naga plays.
 - **12:28** — Groundbreaker is finally found, showing that the setup can be accumulated before the payoff appears.
 - **15:54** — the supporting source states that the finished plan is Groundbreakers plus scam support.
+- **Rdu 12:33** — evaluates Groundbreaker plus Torrential with double Zesty.
+- **Rdu 12:58** — chooses Groundbreaker over Fauna, establishing the primary route.
+- **Rdu 14:10** — explains why Groundbreaker still needs Seafloor Recruiter for Naga supply.
+- **Rdu 24:11** — Balinda and Wand multiply the mature hybrid's targeted casts; this is the late ceiling, not the original commit.

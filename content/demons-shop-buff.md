@@ -93,6 +93,11 @@ supporting_sources:
   author: dogdog
   label: Felboar consume engine with stacked Admiration Dark Gifts
   timestamp: 899
+- type: youtube
+  url: https://www.youtube.com/watch?v=WdmTggS98Lo
+  author: BeterBabbit
+  label: Magic Fan spell supply into Felboar and stacked Admiration ceiling
+  timestamp: 623
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=7dFLg3c2GxA
@@ -101,7 +106,7 @@ video:
   id: 7dFLg3c2GxA
   timestamp: 322
 source_published_at: '2026-08-11'
-verified_at: '2026-08-11'
+verified_at: '2026-08-19'
 ---
 
 ## How it works
@@ -145,6 +150,8 @@ The source begins on a different route and explicitly refuses to commit from one
 
 Admiration adds combat-start stats; it does not improve Felboar's consume cadence. Multiple copies are exceptional Gift access, and the source's final numbers are not an ordinary Felboar result.
 
+The BeterBabbit supporting game reaches the same ceiling through Malcolm, Splinter Twin and Magic Fan. Fan supplies extra spells for Felboar's three-cast cadence while repeated Admiration Gifts inflate the final combat board. Those hero, trinket and Gift hits explain the showcase; the ordinary transferable package remains a buffed Tavern, sufficient spell volume, and Felboar as the consumer.
+
 ## Positioning and traps
 
 - Distractor is an investment, not a carry by itself. If you cannot consume the shop soon, preserve tempo and stay on another route.
@@ -177,3 +184,5 @@ Admiration adds combat-start stats; it does not improve Felboar's consume cadenc
 - **Admiration source 8:00** — transition shop with Felboar support pieces available.
 - **Admiration source 14:59** — stable mature Tavern state with the Gift-gated carry structure online.
 - **Admiration source 18:01** — combat evidence for the two-carry endpoint; not used as the publication crop because effects obscure the board.
+- **BeterBabbit 10:30** — the Magic Fan/Wrathguard cycle is online and the Felboar route starts converting spell volume.
+- **BeterBabbit 19:23** — the final combat exposes the stacked-Admiration ceiling; do not treat its roughly 20,000-stat scale as normal.
