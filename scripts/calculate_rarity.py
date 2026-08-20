@@ -11,16 +11,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from comp_pipeline import validate_patch_name
 from comp_rarity import RarityUnavailable, calculate_card_rarity
+
+
+def active_cards_path(root: Path = ROOT) -> Path:
+    site = json.loads((root / "data/site.json").read_text(encoding="utf-8"))
+    patch = validate_patch_name(site["latest_patch"])
+    return root / "data/patches" / patch / "cards.json"
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Calculate conditional, uncontested card-offer rarity")
     parser.add_argument("card_ids", nargs="+", type=int)
-    parser.add_argument("--cards", type=Path, default=ROOT / "data/cards.json")
+    parser.add_argument("--cards", type=Path, default=None)
     args = parser.parse_args()
+    cards_path = args.cards or active_cards_path()
 
-    payload = json.loads(args.cards.read_text(encoding="utf-8"))
+    payload = json.loads(cards_path.read_text(encoding="utf-8"))
     results = []
     for card_id in args.card_ids:
         try:

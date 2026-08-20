@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "latest_patch": "36.2.2",
+  "patches": [
+    {
+      "patch": "36.2.0",
+      "season": 14,
+      "status": "historical",
+      "url": "https://jarvisinthemorning.github.io/tasketas/patches/36.2.0/"
+    },
+    {
+      "patch": "36.2.2",
+      "season": 14,
+      "status": "rebuilding",
+      "released_at": "2026-08-18",
+      "source_url": "https://hearthstone.blizzard.com/en-us/news/24293284/3622-patch-notes",
+      "url": "https://jarvisinthemorning.github.io/tasketas/patches/36.2.2/"
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 title: Human-readable comp title
 slug: lowercase-hyphenated-slug
 season: 14
+patch: '36.2.2'
 modes: [solo]
 tribes: [beast]
 tags: [deathrattle, scaling]

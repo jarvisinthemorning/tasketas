@@ -72,6 +72,7 @@ VALID_MARKDOWN = """---
 title: Tasty Lobstah
 slug: tasty-lobstah
 season: 14
+patch: '36.2.2'
 modes: [solo, duos]
 tribes: [beast]
 tags: [deathrattle, scaling]
@@ -101,6 +102,13 @@ Find the lobster early.
 
 
 class PipelineTests(unittest.TestCase):
+    def test_guide_requires_patch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            content = Path(tmp) / "guide.md"
+            content.write_text(VALID_MARKDOWN.replace("patch: '36.2.2'\n", ""), encoding="utf-8")
+            with self.assertRaisesRegex(CompError, "Missing required frontmatter field: patch"):
+                _parse_markdown(content)
+
     def test_guide_requires_nonempty_tribes(self):
         with tempfile.TemporaryDirectory() as tmp:
             content = Path(tmp) / "guide.md"
@@ -185,8 +193,17 @@ class PipelineTests(unittest.TestCase):
                 cards_path=cards,
                 template_path=Path(__file__).parents[1] / "templates" / "index.html",
                 output_dir=root / "dist",
+                patch="36.2.2",
+                season=14,
+                status="rebuilding",
+                rebuilding=True,
+                previous_patches=[{"patch": "36.2.0", "url": "../36.2.0/"}],
             )
             html = output.read_text(encoding="utf-8")
+
+            self.assertIn("Patch 36.2.2", html)
+            self.assertIn("Rebuilding for patch 36.2.2", html)
+            self.assertIn("../36.2.0/", html)
 
             self.assertIn('<details id="filters-panel" class="filters">', html)
             self.assertNotIn('<details id="filters-panel" class="filters" open', html)
@@ -359,6 +376,54 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(card["tribes"], [])
         self.assertEqual(card["detail"], "https://hsbg.cards/card/wolfhead-flail")
 
+    def test_publish_rejects_guide_from_another_patch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text('{"schema_version": 3, "patch": "36.2.3", "pages": []}', encoding="utf-8")
+            template = root / "comp.html"
+            template.write_text("<h1>{{ comp.title }}</h1>", encoding="utf-8")
+
+            with self.assertRaisesRegex(CompError, "Guide patch 36.2.2 does not match active patch 36.2.3"):
+                publish_comp(
+                    content_path=content,
+                    cards_path=cards,
+                    registry_path=registry,
+                    template_path=template,
+                    output_dir=root / "dist",
+                    public_base_url="https://example.pages.dev/patches/36.2.3",
+                    expected_patch="36.2.3",
+                )
+
+    def test_publish_rejects_registry_from_another_patch(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps({"schema_version": 4, "patch": "36.2.1", "pages": []}),
+                encoding="utf-8",
+            )
+            template = root / "comp.html"
+            template.write_text("{{ comp.title }}", encoding="utf-8")
+            with self.assertRaisesRegex(CompError, "Registry patch"):
+                publish_comp(
+                    content_path=content,
+                    cards_path=cards,
+                    registry_path=registry,
+                    template_path=template,
+                    output_dir=root / "dist",
+                    public_base_url="https://example.test/patches/36.2.2",
+                    expected_patch="36.2.2",
+                )
+
     def test_publish_renders_mobile_page_and_updates_registry(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -370,7 +435,10 @@ class PipelineTests(unittest.TestCase):
             cards = root / "cards.json"
             cards.write_text(json.dumps(CARDS), encoding="utf-8")
             registry = root / "registry.json"
-            registry.write_text('{"schema_version": 1, "pages": []}', encoding="utf-8")
+            registry.write_text(
+                '{"schema_version": 4, "patch": "36.2.2", "pages": []}',
+                encoding="utf-8",
+            )
             template = root / "comp.html"
             template.write_text(
                 "<meta name=viewport content='width=device-width, initial-scale=1'>  \n"
@@ -390,7 +458,8 @@ class PipelineTests(unittest.TestCase):
                 registry_path=registry,
                 template_path=template,
                 output_dir=output,
-                public_base_url="https://example.pages.dev",
+                public_base_url="https://example.pages.dev/patches/36.2.2",
+                expected_patch="36.2.2",
             )
 
             html = (output / "comps" / "tasty-lobstah.html").read_text(encoding="utf-8")
@@ -403,8 +472,12 @@ class PipelineTests(unittest.TestCase):
             self.assertIn('class="card-popover"', html)
             self.assertIn("https://images.example/BG36_202.png", html)
             self.assertFalse(any(line.endswith((" ", "\t")) for line in html.splitlines()))
-            self.assertEqual(result["url"], "https://example.pages.dev/comps/tasty-lobstah.html")
+            self.assertEqual(
+                result["url"],
+                "https://example.pages.dev/patches/36.2.2/comps/tasty-lobstah.html",
+            )
             saved = json.loads(registry.read_text(encoding="utf-8"))
+            self.assertEqual(saved["schema_version"], 4)
             self.assertEqual(saved["pages"][0]["source_id"], "jCupcgaSjvo")
             self.assertEqual(
                 saved["pages"][0]["minions"],
@@ -416,6 +489,7 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(saved["pages"][0]["spells"], [])
             self.assertEqual(saved["pages"][0]["title"], "Tasty Lobstah")
             self.assertEqual(saved["pages"][0]["season"], 14)
+            self.assertEqual(saved["pages"][0]["patch"], "36.2.2")
             self.assertEqual(saved["pages"][0]["modes"], ["solo", "duos"])
             self.assertEqual(saved["pages"][0]["tribes"], ["beast"])
             self.assertEqual(saved["pages"][0]["tags"], ["deathrattle", "scaling"])

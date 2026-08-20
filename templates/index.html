@@ -11,21 +11,39 @@
 <body>
   <header class="hero">
     <div class="shell hero-inner">
-      <p class="eyebrow">Hearthstone Battlegrounds</p>
+      <p class="eyebrow">Hearthstone Battlegrounds · Season {{ season }} · Patch {{ patch }}</p>
       <h1>Tasketas</h1>
       <p class="lede">Short, source-backed composition guides for checking between turns.</p>
     </div>
   </header>
 
   <main class="shell main-shell">
-    <a class="early-guide" href="early-game.html">
+    {% if status == 'historical' %}
+    <section class="early-guide" aria-label="Historical patch notice">
       <span>
-        <span class="section-kicker">Season 14 fundamentals</span>
-        <strong>Survive to Core — Early Game</strong>
-        <small>Tempo packages, Dark Gift timing, curve decisions and emergency stabilization before Tavern 4/5.</small>
+        <span class="section-kicker">Historical library</span>
+        <strong>Patch {{ patch }}</strong>
+        <small>These guides are preserved as published for this patch and may be outdated for the live game.</small>
       </span>
-      <b aria-hidden="true">Open guide →</b>
-    </a>
+    </section>
+    {% elif rebuilding %}
+    <section class="early-guide" aria-label="Patch rebuild notice">
+      <span>
+        <span class="section-kicker">Current patch</span>
+        <strong>Rebuilding for patch {{ patch }}</strong>
+        <small>No guide appears here until it has been revalidated against the current card pool and gameplay evidence.</small>
+      </span>
+    </section>
+    {% endif %}
+
+    {% if previous_patches %}
+    <nav class="early-guide" aria-label="Previous patch libraries">
+      <span>
+        <span class="section-kicker">Previous patches</span>
+        {% for item in previous_patches %}<a href="{{ item.url }}">Patch {{ item.patch }}</a>{% if not loop.last %} · {% endif %}{% endfor %}
+      </span>
+    </nav>
+    {% endif %}
 
     <section class="directory" aria-labelledby="directory-title">
       <div class="directory-heading">

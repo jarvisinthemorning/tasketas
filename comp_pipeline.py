@@ -20,6 +20,16 @@ class CompError(ValueError):
     """Raised when a comp source or guide cannot be published safely."""
 
 
+PATCH_RE = re.compile(r"^\d+\.\d+\.\d+$")
+
+
+def validate_patch_name(value: object) -> str:
+    patch = str(value)
+    if not PATCH_RE.fullmatch(patch):
+        raise ValueError(f"Invalid patch: {patch}")
+    return patch
+
+
 EXPLICITLY_BANNED_CARDS = {
     133039: "Hoarding Hyena",
 }
@@ -126,9 +136,13 @@ def _parse_markdown(path: Path) -> tuple[dict, str]:
     metadata = yaml.safe_load(match.group(1)) or {}
     if not isinstance(metadata, dict):
         raise CompError("Guide frontmatter must be a mapping")
-    for field in ("title", "slug", "season", "tribes", "tags", "classification", "source", "verified_at"):
+    for field in ("title", "slug", "season", "patch", "tribes", "tags", "classification", "source", "verified_at"):
         if field not in metadata:
             raise CompError(f"Missing required frontmatter field: {field}")
+    patch = str(metadata["patch"]).strip()
+    if not re.fullmatch(r"\d+(?:\.\d+)+", patch):
+        raise CompError("patch must be a dotted numeric version such as 36.2.2")
+    metadata["patch"] = patch
     for field in ("tribes", "tags"):
         if not isinstance(metadata[field], list) or not metadata[field]:
             raise CompError(f"{field} must be a non-empty list")
@@ -315,13 +329,24 @@ def build_index(
     cards_path: Path,
     template_path: Path,
     output_dir: Path,
+    patch: str = "unknown",
+    season: int = 14,
+    status: str = "current",
+    rebuilding: bool = False,
+    previous_patches: list[dict] | None = None,
 ) -> Path:
     env = Environment(
         loader=FileSystemLoader(str(template_path.parent)),
         autoescape=select_autoescape(["html", "xml"]),
         undefined=StrictUndefined,
     )
-    rendered = env.get_template(template_path.name).render()
+    rendered = env.get_template(template_path.name).render(
+        patch=patch,
+        season=season,
+        status=status,
+        rebuilding=rebuilding,
+        previous_patches=previous_patches or [],
+    )
     rendered = "\n".join(line.rstrip() for line in rendered.splitlines()) + "\n"
     output_dir.mkdir(parents=True, exist_ok=True)
     destination = output_dir / "index.html"
@@ -343,14 +368,26 @@ def publish_comp(
     public_base_url: str,
     register: bool = True,
     update: bool = False,
+    expected_patch: str | None = None,
+    project_root: Path | None = None,
 ) -> dict:
     metadata, body = _parse_markdown(content_path)
+    if expected_patch is not None and metadata["patch"] != str(expected_patch):
+        raise CompError(
+            f"Guide patch {metadata['patch']} does not match active patch {expected_patch}"
+        )
     source_type, source_id, source_url = canonical_source(metadata["source"]["url"])
     declared_type = metadata["source"].get("type")
     if declared_type and declared_type != source_type:
         raise CompError(f"source.type must be {source_type}")
 
     registry = _load_json(registry_path)
+    if expected_patch is not None:
+        registry_patch = registry.get("patch")
+        if str(registry_patch) != str(expected_patch):
+            raise CompError(
+                f"Registry patch {registry_patch!r} does not match active patch {expected_patch}"
+            )
     registry_pages = registry.get("pages", [])
     source_indices = [
         index
@@ -605,8 +642,10 @@ def publish_comp(
             raise CompError(
                 f"board_examples[{board_index}].image must be a local /static/boards image"
             )
-        project_root = content_path.parent.parent if content_path.parent.name == "content" else content_path.parent
-        if not (project_root / image.removeprefix("/")).is_file():
+        resolved_project_root = project_root or (
+            content_path.parent.parent if content_path.parent.name == "content" else content_path.parent
+        )
+        if not (resolved_project_root / image.removeprefix("/")).is_file():
             raise CompError(f"board_examples[{board_index}].image does not exist: {image}")
         board_examples.append(
             {
@@ -765,6 +804,7 @@ def publish_comp(
         "title": metadata["title"],
         "url": url,
         "season": metadata["season"],
+        "patch": metadata["patch"],
         "modes": metadata.get("modes", []) or [],
         "tribes": metadata.get("tribes", []) or [],
         "tags": metadata.get("tags", []) or [],
@@ -795,7 +835,9 @@ def publish_comp(
         ),
     }
     if register:
-        registry["schema_version"] = 3
+        registry["schema_version"] = 4 if expected_patch is not None else max(
+            int(registry.get("schema_version", 0)), 3
+        )
         pages = registry.setdefault("pages", [])
         if existing_index is None:
             pages.append(entry)

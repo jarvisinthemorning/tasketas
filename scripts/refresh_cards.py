@@ -10,9 +10,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from comp_pipeline import normalize_api_cards
+from comp_pipeline import normalize_api_cards, validate_patch_name
 
 API = "https://hsbg.cards/api/v1/cards"
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def active_output_path(root: Path = ROOT) -> Path:
+    site = json.loads((root / "data/site.json").read_text(encoding="utf-8"))
+    patch = validate_patch_name(site["latest_patch"])
+    return root / "data/patches" / patch / "cards.json"
 
 
 def fetch_all_cards() -> list[dict]:
@@ -37,15 +44,16 @@ def fetch_all_cards() -> list[dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Refresh the deterministic Battlegrounds card catalog")
-    parser.add_argument("--output", type=Path, default=Path("data/cards.json"))
+    parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
+    output = args.output or active_output_path()
 
     generated_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     normalized = normalize_api_cards(fetch_all_cards(), generated_at=generated_at)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(normalized, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(normalized, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     current = sum(1 for card in normalized["cards"].values() if card["pool"])
-    print(f"Wrote {len(normalized['cards'])} cards ({current} current) to {args.output}")
+    print(f"Wrote {len(normalized['cards'])} cards ({current} current) to {output}")
     return 0
 
 
