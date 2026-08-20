@@ -204,6 +204,8 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("Patch 36.2.2", html)
             self.assertIn("Rebuilding for patch 36.2.2", html)
             self.assertIn("../36.2.0/", html)
+            self.assertGreater(html.index("Previous patches"), html.index('id="comp-rows"'))
+            self.assertLess(html.index("Previous patches"), html.index('<footer class="shell footer">'))
 
             self.assertIn('<details id="filters-panel" class="filters">', html)
             self.assertNotIn('<details id="filters-panel" class="filters" open', html)
