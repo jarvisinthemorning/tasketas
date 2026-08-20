@@ -313,6 +313,141 @@
         }
       ],
       "published_at": "2026-08-20T15:34:05+00:00"
+    },
+    {
+      "slug": "nagas-end-of-turn-spell-power",
+      "title": "Nagas — End-of-Turn Spell Power",
+      "url": "https://jarvisinthemorning.github.io/tasketas/patches/36.2.2/comps/nagas-end-of-turn-spell-power.html",
+      "season": 14,
+      "patch": "36.2.2",
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "naga"
+      ],
+      "tags": [
+        "end-of-turn",
+        "spell-power",
+        "scaling",
+        "menagerie"
+      ],
+      "type": "meta",
+      "commit": [
+        120299,
+        101314
+      ],
+      "core": [
+        120299,
+        120905,
+        101314,
+        130298,
+        133329
+      ],
+      "dynamic": [],
+      "cards": [
+        120299,
+        120905,
+        101314,
+        130298,
+        133329
+      ],
+      "minion_ids": [
+        120299,
+        120905,
+        101314,
+        130298,
+        133329
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "120299": {
+          "id": 120299,
+          "name": "Felfire Conjurer",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/120299-felfire-conjurer.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/120299/felfire-conjurer"
+        },
+        "101314": {
+          "id": 101314,
+          "name": "Drakkari Enchanter",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/101314-drakkari-enchanter.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/101314/drakkari-enchanter"
+        },
+        "120905": {
+          "id": 120905,
+          "name": "Fauna Whisperer",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/naga/120905-fauna-whisperer.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/120905/fauna-whisperer"
+        },
+        "130298": {
+          "id": 130298,
+          "name": "Balinda Stonehearth",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/130298-balinda-stonehearth.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/130298/balinda-stonehearth"
+        },
+        "133329": {
+          "id": 133329,
+          "name": "Gatekeeper Amalgam",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/all/133329-gatekeeper-amalgam.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/133329/gatekeeper-amalgam"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 120299,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120905,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 101314,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 130298,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133329,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-20",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=itEcEPfqfbE",
+      "source_author": "Shadybunny",
+      "source_id": "itEcEPfqfbE",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/55/nagas-end-of-turn-spell-buff",
+          "comp_id": "55",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-20T20:03:30+00:00"
     }
   ]
 }

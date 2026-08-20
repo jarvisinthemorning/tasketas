@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T07:35:33+00:00",
+  "generated_at": "2026-08-20T19:56:54+00:00",
   "source": "https://hsbg.cards/api-docs",
   "cards": {
     "57555": {
@@ -9054,6 +9054,35 @@
       "detail": "https://hsbg.cards/card/the-perfect-crime",
       "hsreplay": "https://hsbg.cards/card/the-perfect-crime"
     },
+    "87060": {
+      "id": 87060,
+      "card_id": "BG22_202",
+      "slug": "tad",
+      "name": "Tad",
+      "type": "minion",
+      "tier": 2,
+      "attack": 2,
+      "health": 2,
+      "attack_gold": 4,
+      "health_gold": 4,
+      "text": "When you sell this,\nget a random Murloc.",
+      "text_gold": "When you sell this,\nget 2 random Murlocs.",
+      "keywords": [],
+      "tribes": [
+        "Murloc"
+      ],
+      "categories": [
+        "tavern"
+      ],
+      "pool": true,
+      "modes": [
+        "solo",
+        "duos"
+      ],
+      "image": "https://hsbg.cards/cards/production/pngs/full/minions/murloc/87060-tad.png",
+      "detail": "https://hsreplay.net/battlegrounds/minions/87060/tad",
+      "hsreplay": "https://hsreplay.net/battlegrounds/minions/87060/tad"
+    },
     "89037": {
       "id": 89037,
       "card_id": "BG24_Quest_313",
@@ -11800,37 +11829,6 @@
       "detail": "https://hsbg.cards/card/lost-staff-of-hamuul",
       "hsreplay": "https://hsbg.cards/card/lost-staff-of-hamuul"
     },
-    "100930": {
-      "id": 100930,
-      "card_id": "BG26_360",
-      "slug": "scourfin",
-      "name": "Scourfin",
-      "type": "minion",
-      "tier": 3,
-      "attack": 4,
-      "health": 3,
-      "attack_gold": 8,
-      "health_gold": 6,
-      "text": "<b>Deathrattle:</b> Give a\nrandom minion in your hand +7/+7.",
-      "text_gold": "<b>Deathrattle:</b> Give a\nrandom minion in your hand +14/+14.",
-      "keywords": [
-        "deathrattle"
-      ],
-      "tribes": [
-        "Murloc"
-      ],
-      "categories": [
-        "tavern"
-      ],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/minions/murloc/100930-scourfin.png",
-      "detail": "https://hsreplay.net/battlegrounds/minions/100930/scourfin",
-      "hsreplay": "https://hsreplay.net/battlegrounds/minions/100930/scourfin"
-    },
     "100949": {
       "id": 100949,
       "card_id": "BG26_174",
@@ -11909,37 +11907,6 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/hero_powers/101132-im-the-capn-now.png",
       "detail": "https://hsbg.cards/card/im-the-capn-now",
       "hsreplay": "https://hsbg.cards/card/im-the-capn-now"
-    },
-    "101267": {
-      "id": 101267,
-      "card_id": "BG26_537",
-      "slug": "flourishing-frostling",
-      "name": "Flourishing Frostling",
-      "type": "minion",
-      "tier": 5,
-      "attack": 2,
-      "health": 1,
-      "attack_gold": 4,
-      "health_gold": 2,
-      "text": "Has +2/+1 for each\nElemental you played this\ngame <i>(wherever this is)</i>.",
-      "text_gold": "Has +4/+2 for each\nElemental you played this\ngame <i>(wherever this is)</i>.",
-      "keywords": [
-        "aura"
-      ],
-      "tribes": [
-        "Elemental"
-      ],
-      "categories": [
-        "tavern"
-      ],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/101267-flourishing-frostling.png",
-      "detail": "https://hsreplay.net/battlegrounds/minions/101267/flourishing-frostling",
-      "hsreplay": "https://hsreplay.net/battlegrounds/minions/101267/flourishing-frostling"
     },
     "101280": {
       "id": 101280,
@@ -16432,31 +16399,6 @@
       "detail": "https://hsbg.cards/card/glowing-gauntlet",
       "hsreplay": "https://hsbg.cards/card/glowing-gauntlet"
     },
-    "111109": {
-      "id": 111109,
-      "card_id": "BG32_MagicItem_844",
-      "slug": "sacrificial-altar",
-      "name": "Sacrificial Altar",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "Remove all your minions. Gain 3 Gold for each removed.",
-      "text_gold": null,
-      "keywords": [],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/111109-sacrificial-altar.png",
-      "detail": "https://hsbg.cards/card/sacrificial-altar",
-      "hsreplay": "https://hsbg.cards/card/sacrificial-altar"
-    },
     "111207": {
       "id": 111207,
       "card_id": "BG30_MagicItem_876",
@@ -17086,34 +17028,6 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/112002-colorful-compass.png",
       "detail": "https://hsbg.cards/card/112002-colorful-compass",
       "hsreplay": "https://hsbg.cards/card/112002-colorful-compass"
-    },
-    "112011": {
-      "id": 112011,
-      "card_id": "BG30_MagicItem_987",
-      "slug": "balladist-portrait",
-      "name": "Balladist Portrait",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "Get a Lovesick Balladist.\nAt the start of each turn,\nget another. Your Lovesick\nBalladists also give Attack.",
-      "text_gold": null,
-      "keywords": [
-        "aura",
-        "start of turn"
-      ],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/112011-balladist-portrait.png",
-      "detail": "https://hsbg.cards/card/balladist-portrait",
-      "hsreplay": "https://hsbg.cards/card/balladist-portrait"
     },
     "112013": {
       "id": 112013,
@@ -22020,6 +21934,38 @@
       "detail": "https://hsreplay.net/battlegrounds/minions/120223/intrepid-botanist",
       "hsreplay": "https://hsreplay.net/battlegrounds/minions/120223/intrepid-botanist"
     },
+    "120299": {
+      "id": 120299,
+      "card_id": "BG32_821",
+      "slug": "felfire-conjurer",
+      "name": "Felfire Conjurer",
+      "type": "minion",
+      "tier": 5,
+      "attack": 6,
+      "health": 5,
+      "attack_gold": 12,
+      "health_gold": 10,
+      "text": "At the end of your turn,\nyour Tavern spells give\nan extra +1/+1\nthis game.",
+      "text_gold": "At the end of your turn,\nyour Tavern spells give\nan extra +2/+2\nthis game.",
+      "keywords": [
+        "end of turn"
+      ],
+      "tribes": [
+        "Demon",
+        "Dragon"
+      ],
+      "categories": [
+        "tavern"
+      ],
+      "pool": true,
+      "modes": [
+        "solo",
+        "duos"
+      ],
+      "image": "https://hsbg.cards/cards/production/pngs/full/minions/demon/120299-felfire-conjurer.png",
+      "detail": "https://hsreplay.net/battlegrounds/minions/120299/felfire-conjurer",
+      "hsreplay": "https://hsreplay.net/battlegrounds/minions/120299/felfire-conjurer"
+    },
     "120301": {
       "id": 120301,
       "card_id": "BG32_822",
@@ -23511,31 +23457,6 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/121132-aggem-sticker.png",
       "detail": "https://hsbg.cards/card/aggem-sticker",
       "hsreplay": "https://hsbg.cards/card/aggem-sticker"
-    },
-    "121134": {
-      "id": 121134,
-      "card_id": "BG32_MagicItem_286",
-      "slug": "lavish-cape",
-      "name": "Lavish Cape",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "Cast a random Tavern spell for each different friendly minion type. At the start of each turn, repeat this.",
-      "text_gold": null,
-      "keywords": [],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/121134-lavish-cape.png",
-      "detail": "https://hsbg.cards/card/lavish-cape",
-      "hsreplay": "https://hsbg.cards/card/lavish-cape"
     },
     "121140": {
       "id": 121140,
@@ -31608,56 +31529,6 @@
       "detail": "https://hsreplay.net/battlegrounds/minions/130084/demon-fodder",
       "hsreplay": "https://hsreplay.net/battlegrounds/minions/130084/demon-fodder"
     },
-    "130097": {
-      "id": 130097,
-      "card_id": "BG35_MagicItem_803",
-      "slug": "130097-maxwell-sticker",
-      "name": "Maxwell Sticker",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "Get the <b>Buddy</b> of your Hero Power.",
-      "text_gold": null,
-      "keywords": [],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/130097-maxwell-sticker.png",
-      "detail": "https://hsbg.cards/card/130097-maxwell-sticker",
-      "hsreplay": "https://hsbg.cards/card/130097-maxwell-sticker"
-    },
-    "130098": {
-      "id": 130098,
-      "card_id": "BG35_MagicItem_803t",
-      "slug": "maxwell-sticker",
-      "name": "Maxwell Sticker",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "Get the Golden <b>Buddy</b> of your Hero Power.",
-      "text_gold": null,
-      "keywords": [],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/130098-maxwell-sticker.png",
-      "detail": "https://hsbg.cards/card/maxwell-sticker",
-      "hsreplay": "https://hsbg.cards/card/maxwell-sticker"
-    },
     "130290": {
       "id": 130290,
       "card_id": "BG34_Giant_801",
@@ -33098,31 +32969,6 @@
       "detail": "https://hsbg.cards/card/131003-transcribing-typewriter",
       "hsreplay": "https://hsbg.cards/card/131003-transcribing-typewriter"
     },
-    "131131": {
-      "id": 131131,
-      "card_id": "BG35_MagicItem_731",
-      "slug": "deathtouch-apple",
-      "name": "Deathtouch Apple",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "After a friendly Undead is\n<b>Reborn</b>, give it <b>Reborn</b>.\n<i>(3 times per turn.)</i>",
-      "text_gold": null,
-      "keywords": [],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/131131-deathtouch-apple.png",
-      "detail": "https://hsbg.cards/card/deathtouch-apple",
-      "hsreplay": "https://hsbg.cards/card/deathtouch-apple"
-    },
     "131132": {
       "id": 131132,
       "card_id": "BG35_MagicItem_732",
@@ -33885,33 +33731,6 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/spells/spellcraft/131310-chillmere-mosaic.png",
       "detail": "https://hsbg.cards/card/chillmere-mosaic",
       "hsreplay": "https://hsbg.cards/card/chillmere-mosaic"
-    },
-    "131314": {
-      "id": 131314,
-      "card_id": "BG35_MagicItem_838",
-      "slug": "double-stitch-needle",
-      "name": "Double Stitch Needle",
-      "type": "trinket",
-      "tier": null,
-      "attack": 0,
-      "health": 0,
-      "attack_gold": null,
-      "health_gold": null,
-      "text": "<b>Spellcraft:</b> Choose a\nfriendly minion. Double\nits stats and lock it in your\nhand for 1 turn.",
-      "text_gold": null,
-      "keywords": [
-        "spellcraft"
-      ],
-      "tribes": [],
-      "categories": [],
-      "pool": true,
-      "modes": [
-        "solo",
-        "duos"
-      ],
-      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/131314-double-stitch-needle.png",
-      "detail": "https://hsbg.cards/card/double-stitch-needle",
-      "hsreplay": "https://hsbg.cards/card/double-stitch-needle"
     },
     "131315": {
       "id": 131315,
