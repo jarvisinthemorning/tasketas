@@ -661,6 +661,14 @@ def publish_comp(
         )
 
     discovery_sources = _normalize_discovery_sources(metadata.get("discovery_sources"))
+    if (
+        expected_patch is not None
+        and metadata["classification"] == "meta"
+        and not any(source["type"] == "hsreplay" for source in discovery_sources)
+    ):
+        raise CompError(
+            "Meta classification requires a composition-specific HSReplay discovery source"
+        )
     supporting_sources = _normalize_supporting_sources(metadata.get("supporting_sources"))
     if any(item["type"] == source_type and item["source_id"] == source_id for item in supporting_sources):
         raise CompError("supporting_sources must not repeat the primary source")

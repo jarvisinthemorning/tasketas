@@ -6,7 +6,7 @@ patch: '36.2.2'
 modes: [solo]
 tribes: [beast]
 tags: [deathrattle, scaling]
-classification: meta # Exactly one of: meta, variant, underdog, highroll
+classification: meta # Meta requires a composition-specific HSReplay discovery source; otherwise use variant, underdog, or highroll
 # Legacy compatibility fields; visual presentation comes from packages.
 core: []
 addons: []

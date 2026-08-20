@@ -399,6 +399,31 @@ class PipelineTests(unittest.TestCase):
                     expected_patch="36.2.3",
                 )
 
+    def test_meta_requires_hsreplay_discovery_source(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            content = root / "guide.md"
+            content.write_text(VALID_MARKDOWN, encoding="utf-8")
+            cards = root / "cards.json"
+            cards.write_text(json.dumps(CARDS), encoding="utf-8")
+            registry = root / "registry.json"
+            registry.write_text(
+                json.dumps({"schema_version": 4, "patch": "36.2.2", "pages": []}),
+                encoding="utf-8",
+            )
+            template = root / "comp.html"
+            template.write_text("{{ comp.title }}", encoding="utf-8")
+            with self.assertRaisesRegex(CompError, "Meta classification requires"):
+                publish_comp(
+                    content_path=content,
+                    cards_path=cards,
+                    registry_path=registry,
+                    template_path=template,
+                    output_dir=root / "dist",
+                    public_base_url="https://example.test/patches/36.2.2",
+                    expected_patch="36.2.2",
+                )
+
     def test_publish_rejects_registry_from_another_patch(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
