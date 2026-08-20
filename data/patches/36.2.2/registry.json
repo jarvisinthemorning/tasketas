@@ -168,41 +168,51 @@
       ],
       "core": [
         120705,
-        64077,
-        96786
+        126173,
+        132983
       ],
       "dynamic": [
-        126173,
-        126175,
-        132983,
+        64077,
+        96786,
         120674,
-        101280,
-        64189
+        112855,
+        104029,
+        133455,
+        122862,
+        64189,
+        63626
       ],
       "cards": [
         120705,
+        126173,
+        132983,
         64077,
         96786,
-        126173,
-        126175,
-        132983,
         120674,
-        101280,
-        64189
+        112855,
+        104029,
+        133455,
+        122862,
+        64189,
+        63626
       ],
       "minion_ids": [
+        126173,
+        132983,
         64077,
         96786,
-        126173,
-        126175,
-        132983,
         120674,
-        101280,
-        64189
+        133455,
+        64189,
+        63626
       ],
-      "spell_ids": [],
+      "spell_ids": [
+        104029,
+        122862
+      ],
       "other_ids": [
-        120705
+        120705,
+        112855
       ],
       "card_previews": {
         "120705": {
@@ -213,24 +223,34 @@
           "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/120705-recycling-sticker.png",
           "detail": "https://hsbg.cards/card/recycling-sticker"
         },
-        "64077": {
-          "id": 64077,
-          "name": "Tavern Tempest",
-          "type": "minion",
-          "tier": 4,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/64077-tavern-tempest.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/64077/tavern-tempest"
-        },
-        "96786": {
-          "id": 96786,
-          "name": "Brann Bronzebeard",
+        "126173": {
+          "id": 126173,
+          "name": "Air Revenant",
           "type": "minion",
           "tier": 5,
-          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/96786-brann-bronzebeard.png",
-          "detail": "https://hsreplay.net/battlegrounds/minions/96786/brann-bronzebeard"
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/126173-air-revenant.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/126173/air-revenant"
+        },
+        "132983": {
+          "id": 132983,
+          "name": "Unbound Tempest",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/132983-unbound-tempest.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132983/unbound-tempest"
         }
       },
       "minions": [
+        {
+          "card_id": 126173,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132983,
+          "count": 1,
+          "golden_count": 0
+        },
         {
           "card_id": 64077,
           "count": 1,
@@ -242,22 +262,12 @@
           "golden_count": 0
         },
         {
-          "card_id": 126173,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 126175,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
-          "card_id": 132983,
-          "count": 1,
-          "golden_count": 0
-        },
-        {
           "card_id": 120674,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 133455,
           "count": 1,
           "golden_count": 0
         },
@@ -267,14 +277,23 @@
           "golden_count": 0
         }
       ],
-      "spells": [],
+      "spells": [
+        {
+          "card_id": 104029,
+          "count": 1
+        },
+        {
+          "card_id": 122862,
+          "count": 1
+        }
+      ],
       "hand_minions": [],
       "prerequisites": [],
       "verified_at": "2026-08-20",
       "source_type": "youtube",
-      "source_url": "https://www.youtube.com/watch?v=KZw3Q1U5gAU",
-      "source_author": "JeefHS",
-      "source_id": "KZw3Q1U5gAU",
+      "source_url": "https://www.youtube.com/watch?v=-KoaHL8l6hU",
+      "source_author": "Shadybunny",
+      "source_id": "-KoaHL8l6hU",
       "discovery_sources": [
         {
           "type": "hsreplay",
@@ -283,7 +302,16 @@
           "label": "HSReplay composition guide"
         }
       ],
-      "supporting_sources": [],
+      "supporting_sources": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=KZw3Q1U5gAU",
+          "source_id": "KZw3Q1U5gAU",
+          "author": "JeefHS",
+          "label": "Chenvaala Sticker execution with Brann and Tavern Tempest generation",
+          "timestamp": 340
+        }
+      ],
       "published_at": "2026-08-20T15:34:05+00:00"
     }
   ]

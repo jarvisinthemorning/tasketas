@@ -12,94 +12,108 @@ addons: []
 cycle: []
 packages:
   - title: Commit
-    purpose: Take this line only when Recycling Sticker is offered and you already have Elemental generation ready to turn its free Refreshes into a real cycle.
+    purpose: Recycling Sticker is the actual commitment. Pair its free Refreshes with enough Elemental supply to keep playing rather than merely rolling.
     badge: Commit signal
     optional: false
     cards: [120705]
   - title: Core
-    purpose: Sticker makes each played Elemental refresh for free; Brann doubles Tavern Tempest so one buy supplies two more Elementals to keep the loop moving.
+    purpose: Air Revenant inflates future shops as Gold is spent, and Unbound Tempest converts the largest Tavern body into permanent stats every three Elementals.
     badge: Required core
     optional: false
-    cards: [120705, 64077, 96786]
-  - title: Inflate the Tavern
-    purpose: Air Revenant and En-Djinn stack permanent shop buffs while Sticker supplies the repeated Refreshes that cash them in.
-    badge: Scaling engine
+    cards: [120705, 126173, 132983]
+  - title: Feed the loop
+    purpose: Tavern Tempest supplies more Elementals; Brann improves that Battlecry, but Shady's run proves the Sticker engine can operate before Brann appears.
+    badge: Cycle supply
     optional: false
-    cards: [126173, 126175]
+    cards: [64077, 96786]
   - title: Convert the stats
-    purpose: Unbound Tempest copies the largest Tavern body every three Elementals; Mana Surge converts the same play volume into whole-board scaling.
+    purpose: Unleashed Mana Surge scales the full Elemental board while Unbound Tempest repeatedly takes the highest-Health Tavern minion's stats.
     badge: Final carries
     optional: false
     cards: [132983, 120674]
+  - title: Source-specific head start
+    purpose: Replica Cathedral doubles the first Strike Oil each turn, while Ballers provide enough economy and tempo to reach Tier 6 safely. This is acceleration, not the comp's baseline requirement.
+    badge: Optional — highroll bridge
+    optional: true
+    cards: [112855, 104029, 133455]
   - title: Anti-scam finish
-    purpose: Use Elemental of Surprise to secure a Golden Wildfire when Cleave is more valuable than another greedy generator.
+    purpose: Move accumulated stats onto Wildfire Elemental with Mounting Avalanche when cleave is more valuable than another greedy engine body.
     badge: Optional — anti-scam
     optional: true
-    cards: [101280, 64189]
+    cards: [122862, 64189]
 related_routes: []
-composition_minions: [64077, 96786, 126173, 126175, 132983, 120674, 64189]
-composition_spells: []
+composition_minions: [126173, 132983, 64077, 96786, 120674, 133455, 64189]
+composition_spells: [104029, 122862]
 board_examples:
   - stage: late
-    turn: 12
-    timestamp: 824
+    turn: 15
+    timestamp: 1341
     phase: tavern
-    image: /static/boards/elementals-recycling-sticker-apm-late.webp
-    note: The mature loop has converted a heavily inflated Tavern into multiple large carries while Brann remains available for more generation.
+    image: /static/boards/elementals-recycling-sticker-apm-shady-late.webp
+    note: The mature Turn 15 loop has two Golden Unbound Tempests, a heavily inflated Tavern, several four-digit bodies and 89 seconds left to continue cycling.
 discovery_sources:
   - type: hsreplay
     url: https://hsreplay.net/battlegrounds/comps/37/elementals-stat-scaling-shop-buff/
     comp_id: '37'
-supporting_sources: []
+supporting_sources:
+  - type: youtube
+    url: https://www.youtube.com/watch?v=KZw3Q1U5gAU
+    author: JeefHS
+    label: Chenvaala Sticker execution with Brann and Tavern Tempest generation
+    timestamp: 340
 source:
   type: youtube
-  url: https://www.youtube.com/watch?v=KZw3Q1U5gAU
-  author: JeefHS
+  url: https://www.youtube.com/watch?v=-KoaHL8l6hU
+  author: Shadybunny
 video:
-  id: KZw3Q1U5gAU
-  timestamp: 340
+  id: -KoaHL8l6hU
+  timestamp: 478
 source_published_at: '2026-08-20'
 verified_at: '2026-08-20'
 ---
 
 ## How it works
 
-[[card:120705|Recycling Sticker]] turns every Elemental you play into a free Tavern Refresh. The loop becomes sustainable when [[card:96786|Brann Bronzebeard]] doubles [[card:64077|Tavern Tempest]], turning one Battlecry into two generated Elementals; each generated body triggers Sticker again when played.
+[[card:120705|Recycling Sticker]] turns every Elemental you play into a free Tavern Refresh. [[card:126173|Air Revenant]] makes those Refreshes progressively better by casting Easterly Winds as Gold is spent, and [[card:132983|Unbound Tempest]] converts the highest-Health Tavern minion into permanent stats every three Elementals.
 
-The cycle does two scaling jobs at once. [[card:126173|Air Revenant]] repeatedly casts Easterly Winds as Gold is spent, and [[card:126175|En-Djinn Blazer]] adds another permanent Refresh payoff. Those shop buffs are finally converted by [[card:132983|Unbound Tempest]], which takes the stats of the highest-Health Tavern minion every three Elementals. [[card:120674|Unleashed Mana Surge]] is the complementary board-wide payoff.
+[[card:64077|Tavern Tempest]] is the cleanest repeatable supply. [[card:96786|Brann Bronzebeard]] improves its Battlecry, but he is not required to start: Shady explicitly notes at **15:57** that he still has many stored free Refreshes without Brann. [[card:120674|Unleashed Mana Surge]] is the parallel whole-board payoff.
 
-This page is deliberately a **Highroll**, not the ordinary HSReplay Elemental route: the source's near-infinite version is built around a specific Greater Trinket and accelerated by Chenvaala. The underlying shop-buff composition is currently listed by HSReplay, but the showcased loop should not be presented as the normal floor.
+This page remains a **Highroll**, not the ordinary HSReplay Elemental floor. The source combines Genn, [[card:112855|Replica Cathedral]], repeatedly doubled [[card:104029|Strike Oil]], strong Ballers and Recycling Sticker. The underlying shop-buff composition is currently listed by HSReplay, but this near-infinite ceiling should not be mistaken for a normal game.
 
 ## When to commit
 
-- **2:52** is only a forecast: Jeef says the game is probably APM, but the defining engine is not assembled yet.
-- At **3:41**, he deliberately keeps [[card:64077|Tavern Tempest]] for the coming Trinket choice.
-- The mechanical commit is the [[card:120705|Recycling Sticker]] pick around **5:40**, immediately followed by the claim that the line can go infinite. Sticker without Elemental supply is not enough; Tempest plus [[card:96786|Brann Bronzebeard]] is what keeps feeding plays.
-- Abort this exact line if Sticker is absent, or if you cannot find enough generation before spending the remaining Gold on low-impact Elementals. The normal shop-buff route may still be playable, but this source does not prove its ordinary floor.
+- The early Strike Oil and Baller turns are a bridge, not a comp commitment. They provide Gold and tempo while Shady stays flexible.
+- At **7:58–8:05**, [[card:120705|Recycling Sticker]] is selected and Shady immediately asks how to turn its free Refreshes into an Elemental Tier 6 payoff. That is the mechanical commit.
+- [[card:63626|Nomi, Kitchen Nightmare]] at **8:34** is temporary shop scaling, not the final board.
+- At **12:06**, the endgame becomes explicit: “We're playing Unbound Tempests.” At **12:48**, Nomi no longer matters because [[card:132983|Unbound Tempest]] has replaced it as the permanent conversion engine.
+- Abort this exact line if Sticker is absent or Elemental supply is too weak. Oil and Ballers alone do not prove the late-game engine.
 
 ## How to play the recruit turns
 
-1. Preserve [[card:64077|Tavern Tempest]] for the Sticker turn instead of cashing it too early. With Brann, its Battlecry supplies two Elementals and therefore two more free Refresh triggers.
-2. After Sticker is active, play an Elemental, take the free Refresh, and reassess. Do not buy every Elemental merely because the Refresh is free: Jeef rejects low-impact bodies at **3:17** and again at **5:33–5:38**.
-3. Add permanent Tavern scaling before chasing final bodies. [[card:126173|Air Revenant]] and [[card:126175|En-Djinn Blazer]] make later Refreshes and buys worth more.
-4. Convert the inflated shop with [[card:132983|Unbound Tempest]]. Three Elemental plays copy the highest-Health Tavern body's stats, so sequence the third trigger when the shop contains a suitably large target.
-5. Keep [[card:120674|Unleashed Mana Surge]] when the board has enough Elementals to benefit from repeated whole-board buffs.
-6. Watch the actual Gold total. At **13:53**, Jeef explicitly slows down because he has only a single Brann and does not want the loop to run dry. “Infinite” is the ceiling, not permission to stop counting.
+1. Use Strike Oil and Ballers to reach the high Tavern tiers without sacrificing too much combat strength. Shady's [[card:133455|Air Baller]] produces a +28/+28 swing at **10:07**, but Ballers are still the bridge.
+2. Once Sticker is active, play an Elemental, take the free Refresh and reassess. Do not roll past a heavily buffed Tavern minion just because more free Refreshes are banked.
+3. Add permanent shop scaling. [[card:126173|Air Revenant]] repeatedly casts Easterly Winds as Gold is spent; Nomi can fill this role temporarily until the Unbound pivot is secured.
+4. Feed [[card:132983|Unbound Tempest]] with cheap or generated Elementals. Sequence the third play when the Tavern contains a high-Health target worth copying.
+5. Prioritize [[card:64077|Tavern Tempest]] once the engine is online. At **17:20–17:26**, Shady says the earlier Baller scaling no longer matters compared with Tempest generation.
+6. Treat Brann as an upgrade, not a prerequisite. Preserve enough board space to play and sell generated Elementals before adding another permanent carry.
+7. Do not auto-triple the generator. At **19:38–19:43**, Shady avoids tripling Tavern Tempest because the existing copies keep the avalanche moving.
+8. Budget real thinking time. By **23:45**, the run has banked 64 Refreshes; the failure mode is no longer Gold but wasting strong shops while the rope quietly sharpens its knife.
 
 ## Positioning and traps
 
-- Against scam boards, lead with [[card:64189|Wildfire Elemental]] so its overkill can remove adjacent utility bodies. Jeef cites an opponent's first-position Wildfire as smart at **1:13**, then prioritizes the Surprise–Wildfire finish over another Djinni at **8:56**.
-- [[card:101280|Elemental of Surprise]] is a conversion tool, not generic scaling. Use it when tripling Wildfire materially improves the next combat; otherwise preserve the engine slots.
-- Do not fill all seven slots with permanent carries too early. The loop needs room to play and sell generated Elementals, and Brann must remain while Tavern Tempest is the main supply engine.
-- Do not treat the Turn 12 board or five-figure [[card:132983|Unbound Tempest]] as typical. Chenvaala, Recycling Sticker, the generated Elemental chain, and the source's successful hits all contribute to that ceiling.
+- Use [[card:122862|Mounting Avalanche]] to move a disposable giant's stats onto [[card:64189|Wildfire Elemental]] when cleave is the best anti-scam conversion. Shady makes this exact transfer at **19:48**.
+- Sell temporary engines when they stop advancing the final board. Nomi is cut once Unbound takes over, and Ballers become secondary once Tavern Tempest supplies the cycle.
+- Keep a flex slot. A full seven-card board blocks Elemental plays, Tavern Tempest Battlecries and the sell actions the loop needs.
+- Golden Unbound Tempests, doubled Oils and Sticker are the showcase ceiling. The Turn 15 board is evidence of what the highroll can become, not a normal benchmark.
 
 ## Useful timestamps
 
-- **2:52** — Jeef forecasts an APM Elemental game.
-- **3:41** — Tavern Tempest is held specifically for the upcoming Trinket.
-- **5:40** — Recycling Sticker is selected; this is the actual mechanical commit.
-- **8:07** — The Elemental loop is described as effectively infinite.
-- **8:24–8:59** — Anti-scam planning leads to Wildfire over another Djinni.
-- **11:38** — Jeef calls Recycling Sticker the reason the engine is guaranteed to keep refreshing.
-- **13:44** — Stable late Turn 12 Tavern view of the mature board and heavily buffed shop.
-- **13:53–13:57** — He slows the cycle to avoid running out of Gold with only one Brann.
+- **2:04–3:00** — Replica Cathedral starts doubling Strike Oil for the economy head start.
+- **7:58–8:05** — Recycling Sticker is selected; this is the actual commitment.
+- **8:34** — Nomi is taken as temporary shop scaling.
+- **10:07–10:18** — Air Baller supplies a major tempo swing; Mana Surge and Brann become targets.
+- **12:06–12:50** — The build pivots decisively to Unbound Tempests and drops Nomi.
+- **17:20–17:26** — Tavern Tempest generation overtakes the earlier Baller plan.
+- **19:38–19:48** — Tavern Tempest is deliberately not tripled; Mounting Avalanche moves stats onto Wildfire.
+- **22:20–22:21** — Stable Turn 15 Tavern view of the two Golden Unbound Tempests and inflated shop.
+- **23:45** — The engine reaches 64 stored free Refreshes.
