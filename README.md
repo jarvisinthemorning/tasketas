@@ -32,7 +32,7 @@ Tavern minions use tier pool copies and shop size. Tavern and categorized genera
 
 ## Preview a guide
 
-Start from `templates/comp-guide.md` and save the guide under `content/patches/<latest-patch>/`. The `patch` frontmatter must match `data/site.json`; the publisher refuses cross-patch writes. Keep the original strategy evidence under `source`/`video`. When HSReplay or Firestone lists the same engine, record it separately under `discovery_sources`; directory listings are attribution and discovery signals, not substitutes for a demonstrated strategy source.
+Start from `templates/comp-guide.md` and save the guide under `content/patches/<latest-patch>/`. The `patch` frontmatter must match `data/site.json`; the publisher refuses cross-patch writes. Keep the original strategy evidence under `source`/`video`. **`classification: meta` is reserved exclusively for compositions listed directly in the current HSReplay directory and requires the composition-specific HSReplay entry in `discovery_sources`.** Firestone, YouTube, Reddit, and other sources may support Variants or Underdogs but cannot establish Meta status. Directory listings are attribution and discovery signals, not substitutes for a demonstrated strategy source.
 
 ```yaml
 discovery_sources:
