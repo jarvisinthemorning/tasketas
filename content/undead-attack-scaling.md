@@ -45,6 +45,11 @@ packages:
   badge: Optional — scaling upgrades
   optional: true
   cards: [122229, 126451, 120219, 120104, 110412, 130298]
+- title: Plaguerunner Gift ceiling
+  purpose: Portrait recycles destroyed Plaguerunners; Admiration plus Warpwing can turn a scaled Snazzy into a protected combat carry.
+  badge: 'Optional — source highroll: trinket + Dark Gifts'
+  optional: true
+  cards: [133391, 126451, 132207, 133083, 92413]
 - title: Reborn and summons
   purpose: Add repeatable Reborn and bodies so the Attack scaling becomes combat value instead of a board of fragile glass cannons.
   badge: Optional — trigger supply
@@ -129,6 +134,11 @@ supporting_sources:
   author: JeefHS
   label: Deathstrider and Mummifier combat-loop variation
   timestamp: 89
+- type: youtube
+  url: https://www.youtube.com/watch?v=BgugX9kZ348
+  author: Shadybunny
+  label: Plaguerunner Portrait recycle into Admiration and Warpwing Snazzy ceiling
+  timestamp: 628
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=JGU9TeaO6VE
@@ -137,7 +147,7 @@ video:
   id: JGU9TeaO6VE
   timestamp: 436
 source_published_at: '2026-08-01'
-verified_at: '2026-08-15'
+verified_at: '2026-08-20'
 ---
 
 ## How it works
@@ -195,6 +205,12 @@ The source's practical reset gate is Deathstrider plus **one multiplier**: Golde
 
 Treat the package as matchup tech, not a default end board. Jeef explicitly says the conventional Undead line has a higher cap and demonstrates that Windfury can interrupt the Rally sequence. Sin'dorei Straight Shot is especially dangerous because it can remove Taunt and Reborn; a small enemy Taunt can also redirect the attack order. Multiple Taunts or a Taunted [[card:90425|Leeroy the Reckless]] can buy redundancy, but double disruption still ends the loop.
 
+## Plaguerunner Gift ceiling
+
+The Shadybunny supporting game adds a premium finish without changing the ordinary Core. [[card:133391|Plaguerunner Portrait]] keeps returning plain [[card:126451|Plaguerunner]] copies after outside-combat destroys, which improves access to the normal permanent-Attack engine. [[card:132207|Admiration]] then lets a gifted [[card:133083|Snazzy Phantom]] borrow the stats of its left neighbor at Start of Combat, while [[card:92413|Warpwing]]'s Immune-while-attacking Gift protects that oversized attacker.
+
+Treat the whole package as trinket-and-Gift gated. Portrait can extend an ordinary Plaguerunner line, but repeated Gifts, generated copies, and the source's final Snazzy scale are not baseline expectations. Without those premium hits, stay on the Butcher/Reborn shopping plan rather than reserving slots for a ceiling that has not appeared.
+
 ## Positioning and traps
 
 - **Right-most matters:** Snazzy always buffs the right-most Undead. Recheck the order after every buy, sell, Reborn setup, or temporary tech card.
@@ -246,3 +262,6 @@ Treat the package as matchup tech, not a default end board. Jeef explicitly says
 - **Jeef Exodia 7:38** — the assembled engine is visibly repeating in combat.
 - **Jeef Exodia 13:53** — explains why Windfury makes the package unreliable.
 - **Jeef Exodia 17:49** — reviews the disruption the final opponent needs to break the loop.
+- **Shadybunny 3:52** — early Undead tempo is visible before the premium engine is assembled.
+- **Shadybunny 10:28** — Plaguerunner Portrait and the outside-combat recycle line are online.
+- **Shadybunny 22:54** — combat evidence for the Admiration/Warpwing Snazzy ceiling; effects make it unsuitable as a board crop.

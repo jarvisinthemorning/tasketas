@@ -63,6 +63,11 @@ packages:
   badge: Optional — economy bridge
   optional: true
   cards: [96786]
+- title: Dagger Admiration conversion
+  purpose: Dagger can copy an Admiration Brann each turn; an all-type Brann beside Poet can then retain the copied combat stats.
+  badge: 'Optional — source highroll: trinket + Dark Gift'
+  optional: true
+  cards: [133713, 132207, 96786, 108463]
 - title: Scaling and carries
   purpose: Let Hooktusk scale Pirates through Discovers, bank Golden-play growth on Extortionist, and keep Blade Collector scaled so its attacks threaten adjacent enemies.
   badge: Optional — combat conversion
@@ -116,6 +121,11 @@ supporting_sources:
   author: BeterBabbit
   label: Lockbox transition with Golden Brann acceleration
   timestamp: 0
+- type: youtube
+  url: https://www.youtube.com/watch?v=DqPYeFZch0c
+  author: Shadybunny
+  label: Maldraxxus Dagger and Admiration Brann conversion with Persistent Poet
+  timestamp: 850
 source:
   type: youtube
   url: https://www.youtube.com/watch?v=IvdTja9QGqg
@@ -124,7 +134,7 @@ video:
   id: IvdTja9QGqg
   timestamp: 293
 source_published_at: '2026-08-08'
-verified_at: '2026-08-11'
+verified_at: '2026-08-20'
 ---
 
 ## How it works
@@ -164,6 +174,12 @@ Shadybunny2's game receives unusually strong acceleration from Nightmare Lord Xa
 - **Rogers and Privateer are working slots, not sacred furniture.** Keep them while doubled Bounties fund the turn. Once the engine sustains itself without that package, replace Rogers with cleave or another finished combat body and preserve one cycle slot.
 - **Buy time as carefully as Gold.** Rdu calls the route difficult even with the pieces assembled. Decide likely cuts before the APM turn starts; improvising seven board slots under the rope is how the Tavern becomes an escape room.
 
+## Dagger Admiration conversion
+
+The Shadybunny commentary game adds a premium late conversion after the ordinary Escapee/Hooktusk engine is already working. [[card:133713|Maldraxxus Dagger]] repeatedly copies a gifted [[card:96786|Brann Bronzebeard]] carrying [[card:132207|Admiration]]. Once Brann has all minion types, placing it beside [[card:108463|Persistent Poet]] preserves the combat-start stats that would otherwise disappear.
+
+This is a teachable finish, not better baseline progression. It requires the specific trinket, Dark Gift, and all-type setup; it does not replace Escapee as the Gold generator or Hooktusk as the permanent Pirate payoff. If those premium pieces do not arrive, sell Brann when his Battlecry economy stops paying for the slot and finish the normal Pirate board.
+
 ## Positioning and traps
 
 - **Golden first, Discover second:** Hooktusk's scaling is improved by Golden minions already played this game. Reversing the order leaves permanent stats behind.
@@ -201,3 +217,6 @@ Shadybunny2's game receives unusually strong acceleration from Nightmare Lord Xa
 - **Rdu 32:55** — the mature engine evaluates whether Castaway and the Bounty package are still needed.
 - **Rdu 35:51** — Rogers becomes the cut for cleave, leaving one cycle slot.
 - **Rdu 43:43** — explicit warning that the APM route is not mobile-friendly.
+- **Shadybunny commentary 6:40** — the Pirate engine is established; the title's Brann payoff is not yet the primary route.
+- **Shadybunny commentary 14:10** — Dagger, Admiration Brann, and Poet conversion are visible on a stable Recruit board.
+- **Shadybunny commentary 19:40** — stable mature Tavern board with the Gift-gated conversion online.
