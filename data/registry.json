@@ -1212,6 +1212,9 @@
         133712,
         132764,
         99035,
+        133713,
+        132207,
+        108463,
         132766,
         59604
       ],
@@ -1227,6 +1230,9 @@
         133712,
         132764,
         99035,
+        133713,
+        132207,
+        108463,
         132766,
         59604
       ],
@@ -1239,15 +1245,18 @@
         132921,
         132987,
         132764,
-        99035
+        99035,
+        108463
       ],
       "spell_ids": [
         104448,
+        132207,
         132766,
         59604
       ],
       "other_ids": [
-        133712
+        133712,
+        133713
       ],
       "card_previews": {
         "132762": {
@@ -1295,7 +1304,7 @@
       "spells": [],
       "hand_minions": [],
       "prerequisites": [],
-      "verified_at": "2026-08-11",
+      "verified_at": "2026-08-20",
       "source_type": "youtube",
       "source_url": "https://www.youtube.com/watch?v=IvdTja9QGqg",
       "source_author": "Shadybunny2",
@@ -1338,6 +1347,14 @@
           "author": "BeterBabbit",
           "label": "Lockbox transition with Golden Brann acceleration",
           "timestamp": 0
+        },
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/watch?v=DqPYeFZch0c",
+          "source_id": "DqPYeFZch0c",
+          "author": "Shadybunny",
+          "label": "Maldraxxus Dagger and Admiration Brann conversion with Persistent Poet",
+          "timestamp": 850
         }
       ],
       "published_at": "2026-08-11T19:51:43+00:00"
