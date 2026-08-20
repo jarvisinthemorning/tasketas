@@ -143,6 +143,148 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-20T09:38:35+00:00"
+    },
+    {
+      "slug": "elementals-recycling-sticker-apm",
+      "title": "Elementals — Recycling Sticker APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/patches/36.2.2/comps/elementals-recycling-sticker-apm.html",
+      "season": 14,
+      "patch": "36.2.2",
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "elemental"
+      ],
+      "tags": [
+        "apm",
+        "shop-buff",
+        "scaling",
+        "trinket"
+      ],
+      "type": "highroll",
+      "commit": [
+        120705
+      ],
+      "core": [
+        120705,
+        64077,
+        96786
+      ],
+      "dynamic": [
+        126173,
+        126175,
+        132983,
+        120674,
+        101280,
+        64189
+      ],
+      "cards": [
+        120705,
+        64077,
+        96786,
+        126173,
+        126175,
+        132983,
+        120674,
+        101280,
+        64189
+      ],
+      "minion_ids": [
+        64077,
+        96786,
+        126173,
+        126175,
+        132983,
+        120674,
+        101280,
+        64189
+      ],
+      "spell_ids": [],
+      "other_ids": [
+        120705
+      ],
+      "card_previews": {
+        "120705": {
+          "id": 120705,
+          "name": "Recycling Sticker",
+          "type": "trinket",
+          "tier": null,
+          "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/120705-recycling-sticker.png",
+          "detail": "https://hsbg.cards/card/recycling-sticker"
+        },
+        "64077": {
+          "id": 64077,
+          "name": "Tavern Tempest",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/64077-tavern-tempest.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/64077/tavern-tempest"
+        },
+        "96786": {
+          "id": 96786,
+          "name": "Brann Bronzebeard",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/neutral/96786-brann-bronzebeard.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/96786/brann-bronzebeard"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 64077,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 96786,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126173,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 126175,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132983,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 120674,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 64189,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-20",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=KZw3Q1U5gAU",
+      "source_author": "JeefHS",
+      "source_id": "KZw3Q1U5gAU",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/37/elementals-stat-scaling-shop-buff",
+          "comp_id": "37",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-20T15:34:05+00:00"
     }
   ]
 }
