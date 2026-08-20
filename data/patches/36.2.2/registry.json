@@ -1,5 +1,148 @@
 {
   "schema_version": 4,
   "patch": "36.2.2",
-  "pages": []
+  "pages": [
+    {
+      "slug": "mechs-magnetics",
+      "title": "Mechs — Magnetics",
+      "url": "https://jarvisinthemorning.github.io/tasketas/patches/36.2.2/comps/mechs-magnetics.html",
+      "season": 14,
+      "patch": "36.2.2",
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "mech"
+      ],
+      "tags": [
+        "magnetic",
+        "scaling",
+        "end-of-turn"
+      ],
+      "type": "meta",
+      "commit": [],
+      "core": [
+        132676,
+        132312,
+        98588
+      ],
+      "dynamic": [
+        98592,
+        98576,
+        101314,
+        133075,
+        126916,
+        132895,
+        132893,
+        120905,
+        130298
+      ],
+      "cards": [
+        132676,
+        132312,
+        98588,
+        98592,
+        98576,
+        101314,
+        133075,
+        126916,
+        132895,
+        132893,
+        120905,
+        130298
+      ],
+      "minion_ids": [
+        132676,
+        132312,
+        98588,
+        98592,
+        98576,
+        101314,
+        133075,
+        126916,
+        132895,
+        132893,
+        120905,
+        130298
+      ],
+      "spell_ids": [],
+      "other_ids": [],
+      "card_previews": {
+        "132676": {
+          "id": 132676,
+          "name": "Spark Snapper",
+          "type": "minion",
+          "tier": 5,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/132676-spark-snapper.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132676/spark-snapper"
+        },
+        "132312": {
+          "id": 132312,
+          "name": "Drone Duplicator",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/132312-drone-duplicator.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132312/drone-duplicator"
+        },
+        "98588": {
+          "id": 98588,
+          "name": "Utility Drone",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/mech/98588-utility-drone.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/98588/utility-drone"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 132676,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132312,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98588,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98592,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 98576,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 101314,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-20",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=vow9zY5FwFg",
+      "source_author": "Sevel",
+      "source_id": "vow9zY5FwFg",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/2/mechs-magnetics",
+          "comp_id": "2",
+          "label": "HSReplay composition guide"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-20T09:38:35+00:00"
+    }
+  ]
 }
