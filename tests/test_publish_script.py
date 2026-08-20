@@ -5,7 +5,7 @@ from pathlib import Path
 
 from scripts.calculate_rarity import active_cards_path
 from scripts.publish_comp import resolve_patch_layout
-from scripts.refresh_cards import active_output_path
+from scripts.refresh_cards import active_output_path, reconcile_patch_pool
 
 
 class PublishScriptTests(unittest.TestCase):
@@ -39,6 +39,24 @@ class PublishScriptTests(unittest.TestCase):
                 active_output_path(root),
                 root / "data/patches/36.2.2/cards.json",
             )
+
+    def test_card_refresh_reconciles_returned_and_removed_cards_from_patch_notes(self):
+        cards = [
+            {"id": 10, "name": "Still Current", "pool": True},
+            {"id": 20, "name": "Just Removed", "pool": True},
+        ]
+        patch_html = """
+        <div data-card-id="30"><span class="diff-badge diff-badge-returning">Returning</span></div>
+        <div data-card-id="20"><span class="diff-badge diff-badge-removed">Removed</span></div>
+        """
+        fetched = {
+            30: {"id": 30, "name": "Just Returned", "pool": False},
+        }
+
+        reconciled = reconcile_patch_pool(cards, patch_html, fetched.__getitem__)
+
+        self.assertEqual([card["id"] for card in reconciled], [10, 30])
+        self.assertTrue(reconciled[-1]["pool"])
 
     def test_rarity_uses_latest_patch_catalogue(self):
         with tempfile.TemporaryDirectory() as tmp:
