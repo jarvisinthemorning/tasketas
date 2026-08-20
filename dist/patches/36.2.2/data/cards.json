@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T19:56:54+00:00",
+  "generated_at": "2026-08-20T20:09:22+00:00",
   "source": "https://hsbg.cards/api-docs",
   "cards": {
     "57555": {
@@ -3114,6 +3114,38 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/64054-crackling-cyclone.png",
       "detail": "https://hsreplay.net/battlegrounds/minions/64054/crackling-cyclone",
       "hsreplay": "https://hsreplay.net/battlegrounds/minions/64054/crackling-cyclone"
+    },
+    "64062": {
+      "id": 64062,
+      "card_id": "BGS_121",
+      "slug": "gentle-djinni",
+      "name": "Gentle Djinni",
+      "type": "minion",
+      "tier": 6,
+      "attack": 5,
+      "health": 6,
+      "attack_gold": 10,
+      "health_gold": 12,
+      "text": "<b>Taunt</b> <b>Battlecry and Deathrattle:</b> Get a random Elemental.",
+      "text_gold": "<b>Taunt</b> <b>Battlecry and Deathrattle:</b> Get 2 random Elementals.",
+      "keywords": [
+        "deathrattle",
+        "taunt"
+      ],
+      "tribes": [
+        "Elemental"
+      ],
+      "categories": [
+        "tavern"
+      ],
+      "pool": true,
+      "modes": [
+        "solo",
+        "duos"
+      ],
+      "image": "https://hsbg.cards/cards/production/pngs/full/minions/elemental/64062-gentle-djinni.png",
+      "detail": "https://hsreplay.net/battlegrounds/minions/64062/gentle-djinni",
+      "hsreplay": "https://hsreplay.net/battlegrounds/minions/64062/gentle-djinni"
     },
     "64077": {
       "id": 64077,
@@ -9065,8 +9097,8 @@
       "health": 2,
       "attack_gold": 4,
       "health_gold": 4,
-      "text": "When you sell this,\nget a random Murloc.",
-      "text_gold": "When you sell this,\nget 2 random Murlocs.",
+      "text": "When you sell this, get a random Murloc.",
+      "text_gold": "When you sell this, get 2 random Murlocs.",
       "keywords": [],
       "tribes": [
         "Murloc"
@@ -21945,8 +21977,8 @@
       "health": 5,
       "attack_gold": 12,
       "health_gold": 10,
-      "text": "At the end of your turn,\nyour Tavern spells give\nan extra +1/+1\nthis game.",
-      "text_gold": "At the end of your turn,\nyour Tavern spells give\nan extra +2/+2\nthis game.",
+      "text": "At the end of your turn, your Tavern spells give an extra +1/+1 this game.",
+      "text_gold": "At the end of your turn, your Tavern spells give an extra +2/+2 this game.",
       "keywords": [
         "end of turn"
       ],
@@ -38720,6 +38752,31 @@
       "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/133713-maldraxxus-dagger.png",
       "detail": "https://hsbg.cards/card/maldraxxus-dagger",
       "hsreplay": "https://hsbg.cards/card/maldraxxus-dagger"
+    },
+    "133714": {
+      "id": 133714,
+      "card_id": "BG36_MagicItem_363",
+      "slug": "escapee-portrait",
+      "name": "Escapee Portrait",
+      "type": "trinket",
+      "tier": null,
+      "attack": 0,
+      "health": 0,
+      "attack_gold": null,
+      "health_gold": null,
+      "text": "Get a Golden Enterprising Escapee. Your Lockboxes open 1 turn sooner.",
+      "text_gold": null,
+      "keywords": [],
+      "tribes": [],
+      "categories": [],
+      "pool": true,
+      "modes": [
+        "solo",
+        "duos"
+      ],
+      "image": "https://hsbg.cards/cards/production/pngs/full/trinkets/133714-escapee-portrait.png",
+      "detail": "https://hsbg.cards/card/escapee-portrait",
+      "hsreplay": "https://hsbg.cards/card/escapee-portrait"
     },
     "133715": {
       "id": 133715,

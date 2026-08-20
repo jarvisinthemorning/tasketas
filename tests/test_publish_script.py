@@ -40,23 +40,59 @@ class PublishScriptTests(unittest.TestCase):
                 root / "data/patches/36.2.2/cards.json",
             )
 
-    def test_card_refresh_reconciles_returned_and_removed_cards_from_patch_notes(self):
+    def test_card_refresh_uses_structured_after_state_for_all_returning_cards(self):
         cards = [
             {"id": 10, "name": "Still Current", "pool": True},
             {"id": 20, "name": "Just Removed", "pool": True},
         ]
-        patch_html = """
-        <div data-card-id="30"><span class="diff-badge diff-badge-returning">Returning</span></div>
-        <div data-card-id="20"><span class="diff-badge diff-badge-removed">Removed</span></div>
-        """
+        returning = [
+            {
+                "id": 30,
+                "name": "Simple Return",
+                "newCard": {"name": "Simple Return", "cardType": "minion", "tier": 2},
+            },
+            {
+                "id": 40,
+                "name": "Changed Return",
+                "newCard": {
+                    "name": "Changed Return",
+                    "cardType": "minion",
+                    "tier": 6,
+                    "attack": 5,
+                    "health": 6,
+                    "text": "New patch text",
+                },
+            },
+        ]
+        removed = [{"id": 20, "name": "Just Removed", "newCard": None}]
+        payload = (
+            json.dumps(
+                {"changeType": "returning", "label": "Returning Cards", "cards": returning},
+                separators=(",", ":"),
+            )
+            + json.dumps(
+                {"changeType": "removed", "label": "Removed Cards", "cards": removed},
+                separators=(",", ":"),
+            )
+        )
+        patch_html = (
+            "<p>Visual changes: 1 removed, 2 returning</p>"
+            f"<script>self.__next_f.push([1,{json.dumps(payload)}])</script>"
+        )
         fetched = {
-            30: {"id": 30, "name": "Just Returned", "pool": False},
+            30: {"id": 30, "name": "Simple Return", "pool": False, "tier": 1},
+            40: {"id": 40, "name": "Changed Return", "pool": False, "tier": 5, "text": "Stale"},
         }
 
         reconciled = reconcile_patch_pool(cards, patch_html, fetched.__getitem__)
+        by_id = {card["id"]: card for card in reconciled}
 
-        self.assertEqual([card["id"] for card in reconciled], [10, 30])
-        self.assertTrue(reconciled[-1]["pool"])
+        self.assertEqual(sorted(by_id), [10, 30, 40])
+        self.assertTrue(by_id[30]["pool"])
+        self.assertEqual(by_id[30]["tier"], 2)
+        self.assertTrue(by_id[40]["pool"])
+        self.assertEqual(by_id[40]["tier"], 6)
+        self.assertEqual(by_id[40]["text"], "New patch text")
 
     def test_rarity_uses_latest_patch_catalogue(self):
         with tempfile.TemporaryDirectory() as tmp:

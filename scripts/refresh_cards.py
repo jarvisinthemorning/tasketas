@@ -29,21 +29,53 @@ def active_patch(root: Path = ROOT) -> str:
     return validate_patch_name(site["latest_patch"])
 
 
+def parse_patch_pool_changes(patch_html: str) -> dict[str, list[dict]]:
+    summary = re.search(r"(\d+) removed, (\d+) returning", patch_html)
+    if summary is None:
+        raise ValueError("Patch notes do not declare removed/returning card counts")
+    expected = {"removed": int(summary.group(1)), "returning": int(summary.group(2))}
+
+    payload_chunks: list[str] = []
+    prefix = "self.__next_f.push([1,"
+    for script in re.findall(r"<script[^>]*>(.*?)</script>", patch_html, flags=re.DOTALL):
+        if script.startswith(prefix) and script.endswith("])"):
+            payload_chunks.append(json.loads(script[len(prefix) : -2]))
+    payload = "".join(payload_chunks)
+
+    groups: dict[str, list[dict]] = {}
+    decoder = json.JSONDecoder()
+    for change_type, label in (("removed", "Removed Cards"), ("returning", "Returning Cards")):
+        marker = f'"changeType":"{change_type}","label":"{label}","cards":'
+        position = payload.find(marker)
+        if position < 0:
+            cards = []
+        else:
+            cards, _ = decoder.raw_decode(payload[position + len(marker) :])
+        if not isinstance(cards, list) or len(cards) != expected[change_type]:
+            raise ValueError(
+                f"Patch notes declared {expected[change_type]} {change_type} cards "
+                f"but structured data yielded {len(cards) if isinstance(cards, list) else 'invalid data'}"
+            )
+        if len({int(card["id"]) for card in cards}) != len(cards):
+            raise ValueError(f"Patch notes contain duplicate {change_type} card IDs")
+        groups[change_type] = cards
+    return groups
+
+
 def reconcile_patch_pool(cards: list[dict], patch_html: str, fetch_card) -> list[dict]:
-    changes = {
-        int(card_id): change
-        for card_id, change in re.findall(
-            r'data-card-id="(\d+)"(?:(?!data-card-id).)*?diff-badge-(returning|removed)',
-            patch_html,
-            flags=re.DOTALL,
-        )
-    }
-    reconciled = [card for card in cards if changes.get(int(card["id"])) != "removed"]
+    groups = parse_patch_pool_changes(patch_html)
+    removed_ids = {int(card["id"]) for card in groups["removed"]}
+    reconciled = [card for card in cards if int(card["id"]) not in removed_ids]
     by_id = {int(card["id"]): index for index, card in enumerate(reconciled)}
-    for card_id, change in changes.items():
-        if change != "returning":
-            continue
+    for change in groups["returning"]:
+        card_id = int(change["id"])
+        after_state = change.get("newCard")
+        if not isinstance(after_state, dict):
+            raise ValueError(f"Returning card {card_id} has no structured after-state")
         card = dict(fetch_card(card_id))
+        for key, value in after_state.items():
+            if key not in {"image", "imageGold"}:
+                card[key] = value
         card["pool"] = True
         if card_id in by_id:
             reconciled[by_id[card_id]] = card
