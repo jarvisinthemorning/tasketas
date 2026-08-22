@@ -448,6 +448,125 @@
       ],
       "supporting_sources": [],
       "published_at": "2026-08-20T20:03:30+00:00"
+    },
+    {
+      "slug": "pirates-golden-discover-apm",
+      "title": "Pirates — Golden Discover APM",
+      "url": "https://jarvisinthemorning.github.io/tasketas/patches/36.2.2/comps/pirates-golden-discover-apm.html",
+      "season": 14,
+      "patch": "36.2.2",
+      "modes": [
+        "solo"
+      ],
+      "tribes": [
+        "pirate"
+      ],
+      "tags": [
+        "apm",
+        "discover",
+        "golden",
+        "scaling"
+      ],
+      "type": "meta",
+      "commit": [
+        132762
+      ],
+      "core": [
+        132762,
+        132925
+      ],
+      "dynamic": [
+        105664,
+        132201,
+        96786,
+        112990,
+        122862,
+        77774,
+        101314,
+        64189
+      ],
+      "cards": [
+        132762,
+        132925,
+        105664,
+        132201,
+        96786,
+        112990,
+        122862,
+        77774,
+        101314,
+        64189
+      ],
+      "minion_ids": [
+        132762,
+        132925,
+        96786,
+        77774,
+        101314,
+        64189
+      ],
+      "spell_ids": [
+        105664,
+        132201,
+        122862
+      ],
+      "other_ids": [
+        112990
+      ],
+      "card_previews": {
+        "132762": {
+          "id": 132762,
+          "name": "Enterprising Escapee",
+          "type": "minion",
+          "tier": 4,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/pirate/132762-enterprising-escapee.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132762/enterprising-escapee"
+        },
+        "132925": {
+          "id": 132925,
+          "name": "Hooktusk, Master Marauder",
+          "type": "minion",
+          "tier": 6,
+          "image": "https://hsbg.cards/cards/production/pngs/full/minions/pirate/132925-hooktusk-master-marauder.png",
+          "detail": "https://hsreplay.net/battlegrounds/minions/132925/hooktusk-master-marauder"
+        }
+      },
+      "minions": [
+        {
+          "card_id": 132762,
+          "count": 1,
+          "golden_count": 0
+        },
+        {
+          "card_id": 132925,
+          "count": 1,
+          "golden_count": 0
+        }
+      ],
+      "spells": [],
+      "hand_minions": [],
+      "prerequisites": [],
+      "verified_at": "2026-08-22",
+      "source_type": "youtube",
+      "source_url": "https://www.youtube.com/watch?v=weU-QaPXaA8",
+      "source_author": "Shadybunny",
+      "source_id": "weU-QaPXaA8",
+      "discovery_sources": [
+        {
+          "type": "hsreplay",
+          "url": "https://hsreplay.net/battlegrounds/comps/89/pirates-apm-golden",
+          "comp_id": "89",
+          "label": "HSReplay composition guide"
+        },
+        {
+          "type": "firestone",
+          "url": "https://www.firestoneapp.com/battlegrounds/comps",
+          "comp_id": "pirate_discover",
+          "label": "Firestone composition directory"
+        }
+      ],
+      "supporting_sources": [],
+      "published_at": "2026-08-22T05:27:23+00:00"
     }
   ]
 }
